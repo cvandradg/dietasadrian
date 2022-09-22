@@ -11,15 +11,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Install Node
-        uses: actions/setup-node@v1
+      uses: actions/setup-node@v1
         with:
           node-version: '17.x'
 
-     - name: Install Yarn
-        run: curl -o- -L https://yarnpkg.com/install.sh | bash
+    - name: Install Yarn
+      run: curl -o- -L https://yarnpkg.com/install.sh | bash
 
     - name: Checkout Repo
-       uses: actions/checkout@v2
+      uses: actions/checkout@v2
 
     - name: Install Functions Dependencies
       working-directory: functions
