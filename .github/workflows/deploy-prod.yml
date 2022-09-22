@@ -22,7 +22,6 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Install Functions Dependencies
-      working-directory: functions
       run: yarn
 
     - name: Deploy to Firebase
