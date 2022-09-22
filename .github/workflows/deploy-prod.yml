@@ -12,8 +12,8 @@ jobs:
     steps:
     - name: Install Node
       uses: actions/setup-node@v1
-        with:
-          node-version: '17.x'
+      with:
+        node-version: '17.x'
 
     - name: Install Yarn
       run: curl -o- -L https://yarnpkg.com/install.sh | bash
