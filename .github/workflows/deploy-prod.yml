@@ -23,7 +23,7 @@ jobs:
 
     - name: Install Functions Dependencies
       working-directory: functions
-        run: yarn
+      run: yarn
 
     - name: Deploy to Firebase
       - uses: FirebaseExtended/action-hosting-deploy@v0
