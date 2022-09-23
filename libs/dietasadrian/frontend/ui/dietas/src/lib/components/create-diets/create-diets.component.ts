@@ -7,9 +7,11 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./create-diets.component.scss'],
 })
 export class CreateDietsComponent implements OnInit {
-  constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log();
+    
+  }
 }
 
 @NgModule({
