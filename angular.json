@@ -3,6 +3,7 @@
   "version": 2,
   "projects": {
     "dietasadrian": "apps/dietasadrian",
-    "dietasadrian-e2e": "apps/dietasadrian-e2e"
+    "dietasadrian-e2e": "apps/dietasadrian-e2e",
+    "dietasadrian-frontend-ui-dietas": "libs/dietasadrian/frontend/ui/dietas"
   }
 }

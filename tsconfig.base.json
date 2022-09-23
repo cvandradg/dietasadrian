@@ -14,7 +14,14 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@dietas-adrian-nx-workspace/dietasadrian/frontend/ui/dietas": [
+        "libs/dietasadrian/frontend/ui/dietas/src/index.ts"
+      ],
+      "@libs/dietas/dietas.module": [
+        "libs/dietasadrian/frontend/ui/dietas/src/lib/dietas.module"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

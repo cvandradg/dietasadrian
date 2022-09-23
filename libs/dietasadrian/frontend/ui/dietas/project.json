@@ -1,0 +1,26 @@
+{
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/dietasadrian/frontend/ui/dietas/src",
+  "prefix": "dietas-adrian-nx-workspace",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/dietasadrian/frontend/ui/dietas"],
+      "options": {
+        "jestConfig": "libs/dietasadrian/frontend/ui/dietas/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/dietasadrian/frontend/ui/dietas/**/*.ts",
+          "libs/dietasadrian/frontend/ui/dietas/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
