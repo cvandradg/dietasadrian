@@ -4,6 +4,7 @@
   "projects": {
     "dietasadrian": "apps/dietasadrian",
     "dietasadrian-e2e": "apps/dietasadrian-e2e",
-    "dietasadrian-frontend-ui-dietas": "libs/dietasadrian/frontend/ui/dietas"
+    "dietasadrian-frontend-ui-dietas": "libs/dietasadrian/frontend/ui/dietas",
+    "dietasadrian-frontend-ui-landing-page": "libs/dietasadrian/frontend/ui/landing-page"
   }
 }

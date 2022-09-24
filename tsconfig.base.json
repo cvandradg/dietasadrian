@@ -18,8 +18,14 @@
       "@dietas-adrian-nx-workspace/dietasadrian/frontend/ui/dietas": [
         "libs/dietasadrian/frontend/ui/dietas/src/index.ts"
       ],
+      "@dietas-adrian-nx-workspace/dietasadrian/frontend/ui/landing-page": [
+        "libs/dietasadrian/frontend/ui/landing-page/src/index.ts"
+      ],
       "@libs/dietas/dietas.module": [
         "libs/dietasadrian/frontend/ui/dietas/src/lib/dietas.module"
+      ],
+      "@libs/dietas/landing-page.module": [
+        "libs/dietasadrian/frontend/ui/landing-page/src/lib/landing-page.module"
       ]
     }
   },
