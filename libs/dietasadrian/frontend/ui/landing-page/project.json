@@ -6,7 +6,9 @@
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/dietasadrian/frontend/ui/landing-page"],
+      "outputs": [
+        "coverage/libs/dietasadrian/frontend/ui/landing-page"
+      ],
       "options": {
         "jestConfig": "libs/dietasadrian/frontend/ui/landing-page/jest.config.ts",
         "passWithNoTests": true
