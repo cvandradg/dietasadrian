@@ -6,9 +6,7 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/dietasadrian",
         "index": "apps/dietasadrian/src/index.html",
@@ -88,9 +86,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/apps/dietasadrian"
-      ],
+      "outputs": ["coverage/apps/dietasadrian"],
       "options": {
         "jestConfig": "apps/dietasadrian/jest.config.ts",
         "passWithNoTests": true
