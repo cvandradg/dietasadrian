@@ -26,6 +26,9 @@
       ],
       "@libs/dietas/landing-page.module": [
         "libs/dietasadrian/frontend/ui/landing-page/src/lib/landing-page.module"
+      ],
+      "@shared-modules": [
+        "libs/dietasadrian/frontend/shared/shared-module/src/index.ts"
       ]
     }
   },

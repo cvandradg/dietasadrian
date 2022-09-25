@@ -27,6 +27,12 @@
     border-radius: 1.5rem;
   }
 
+  .center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .wrapper {
     width: 100%;
   }
@@ -48,16 +54,25 @@
     font-weight: 500;
     letter-spacing: -0.025em;
     line-height: 1;
+    display: flex;
+    justify-content: center;
   }
 
-  
+  .menu {
+    margin: 0 auto;
+  }
 
-  #middle-content {
+  .mat-icon {
+    margin: 1rem 1rem 1rem 0
+  }
+
+  .middle-content {
     align-items: flex-start;
     display: grid;
     gap: 4rem;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; 
     margin-top: 3.5rem;
+
   }
 
   #learning-materials {
@@ -82,7 +97,6 @@
       -webkit-backdrop-filter;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 150ms;
-    width: 100%;
   }
   .list-item-link svg:first-child {
     margin-right: 1rem;

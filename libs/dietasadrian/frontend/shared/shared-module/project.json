@@ -1,14 +1,14 @@
 {
   "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
-  "sourceRoot": "libs/dietasadrian/frontend/ui/landing-page/src",
+  "sourceRoot": "libs/dietasadrian/frontend/shared/shared-module/src",
   "prefix": "dietas-adrian-nx-workspace",
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/dietasadrian/frontend/ui/landing-page"],
+      "outputs": ["coverage/libs/dietasadrian/frontend/shared/shared-module"],
       "options": {
-        "jestConfig": "libs/dietasadrian/frontend/ui/landing-page/jest.config.ts",
+        "jestConfig": "libs/dietasadrian/frontend/shared/shared-module/jest.config.ts",
         "passWithNoTests": true
       }
     },
@@ -16,8 +16,8 @@
       "executor": "@nrwl/linter:eslint",
       "options": {
         "lintFilePatterns": [
-          "libs/dietasadrian/frontend/ui/landing-page/**/*.ts",
-          "libs/dietasadrian/frontend/ui/landing-page/**/*.html"
+          "libs/dietasadrian/frontend/shared/shared-module/**/*.ts",
+          "libs/dietasadrian/frontend/shared/shared-module/**/*.html"
         ]
       }
     }
