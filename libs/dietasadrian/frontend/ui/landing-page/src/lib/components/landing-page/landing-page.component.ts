@@ -15,4 +15,7 @@ export class LandingPageComponent {}
   declarations: [LandingPageComponent],
   exports: [LandingPageComponent],
 })
-export class LandingPageComponentModule {}
+export class LandingPageComponentModule {
+  // console.log();
+  
+}
