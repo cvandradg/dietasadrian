@@ -1,0 +1,9 @@
+.trim-dots {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
