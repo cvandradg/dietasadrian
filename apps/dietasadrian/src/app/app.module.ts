@@ -8,6 +8,7 @@ import ROUTES from './routes';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { SharedModuleModule } from '@shared-modules';
+import { HeaderComponentModule } from './components/header/header.component';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,6 +17,7 @@ import { SharedModuleModule } from '@shared-modules';
     RouterModule.forRoot(ROUTES),
     BrowserAnimationsModule,
     SharedModuleModule,
+    HeaderComponentModule
   ],
   providers: [],
   bootstrap: [AppComponent],
