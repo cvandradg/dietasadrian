@@ -12,6 +12,7 @@ interface Food {
 })
 export class AppComponent {
 
+  // test
   panelOpenState = false;
 
   title = 'dietasadrian';
