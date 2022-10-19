@@ -16,22 +16,18 @@ export interface Fruit {
   styleUrls: ['./create-diets.component.scss'],
 })
 export class CreateDietsComponent {
-  movies = ['Episode I - The Phantom Menace'];
+  meals = ['Episode I - The Phantom Menace'];
 
-  addOnBlur = true;
-  readonly separatorKeysCodes = [ENTER, COMMA] as const;
-  fruits: Fruit[] = [
-    { name: 'pollo' },
-    { name: 'arroz' },
-    { name: 'frijoles' },
-  ];
+  foodLines: Fruit[] = [{ name: 'pollo' }];
+
+  ingredients: string[] = ['pollo 100g'];
 
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
 
     // Add our fruit
     if (value) {
-      this.fruits.push({ name: value });
+      this.foodLines.push({ name: value });
     }
 
     // Clear the input value
@@ -39,20 +35,36 @@ export class CreateDietsComponent {
   }
 
   remove(fruit: Fruit): void {
-    const index = this.fruits.indexOf(fruit);
+    const index = this.foodLines.indexOf(fruit);
 
     if (index >= 0) {
-      this.fruits.splice(index, 1);
+      this.foodLines.splice(index, 1);
     }
   }
 
+  addFoodLine() {
+    this.foodLines.push({ name: 'pollo' });
+  }
+
+  addIngredient() {
+    this.ingredients.push('pollo 100g');
+  }
+
   addMeal() {
-    this.movies.push('random movie');
+    this.meals.push('random movie');
+  }
+
+  deleteMeal(index: number) {
+    this.meals.splice(index, 1);
+  }
+
+  deleteIngredient(index: number) {
+    this.ingredients.splice(index, 1);
   }
 
   //Desied type CdkDragDrop<string[]>
   drop(event: any) {
-    moveItemInArray(this.movies, event.previousIndex, event.currentIndex);
+    moveItemInArray(this.meals, event.previousIndex, event.currentIndex);
   }
 }
 

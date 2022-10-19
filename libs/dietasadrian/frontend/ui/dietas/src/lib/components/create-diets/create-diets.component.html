@@ -1,6 +1,10 @@
 <div class="crear-dietas-container">
   <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-    <div class="meals-box" *ngFor="let movie of movies" cdkDrag>
+    <div
+      class="meals-box"
+      *ngFor="let meal of meals; let mealIndex = index"
+      cdkDrag
+    >
       <div class="meals">
         <div class="meal-handle meal-handle" cdkDragHandle>
           <span class="material-symbols-outlined"> drag_indicator </span>
@@ -11,21 +15,49 @@
             class="example-list"
             (cdkDropListDropped)="drop($event)"
           >
-            <div class="food-box" *ngFor="let movie of movies" cdkDrag>
+            <div class="food-box" *ngFor="let foodLine of foodLines" cdkDrag>
               <mat-chip-list aria-label="Fish selection">
-                <mat-chip>Pollo 100g</mat-chip>
-                <mat-chip>Arroz 200g</mat-chip>
-                <mat-chip color="primary" selected>Primary fish</mat-chip>
-                <mat-chip color="accent" selected>Accent fish</mat-chip>
-                <mat-chip color="primary" selected>Primary fish</mat-chip>
-                <mat-chip color="accent" selected>Accent fish</mat-chip>
+                <mat-chip
+                  *ngFor="
+                    let ingredient of ingredients;
+                    let ingredientIndex = index
+                  "
+                >
+                  {{ ingredient }}
+
+                  <button matChipRemove>
+                    <mat-icon (click)="deleteIngredient(ingredientIndex)"
+                      >cancel</mat-icon
+                    >
+                  </button></mat-chip
+                >
               </mat-chip-list>
 
-              <div class="food-handle" cdkDragHandle>
-                <span class="material-symbols-outlined"> drag_handle </span>
+              <div class="food-buttons">
+                <span
+                  class="material-symbols-outlined icon"
+                  (click)="addIngredient()"
+                >
+                  add
+                </span>
+
+                <div class="food-handle" cdkDragHandle>
+                  <span class="material-symbols-outlined"> drag_handle </span>
+                </div>
               </div>
             </div>
           </div>
+        </div>
+        <div class="meals-buttons">
+          <span class="material-symbols-outlined icon" (click)="addFoodLine()">
+            add_circle
+          </span>
+          <span
+            class="material-symbols-outlined icon"
+            (click)="deleteMeal(mealIndex)"
+          >
+            delete
+          </span>
         </div>
       </div>
     </div>
@@ -34,6 +66,6 @@
 
 <div class="crear-dieta-button-container">
   <span class="material-symbols-outlined icon icon-size" (click)="addMeal()">
-    add_circle
+    playlist_add
   </span>
 </div>
