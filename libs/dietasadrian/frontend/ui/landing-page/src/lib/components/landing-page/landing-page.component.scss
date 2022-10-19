@@ -31,6 +31,10 @@ svg {
   text-align: center;
 }
 
+i {
+  max-width: 22rem;
+}
+
 .wrapper {
   width: 100%;
 }
@@ -73,10 +77,6 @@ svg {
   grid-template-columns: 1fr;
   margin-top: 3.5rem;
 }
-
-#learning-materials {
-  padding: 2.5rem 2rem;
-}
 #learning-materials h2 {
   font-weight: 500;
   font-size: 1.25rem;
@@ -89,7 +89,6 @@ svg {
   align-items: center;
   border-radius: 0.75rem;
   display: flex;
-  margin-top: 1rem;
   padding: 1rem;
   transition-property: background-color, border-color, color, fill, stroke,
     opacity, box-shadow, transform, filter, backdrop-filter,
