@@ -5,9 +5,22 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { CommonModule } from '@angular/common';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { SharedModuleModule } from '@shared-modules';
+import { v4 as uuidv4 } from 'uuid';
 
 export interface Fruit {
   name: string;
+}
+
+export interface IngredientLine {
+  id: string;
+  position: number;
+  ingredients: string[];
+}
+
+export interface Meal {
+  id: string;
+  position: number;
+  foodLines: any;
 }
 
 @Component({
@@ -16,50 +29,74 @@ export interface Fruit {
   styleUrls: ['./create-diets.component.scss'],
 })
 export class CreateDietsComponent {
-  meals = ['Episode I - The Phantom Menace'];
-
-  foodLines: Fruit[] = [{ name: 'pollo' }];
-
-  ingredients: string[] = ['pollo 100g'];
-
-  add(event: MatChipInputEvent): void {
-    const value = (event.value || '').trim();
-
-    // Add our fruit
-    if (value) {
-      this.foodLines.push({ name: value });
+  meals: Meal[] = [
+    {
+      id: uuidv4(),
+      position: 0,
+      foodLines: [
+        {
+          id: uuidv4(),
+          position: 0,
+          ingredients: ['pollo 100g']
+        }
+      ]
     }
+  ];
 
-    // Clear the input value
-    event.chipInput?.clear();
+  addFoodLine(mealId: string) {
+    const MEAL_ID_INDEX = this.meals.findIndex((meal) => meal.id === mealId);
+
+    this.meals[MEAL_ID_INDEX].foodLines.push({
+      id: uuidv4(),
+      position: this.meals[MEAL_ID_INDEX].foodLines.length,
+      ingredients: [],
+    });
   }
 
-  remove(fruit: Fruit): void {
-    const index = this.foodLines.indexOf(fruit);
+  addIngredient(mealId: string, foodLineId: string) {
+    const MEAL_ID_INDEX = this.meals.findIndex((meal) => meal.id === mealId);
 
-    if (index >= 0) {
-      this.foodLines.splice(index, 1);
-    }
-  }
+    const FOOD_ID_INDEX = this.meals[MEAL_ID_INDEX].foodLines.findIndex(
+      (foodLine: any) => foodLine.id === foodLineId
+    );
 
-  addFoodLine() {
-    this.foodLines.push({ name: 'pollo' });
-  }
+    this.meals[MEAL_ID_INDEX].foodLines[FOOD_ID_INDEX].ingredients.push(
+      'pollo 100g'
+    );
 
-  addIngredient() {
-    this.ingredients.push('pollo 100g');
+    console.log('meals,',this.meals);
+
   }
 
   addMeal() {
-    this.meals.push('random movie');
+    this.meals.push({
+      id: uuidv4(),
+      position: this.meals.length,
+      foodLines: [],
+    });
   }
 
   deleteMeal(index: number) {
     this.meals.splice(index, 1);
   }
 
-  deleteIngredient(index: number) {
-    this.ingredients.splice(index, 1);
+  deleteIngredient(
+    mealId: string,
+    foodLineId: string,
+    ingredientIndex: number
+  ) {
+    const MEAL_ID_INDEX = this.meals.findIndex((meal) => meal.id === mealId);
+
+    const FOOD_ID_INDEX = this.meals[MEAL_ID_INDEX].foodLines.findIndex(
+      (foodLine: any) => foodLine.id === foodLineId
+    );
+
+    this.meals[MEAL_ID_INDEX].foodLines[FOOD_ID_INDEX].ingredients.splice(
+      ingredientIndex,
+      1
+    );
+
+    
   }
 
   //Desied type CdkDragDrop<string[]>

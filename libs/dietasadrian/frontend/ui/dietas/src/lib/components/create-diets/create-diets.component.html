@@ -15,18 +15,18 @@
             class="example-list"
             (cdkDropListDropped)="drop($event)"
           >
-            <div class="food-box" *ngFor="let foodLine of foodLines" cdkDrag>
+            <div class="food-box" *ngFor="let foodLine of meal.foodLines" cdkDrag>
               <mat-chip-list aria-label="Fish selection">
                 <mat-chip
                   *ngFor="
-                    let ingredient of ingredients;
+                    let ingredient of foodLine.ingredients;
                     let ingredientIndex = index
                   "
                 >
-                  {{ ingredient }}
+                  {{ ingredient + ' ' + ingredientIndex }}
 
                   <button matChipRemove>
-                    <mat-icon (click)="deleteIngredient(ingredientIndex)"
+                    <mat-icon (click)="deleteIngredient(meal.id ,foodLine.id, ingredientIndex)"
                       >cancel</mat-icon
                     >
                   </button></mat-chip
@@ -36,7 +36,7 @@
               <div class="food-buttons">
                 <span
                   class="material-symbols-outlined icon"
-                  (click)="addIngredient()"
+                  (click)="addIngredient(meal.id, foodLine.id)"
                 >
                   add
                 </span>
@@ -49,7 +49,7 @@
           </div>
         </div>
         <div class="meals-buttons">
-          <span class="material-symbols-outlined icon" (click)="addFoodLine()">
+          <span class="material-symbols-outlined icon" (click)="addFoodLine(meal.id)">
             add_circle
           </span>
           <span
