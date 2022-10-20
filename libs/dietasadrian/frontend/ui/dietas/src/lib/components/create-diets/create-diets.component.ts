@@ -37,10 +37,10 @@ export class CreateDietsComponent {
         {
           id: uuidv4(),
           position: 0,
-          ingredients: ['pollo 100g']
-        }
-      ]
-    }
+          ingredients: ['pollo 100g'],
+        },
+      ],
+    },
   ];
 
   addFoodLine(mealId: string) {
@@ -63,9 +63,6 @@ export class CreateDietsComponent {
     this.meals[MEAL_ID_INDEX].foodLines[FOOD_ID_INDEX].ingredients.push(
       'pollo 100g'
     );
-
-    console.log('meals,',this.meals);
-
   }
 
   addMeal() {
@@ -95,8 +92,6 @@ export class CreateDietsComponent {
       ingredientIndex,
       1
     );
-
-    
   }
 
   //Desied type CdkDragDrop<string[]>
