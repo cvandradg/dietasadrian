@@ -29,6 +29,9 @@
       ],
       "@shared-modules": [
         "libs/dietasadrian/frontend/shared/shared-module/src/index.ts"
+      ],
+      "@helperFunctions": [
+        "libs/dietasadrian/frontend/shared/helperFunctions.ts"
       ]
     }
   },

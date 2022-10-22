@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { SharedModuleModule } from '@shared-modules';
 import { v4 as uuidv4 } from 'uuid';
+import { findIndex } from '@helperFunctions';
 
 export interface Fruit {
   name: string;
@@ -44,7 +45,7 @@ export class CreateDietsComponent {
   ];
 
   addFoodLine(mealId: string) {
-    const MEAL_ID_INDEX = this.meals.findIndex((meal) => meal.id === mealId);
+    const MEAL_ID_INDEX = findIndex(this.meals, mealId);
 
     this.meals[MEAL_ID_INDEX].foodLines.push({
       id: uuidv4(),
@@ -53,11 +54,18 @@ export class CreateDietsComponent {
     });
   }
 
-  addIngredient(mealId: string, foodLineId: string) {
-    const MEAL_ID_INDEX = this.meals.findIndex((meal) => meal.id === mealId);
+  deleteFoodLine(mealId: string, foodLineId: string) {
+    const { MEAL_ID_INDEX, FOOD_ID_INDEX } = this.getMealLineIndex(
+      mealId,
+      foodLineId
+    );
+    this.meals[MEAL_ID_INDEX].foodLines.splice(FOOD_ID_INDEX, 1)
+  }
 
-    const FOOD_ID_INDEX = this.meals[MEAL_ID_INDEX].foodLines.findIndex(
-      (foodLine: any) => foodLine.id === foodLineId
+  addIngredient(mealId: string, foodLineId: string) {
+    const { MEAL_ID_INDEX, FOOD_ID_INDEX } = this.getMealLineIndex(
+      mealId,
+      foodLineId
     );
 
     this.meals[MEAL_ID_INDEX].foodLines[FOOD_ID_INDEX].ingredients.push(
@@ -82,10 +90,9 @@ export class CreateDietsComponent {
     foodLineId: string,
     ingredientIndex: number
   ) {
-    const MEAL_ID_INDEX = this.meals.findIndex((meal) => meal.id === mealId);
-
-    const FOOD_ID_INDEX = this.meals[MEAL_ID_INDEX].foodLines.findIndex(
-      (foodLine: any) => foodLine.id === foodLineId
+    const { MEAL_ID_INDEX, FOOD_ID_INDEX } = this.getMealLineIndex(
+      mealId,
+      foodLineId
     );
 
     this.meals[MEAL_ID_INDEX].foodLines[FOOD_ID_INDEX].ingredients.splice(
@@ -95,8 +102,31 @@ export class CreateDietsComponent {
   }
 
   //Desied type CdkDragDrop<string[]>
-  drop(event: any) {
+  //Material design needed
+  mealsDrop(event: any) {
     moveItemInArray(this.meals, event.previousIndex, event.currentIndex);
+  }
+
+  //Material design needed
+  linesDrop(event: any, mealId: string): void {
+    const MEAL_ID_INDEX = findIndex(this.meals, mealId);
+
+    moveItemInArray(
+      this.meals[MEAL_ID_INDEX].foodLines,
+      event.previousIndex,
+      event.currentIndex
+    );
+  }
+
+  //Material design needed
+  getMealLineIndex(mealId: string, foodLineId: string) {
+    const MEAL_ID_INDEX = findIndex(this.meals, mealId);
+    const FOOD_ID_INDEX = findIndex(
+      this.meals[MEAL_ID_INDEX].foodLines,
+      foodLineId
+    );
+
+    return { MEAL_ID_INDEX, FOOD_ID_INDEX };
   }
 }
 

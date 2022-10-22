@@ -6,12 +6,15 @@ import {MatButtonModule} from '@angular/material/button';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatInputModule } from '@angular/material/input';
 
 
 const MODULES = [
   MatToolbarModule,
   MatIconModule,
   MatButtonModule,
+  MatFormFieldModule,
+  MatInputModule,  
   DragDropModule,
   MatFormFieldModule,
   MatChipsModule,
