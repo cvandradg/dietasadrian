@@ -59,6 +59,7 @@ export class CreateDietsComponent {
       mealId,
       foodLineId
     );
+    
     this.meals[MEAL_ID_INDEX].foodLines.splice(FOOD_ID_INDEX, 1)
   }
 
