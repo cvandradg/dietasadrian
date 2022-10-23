@@ -11,7 +11,13 @@
     >
       <div class="meals">
         <div class="flex">
-          <div class="meal-box-name">{{ 'Nombre' + ' ' + (meal.id | slice: -5) }}</div>
+          <input
+            type="text"
+            class="ghost-input"
+            [placeholder]="'Comida ' + mealIndex"
+            required
+          />
+
           <div class="meal-handle meal-handle" cdkDragHandle>
             <span class="material-symbols-outlined"> drag_indicator </span>
           </div>

@@ -1,6 +1,6 @@
 .flex {
   display: flex;
-  justify-content: space-between
+  justify-content: space-between;
 }
 
 .crear-dietas-container {
@@ -58,11 +58,32 @@
 .food-buttons {
   display: flex;
   justify-content: space-around;
-  gap: 0.5rem;
+  gap: 0rem;
 }
 
 .meal-handle {
   align-self: flex-end;
+}
+
+.ghost-input {
+  display: block;
+  font-weight: 300;
+  font-size: 11px;
+  border: 0px;
+  outline: none;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #4b545f;
+  background: #fff;
+  font-family: Open Sans, Verdana;
+  padding: 5px 5px;
+  margin: 0rem 0rem 0.5rem 0rem;
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
+  -ms-transition: all 0.1s ease-in-out;
+  -o-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
 }
 
 .crear-dieta-button-container,
@@ -163,5 +184,15 @@
   .icon-size {
     font-size: 4rem;
     font-weight: 100;
+  }
+}
+
+@media (max-width: 450px) {
+  .food-line {
+    padding: 1rem 0rem 0.6rem 0rem;
+  }
+
+  mat-chip {
+    font-size: 0.8rem;
   }
 }
