@@ -1,6 +1,4 @@
 import { Component, NgModule } from '@angular/core';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { MatChipInputEvent } from '@angular/material/chips';
 
 import { CommonModule } from '@angular/common';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
@@ -59,8 +57,8 @@ export class CreateDietsComponent {
       mealId,
       foodLineId
     );
-    
-    this.meals[MEAL_ID_INDEX].foodLines.splice(FOOD_ID_INDEX, 1)
+
+    this.meals[MEAL_ID_INDEX].foodLines.splice(FOOD_ID_INDEX, 1);
   }
 
   addIngredient(mealId: string, foodLineId: string) {
