@@ -1,6 +1,6 @@
-import { Component, NgModule } from '@angular/core';
+import { Component, Inject, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatDialogRef, MatDialogModule } from '@angular/material/dialog';
+import { MatDialogRef, MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 
@@ -10,7 +10,9 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrls: ['./confirmation-dialog.component.scss'],
 })
 export class ConfirmationDialogComponent {
-  constructor(public dialogRef: MatDialogRef<ConfirmationDialogComponent>) {}
+  constructor(public dialogRef: MatDialogRef<ConfirmationDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    ) {}
 }
 
 @NgModule({

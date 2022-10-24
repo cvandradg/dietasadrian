@@ -24,6 +24,9 @@
       "@helperFunctions": [
         "libs/dietasadrian/frontend/shared/helperFunctions.ts"
       ],
+      "@materialFunctions": [
+        "libs/dietasadrian/frontend/shared/materialFunctions.ts"
+      ],
       "@libs/dietas/dietas.module": [
         "libs/dietasadrian/frontend/ui/dietas/src/lib/dietas.module"
       ],
