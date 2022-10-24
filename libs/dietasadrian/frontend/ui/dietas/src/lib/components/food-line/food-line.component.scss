@@ -23,32 +23,30 @@
   font-size: 2rem;
 }
 
- 
 .material-symbols-outlined {
   font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
 }
 
+/// Material Chisps ///
+.example-chip-list {
+  width: 100%;
+}
+/// Material Chisps end///
 
-  /// Material Chisps ///
-  .example-chip-list {
-    width: 100%;
+/// Media Queries///
+@media screen and (min-width: 768px) {
+  .icon-size {
+    font-size: 4rem;
+    font-weight: 100;
   }
-  /// Material Chisps end///
-  
-  /// Media Queries///
-  @media screen and (min-width: 768px) {
-    .icon-size {
-      font-size: 4rem;
-      font-weight: 100;
-    }
+}
+
+@media (max-width: 450px) {
+  .food-line {
+    padding: 1rem 0rem 0.6rem 0rem;
   }
-  
-  @media (max-width: 450px) {
-    .food-line {
-      padding: 1rem 0rem 0.6rem 0rem;
-    }
-  
-    mat-chip {
-      font-size: 0.8rem;
-    }
+
+  mat-chip {
+    font-size: 0.8rem;
   }
+}

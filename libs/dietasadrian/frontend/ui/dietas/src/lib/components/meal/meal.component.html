@@ -1,0 +1,37 @@
+<div class="meals">
+  <div class="flex">
+    <input
+      type="text"
+      class="ghost-input"
+      [placeholder]="'Comida ' + (index + 1)"
+      required
+    />
+
+    <div class="meal-handle meal-handle" cdkDragHandle>
+      <span class="material-symbols-outlined"> drag_indicator </span>
+    </div>
+  </div>
+
+  <div>
+    <div
+      cdkDropList
+      class="example-list"
+      (cdkDropListDropped)="linesDrop($event)"
+    >
+      <div *ngFor="let foodLine of meal.foodLines" cdkDrag>
+        <dietas-adrian-nx-workspace-food-line
+          [foodLine]="foodLine"
+          (deleteFoodLine)="onDeleteFoodLine($event)"
+        ></dietas-adrian-nx-workspace-food-line>
+      </div>
+    </div>
+  </div>
+  <div class="meals-buttons">
+    <span class="material-symbols-outlined icon" (click)="addFoodLine()">
+      add_circle
+    </span>
+    <span class="material-symbols-outlined icon" (click)="delete()">
+      delete
+    </span>
+  </div>
+</div>
