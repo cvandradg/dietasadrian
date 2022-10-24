@@ -21,14 +21,17 @@
       "@dietas-adrian-nx-workspace/dietasadrian/frontend/ui/landing-page": [
         "libs/dietasadrian/frontend/ui/landing-page/src/index.ts"
       ],
-      "@helperFunctions": [
-        "libs/dietasadrian/frontend/shared/helperFunctions.ts"
+      "@helperFunctionsService": [
+        "libs/dietasadrian/frontend/shared/helperFunctions.service.ts"
       ],
       "@libs/dietas/dietas.module": [
         "libs/dietasadrian/frontend/ui/dietas/src/lib/dietas.module"
       ],
       "@libs/dietas/landing-page.module": [
         "libs/dietasadrian/frontend/ui/landing-page/src/lib/landing-page.module"
+      ],
+      "@materialFunctions": [
+        "libs/dietasadrian/frontend/shared/materialFunctions.ts"
       ],
       "@shared-modules": [
         "libs/dietasadrian/frontend/shared/shared-module/src/index.ts"

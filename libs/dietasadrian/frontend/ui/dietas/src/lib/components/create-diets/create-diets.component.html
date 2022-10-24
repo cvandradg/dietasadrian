@@ -9,80 +9,11 @@
       *ngFor="let meal of meals; let mealIndex = index"
       cdkDrag
     >
-      <div class="meals">
-        <div class="flex">
-          <input
-            type="text"
-            class="ghost-input"
-            [placeholder]="'Comida ' + (mealIndex+1)"
-            required
-          />
-
-          <div class="meal-handle meal-handle" cdkDragHandle>
-            <span class="material-symbols-outlined"> drag_indicator </span>
-          </div>
-        </div>
-
-        <div>
-          <div
-            cdkDropList
-            class="example-list"
-            (cdkDropListDropped)="linesDrop($event, meal.id)"
-          >
-            <div *ngFor="let foodLine of meal.foodLines" cdkDrag>
-              <div class="food-line">
-                <mat-chip-list>
-                  <mat-chip
-                    *ngFor="
-                      let ingredient of foodLine.ingredients;
-                      let ingredientIndex = index
-                    "
-                    cdkDragHandle
-                  >
-                    {{ ingredient }}
-
-                    <button matChipRemove>
-                      <mat-icon
-                        (click)="
-                          deleteIngredient(
-                            meal.id,
-                            foodLine.id,
-                            ingredientIndex
-                          )
-                        "
-                        >cancel</mat-icon
-                      >
-                    </button></mat-chip
-                  >
-                </mat-chip-list>
-
-                <div class="food-buttons">
-                  <span
-                    class="material-symbols-outlined icon icon-big"
-                    (click)="addIngredient(meal.id, foodLine.id)"
-                  >
-                    add
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="meals-buttons">
-          <span
-            class="material-symbols-outlined icon"
-            (click)="addFoodLine(meal.id)"
-          >
-            add_circle
-          </span>
-          <span
-            class="material-symbols-outlined icon"
-            (click)="deleteMeal(mealIndex)"
-          >
-            delete
-          </span>
-        </div>
-      </div>
+      <dietas-adrian-nx-workspace-meal
+        [meal]="meal"
+        [index]="mealIndex"
+        (deleteMeal)="onDeleteMeal($event)"
+      ></dietas-adrian-nx-workspace-meal>
     </div>
   </div>
 </div>
