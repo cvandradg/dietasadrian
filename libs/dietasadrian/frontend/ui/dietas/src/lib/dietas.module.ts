@@ -7,7 +7,6 @@ import { CreateDietsComponent } from './components/create-diets/create-diets.com
 @NgModule({
   imports: [
     CommonModule,
-
     RouterModule.forChild([
        {path: 'misdietas', pathMatch: 'full', component: MyDietsComponent},
        {path: 'crear', pathMatch: 'full', component: CreateDietsComponent},

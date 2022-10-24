@@ -21,6 +21,9 @@
       "@dietas-adrian-nx-workspace/dietasadrian/frontend/ui/landing-page": [
         "libs/dietasadrian/frontend/ui/landing-page/src/index.ts"
       ],
+      "@helperFunctions": [
+        "libs/dietasadrian/frontend/shared/helperFunctions.ts"
+      ],
       "@libs/dietas/dietas.module": [
         "libs/dietasadrian/frontend/ui/dietas/src/lib/dietas.module"
       ],
@@ -29,9 +32,6 @@
       ],
       "@shared-modules": [
         "libs/dietasadrian/frontend/shared/shared-module/src/index.ts"
-      ],
-      "@helperFunctions": [
-        "libs/dietasadrian/frontend/shared/helperFunctions.ts"
       ]
     }
   },
