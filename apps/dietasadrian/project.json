@@ -13,9 +13,9 @@
         "main": "apps/dietasadrian/src/main.ts",
         "polyfills": "apps/dietasadrian/src/polyfills.ts",
         "tsConfig": "apps/dietasadrian/tsconfig.app.json",
-        "inlineStyleLanguage": "scss",
+        "inlineStyleLanguage": "scss",  
         "assets": [
-          "apps/dietasadrian/src/favicon.ico",
+          "apps/dietasadrian/src/dbicon.png",
           "apps/dietasadrian/src/assets"
         ],
         "styles": [

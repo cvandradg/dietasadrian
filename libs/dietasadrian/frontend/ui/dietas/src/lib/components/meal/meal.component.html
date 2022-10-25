@@ -1,9 +1,12 @@
 <div class="meals">
   <div class="flex">
     <input
+      #mealName 
       type="text"
       class="ghost-input"
-      [placeholder]="'Comida ' + (index + 1)"
+      [(ngModel)]="meal.name" 
+      onClick="this.select();"
+      (keyup.enter)="mealName.blur()"
       required
     />
 
