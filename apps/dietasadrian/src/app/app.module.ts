@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 
-import ROUTES from './routes';
+import routes from './routes';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { SharedModuleModule } from '@shared-modules';
@@ -14,7 +14,7 @@ import { HeaderComponentModule } from './components/header/header.component';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(ROUTES),
+    RouterModule.forRoot(routes),
     BrowserAnimationsModule,
     SharedModuleModule,
     HeaderComponentModule

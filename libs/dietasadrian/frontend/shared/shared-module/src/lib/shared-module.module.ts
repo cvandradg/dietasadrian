@@ -8,6 +8,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
+import { FormsModule } from '@angular/forms';
+
 import { ConfirmationDialogComponentModule } from './dialogs/confirmation-dialog/confirmation-dialog.component';
 
 const MODULES = [
@@ -20,6 +22,7 @@ const MODULES = [
   MatFormFieldModule,
   MatChipsModule,
   MatDialogModule,
+  FormsModule
 ];
 
 const COMPONENTS = [ConfirmationDialogComponentModule];

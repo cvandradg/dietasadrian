@@ -1,4 +1,4 @@
-import { Component, NgModule } from '@angular/core';
+import { Component, NgModule, OnInit } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
@@ -16,6 +16,7 @@ export interface IngredientLine {
 }
 
 export interface Meal {
+  name: string;
   id: string;
   position: number;
   foodLines: any;
@@ -26,29 +27,23 @@ export interface Meal {
   templateUrl: './create-diets.component.html',
   styleUrls: ['./create-diets.component.scss'],
 })
-export class CreateDietsComponent {
+export class CreateDietsComponent implements OnInit{
   constructor(
     public dialog: MatDialog,
     public overlay: Overlay,
     private helper: HelperService
   ) {}
 
-  meals: Meal[] = [
-    {
-      id: uuidv4(),
-      position: 0,
-      foodLines: [
-        {
-          id: uuidv4(),
-          position: 0,
-          ingredients: ['pollo 100g'],
-        },
-      ],
-    },
-  ];
+
+  meals: Meal[] = [];
+
+  ngOnInit(): void {
+    this.addMeal()
+  }
 
   addMeal() {
     this.meals.push({
+      name: `Comida ${ this.meals.length + 1 }`,
       id: uuidv4(),
       position: this.meals.length,
       foodLines: [],
