@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModuleModule } from '@shared-modules';
+import { HelperService } from '@helperFunctionsService';
 
 @Component({
   selector: 'dietas-adrian-nx-workspace-food-line',
@@ -21,8 +22,10 @@ export class FoodLineComponent implements OnInit {
   @Output() foodLineChange = new EventEmitter<any>();
   @Output() deleteFoodLine = new EventEmitter<any>();
 
+  constructor(private helper: HelperService) {}
+
   ngOnInit(): void {
-    this.addIngredient()
+    this.addIngredient();
   }
 
   deleteIngredient() {
@@ -30,7 +33,14 @@ export class FoodLineComponent implements OnInit {
   }
 
   addIngredient() {
-    this.foodLine.ingredients.push('pollo 100g');
+    this.helper
+      .openAddIngredientDialog()
+      .afterClosed()
+      .subscribe((result: any) => {
+        console.log('resultado que es?,',result
+        );
+        
+        return this.foodLine.ingredients.push('pollo 100g')});
   }
 
   deleteLine(foodLineId: string) {

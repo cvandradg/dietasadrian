@@ -1,0 +1,27 @@
+<div class="dialog-container">
+  <h1 mat-dialog-title>Alimento</h1>
+<div mat-dialog-content>
+  <p>¿Qué alimento deseas agregar?</p>
+  <form class="example-form">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Escribe el alimento</mat-label>
+      <input matInput
+             aria-label="State"
+             [matAutocomplete]="auto"
+             [formControl]="stateCtrl">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
+          <span>{{state.name}}</span> |
+          <small>Population: {{state.population}}</small>
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Gracias</button>
+  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
+</div>  
+
+
+</div>

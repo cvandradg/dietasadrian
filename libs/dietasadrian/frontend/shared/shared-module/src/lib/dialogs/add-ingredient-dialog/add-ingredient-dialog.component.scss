@@ -1,0 +1,43 @@
+.dialog-container {
+    width: 90%;
+    height: 90%;
+}
+
+::ng-deep .smaller {
+    width: 40%;
+  
+// your custom logic - this is a sketch
+    @media screen and (max-width: 660px){
+      width: 100%;
+      background-color: red;
+    }
+  }
+
+.example-form {
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.example-option-img {
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+[dir='rtl'] .example-option-img {
+  margin-right: 0;
+  margin-left: 8px;
+}
+
+mat-option {
+    color: black;
+}
+
+@media screen and (max-width: 768px) {
+    .dialog-container {
+        width: 40%;
+        height: 40%;
+    }
+}

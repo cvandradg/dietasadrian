@@ -11,6 +11,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 
 import { ConfirmationDialogComponentModule } from './dialogs/confirmation-dialog/confirmation-dialog.component';
+import { AddIngredientDialogComponentModule } from './dialogs/add-ingredient-dialog/add-ingredient-dialog.component';
 
 const MODULES = [
   MatToolbarModule,
@@ -22,10 +23,13 @@ const MODULES = [
   MatFormFieldModule,
   MatChipsModule,
   MatDialogModule,
-  FormsModule
+  FormsModule,
 ];
 
-const COMPONENTS = [ConfirmationDialogComponentModule];
+const COMPONENTS = [
+  ConfirmationDialogComponentModule,
+  AddIngredientDialogComponentModule,
+];
 
 @NgModule({
   imports: [CommonModule, ...MODULES],
