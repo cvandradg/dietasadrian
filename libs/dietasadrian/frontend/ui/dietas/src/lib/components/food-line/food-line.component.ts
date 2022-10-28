@@ -4,6 +4,7 @@ import {
   NgModule,
   Output,
   EventEmitter,
+  OnInit,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModuleModule } from '@shared-modules';
@@ -13,12 +14,16 @@ import { SharedModuleModule } from '@shared-modules';
   templateUrl: './food-line.component.html',
   styleUrls: ['./food-line.component.scss'],
 })
-export class FoodLineComponent {
+export class FoodLineComponent implements OnInit {
   @Input()
   foodLine: any;
 
   @Output() foodLineChange = new EventEmitter<any>();
   @Output() deleteFoodLine = new EventEmitter<any>();
+
+  ngOnInit(): void {
+    this.addIngredient()
+  }
 
   deleteIngredient() {
     this.foodLine.ingredients.splice(0, 1);
