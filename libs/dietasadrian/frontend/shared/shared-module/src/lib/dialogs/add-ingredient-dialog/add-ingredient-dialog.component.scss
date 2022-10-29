@@ -43,11 +43,11 @@ mat-option {
   color: black;
 }
 
-::ng-deep .mat-button.mat-button-disabled.mat-button-disabled {
+:host ::ng-deep .mat-button.mat-button-disabled.mat-button-disabled {
   color: rgb(161, 161, 161);
 }
 
-::ng-deep .mat-dialog-container {
+:host ::ng-deep .mat-dialog-container {
   padding: 24px 0px 24px 0px;
   overflow: hidden;
 }

@@ -1,8 +1,10 @@
-<h1 mat-dialog-title>{{ data?.message }}</h1>
-<div mat-dialog-content>
-  <p>Desea borrar?</p>
-</div>
-<div mat-dialog-actions>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Ok</button>
-  <button mat-button [mat-dialog-close]="false">No Gracias</button>
+<div class="dialog-container">
+  <h1 mat-dialog-title>{{ data?.message }}</h1>
+  <div mat-dialog-content>
+    <p>Desea borrar?</p>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Ok</button>
+    <button mat-button [mat-dialog-close]="false">No Gracias</button>
+  </div>
 </div>

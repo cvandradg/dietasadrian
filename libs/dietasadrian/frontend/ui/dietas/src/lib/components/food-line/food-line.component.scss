@@ -6,7 +6,6 @@
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
-  background: white;
   font-size: 14px;
 }
 
@@ -43,7 +42,7 @@
 
 @media (max-width: 450px) {
   .food-line {
-    padding: 1rem 0rem 0.6rem 0rem;
+    padding: 1rem 0rem 0.6rem 0.4rem;
   }
 
   mat-chip {
