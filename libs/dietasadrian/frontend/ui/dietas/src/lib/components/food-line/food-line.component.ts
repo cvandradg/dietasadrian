@@ -37,10 +37,11 @@ export class FoodLineComponent implements OnInit {
       .openAddIngredientDialog()
       .afterClosed()
       .subscribe((result: any) => {
-        console.log('resultado que es?,',result
-        );
+        if(!result){
+          return
+        }
         
-        return this.foodLine.ingredients.push('pollo 100g')});
+        return this.foodLine.ingredients.push(`${result.ingredient} ${result.quantity}`)});
   }
 
   deleteLine(foodLineId: string) {

@@ -1,27 +1,57 @@
 <div class="dialog-container">
-  <h1 mat-dialog-title>Alimento</h1>
-<div mat-dialog-content>
-  <p>¿Qué alimento deseas agregar?</p>
-  <form class="example-form">
-    <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Escribe el alimento</mat-label>
-      <input matInput
-             aria-label="State"
-             [matAutocomplete]="auto"
-             [formControl]="stateCtrl">
-      <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
-          <span>{{state.name}}</span> |
-          <small>Population: {{state.population}}</small>
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
-  </form>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Gracias</button>
-  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
-</div>  
+  <div class="dialog-inputs-container">
+    <h1 mat-dialog-title>Alimento</h1>
+    <div mat-dialog-content>
+      <p>¿Qué alimento deseas agregar?</p>
+      <form class="example-form">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Escribe el alimento</mat-label>
+          <input
+            matInput
+            required
+            aria-label="State"
+            [matAutocomplete]="ingredients"
+            [formControl]="stateCtrl"
+          />
+          <mat-autocomplete #ingredients="matAutocomplete">
+            <mat-option
+              *ngFor="let state of filteredStates | async"
+              [value]="state.name"
+            >
+              <span>{{ state.name }}</span> |
+              <small>{{ state.population }}</small>
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Cantidad en gramos</mat-label>
+          <input
+            required
+            type="text"
+            placeholder="Escoge una cantidad"
+            aria-label="Number"
+            matInput
+            [formControl]="myControl"
+            [matAutocomplete]="quatity"
+          />
+          <mat-autocomplete #quatity="matAutocomplete">
+            <mat-option
+              *ngFor="let quatity of filteredOptions | async"
+              [value]="quatity"
+            >
+              {{ quatity +'g' }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </form>
+    </div>
+  </div>
 
-
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">No Gracias</button>
+    <!-- <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>
+      Ok
+    </button> -->
+    <button [disabled]="stateCtrl.errors || myControl.errors" mat-button (click)="onOkClick()" cdkFocusInitial>Ok</button>
+  </div>
 </div>

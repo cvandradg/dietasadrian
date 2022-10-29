@@ -32,12 +32,10 @@ export class HelperService {
         enterAnimationDuration: '1000ms',
         exitAnimationDuration: '500ms',
       },
-
-      maxWidth: '90vw',
-      maxHeight: '90vh',
-      height: '90%',
-      width: '90%',
-      panelClass: 'smaller'
+      hasBackdrop: true,
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      panelClass: 'dialog-size',
     });
   }
 }

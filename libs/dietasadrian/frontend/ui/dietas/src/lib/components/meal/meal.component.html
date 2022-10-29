@@ -1,18 +1,15 @@
 <div class="meals">
   <div class="flex">
     <input
-      #mealName 
+      #mealName
       type="text"
       class="ghost-input"
-      [(ngModel)]="meal.name" 
+      [(ngModel)]="meal.name"
       onClick="this.select();"
       (keyup.enter)="mealName.blur()"
       required
     />
-
-    <div class="meal-handle meal-handle" cdkDragHandle>
-      <span class="material-symbols-outlined"> drag_indicator </span>
-    </div>
+    <ng-content></ng-content>
   </div>
 
   <div>
@@ -25,7 +22,11 @@
         <dietas-adrian-nx-workspace-food-line
           [foodLine]="foodLine"
           (deleteFoodLine)="onDeleteFoodLine($event)"
-        ></dietas-adrian-nx-workspace-food-line>
+        >
+          <div class="food-buttons" cdkDragHandle>
+            <span class="material-symbols-outlined icon"> add </span>
+          </div>
+        </dietas-adrian-nx-workspace-food-line>
       </div>
     </div>
   </div>

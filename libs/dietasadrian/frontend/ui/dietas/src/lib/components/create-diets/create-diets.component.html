@@ -13,7 +13,11 @@
         [meal]="meal"
         [index]="mealIndex"
         (deleteMeal)="onDeleteMeal($event)"
-      ></dietas-adrian-nx-workspace-meal>
+      >
+        <div class="meal-handle meal-handle" cdkDragHandle>
+          <span class="material-symbols-outlined"> drag_indicator </span>
+        </div>
+      </dietas-adrian-nx-workspace-meal>
     </div>
   </div>
 </div>
