@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { ConfirmationDialogComponent } from './shared-module/src/lib/dialogs/confirmation-dialog/confirmation-dialog.component';
+import {
+  ConfirmationDialogComponent,
+  AddIngredientDialogComponent,
+} from './shared-module/src';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +23,19 @@ export class HelperService {
         exitAnimationDuration: '500ms',
         message,
       },
+    });
+  }
+
+  openAddIngredientDialog(): MatDialogRef<any> {
+    return this.dialog.open(AddIngredientDialogComponent, {
+      data: {
+        enterAnimationDuration: '1000ms',
+        exitAnimationDuration: '500ms',
+      },
+      hasBackdrop: true,
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      panelClass: 'dialog-size',
     });
   }
 }
