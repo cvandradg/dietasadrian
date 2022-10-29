@@ -14,5 +14,7 @@
     </mat-chip>
   </mat-chip-list>
 
-  <ng-content (click)="addIngredient()"></ng-content>
+  <div (click)="addIngredient()">
+    <ng-content></ng-content>
+  </div>
 </div>
