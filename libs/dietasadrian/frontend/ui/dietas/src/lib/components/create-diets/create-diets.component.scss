@@ -4,7 +4,7 @@
   margin-left: auto;
   margin-right: auto;
   margin-top: 7rem;
-  max-width: 768px;
+  max-width: 650px;
   padding-bottom: 3rem;
   padding: 1rem;
   padding-right: 1rem;
@@ -22,6 +22,12 @@
 .icon-size {
   font-size: 3rem;
   font-weight: 100;
+}
+
+.minor-icon {
+  top: 18px;
+  left: 18px;
+  font-size: 1.7rem;
 }
 
 .crear-dieta-button-container {
@@ -45,7 +51,7 @@
 
 ///////////////// Material drag and drop start //////////////////
 .example-list {
-  width: 500px;
+  width: 100%;
   max-width: 100%;
   min-height: 60px;
   display: block;
