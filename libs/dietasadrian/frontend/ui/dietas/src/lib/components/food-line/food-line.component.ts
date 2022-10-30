@@ -3,8 +3,7 @@ import {
   Input,
   NgModule,
   Output,
-  EventEmitter,
-  OnInit,
+  EventEmitter
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModuleModule } from '@shared-modules';
@@ -15,7 +14,7 @@ import { HelperService } from '@helperFunctionsService';
   templateUrl: './food-line.component.html',
   styleUrls: ['./food-line.component.scss'],
 })
-export class FoodLineComponent implements OnInit {
+export class FoodLineComponent {
   @Input()
   foodLine: any;
 
@@ -23,10 +22,6 @@ export class FoodLineComponent implements OnInit {
   @Output() deleteFoodLine = new EventEmitter<any>();
 
   constructor(private helper: HelperService) {}
-
-  ngOnInit(): void {
-    this.addIngredient();
-  }
 
   deleteIngredient() {
     this.foodLine.ingredients.splice(0, 1);

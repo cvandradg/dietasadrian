@@ -15,6 +15,17 @@
   </mat-chip-list>
 
   <div (click)="addIngredient()">
-    <ng-content></ng-content>
+    <div class="food-buttons">
+      <span class="fa-stack fa-2x">
+        <i
+          class="fa-duotone fa-turkey icon fa-beat fa-stack-2x icon"
+          style="--fa-animation-iteration-count: 2"
+        ></i>
+        <i
+          class="fa-sharp fa-solid fa-plus fa-beat fa-stack-1x minor-icon"
+          style="--fa-animation-iteration-count: 2"
+        ></i>
+      </span>
+    </div>
   </div>
 </div>

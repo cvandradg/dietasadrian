@@ -18,14 +18,15 @@
       class="example-list"
       (cdkDropListDropped)="linesDrop($event)"
     >
-      <div *ngFor="let foodLine of meal.foodLines" cdkDrag>
+      <div
+        *ngFor="let foodLine of meal.foodLines"
+        cdkDrag
+        [cdkDragStartDelay]="200"
+      >
         <dietas-adrian-nx-workspace-food-line
           [foodLine]="foodLine"
           (deleteFoodLine)="onDeleteFoodLine($event)"
         >
-          <div class="food-buttons" cdkDragHandle>
-            <span class="material-symbols-outlined icon"> add </span>
-          </div>
         </dietas-adrian-nx-workspace-food-line>
         <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
       </div>
