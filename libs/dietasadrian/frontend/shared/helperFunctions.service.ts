@@ -11,8 +11,8 @@ import {
 export class HelperService {
   constructor(private dialog: MatDialog) {}
 
-  findIndex(array: Array<any>, id: string): number {
-    return array.findIndex((item) => item.id === id);
+  findIndex(array: Array<any>, { mealId }: any): number {
+    return array.findIndex((item:any) => item.id === mealId);
   }
 
   openConfirmationDialog(message: string): MatDialogRef<any> {
