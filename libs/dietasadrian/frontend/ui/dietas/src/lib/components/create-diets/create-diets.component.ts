@@ -49,7 +49,7 @@ export class CreateDietsComponent {
 
   onDeleteMeal($event: any) {
     const MEAL_ID_INDEX = this.helper.findIndex(this.meals, $event);
-
+  
     this.meals.splice(MEAL_ID_INDEX, 1);
   }
 
