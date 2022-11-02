@@ -11,12 +11,46 @@
   color: rgba(55, 65, 81, 1);
 }
 
+.meal-header {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.ghost-input {
+  display: block;
+  width: 13%;
+  font-weight: 300;
+  font-size: 11px;
+  border: 0px;
+  outline: none;
+  box-sizing: border-box;
+  color: #4b545f;
+  background: #fff;
+  font-family: Open Sans, Verdana;
+  padding: 5px 5px;
+  margin: 0rem 0rem 0.5rem 0rem;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
+  -ms-transition: all 0.1s ease-in-out;
+  -o-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+}
+
+
 .icon {
   cursor: pointer;
   background-color: white;
   border-radius: 2rem;
   color: rgb(77, 85, 95);
   font-size: 2rem;
+}
+
+.drag-icon {
+  font-size: 1.5rem;
+  color: rgba(77, 85, 95, 0.349);
 }
 
 .icon-size {
@@ -31,6 +65,7 @@
 }
 
 .crear-dieta-button-container {
+  cursor: pointer;
   bottom: 0;
   position: fixed;
 }

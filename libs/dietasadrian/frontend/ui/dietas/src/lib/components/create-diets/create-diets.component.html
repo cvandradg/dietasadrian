@@ -14,8 +14,21 @@
         [index]="mealIndex"
         (deleteMeal)="onDeleteMeal($event)"
       >
-        <div class="meal-handle meal-handle" cdkDragHandle>
-          <span class="material-symbols-outlined"> drag_indicator </span>
+        <div class="meal-header" cdkDragHandle>
+          <input
+            #mealName
+            type="text"
+            class="ghost-input"
+            [(ngModel)]="meal.name"
+            onClick="this.select();"
+            (keyup.enter)="mealName.blur()"
+            role="textbox"
+            contenteditable
+            required
+          />
+          <div class="meal-handle meal-handle">
+            <i class="fa-thin fa-grip-lines icon drag-icon"></i>
+          </div>
         </div>
       </dietas-adrian-nx-workspace-meal>
       <div class="example-custom-placeholder" *cdkDragPlaceholder></div>

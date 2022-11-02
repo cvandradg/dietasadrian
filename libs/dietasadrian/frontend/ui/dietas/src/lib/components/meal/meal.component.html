@@ -1,16 +1,5 @@
 <div class="meals">
-  <div class="flex">
-    <input
-      #mealName
-      type="text"
-      class="ghost-input"
-      [(ngModel)]="meal.name"
-      onClick="this.select();"
-      (keyup.enter)="mealName.blur()"
-      required
-    />
-    <ng-content></ng-content>
-  </div>
+  <ng-content></ng-content>
 
   <div>
     <div
@@ -33,11 +22,8 @@
     </div>
   </div>
   <div class="meals-buttons">
-    <span class="material-symbols-outlined icon" (click)="addFoodLine()">
-      add_circle
-    </span>
-    <span class="material-symbols-outlined icon" (click)="delete()">
-      delete
-    </span>
+    <i class="fa-duotone fa-layer-plus icon" (click)="addFoodLine()"></i>
+
+    <i class="fa-duotone fa-trash-can icon" (click)="delete()"></i>
   </div>
 </div>
