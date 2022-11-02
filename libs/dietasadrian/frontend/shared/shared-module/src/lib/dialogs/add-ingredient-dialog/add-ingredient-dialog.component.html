@@ -1,11 +1,11 @@
 <div class="dialog-container">
   <div class="dialog-inputs-container">
-    <h1 mat-dialog-title>Alimento</h1>
+    <h1 mat-dialog-title>Ingrediente</h1>
     <div mat-dialog-content>
-      <p>¿Qué alimento deseas agregar?</p>
+      <p>¿Qué ingrediente deseas agregar?</p>
       <form class="example-form">
         <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Escribe el alimento</mat-label>
+          <mat-label>Escribe el ingrediente</mat-label>
           <input
             matInput
             required
@@ -18,8 +18,8 @@
               *ngFor="let state of filteredStates | async"
               [value]="state.name"
             >
-              <span>{{ state.name }}</span> |
-              <small>{{ state.population }}</small>
+              <!-- Useful information about the ingredient can go in here -->
+              <span>{{ state.name }}</span> 
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
