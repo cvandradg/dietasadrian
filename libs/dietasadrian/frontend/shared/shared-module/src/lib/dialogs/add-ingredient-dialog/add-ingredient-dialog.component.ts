@@ -1,18 +1,11 @@
 import { Component, Inject, NgModule, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  MatDialogModule,
-  MatDialogRef,
-  MAT_DIALOG_DATA,
-} from '@angular/material/dialog';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatButtonModule } from '@angular/material/button';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FormControl } from '@angular/forms';
 
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { MODULES } from '../../export-modules';
 
 export interface State {
   flag: string;
@@ -101,21 +94,12 @@ export class AddIngredientDialogComponent implements OnInit {
     this.dialogRef.close({
       ingredient: this.stateCtrl.value,
       quantity: this.myControl.value?.concat('g'),
-    });    
+    });
   }
 }
 
 @NgModule({
-  imports: [
-    CommonModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatDialogModule,
-    FormsModule,
-    MatInputModule,
-    MatAutocompleteModule,
-    ReactiveFormsModule,
-  ],
+  imports: [CommonModule, MODULES],
   declarations: [AddIngredientDialogComponent],
   exports: [AddIngredientDialogComponent],
 })

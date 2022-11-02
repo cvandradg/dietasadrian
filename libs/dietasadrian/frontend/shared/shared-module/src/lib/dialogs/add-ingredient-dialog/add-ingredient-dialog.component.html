@@ -19,7 +19,7 @@
               [value]="state.name"
             >
               <!-- Useful information about the ingredient can go in here -->
-              <span>{{ state.name }}</span> 
+              <span>{{ state.name }}</span>
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
@@ -39,7 +39,7 @@
               *ngFor="let quatity of filteredOptions | async"
               [value]="quatity"
             >
-              {{ quatity +'g' }}
+              {{ quatity + 'g' }}
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
@@ -52,6 +52,13 @@
     <!-- <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>
       Ok
     </button> -->
-    <button [disabled]="stateCtrl.errors || myControl.errors" mat-button (click)="onOkClick()" cdkFocusInitial>Ok</button>
+    <button
+      [disabled]="stateCtrl.errors || myControl.errors"
+      mat-button
+      (click)="onOkClick()"
+      cdkFocusInitial
+    >
+      Ok
+    </button>
   </div>
 </div>
