@@ -11,8 +11,6 @@ const COMPONENTS = [
   AddIngredientDialogComponentModule,
 ];
 
-const modules = [];
-
 @NgModule({
   imports: [CommonModule, ...MODULES],
   exports: [...MODULES, COMPONENTS],

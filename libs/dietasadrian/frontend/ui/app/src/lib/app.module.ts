@@ -4,6 +4,6 @@ import { RouterModule } from '@angular/router';
 import { appRoutes } from './lib.routes';
 
 @NgModule({
-  imports: [CommonModule, RouterModule.forChild(appRoutes)],
+  imports: [CommonModule, RouterModule.forChild(appRoutes)]
 })
 export class AppModule {}

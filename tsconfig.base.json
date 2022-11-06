@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@dietas-adrian-nx-workspace/dietasadrian/frontend/ui/app": [
+      "@dietasadrian/frontend/app": [
         "libs/dietasadrian/frontend/ui/app/src/index.ts"
       ],
       "@dietas-adrian-nx-workspace/dietasadrian/frontend/ui/dietas": [

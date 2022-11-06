@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MyDietsComponent } from './components/my-diets/my-diets.component';
 import { CreateDietsComponent } from './components/create-diets/create-diets.component';
+import { SharedModuleModule } from '@shared-modules';
 
 @NgModule({
   imports: [
     CommonModule,
+    SharedModuleModule,
     RouterModule.forChild([
        {path: 'misdietas', pathMatch: 'full', component: MyDietsComponent},
        {path: 'crear', pathMatch: 'full', component: CreateDietsComponent},
