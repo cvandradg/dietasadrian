@@ -5,9 +5,7 @@ import {
   AddIngredientDialogComponent,
 } from './shared-module/src';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class HelperService {
   constructor(private dialog: MatDialog) {}
 
