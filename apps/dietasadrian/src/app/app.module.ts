@@ -4,20 +4,22 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 
-import routes from './routes';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import { SharedModuleModule } from '@shared-modules';
-import { HeaderComponentModule } from './components/header/header.component';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot([
+      {
+        path: '',
+        loadChildren: () =>
+          import('@dietasadrian/frontend/app').then(
+            (module) => module.AppModule
+          ),
+      },
+    ]),
     BrowserAnimationsModule,
-    SharedModuleModule,
-    HeaderComponentModule
   ],
   providers: [],
   bootstrap: [AppComponent],

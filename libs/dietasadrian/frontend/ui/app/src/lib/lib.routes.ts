@@ -1,6 +1,6 @@
-import { Routes } from '@angular/router';
+import { Route } from '@angular/router';
 
-const routes: Routes = [
+export const appRoutes: Route[] = [
   {
     path: '',
     loadChildren: () =>
@@ -12,5 +12,3 @@ const routes: Routes = [
       import('@libs/dietas/dietas.module').then((m) => m.DietasModule),
   },
 ];
-
-export default routes;
