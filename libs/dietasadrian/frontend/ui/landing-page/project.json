@@ -1,4 +1,5 @@
 {
+  "name": "dietasadrian-frontend-ui-landing-page",
   "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "libs/dietasadrian/frontend/ui/landing-page/src",

@@ -1,4 +1,5 @@
 {
+  "name": "dietasadrian-frontend-shared-shared-module",
   "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "libs/dietasadrian/frontend/shared/shared-module/src",
