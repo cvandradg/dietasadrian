@@ -56,9 +56,9 @@ mat-option {
   background-color: white;
 }
 
-@media screen and (max-width: 660px) {
+@media screen and (max-width: 1000px) {
   ::ng-deep .dialog-size {
-    width: 95%;
+    width: 60%;
     height: 90%;
   }
 }
@@ -67,5 +67,12 @@ mat-option {
   .dialog-container {
     width: 100%;
     height: 40%;
+  }
+}
+
+@media screen and (max-width: 660px) {
+  ::ng-deep .dialog-size {
+    width: 95%;
+    height: 90%;
   }
 }
