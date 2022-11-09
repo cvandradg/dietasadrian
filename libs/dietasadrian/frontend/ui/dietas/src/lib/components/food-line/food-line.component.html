@@ -1,5 +1,9 @@
 <div class="food-line">
-  <mat-chip-list>
+  <div *ngIf="!foodLine.ingredients.length" class="ingredient-placeholder">
+    Para agregar un alimento a tu línea de comida presiona
+    <i class="fa-duotone fa-turkey icon"></i>
+  </div>
+  <mat-chip-list *ngIf="foodLine.ingredients.length">
     <mat-chip
       *ngFor="
         let ingredient of foodLine.ingredients;
@@ -18,7 +22,7 @@
     <div class="food-buttons">
       <span class="fa-stack fa-2x">
         <i
-          class="fa-duotone fa-turkey icon fa-beat fa-stack-2x icon"
+          class="fa-duotone fa-turkey fa-beat fa-stack-2x icon"
           style="--fa-animation-iteration-count: 2"
         ></i>
         <i

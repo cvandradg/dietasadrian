@@ -1,10 +1,10 @@
-import { Component, NgModule } from '@angular/core';
+import { Component, HostListener, NgModule, OnInit } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { SharedModuleModule } from '@shared-modules';
 import { v4 as uuidv4 } from 'uuid';
-import { HelperService } from '@helperFunctionsService';
+import { HelperService, debounce } from '@helperFunctionsService';
 import { MatDialog } from '@angular/material/dialog';
 import { Overlay } from '@angular/cdk/overlay';
 import { MealComponentModule } from '../meal/meal.component';
@@ -27,20 +27,30 @@ export interface Meal {
   templateUrl: './create-diets.component.html',
   styleUrls: ['./create-diets.component.scss'],
 })
-export class CreateDietsComponent {
+export class CreateDietsComponent implements OnInit {
+  meals: Meal[] = [];
+
+  screenSize = 0;
+
   constructor(
     public dialog: MatDialog,
     public overlay: Overlay,
     private helper: HelperService
   ) {}
 
+  ngOnInit(): void {
+    window.dispatchEvent(new Event('resize'));
+  }
 
-  meals: Meal[] = [];
-
+  @HostListener('window:resize', ['$event'])
+  @debounce()
+  onResize(event: any) {
+    this.screenSize = event.target.innerWidth;
+  }
 
   addMeal() {
     this.meals.push({
-      name: `Comida ${ this.meals.length + 1 }`,
+      name: `Comida ${this.meals.length + 1}`,
       id: uuidv4(),
       position: this.meals.length,
       foodLines: [],
@@ -49,7 +59,7 @@ export class CreateDietsComponent {
 
   onDeleteMeal($event: any) {
     const MEAL_ID_INDEX = this.helper.findIndex(this.meals, $event);
-  
+
     this.meals.splice(MEAL_ID_INDEX, 1);
   }
 
