@@ -29,7 +29,7 @@ export class MealComponent {
   deleteMeal = new EventEmitter<any>();
 
   @Input()
-  screenSize: number | undefined
+  screenSize!: number
 
   constructor(private helper: HelperService) {}
 
