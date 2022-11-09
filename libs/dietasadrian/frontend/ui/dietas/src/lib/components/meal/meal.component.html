@@ -2,7 +2,12 @@
   <ng-content></ng-content>
 
   <div>
+    <div class="foodLine-placeholder" *ngIf="!meal.foodLines.length">
+      Agrega una línea de comida con el boton
+      <i class="fa-duotone fa-layer-plus icon"></i>
+    </div>
     <div
+      *ngIf="meal.foodLines.length"
       cdkDropList
       class="example-list"
       (cdkDropListDropped)="linesDrop($event)"
@@ -10,7 +15,7 @@
       <div
         *ngFor="let foodLine of meal.foodLines"
         cdkDrag
-        [cdkDragStartDelay]="200"
+        [cdkDragStartDelay]="screenSize <= 1000 ? 200 : 1"
       >
         <dietas-adrian-nx-workspace-food-line
           [foodLine]="foodLine"

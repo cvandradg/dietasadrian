@@ -1,5 +1,5 @@
 <div class="crear-dietas-container">
-  <div  *ngIf="!meals.length" class="empty-placeholder-container">
+  <div *ngIf="!meals.length" class="empty-placeholder-container">
     <i class="fa-light fa-clipboard-question empty-icon"></i>
     <h4>No hay comidas agregadas</h4>
     <p>
@@ -22,6 +22,7 @@
       <dietas-adrian-nx-workspace-meal
         [meal]="meal"
         [index]="mealIndex"
+        [screenSize]="screenSize"
         (deleteMeal)="onDeleteMeal($event)"
       >
         <div class="meal-header" cdkDragHandle>

@@ -28,6 +28,9 @@ export class MealComponent {
   @Output()
   deleteMeal = new EventEmitter<any>();
 
+  @Input()
+  screenSize: number | undefined
+
   constructor(private helper: HelperService) {}
 
   onDeleteFoodLine($event: any) {

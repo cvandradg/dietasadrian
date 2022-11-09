@@ -5,12 +5,14 @@ import {
   AddIngredientDialogComponent,
 } from './shared-module/src';
 
+export { debounce } from './shared-module/src/lib/decorators/debounce.decorator';
+
 @Injectable()
 export class HelperService {
   constructor(private dialog: MatDialog) {}
 
   findIndex(array: Array<any>, { mealId }: any): number {
-    return array.findIndex((item:any) => item.id === mealId);
+    return array.findIndex((item: any) => item.id === mealId);
   }
 
   openConfirmationDialog(message: string): MatDialogRef<any> {
