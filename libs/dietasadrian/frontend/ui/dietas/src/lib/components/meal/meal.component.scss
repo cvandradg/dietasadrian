@@ -55,6 +55,12 @@
   text-align: center;
 }
 
+.foodLine-placeholder .fa-layer-plus {
+  --fa-primary-color: rgb(131, 131, 131);
+  --fa-secondary-color: rgb(122, 122, 122);
+  font-size: 1.4rem;
+}
+
 ///////////////// Material drag and drop start //////////////////
 .example-list {
   width: 100%;
