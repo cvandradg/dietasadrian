@@ -13,8 +13,8 @@ const COMPONENTS = [
 ];
 
 @NgModule({
-  imports: [CommonModule, ...MODULES],
-  exports: [...MODULES, COMPONENTS],
+  imports: [CommonModule, MODULES, COMPONENTS],
+  exports: [MODULES, COMPONENTS],
   providers: [HelperService],
 })
 export class SharedModuleModule {}

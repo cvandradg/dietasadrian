@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { HelperService, debounce } from '@helperFunctionsService';
 import { Overlay } from '@angular/cdk/overlay';
 import { MealComponentModule } from '../meal/meal.component';
-import { Meal } from '@uiInterfaces';
+import { Meal } from '@interfaces';
 
 @Component({
   selector: 'dietas-adrian-nx-workspace-create-diets',

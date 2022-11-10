@@ -10,15 +10,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    RouterModule.forRoot([
-      {
-        path: '',
-        loadChildren: () =>
-          import('@dietasadrian/frontend/app').then(
-            (module) => module.AppModule
-          ),
-      },
-    ]),
+    RouterModule.forRoot(
+      [
+        {
+          path: '',
+          loadChildren: () =>
+            import('@dietasadrian/frontend/app').then(
+              (module) => module.AppModule
+            ),
+        },
+      ],
+      { canceledNavigationResolution: 'computed' }
+    ),
     BrowserAnimationsModule,
   ],
   providers: [],
