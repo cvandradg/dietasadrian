@@ -52,6 +52,7 @@
 }
 
 .foodLine-placeholder p {
+  cursor: default;
   text-align: center;
 }
 
@@ -104,3 +105,9 @@
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 /// Material drag and drop end ///
+
+@media screen and (max-width: 450px){
+  .meals {
+    margin: 0.2rem;
+  }
+}

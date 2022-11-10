@@ -25,6 +25,10 @@
   font-size: 1.4rem;
 }
 
+.ingredient-placeholder p {
+  cursor: default;
+}
+
 .food-buttons {
   cursor: pointer;
   display: flex;
@@ -34,7 +38,7 @@
 }
 .icon {
   cursor: pointer;
-  background-color: white;
+  background-color: transparent;
   border-radius: 2rem;
   color: rgb(77, 85, 95);
   font-size: 1.5rem;
