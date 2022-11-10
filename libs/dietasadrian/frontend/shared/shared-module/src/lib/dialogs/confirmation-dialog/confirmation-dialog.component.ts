@@ -16,7 +16,7 @@ export class ConfirmationDialogComponent {
 }
 
 @NgModule({
-  imports: [CommonModule, MODULES],
+  imports: [CommonModule, ...MODULES],
   declarations: [ConfirmationDialogComponent],
   exports: [ConfirmationDialogComponent],
 })

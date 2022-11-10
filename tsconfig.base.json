@@ -25,7 +25,19 @@
         "libs/dietasadrian/frontend/ui/landing-page/src/index.ts"
       ],
       "@helperFunctionsService": [
-        "libs/dietasadrian/frontend/shared/helperFunctions.service.ts"
+        "libs/dietasadrian/frontend/shared/shared-module/src/lib/services/helperFunctions.service.ts"
+      ],
+      "@interfaces": [
+        "libs/dietasadrian/frontend/shared/shared-module/src/lib/interfaces/interfaces.interfaces.ts"
+      ],
+      "@guards/*": [
+        "libs/dietasadrian/frontend/shared/shared-module/src/lib/guards/*"
+      ],
+      "@dialogs/*": [
+        "libs/dietasadrian/frontend/shared/shared-module/src/lib/dialogs/*"
+      ],
+      "@decorators/*": [
+        "libs/dietasadrian/frontend/shared/shared-module/src/lib/decorators/*"
       ],
       "@libs/dietas/dietas.module": [
         "libs/dietasadrian/frontend/ui/dietas/src/lib/dietas.module"

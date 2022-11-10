@@ -99,7 +99,7 @@ export class AddIngredientDialogComponent implements OnInit {
 }
 
 @NgModule({
-  imports: [CommonModule, MODULES],
+  imports: [CommonModule, ...MODULES],
   declarations: [AddIngredientDialogComponent],
   exports: [AddIngredientDialogComponent],
 })
