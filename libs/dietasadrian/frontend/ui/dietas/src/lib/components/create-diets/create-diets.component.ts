@@ -5,22 +5,9 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { SharedModuleModule } from '@shared-modules';
 import { v4 as uuidv4 } from 'uuid';
 import { HelperService, debounce } from '@helperFunctionsService';
-import { MatDialog } from '@angular/material/dialog';
 import { Overlay } from '@angular/cdk/overlay';
 import { MealComponentModule } from '../meal/meal.component';
-
-export interface IngredientLine {
-  id: string;
-  position: number;
-  ingredients: string[];
-}
-
-export interface Meal {
-  name: string;
-  id: string;
-  position: number;
-  foodLines: any;
-}
+import { Meal } from '@uiInterfaces';
 
 @Component({
   selector: 'dietas-adrian-nx-workspace-create-diets',
@@ -32,11 +19,7 @@ export class CreateDietsComponent implements OnInit {
 
   screenSize = 0;
 
-  constructor(
-    public dialog: MatDialog,
-    public overlay: Overlay,
-    private helper: HelperService
-  ) {}
+  constructor(public overlay: Overlay, private helper: HelperService) {}
 
   ngOnInit(): void {
     window.dispatchEvent(new Event('resize'));

@@ -6,7 +6,7 @@ import {
   Output,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Meal } from '../create-diets/create-diets.component';
+import { Meal } from '@uiInterfaces';
 import { SharedModuleModule } from '@shared-modules';
 import { FoodLineComponentModule } from '../food-line/food-line.component';
 import { moveItemInArray } from '@angular/cdk/drag-drop';
