@@ -25,6 +25,10 @@
   font-size: 1.4rem;
 }
 
+.ingredient-placeholder p {
+  cursor: default;
+}
+
 .food-buttons {
   cursor: pointer;
   display: flex;
