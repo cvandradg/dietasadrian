@@ -3,7 +3,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AddIngredientDialogComponent } from '../dialogs/add-ingredient-dialog/add-ingredient-dialog.component';
 import { ConfirmationDialogComponent } from '../dialogs/confirmation-dialog/confirmation-dialog.component';
 
-export { debounce } from '@decorators/debounce.decorator';
+export { debounce } from '../decorators/debounce.decorator';
 
 @Injectable({
   providedIn: 'root',
@@ -27,7 +27,7 @@ export class HelperService {
       {
         width: '250px',
         enterAnimationDuration: '1000ms',
-        exitAnimationDuration: '500ms',
+        exitAnimationDuration: '100ms',
         closeOnNavigation: false,
         data: {
           message,
