@@ -45,6 +45,7 @@ export class HelperService {
         maxHeight: '100vh',
         panelClass: 'dialog-size',
         enterAnimationDuration: '200ms',
+        closeOnNavigation: false,
         data: {},
       }
     ));
