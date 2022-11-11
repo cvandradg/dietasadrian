@@ -14,10 +14,12 @@ jobs:
       with: 
         node-version: 17.x
     - uses: borales/actions-yarn@v3.0.0
-    
-    - 
-      name: "yarn  install and build"
-      run: sudo yarn install && sudo yarn build
+      with:
+        cmd: install
+
+    - uses: borales/actions-yarn@v3.0.0
+      with:
+        cmd: build
 
     - 
       name: "chmod node modules"
