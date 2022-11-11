@@ -16,8 +16,8 @@ jobs:
     - uses: borales/actions-yarn@v3.0.0
     
     - 
-      name: "yarn  install"
-      run: sudo yarn install
+      name: "yarn  install and build"
+      run: sudo yarn install && sudo yarn build
 
     - 
       name: "chmod node modules"
