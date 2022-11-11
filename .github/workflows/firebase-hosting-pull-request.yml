@@ -14,12 +14,12 @@ jobs:
           cmd: install # will run `yarn install` command
       
       - 
-        name: "ls -ltra"
-        run: ls -ltra
+        name: "yarn  install"
+        run: sudo yarn install
 
       - 
-        name: "Hola"
-        run: sudo yarn install
+        name: "ls -ltra"
+        run: ls -ltra
 
       - uses: borales/actions-yarn@v3.0.0
         with:
