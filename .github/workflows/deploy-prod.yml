@@ -16,6 +16,9 @@ jobs:
       - 
         name: "Checkout Repo"
         uses: actions/checkout@v3
+      -
+        name: "Something"
+        run:  sudo chown -R $USER:$USER /home/runner/work/dietasadrian/dietasadrian/node_modules
       - 
         uses: FirebaseExtended/action-hosting-deploy@v0
         with: 
