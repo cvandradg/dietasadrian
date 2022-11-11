@@ -9,9 +9,7 @@ jobs:
         uses: actions/setup-node@v3
         with: 
           node-version: 17.x
-      -
-        name: "Something1"
-        run:  echo "nodeLinker: "node-modules"" >> .yarnrc.yml "
+        - run:  echo "nodeLinker: "node-modules"" >> .yarnrc.yml "
       - 
         name: "Install Yarn"
         uses: borales/actions-yarn@v3.0.0
