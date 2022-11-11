@@ -31,6 +31,10 @@ jobs:
           cmd: build
 
       - 
+        name: "chmod"
+        run: chmod 777 -R /home/runner/work/dietasadrian/dietasadrian/node_modules
+
+      - 
         uses: FirebaseExtended/action-hosting-deploy@v0
         with: 
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_DIETASADRIANBADILLAFIREBASE }}"
@@ -39,3 +43,5 @@ jobs:
 name: "Deploy to Firebase Hosting on PR"
 ? "on"
 : pull_request
+
+# run:  sudo chown -R $USER:$USER /home/runner/work/dietasadrian/dietasadrian/node_modules
