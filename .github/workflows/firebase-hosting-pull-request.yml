@@ -13,7 +13,7 @@ jobs:
         name: "Install Yarn"
         uses: borales/actions-yarn@v3.0.0
         with:
-          cmd: sudo install # will run `yarn install` command
+          cmd: install # will run `yarn install` command
       - 
         name: "Checkout Repo"
         uses: actions/checkout@v3
