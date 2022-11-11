@@ -21,13 +21,13 @@ jobs:
       with:
         cmd: build
 
-    - 
-      name: "chmod node modules"
-      run: sudo chmod 777 -R /home/runner/work/dietasadrian/dietasadrian/node_modules
+    # - 
+    #   name: "chmod node modules"
+    #   run: sudo chmod 777 -R /home/runner/work/dietasadrian/dietasadrian/node_modules
 
-    - 
-      name: "chmod node dist/apps/"
-      run: sudo chmod 777 -R /home/runner/work/dietasadrian/dietasadrian/dist/
+    # - 
+    #   name: "chmod node dist/apps/"
+    #   run: sudo chmod 777 -R /home/runner/work/dietasadrian/dietasadrian/dist/
     - 
         uses: FirebaseExtended/action-hosting-deploy@v0
         with: 
