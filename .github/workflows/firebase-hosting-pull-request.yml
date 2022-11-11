@@ -12,7 +12,7 @@ jobs:
 
       - 
         name: "Hola"
-        run: echo "nodeLinker: node-modules" >> .yarnrc.yml
+        run: echo nodeLinker\: node-modules >> .yarnrc.yml
 
       - uses: borales/actions-yarn@v3.0.0
         with:
