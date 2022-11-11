@@ -4,6 +4,11 @@ jobs:
     if: "${{ github.event.pull_request.head.repo.full_name == github.repository }}"
     runs-on: ubuntu-latest
     steps: 
+
+      -
+        name: "Checkout Repo"
+        uses: actions/checkout@v3
+
       - 
         name: "Install Node"
         uses: actions/setup-node@v3
@@ -24,9 +29,7 @@ jobs:
       - uses: borales/actions-yarn@v3.0.0
         with:
           cmd: build
-      -
-        name: "Checkout Repo"
-        uses: actions/checkout@v3
+
       - 
         uses: FirebaseExtended/action-hosting-deploy@v0
         with: 
