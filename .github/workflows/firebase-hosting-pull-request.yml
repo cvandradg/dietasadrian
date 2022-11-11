@@ -1,10 +1,16 @@
---- 
-jobs: 
-  build_and_preview: 
-    if: "${{ github.event.pull_request.head.repo.full_name == github.repository }}"
+name: Deploy to Preview Channel
+
+on:
+  pull_request:
+    # Optionally configure to run only for specific files. For example:
+    # paths:
+    # - "website/**"
+
+jobs:
+  build_and_preview:
     runs-on: ubuntu-latest
-    steps: 
-      - 
+    steps:
+      - uses: actions/checkout@v2
         name: "Install Node"
         uses: actions/setup-node@v3
         with: 
@@ -12,21 +18,13 @@ jobs:
       - 
         name: "Install Yarn"
         uses: borales/actions-yarn@v3.0.0
+      
+        run: yarn install && yarn build
+      # Add any build steps here. For example:
+      # - run: npm ci && npm run build
+      - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          cmd: install # will run `yarn install` command
-          cmd: build # will run `yarn build` command
-      -
-        name: "Something"
-        run:  sudo chown -R $USER:$USER /home/runner/work/dietasadrian/dietasadrian/node_modules 
-      -
-        name: "Checkout Repo"
-        uses: actions/checkout@v3
-      - 
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with: 
-          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_DIETASADRIANBADILLAFIREBASE }}"
-          projectId: dietasadrianbadillafirebase
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
-name: "Deploy to Firebase Hosting on PR"
-? "on"
-: pull_request
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
+          expires: 30d
+          projectId: dietasadrianbadillafirebase
