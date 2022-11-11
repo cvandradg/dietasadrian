@@ -8,14 +8,13 @@ jobs:
         uses: actions/setup-node@v3
         with: 
           node-version: 17.x
-      - run:  echo "nodeLinker: "node-modules"" >> .yarnrc.yml "
       - 
         name: "Install Yarn"
         uses: borales/actions-yarn@v3.0.0
         with:
           cmd: install # will run `yarn install` command
       -
-        name: "Something2"
+        name: "Something"
         run:  sudo chown -R $USER:$USER /home/runner/work/dietasadrian/dietasadrian/node_modules
       - 
         name: "Checkout Repo"
