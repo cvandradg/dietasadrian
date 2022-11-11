@@ -13,7 +13,6 @@ jobs:
         uses: borales/actions-yarn@v3.0.0
         with:
           cmd: install # will run `yarn install` command
-        with:
           cmd: build # will run `yarn build` command
       -
         name: "Something"
