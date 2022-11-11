@@ -18,8 +18,12 @@ jobs:
         name: "Install Yarn 2"
         run: yarn set version berry
       - 
+        name: "Install Yarn 2"
+        run: |
+        echo nodeLinker: "node-modules" > yarnrc.yml
+      - 
         name: "Install Functions Dependencies"
-        run: yarn
+        run: yarn install
       - 
         uses: FirebaseExtended/action-hosting-deploy@v0
         with: 
