@@ -3,27 +3,45 @@ jobs:
   build_and_deploy: 
     runs-on: ubuntu-latest
     steps: 
-      - 
-        name: "Install Node"
-        uses: actions/setup-node@v3
-        with: 
-          node-version: 17.x
-      - 
-        name: "Install Yarn"
-        run: "curl -o- -L https://yarnpkg.com/install.sh | bash"
-      - 
-        name: "Checkout Repo"
-        uses: actions/checkout@v3
-      - 
-        name: "Install Functions Dependencies"
-        run: yarn
-      - 
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with: 
-          channelId: live
-          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_DIETASADRIANBADILLAFIREBASE }}"
-          projectId: dietasadrianbadillafirebase
-          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+    -
+      name: "Checkout Repo"
+      uses: actions/checkout@v3
+
+    - 
+      name: "Install Node"
+      uses: actions/setup-node@v3
+      with: 
+        node-version: 17.x
+    - uses: borales/actions-yarn@v3.0.0
+      with:
+        cmd: install
+    
+    - 
+      name: "yarn  install"
+      run: sudo yarn install
+
+    - 
+      name: "ls -ltra"
+      run: ls -ltra
+
+    - uses: borales/actions-yarn@v3.0.0
+      with:
+        cmd: build
+
+    - 
+      name: "chmod node modules"
+      run: sudo chmod 777 -R /home/runner/work/dietasadrian/dietasadrian/node_modules
+
+    - 
+      name: "chmod node dist/apps/"
+      run: sudo chmod 777 -R /home/runner/work/dietasadrian/dietasadrian/dist/
+    - 
+      uses: FirebaseExtended/action-hosting-deploy@v0
+      with: 
+        channelId: live
+        firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_DIETASADRIANBADILLAFIREBASE }}"
+        projectId: dietasadrianbadillafirebase
+        repoToken: "${{ secrets.GITHUB_TOKEN }}"
 name: "Deploy to Firebase Hosting on merge"
 ? "on"
 : 
