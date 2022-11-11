@@ -21,8 +21,10 @@
     "@angular/platform-browser": "~14.2.0",
     "@angular/platform-browser-dynamic": "~14.2.0",
     "@angular/router": "~14.2.0",
+    "@fortawesome/fontawesome-pro": "^6.2.0",
     "@nrwl/angular": "15.0.7",
     "@types/uuid": "^8.3.4",
+    "dlx": "^0.2.1",
     "firebase-tools": "^11.9.0",
     "lodash": "^4.17.21",
     "rxjs": "~7.5.0",
@@ -38,7 +40,7 @@
     "@angular/cli": "~14.2.0",
     "@angular/compiler-cli": "~14.2.0",
     "@angular/language-service": "~14.2.0",
-    "@nrwl/cli": "15.0.7",
+    "@nrwl/cli": "^15.0.13",
     "@nrwl/cypress": "15.0.7",
     "@nrwl/eslint-plugin-nx": "15.0.7",
     "@nrwl/jest": "15.0.7",
@@ -57,11 +59,12 @@
     "jest": "28.1.1",
     "jest-environment-jsdom": "28.1.1",
     "jest-preset-angular": "12.2.2",
-    "nx": "15.0.7",
+    "nx": "^15.0.13",
     "prettier": "^2.6.2",
     "ts-jest": "28.0.5",
     "ts-node": "10.9.1",
     "typescript": "4.8.4",
     "uuid": "^9.0.0"
-  }
+  },
+  "packageManager": "yarn@4.0.0-rc.28"
 }
