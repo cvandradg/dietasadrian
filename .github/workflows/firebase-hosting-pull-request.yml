@@ -14,20 +14,10 @@ jobs:
       with: 
         node-version: 17.x
     - uses: borales/actions-yarn@v3.0.0
-      with:
-        cmd: install
-
-    - uses: borales/actions-yarn@v3.0.0
-      with:
-        cmd: build
     
     - 
       name: "yarn  install"
       run: sudo yarn install
-
-    - 
-      name: "ls -ltra"
-      run: ls -ltra
 
     - uses: borales/actions-yarn@v3.0.0
       with:
