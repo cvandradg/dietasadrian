@@ -14,7 +14,10 @@ jobs:
         uses: borales/actions-yarn@v3.0.0
         with:
           cmd: install # will run `yarn install` command
-      - 
+      -
+        name: "Something"
+        run:  sudo chown -R $USER:$USER /home/runner/work/dietasadrian/dietasadrian/node_modules 
+      -
         name: "Checkout Repo"
         uses: actions/checkout@v3
       - 
