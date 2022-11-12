@@ -9,6 +9,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatChipsModule } from '@angular/material/chips';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 export const MODULES = [
   MatFormFieldModule,
   MatButtonModule,
@@ -21,4 +23,5 @@ export const MODULES = [
   MatIconModule,
   DragDropModule,
   MatChipsModule,
+  FontAwesomeModule,
 ];

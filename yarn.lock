@@ -2196,10 +2196,56 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fortawesome/angular-fontawesome@npm:^0.11.1":
+  version: 0.11.1
+  resolution: "@fortawesome/angular-fontawesome@npm:0.11.1::__archiveUrl=https%3A%2F%2Fnpm.fontawesome.com%2F%40fortawesome%2Fangular-fontawesome%2F-%2F0.11.1%2Fangular-fontawesome-0.11.1.tgz"
+  dependencies:
+    tslib: "npm:^2.4.0"
+  peerDependencies:
+    "@angular/core": ^14.0.0
+    "@fortawesome/fontawesome-svg-core": ~1.2.27 || ~1.3.0-beta2 || ^6.1.0
+  checksum: d9f23b6ba61b8f720ff95f0ada642b35b56e21d00a036712035dc0147051ebf5f5573621053d2afbd6bfe1d6f9b1337f5883db14f4d355fece3de2cc761527c1
+  languageName: node
+  linkType: hard
+
+"@fortawesome/fontawesome-common-types@npm:6.2.0, @fortawesome/fontawesome-common-types@npm:^6.2.0":
+  version: 6.2.0
+  resolution: "@fortawesome/fontawesome-common-types@npm:6.2.0::__archiveUrl=https%3A%2F%2Fnpm.fontawesome.com%2F%40fortawesome%2Ffontawesome-common-types%2F-%2F6.2.0%2Ffontawesome-common-types-6.2.0.tgz"
+  checksum: d31e3452112e73884dd97f413bb86a3a4701dcadd180a3cf7a38640548cd373ea4b6c41c0601277bdc86ee29edb1ce26fe119090a2704be9710213cdff2e7259
+  languageName: node
+  linkType: hard
+
 "@fortawesome/fontawesome-pro@npm:^6.2.0":
   version: 6.2.0
   resolution: "@fortawesome/fontawesome-pro@npm:6.2.0::__archiveUrl=https%3A%2F%2Fnpm.fontawesome.com%2F%40fortawesome%2Ffontawesome-pro%2F-%2F6.2.0%2Ffontawesome-pro-6.2.0.tgz"
   checksum: 5481a49016f2412d25a66fd04740600733e4ee721c840cc80147c85c7082703b03adae3aabda6acc672efbe96e3e81c6d7e503af59ca47f80c770e2a397899ce
+  languageName: node
+  linkType: hard
+
+"@fortawesome/fontawesome-svg-core@npm:^6.2.0":
+  version: 6.2.0
+  resolution: "@fortawesome/fontawesome-svg-core@npm:6.2.0::__archiveUrl=https%3A%2F%2Fnpm.fontawesome.com%2F%40fortawesome%2Ffontawesome-svg-core%2F-%2F6.2.0%2Ffontawesome-svg-core-6.2.0.tgz"
+  dependencies:
+    "@fortawesome/fontawesome-common-types": "npm:6.2.0"
+  checksum: 23dc344f484037baaeb73473c89768a486693049bd816cd1dd7138d2a3c6362611efe3bb9f6e442bacbe981dbe4ecec095239c9626d20feb4531cf51dcf99ebd
+  languageName: node
+  linkType: hard
+
+"@fortawesome/free-solid-svg-icons@npm:^6.2.0":
+  version: 6.2.0
+  resolution: "@fortawesome/free-solid-svg-icons@npm:6.2.0::__archiveUrl=https%3A%2F%2Fnpm.fontawesome.com%2F%40fortawesome%2Ffree-solid-svg-icons%2F-%2F6.2.0%2Ffree-solid-svg-icons-6.2.0.tgz"
+  dependencies:
+    "@fortawesome/fontawesome-common-types": "npm:6.2.0"
+  checksum: 356abc92d2d1b06cace50e5d82189c08457bebdfeec78427dcba8fff7df9822dcf0f8decfd6b562791e3ef521608ed57ba4f302108b50d05e5f5455f67260734
+  languageName: node
+  linkType: hard
+
+"@fortawesome/pro-duotone-svg-icons@npm:^6.2.0":
+  version: 6.2.0
+  resolution: "@fortawesome/pro-duotone-svg-icons@npm:6.2.0::__archiveUrl=https%3A%2F%2Fnpm.fontawesome.com%2F%40fortawesome%2Fpro-duotone-svg-icons%2F-%2F6.2.0%2Fpro-duotone-svg-icons-6.2.0.tgz"
+  dependencies:
+    "@fortawesome/fontawesome-common-types": "npm:6.2.0"
+  checksum: 7d3b79cea7917906629f091047dce7159a0d0720932e10eca5c82ea74f3b70b49b3a7a63228ce5447f4c6b63d85d41bbbc517b50ba5e6e8d0db9a4604660f393
   languageName: node
   linkType: hard
 
@@ -4206,12 +4252,12 @@ __metadata:
   linkType: hard
 
 "@yarnpkg/parsers@npm:^3.0.0-rc.18":
-  version: 3.0.0-rc.27
-  resolution: "@yarnpkg/parsers@npm:3.0.0-rc.27"
+  version: 3.0.0-rc.28
+  resolution: "@yarnpkg/parsers@npm:3.0.0-rc.28"
   dependencies:
     js-yaml: "npm:^3.10.0"
     tslib: "npm:^2.4.0"
-  checksum: d0ad72d0362e065e3e13fa981ef78c93b0c2f5d8687d9267ea7cd1090f5569963117d747bea5185f9d48441d07458466b6ce5738c446baed0397c03043cf7d5a
+  checksum: 79ec8f096c5768362ea5a85ab77a110284df724710a4a8e679cf2f8cb7def0b18ecc87b9d0db3a0dc1bc377c51f64aea67ac42e53c2ed15a0132e4b4f6bca1bb
   languageName: node
   linkType: hard
 
@@ -6106,15 +6152,15 @@ __metadata:
   linkType: hard
 
 "cosmiconfig@npm:^7.0.0, cosmiconfig@npm:^7.0.1":
-  version: 7.0.1
-  resolution: "cosmiconfig@npm:7.0.1"
+  version: 7.1.0
+  resolution: "cosmiconfig@npm:7.1.0"
   dependencies:
     "@types/parse-json": "npm:^4.0.0"
     import-fresh: "npm:^3.2.1"
     parse-json: "npm:^5.0.0"
     path-type: "npm:^4.0.0"
     yaml: "npm:^1.10.0"
-  checksum: f5b0588faeb39d1bcb846504cb6693121bf6af4d09a5a0523a9201d189a769a067db33e36d6c6fe23937cc24f9771ad0e76ecb3056a4e244697867d62aa50ec0
+  checksum: 8add352f0abd55fc5eaef0823937c33992e5ae670831418c8ff98bb301952260467533b09b8e9257dc360baa270610a7a92b288d94eb25d6f577a0d7e507801b
   languageName: node
   linkType: hard
 
@@ -6770,7 +6816,12 @@ __metadata:
     "@angular/platform-browser": "npm:~14.2.0"
     "@angular/platform-browser-dynamic": "npm:~14.2.0"
     "@angular/router": "npm:~14.2.0"
+    "@fortawesome/angular-fontawesome": "npm:^0.11.1"
+    "@fortawesome/fontawesome-common-types": "npm:^6.2.0"
     "@fortawesome/fontawesome-pro": "npm:^6.2.0"
+    "@fortawesome/fontawesome-svg-core": "npm:^6.2.0"
+    "@fortawesome/free-solid-svg-icons": "npm:^6.2.0"
+    "@fortawesome/pro-duotone-svg-icons": "npm:^6.2.0"
     "@nrwl/angular": "npm:15.0.13"
     "@nrwl/cli": "npm:15.0.13"
     "@nrwl/cypress": "npm:15.0.13"
@@ -11281,18 +11332,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"loader-utils@npm:^2.0.0":
-  version: 2.0.3
-  resolution: "loader-utils@npm:2.0.3"
-  dependencies:
-    big.js: "npm:^5.2.2"
-    emojis-list: "npm:^3.0.0"
-    json5: "npm:^2.1.2"
-  checksum: 347419ce5bd826ab3692e8c1b23672229496c640f3d12349116688daa7d61b0646c5346aa401a8283e0fb9c96fd1186d132e632f8cd816ff0557a0c90ba6f8cb
-  languageName: node
-  linkType: hard
-
-"loader-utils@npm:^2.0.3":
+"loader-utils@npm:^2.0.0, loader-utils@npm:^2.0.3":
   version: 2.0.4
   resolution: "loader-utils@npm:2.0.4"
   dependencies:
@@ -11921,11 +11961,11 @@ __metadata:
   linkType: hard
 
 "minipass@npm:^3.0.0, minipass@npm:^3.1.1, minipass@npm:^3.1.6":
-  version: 3.3.4
-  resolution: "minipass@npm:3.3.4"
+  version: 3.3.5
+  resolution: "minipass@npm:3.3.5"
   dependencies:
     yallist: "npm:^4.0.0"
-  checksum: bddf78663156eebaec346762d56ce096ac45f5cb4917e9c43947b1b8146acacbaf523f2031907b3ad27d585f7a684f39dba96382739efcd7d87fac5c7ee0c66c
+  checksum: 54b7be3d5d111832afcb7cc2bcb9e1bd21c3701731d1cd6dd91d673b7658f0c01bd52887764cf08f5dafe9a94abd7ce8fc800a2afe2bc19207bd83daac5ee052
   languageName: node
   linkType: hard
 
@@ -13792,13 +13832,13 @@ __metadata:
   linkType: hard
 
 "postcss@npm:^8.2.14, postcss@npm:^8.3.5, postcss@npm:^8.3.7, postcss@npm:^8.4.14, postcss@npm:^8.4.7":
-  version: 8.4.18
-  resolution: "postcss@npm:8.4.18"
+  version: 8.4.19
+  resolution: "postcss@npm:8.4.19"
   dependencies:
     nanoid: "npm:^3.3.4"
     picocolors: "npm:^1.0.0"
     source-map-js: "npm:^1.0.2"
-  checksum: 686b922e5ced3d7dd5a6fe2d4b00f7787ac50db22f078f23f50462fdd9c00885e992f576c72eb804f62c5908a8b476d61d81d66ec91bb90eb4af2014eb3c321e
+  checksum: 583897de1f1b39bed59fecfd2697e34195d6f2f85710572a8f060a14898102e13b0a74a96fd5490b2f8bdc6ed51ae43169a5a24f37684606f7c8272221b5d111
   languageName: node
   linkType: hard
 
