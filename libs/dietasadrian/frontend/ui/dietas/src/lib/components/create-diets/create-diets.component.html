@@ -1,10 +1,13 @@
 <div class="crear-dietas-container">
   <div *ngIf="!meals.length" class="empty-placeholder-container">
-    <i class="fa-light fa-clipboard-question empty-icon"></i>
+    <fa-icon
+      [icon]="['fal', 'clipboard-question']"
+      class="empty-icon"
+    ></fa-icon>
     <h4>No hay comidas agregadas</h4>
     <p>
       Para agregar una nueva comida presione el boton
-      <i class="fa-duotone fa-plate-utensils small-icon"></i>
+      <fa-icon [icon]="['fad', 'plate-utensils']" class="small-icon"></fa-icon>
     </p>
   </div>
 
@@ -38,7 +41,10 @@
             required
           />
           <div class="meal-handle meal-handle">
-            <i class="fa-thin fa-grip-lines icon drag-icon"></i>
+            <fa-icon
+              [icon]="['fat', 'grip-lines']"
+              class="icon drag-icon"
+            ></fa-icon>
           </div>
         </div>
       </dietas-adrian-nx-workspace-meal>
@@ -49,13 +55,16 @@
 
 <div class="crear-dieta-button-container" (click)="addMeal()">
   <span class="fa-stack fa-2x">
-    <i
-      class="fa-duotone fa-plate-utensils fa-beat fa-stack-2x icon icon-size"
+    <fa-icon
+      [icon]="['fad', 'plate-utensils']"
+      class="fa-stack-2x fa-beat icon icon-size"
       style="--fa-animation-iteration-count: 2"
-    ></i>
-    <i
-      class="fa-sharp fa-solid fa-plus fa-beat fa-stack-1x minor-icon"
-      style="--fa-animation-iteration-count: 2"
-    ></i>
+    ></fa-icon>
+    <fa-icon
+    [icon]="['fass', 'plus']"
+    class="fa-beat fa-stack-1x"
+    transform="shrink-30 down-17 right-17"
+    style="--fa-animation-iteration-count: 2"
+  ></fa-icon>
   </span>
 </div>

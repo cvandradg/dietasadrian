@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { MyDietsComponent } from './components/my-diets/my-diets.component';
 import { CreateDietsComponent } from './components/create-diets/create-diets.component';
 import { SharedModuleModule } from '@shared-modules';
+import { Fontawesome } from '@classes/fontawesome';
 
 @NgModule({
   imports: [
@@ -16,4 +17,4 @@ import { SharedModuleModule } from '@shared-modules';
     ]),
   ],
 })
-export class DietasModule {}
+export class DietasModule extends Fontawesome {}

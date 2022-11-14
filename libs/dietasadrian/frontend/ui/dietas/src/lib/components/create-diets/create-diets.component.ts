@@ -19,7 +19,8 @@ export class CreateDietsComponent implements OnInit {
 
   screenSize = 0;
 
-  constructor(public overlay: Overlay, private helper: HelperService) {}
+  constructor(public overlay: Overlay, private helper: HelperService) {
+  }
 
   ngOnInit(): void {
     window.dispatchEvent(new Event('resize'));

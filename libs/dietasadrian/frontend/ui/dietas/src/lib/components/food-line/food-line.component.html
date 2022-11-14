@@ -1,9 +1,8 @@
 <div class="food-line">
   <div *ngIf="!foodLine.ingredients.length" class="ingredient-placeholder">
-    <p>
-      Para agregar un alimento a tu línea de comida presiona
-    </p>    
-    <i class="fa-duotone fa-turkey"></i>
+    <p>Para agregar un alimento a tu línea de comida presiona</p>
+    <!-- <i class="fa-duotone fa-turkey"></i> -->
+    <fa-icon [icon]="['fad', 'turkey']"></fa-icon>
   </div>
   <mat-chip-list *ngIf="foodLine.ingredients.length">
     <mat-chip
@@ -23,14 +22,17 @@
   <div (click)="addIngredient()">
     <div class="food-buttons">
       <span class="fa-stack fa-2x">
-        <i
-          class="fa-duotone fa-turkey fa-beat fa-stack-2x icon"
+        <fa-icon
+          [icon]="['fad', 'turkey']"
+          class="fa-stack-2x fa-beat icon"
           style="--fa-animation-iteration-count: 2"
-        ></i>
-        <i
-          class="fa-sharp fa-solid fa-plus fa-beat fa-stack-1x minor-icon"
+        ></fa-icon>
+        <fa-icon
+          [icon]="['fass', 'plus']"
+          class="fa-stack-1x fa-beat"
+          transform="shrink-27 down-7 right-10"
           style="--fa-animation-iteration-count: 2"
-        ></i>
+        ></fa-icon>
       </span>
     </div>
   </div>

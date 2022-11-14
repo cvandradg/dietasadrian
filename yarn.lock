@@ -2249,6 +2249,33 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fortawesome/pro-light-svg-icons@npm:^6.2.0":
+  version: 6.2.0
+  resolution: "@fortawesome/pro-light-svg-icons@npm:6.2.0::__archiveUrl=https%3A%2F%2Fnpm.fontawesome.com%2F%40fortawesome%2Fpro-light-svg-icons%2F-%2F6.2.0%2Fpro-light-svg-icons-6.2.0.tgz"
+  dependencies:
+    "@fortawesome/fontawesome-common-types": "npm:6.2.0"
+  checksum: badff9d69f4cceb6abefa333a9176b9eba3935144acd717fa02c08f0ef6f372db3b6f0c43bb8509eb7ccfd559cf1a25078435719e3df1dc25dd3a7e3541b3f30
+  languageName: node
+  linkType: hard
+
+"@fortawesome/pro-thin-svg-icons@npm:^6.2.0":
+  version: 6.2.0
+  resolution: "@fortawesome/pro-thin-svg-icons@npm:6.2.0::__archiveUrl=https%3A%2F%2Fnpm.fontawesome.com%2F%40fortawesome%2Fpro-thin-svg-icons%2F-%2F6.2.0%2Fpro-thin-svg-icons-6.2.0.tgz"
+  dependencies:
+    "@fortawesome/fontawesome-common-types": "npm:6.2.0"
+  checksum: ea8ca322e8c158ec10e73b3424b3bac546d86c3232651dff147b61658b675c78a0b9c786feb79de25e0eb5273607ff132ce7369dfb2ec5fe81f924b6e630384c
+  languageName: node
+  linkType: hard
+
+"@fortawesome/sharp-solid-svg-icons@npm:^6.2.0":
+  version: 6.2.0
+  resolution: "@fortawesome/sharp-solid-svg-icons@npm:6.2.0::__archiveUrl=https%3A%2F%2Fnpm.fontawesome.com%2F%40fortawesome%2Fsharp-solid-svg-icons%2F-%2F6.2.0%2Fsharp-solid-svg-icons-6.2.0.tgz"
+  dependencies:
+    "@fortawesome/fontawesome-common-types": "npm:6.2.0"
+  checksum: 23ce4947a1fe44d966930d9f0316267bbd2cf99f9af02bd292ff8bf594aa0f6818f4adeea876945bca0929c0ee603d0cdd29b6c137ef712d50a8703af468af13
+  languageName: node
+  linkType: hard
+
 "@gar/promisify@npm:^1.1.3":
   version: 1.1.3
   resolution: "@gar/promisify@npm:1.1.3"
@@ -6822,6 +6849,9 @@ __metadata:
     "@fortawesome/fontawesome-svg-core": "npm:^6.2.0"
     "@fortawesome/free-solid-svg-icons": "npm:^6.2.0"
     "@fortawesome/pro-duotone-svg-icons": "npm:^6.2.0"
+    "@fortawesome/pro-light-svg-icons": "npm:^6.2.0"
+    "@fortawesome/pro-thin-svg-icons": "npm:^6.2.0"
+    "@fortawesome/sharp-solid-svg-icons": "npm:^6.2.0"
     "@nrwl/angular": "npm:15.0.13"
     "@nrwl/cli": "npm:15.0.13"
     "@nrwl/cypress": "npm:15.0.13"

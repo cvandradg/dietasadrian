@@ -46,7 +46,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
   color: rgb(161, 161, 161);
   padding: 2rem 2rem;
 }
@@ -56,7 +56,7 @@
   text-align: center;
 }
 
-.foodLine-placeholder .fa-layer-plus {
+.foodLine-placeholder fa-icon {
   --fa-primary-color: rgb(131, 131, 131);
   --fa-secondary-color: rgb(122, 122, 122);
   font-size: 1.4rem;
@@ -106,8 +106,17 @@
 }
 /// Material drag and drop end ///
 
+@media screen and (max-width: 400px){
+  .foodLine-placeholder {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
 @media screen and (max-width: 450px){
   .meals {
     margin: 0.2rem;
   }
 }
+
+//foodLine-placeholder

@@ -2,24 +2,15 @@ import { Component, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SharedModuleModule } from '@shared-modules';
-import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 
-import {
-  faBookOpenCover,
-  faSack,
-  faUserCircle,
-} from '@fortawesome/pro-duotone-svg-icons';
+import { Fontawesome } from '@classes/fontawesome';
 
 @Component({
   selector: 'dietas-adrian-nx-workspace-landing-page',
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.scss'],
 })
-export class LandingPageComponent {
-  constructor(library: FaIconLibrary) {
-    library.addIcons(faBookOpenCover, faSack, faUserCircle);
-  }
-}
+export class LandingPageComponent extends Fontawesome {}
 
 @NgModule({
   imports: [CommonModule, RouterModule, SharedModuleModule],
