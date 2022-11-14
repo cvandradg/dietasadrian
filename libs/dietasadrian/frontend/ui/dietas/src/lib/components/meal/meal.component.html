@@ -5,7 +5,7 @@
     <div class="foodLine-placeholder" *ngIf="!meal.foodLines.length">
       <p>Agrega una línea de comida con el boton</p>
 
-      <i class="fa-duotone fa-layer-plus"></i>
+      <fa-icon [icon]="['fad', 'layer-plus']"></fa-icon>
     </div>
     <div
       *ngIf="meal.foodLines.length"
@@ -28,8 +28,16 @@
     </div>
   </div>
   <div class="meals-buttons">
-    <i class="fa-duotone fa-layer-plus icon" (click)="addFoodLine()"></i>
+    <fa-icon
+      [icon]="['fad', 'layer-plus']"
+      class="icon"
+      (click)="addFoodLine()"
+    ></fa-icon>
 
-    <i class="fa-duotone fa-trash-can icon" (click)="delete()"></i>
+    <fa-icon
+      [icon]="['fad', 'trash-can']"
+      class="icon"
+      (click)="delete()"
+    ></fa-icon>
   </div>
 </div>

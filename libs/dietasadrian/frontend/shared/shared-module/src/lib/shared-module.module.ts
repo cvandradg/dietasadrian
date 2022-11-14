@@ -5,7 +5,7 @@ import { MODULES } from './export-modules';
 
 import { ConfirmationDialogComponentModule } from './dialogs/confirmation-dialog/confirmation-dialog.component';
 import { AddIngredientDialogComponentModule } from './dialogs/add-ingredient-dialog/add-ingredient-dialog.component';
-import { HelperService } from '@helperFunctionsService';
+import { HelperService } from './services/helperFunctions.service';
 
 const COMPONENTS = [
   ConfirmationDialogComponentModule,

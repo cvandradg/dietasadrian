@@ -27,6 +27,9 @@
       "@helperFunctionsService": [
         "libs/dietasadrian/frontend/shared/shared-module/src/lib/services/helperFunctions.service.ts"
       ],
+      "@classes/*": [
+        "libs/dietasadrian/frontend/shared/shared-module/src/lib/classes/*"
+      ],
       "@interfaces": [
         "libs/dietasadrian/frontend/shared/shared-module/src/lib/interfaces/interfaces.interfaces.ts"
       ],

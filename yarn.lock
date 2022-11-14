@@ -2196,6 +2196,86 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fortawesome/angular-fontawesome@npm:^0.11.1":
+  version: 0.11.1
+  resolution: "@fortawesome/angular-fontawesome@npm:0.11.1::__archiveUrl=https%3A%2F%2Fnpm.fontawesome.com%2F%40fortawesome%2Fangular-fontawesome%2F-%2F0.11.1%2Fangular-fontawesome-0.11.1.tgz"
+  dependencies:
+    tslib: "npm:^2.4.0"
+  peerDependencies:
+    "@angular/core": ^14.0.0
+    "@fortawesome/fontawesome-svg-core": ~1.2.27 || ~1.3.0-beta2 || ^6.1.0
+  checksum: d9f23b6ba61b8f720ff95f0ada642b35b56e21d00a036712035dc0147051ebf5f5573621053d2afbd6bfe1d6f9b1337f5883db14f4d355fece3de2cc761527c1
+  languageName: node
+  linkType: hard
+
+"@fortawesome/fontawesome-common-types@npm:6.2.0, @fortawesome/fontawesome-common-types@npm:^6.2.0":
+  version: 6.2.0
+  resolution: "@fortawesome/fontawesome-common-types@npm:6.2.0::__archiveUrl=https%3A%2F%2Fnpm.fontawesome.com%2F%40fortawesome%2Ffontawesome-common-types%2F-%2F6.2.0%2Ffontawesome-common-types-6.2.0.tgz"
+  checksum: d31e3452112e73884dd97f413bb86a3a4701dcadd180a3cf7a38640548cd373ea4b6c41c0601277bdc86ee29edb1ce26fe119090a2704be9710213cdff2e7259
+  languageName: node
+  linkType: hard
+
+"@fortawesome/fontawesome-pro@npm:^6.2.0":
+  version: 6.2.0
+  resolution: "@fortawesome/fontawesome-pro@npm:6.2.0::__archiveUrl=https%3A%2F%2Fnpm.fontawesome.com%2F%40fortawesome%2Ffontawesome-pro%2F-%2F6.2.0%2Ffontawesome-pro-6.2.0.tgz"
+  checksum: 5481a49016f2412d25a66fd04740600733e4ee721c840cc80147c85c7082703b03adae3aabda6acc672efbe96e3e81c6d7e503af59ca47f80c770e2a397899ce
+  languageName: node
+  linkType: hard
+
+"@fortawesome/fontawesome-svg-core@npm:^6.2.0":
+  version: 6.2.0
+  resolution: "@fortawesome/fontawesome-svg-core@npm:6.2.0::__archiveUrl=https%3A%2F%2Fnpm.fontawesome.com%2F%40fortawesome%2Ffontawesome-svg-core%2F-%2F6.2.0%2Ffontawesome-svg-core-6.2.0.tgz"
+  dependencies:
+    "@fortawesome/fontawesome-common-types": "npm:6.2.0"
+  checksum: 23dc344f484037baaeb73473c89768a486693049bd816cd1dd7138d2a3c6362611efe3bb9f6e442bacbe981dbe4ecec095239c9626d20feb4531cf51dcf99ebd
+  languageName: node
+  linkType: hard
+
+"@fortawesome/free-solid-svg-icons@npm:^6.2.0":
+  version: 6.2.0
+  resolution: "@fortawesome/free-solid-svg-icons@npm:6.2.0::__archiveUrl=https%3A%2F%2Fnpm.fontawesome.com%2F%40fortawesome%2Ffree-solid-svg-icons%2F-%2F6.2.0%2Ffree-solid-svg-icons-6.2.0.tgz"
+  dependencies:
+    "@fortawesome/fontawesome-common-types": "npm:6.2.0"
+  checksum: 356abc92d2d1b06cace50e5d82189c08457bebdfeec78427dcba8fff7df9822dcf0f8decfd6b562791e3ef521608ed57ba4f302108b50d05e5f5455f67260734
+  languageName: node
+  linkType: hard
+
+"@fortawesome/pro-duotone-svg-icons@npm:^6.2.0":
+  version: 6.2.0
+  resolution: "@fortawesome/pro-duotone-svg-icons@npm:6.2.0::__archiveUrl=https%3A%2F%2Fnpm.fontawesome.com%2F%40fortawesome%2Fpro-duotone-svg-icons%2F-%2F6.2.0%2Fpro-duotone-svg-icons-6.2.0.tgz"
+  dependencies:
+    "@fortawesome/fontawesome-common-types": "npm:6.2.0"
+  checksum: 7d3b79cea7917906629f091047dce7159a0d0720932e10eca5c82ea74f3b70b49b3a7a63228ce5447f4c6b63d85d41bbbc517b50ba5e6e8d0db9a4604660f393
+  languageName: node
+  linkType: hard
+
+"@fortawesome/pro-light-svg-icons@npm:^6.2.0":
+  version: 6.2.0
+  resolution: "@fortawesome/pro-light-svg-icons@npm:6.2.0::__archiveUrl=https%3A%2F%2Fnpm.fontawesome.com%2F%40fortawesome%2Fpro-light-svg-icons%2F-%2F6.2.0%2Fpro-light-svg-icons-6.2.0.tgz"
+  dependencies:
+    "@fortawesome/fontawesome-common-types": "npm:6.2.0"
+  checksum: badff9d69f4cceb6abefa333a9176b9eba3935144acd717fa02c08f0ef6f372db3b6f0c43bb8509eb7ccfd559cf1a25078435719e3df1dc25dd3a7e3541b3f30
+  languageName: node
+  linkType: hard
+
+"@fortawesome/pro-thin-svg-icons@npm:^6.2.0":
+  version: 6.2.0
+  resolution: "@fortawesome/pro-thin-svg-icons@npm:6.2.0::__archiveUrl=https%3A%2F%2Fnpm.fontawesome.com%2F%40fortawesome%2Fpro-thin-svg-icons%2F-%2F6.2.0%2Fpro-thin-svg-icons-6.2.0.tgz"
+  dependencies:
+    "@fortawesome/fontawesome-common-types": "npm:6.2.0"
+  checksum: ea8ca322e8c158ec10e73b3424b3bac546d86c3232651dff147b61658b675c78a0b9c786feb79de25e0eb5273607ff132ce7369dfb2ec5fe81f924b6e630384c
+  languageName: node
+  linkType: hard
+
+"@fortawesome/sharp-solid-svg-icons@npm:^6.2.0":
+  version: 6.2.0
+  resolution: "@fortawesome/sharp-solid-svg-icons@npm:6.2.0::__archiveUrl=https%3A%2F%2Fnpm.fontawesome.com%2F%40fortawesome%2Fsharp-solid-svg-icons%2F-%2F6.2.0%2Fsharp-solid-svg-icons-6.2.0.tgz"
+  dependencies:
+    "@fortawesome/fontawesome-common-types": "npm:6.2.0"
+  checksum: 23ce4947a1fe44d966930d9f0316267bbd2cf99f9af02bd292ff8bf594aa0f6818f4adeea876945bca0929c0ee603d0cdd29b6c137ef712d50a8703af468af13
+  languageName: node
+  linkType: hard
+
 "@gar/promisify@npm:^1.1.3":
   version: 1.1.3
   resolution: "@gar/promisify@npm:1.1.3"
@@ -2804,18 +2884,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nrwl/angular@npm:15.0.7":
-  version: 15.0.7
-  resolution: "@nrwl/angular@npm:15.0.7"
+"@nrwl/angular@npm:15.0.13":
+  version: 15.0.13
+  resolution: "@nrwl/angular@npm:15.0.13"
   dependencies:
     "@angular-devkit/schematics": "npm:~14.2.0"
-    "@nrwl/cypress": "npm:15.0.7"
-    "@nrwl/devkit": "npm:15.0.7"
-    "@nrwl/jest": "npm:15.0.7"
-    "@nrwl/linter": "npm:15.0.7"
-    "@nrwl/storybook": "npm:15.0.7"
-    "@nrwl/webpack": "npm:15.0.7"
-    "@nrwl/workspace": "npm:15.0.7"
+    "@nrwl/cypress": "npm:15.0.13"
+    "@nrwl/devkit": "npm:15.0.13"
+    "@nrwl/jest": "npm:15.0.13"
+    "@nrwl/linter": "npm:15.0.13"
+    "@nrwl/storybook": "npm:15.0.13"
+    "@nrwl/webpack": "npm:15.0.13"
+    "@nrwl/workspace": "npm:15.0.13"
     "@phenomnomnominal/tsquery": "npm:4.1.1"
     "@schematics/angular": "npm:~14.2.0"
     chalk: "npm:4.1.0"
@@ -2830,7 +2910,7 @@ __metadata:
     tslib: "npm:^2.3.0"
     webpack: "npm:^5.58.1"
     webpack-merge: "npm:5.7.3"
-  checksum: e7153f0b06428ffe70cdc1e1f2a32c91276b07e13265ce0f09ec444a3ec8d7eacd7a91613fe15f25144e29796151abd298deb6b19600286eca0bc1af6830c6a7
+  checksum: 7a52d940731d6fdfd2185432e413ec835826a27cef28dc724833f5755b8b5fb60ca7722173669468e44e95bdc575472fd0dbf7bcf4693f2c7300ce37e0884d4b
   languageName: node
   linkType: hard
 
@@ -2843,25 +2923,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nrwl/cli@npm:15.0.7":
-  version: 15.0.7
-  resolution: "@nrwl/cli@npm:15.0.7"
-  dependencies:
-    nx: "npm:15.0.7"
-  checksum: 511f31f6b60dc46d85920c5fdf079b577644d3d2eb95cbb6bf6b35d2835b53a91cf2892916e3b5ea1e3fef361d7ac35e1bb8c2563e22f6b187d90508fd81816e
-  languageName: node
-  linkType: hard
-
-"@nrwl/cypress@npm:15.0.7":
-  version: 15.0.7
-  resolution: "@nrwl/cypress@npm:15.0.7"
+"@nrwl/cypress@npm:15.0.13":
+  version: 15.0.13
+  resolution: "@nrwl/cypress@npm:15.0.13"
   dependencies:
     "@babel/core": "npm:^7.0.1"
     "@babel/preset-env": "npm:^7.0.0"
     "@cypress/webpack-preprocessor": "npm:^5.12.0"
-    "@nrwl/devkit": "npm:15.0.7"
-    "@nrwl/linter": "npm:15.0.7"
-    "@nrwl/workspace": "npm:15.0.7"
+    "@nrwl/devkit": "npm:15.0.13"
+    "@nrwl/linter": "npm:15.0.13"
+    "@nrwl/workspace": "npm:15.0.13"
     "@phenomnomnominal/tsquery": "npm:4.1.1"
     babel-loader: "npm:^8.0.2"
     chalk: "npm:4.1.0"
@@ -2878,7 +2949,7 @@ __metadata:
   peerDependenciesMeta:
     cypress:
       optional: true
-  checksum: 94d3d5855c608d5f422c227625dfa2192b4ab54fa32c6f8af9e8eb6d0d463352d08a72acff660930e24bebac1c7c77ae9c992edc72c2e5585e8b5f3192c72f8c
+  checksum: 40afe7431371da65d7aaa2a3c910219fb33d692fae9846dd0fe4eccc652590a5065a732e1e8f34cd27ee3d6a7ee7ccead2d5b872bda5cf3796d38da032a2dde4
   languageName: node
   linkType: hard
 
@@ -2897,27 +2968,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nrwl/devkit@npm:15.0.7":
-  version: 15.0.7
-  resolution: "@nrwl/devkit@npm:15.0.7"
+"@nrwl/eslint-plugin-nx@npm:15.0.13":
+  version: 15.0.13
+  resolution: "@nrwl/eslint-plugin-nx@npm:15.0.13"
   dependencies:
-    "@phenomnomnominal/tsquery": "npm:4.1.1"
-    ejs: "npm:^3.1.7"
-    ignore: "npm:^5.0.4"
-    semver: "npm:7.3.4"
-    tslib: "npm:^2.3.0"
-  peerDependencies:
-    nx: ">= 14 <= 16"
-  checksum: 8161653adaf8827be5017d1635b81ae2f22a5096454397a661781288e0af1b736645f5c7607e7378299aaaea55e0e9016e3f1ea416127071c29b6276ed6bf8c2
-  languageName: node
-  linkType: hard
-
-"@nrwl/eslint-plugin-nx@npm:15.0.7":
-  version: 15.0.7
-  resolution: "@nrwl/eslint-plugin-nx@npm:15.0.7"
-  dependencies:
-    "@nrwl/devkit": "npm:15.0.7"
-    "@nrwl/workspace": "npm:15.0.7"
+    "@nrwl/devkit": "npm:15.0.13"
+    "@nrwl/workspace": "npm:15.0.13"
     "@typescript-eslint/utils": "npm:^5.36.1"
     chalk: "npm:4.1.0"
     confusing-browser-globals: "npm:^1.0.9"
@@ -2928,7 +2984,7 @@ __metadata:
   peerDependenciesMeta:
     eslint-config-prettier:
       optional: true
-  checksum: eda54002169aedb19e968393ce6a6e7723d480d7fe72a8c6103881e770e07aaa168f586503a15e8522d9d7aaf88e48f9c9c36a3ea1ccf0229716d822c263cae2
+  checksum: 2787133d55d66234c62f182a5e1b069800a5c07732be6aa8c3aa86fe7c7b62f043fc63f8209d2f4f120acf4fd9ee751c58282de3cd654c8dbdda90ab9c120302
   languageName: node
   linkType: hard
 
@@ -2952,34 +3008,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nrwl/jest@npm:15.0.7":
-  version: 15.0.7
-  resolution: "@nrwl/jest@npm:15.0.7"
+"@nrwl/js@npm:15.0.13":
+  version: 15.0.13
+  resolution: "@nrwl/js@npm:15.0.13"
   dependencies:
-    "@jest/reporters": "npm:28.1.1"
-    "@jest/test-result": "npm:28.1.1"
-    "@nrwl/devkit": "npm:15.0.7"
-    "@phenomnomnominal/tsquery": "npm:4.1.1"
-    chalk: "npm:4.1.0"
-    dotenv: "npm:~10.0.0"
-    identity-obj-proxy: "npm:3.0.0"
-    jest-config: "npm:28.1.1"
-    jest-resolve: "npm:28.1.1"
-    jest-util: "npm:28.1.1"
-    resolve.exports: "npm:1.1.0"
-    tslib: "npm:^2.3.0"
-  checksum: 95aa7b807ec21e52724c011db6849d6894b485d7638cc0146b0dced7cff1093d490fcaee269ed969ed1aced3f6e8a6fd2fce6fa8431c2ca849a46c3d2f7c9563
-  languageName: node
-  linkType: hard
-
-"@nrwl/js@npm:15.0.7":
-  version: 15.0.7
-  resolution: "@nrwl/js@npm:15.0.7"
-  dependencies:
-    "@nrwl/devkit": "npm:15.0.7"
-    "@nrwl/jest": "npm:15.0.7"
-    "@nrwl/linter": "npm:15.0.7"
-    "@nrwl/workspace": "npm:15.0.7"
+    "@nrwl/devkit": "npm:15.0.13"
+    "@nrwl/jest": "npm:15.0.13"
+    "@nrwl/linter": "npm:15.0.13"
+    "@nrwl/workspace": "npm:15.0.13"
     "@parcel/watcher": "npm:2.0.4"
     chalk: "npm:4.1.0"
     fast-glob: "npm:3.2.7"
@@ -2989,30 +3025,11 @@ __metadata:
     minimatch: "npm:3.0.5"
     source-map-support: "npm:0.5.19"
     tree-kill: "npm:1.2.2"
-  checksum: d1e0e34ad729cdcbc8369954cabb92bd1bd8bb736a904b76b6222f97815b538c072d46fe2763e2583678691366bab5d8d57bbe58b75ce1b1d10815e3fbb48156
+  checksum: cec0a20496a806199349549b274ac394e37f46bab83805c7708385b271d30b11e1be2c42ca1a330817eaaa52086dc0423571d9c2654b2af249aee7be33b447b7
   languageName: node
   linkType: hard
 
-"@nrwl/linter@npm:15.0.7":
-  version: 15.0.7
-  resolution: "@nrwl/linter@npm:15.0.7"
-  dependencies:
-    "@nrwl/devkit": "npm:15.0.7"
-    "@nrwl/jest": "npm:15.0.7"
-    "@phenomnomnominal/tsquery": "npm:4.1.1"
-    nx: "npm:15.0.7"
-    tmp: "npm:~0.2.1"
-    tslib: "npm:^2.3.0"
-  peerDependencies:
-    eslint: ^8.0.0
-  peerDependenciesMeta:
-    eslint:
-      optional: true
-  checksum: a4922958f7013694ff86523ec2520baea0ed3958f7d4630b34d91b6b6f1e57016c9dc996100015bd2e94da4f87729826a360a2f032177fe71b0a1e3918214008
-  languageName: node
-  linkType: hard
-
-"@nrwl/linter@npm:^15.0.7":
+"@nrwl/linter@npm:15.0.13":
   version: 15.0.13
   resolution: "@nrwl/linter@npm:15.0.13"
   dependencies:
@@ -3031,9 +3048,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nrwl/nx-cloud@npm:15.0.1":
-  version: 15.0.1
-  resolution: "@nrwl/nx-cloud@npm:15.0.1"
+"@nrwl/nx-cloud@npm:15.0.2":
+  version: 15.0.2
+  resolution: "@nrwl/nx-cloud@npm:15.0.2"
   dependencies:
     axios: "npm:^0.21.2"
     chalk: "npm:4.1.0"
@@ -3045,21 +3062,21 @@ __metadata:
     yargs-parser: "npm:>=21.0.1"
   bin:
     nx-cloud: bin/nx-cloud.js
-  checksum: c80141f686f7e9d59eb25e0ed6fc1b3dab2fc294df832350499066bfd348b60de57f7ea26b36b771d663df8eb3f342284373ccda3103a1577e7704e141ea0e2b
+  checksum: 71389221c8d06fee4eb9e479a15f6e2757c25fb15cd30fb4abae86afb113d9735004c7b54d7167c5b415dd45cc35bebc78dc8dea9a58394a940d3529e0c73b0f
   languageName: node
   linkType: hard
 
-"@nrwl/storybook@npm:15.0.7":
-  version: 15.0.7
-  resolution: "@nrwl/storybook@npm:15.0.7"
+"@nrwl/storybook@npm:15.0.13":
+  version: 15.0.13
+  resolution: "@nrwl/storybook@npm:15.0.13"
   dependencies:
-    "@nrwl/cypress": "npm:15.0.7"
-    "@nrwl/devkit": "npm:15.0.7"
-    "@nrwl/linter": "npm:15.0.7"
-    "@nrwl/workspace": "npm:15.0.7"
+    "@nrwl/cypress": "npm:15.0.13"
+    "@nrwl/devkit": "npm:15.0.13"
+    "@nrwl/linter": "npm:15.0.13"
+    "@nrwl/workspace": "npm:15.0.13"
     dotenv: "npm:~10.0.0"
     semver: "npm:7.3.4"
-  checksum: 319f73d4e588ed3ed93f75db86461c5b1bf9d9234171a3a3a392cfbd64117b6ae306713edfc47d8b85972c5f1a136f5adb71c4c701a2de5b3db295c2bbcffd91
+  checksum: e3288cf02a6bbe049e1bb7da940a4bad884613694ae4f0abf0d5f003efd618cf851027a86a4440d109368db448ae87e2e431b8949a276545bf51673adcb314be
   languageName: node
   linkType: hard
 
@@ -3074,24 +3091,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nrwl/tao@npm:15.0.7":
-  version: 15.0.7
-  resolution: "@nrwl/tao@npm:15.0.7"
+"@nrwl/webpack@npm:15.0.13":
+  version: 15.0.13
+  resolution: "@nrwl/webpack@npm:15.0.13"
   dependencies:
-    nx: "npm:15.0.7"
-  bin:
-    tao: index.js
-  checksum: c18d1d9b88739bd397c390291fa0559ff8ea1647250e4d04401661874876fa57d82b14c0073a0b6b0b1b646c8ed63747c6ade858cac7335987e650c5c4220d22
-  languageName: node
-  linkType: hard
-
-"@nrwl/webpack@npm:15.0.7":
-  version: 15.0.7
-  resolution: "@nrwl/webpack@npm:15.0.7"
-  dependencies:
-    "@nrwl/devkit": "npm:15.0.7"
-    "@nrwl/js": "npm:15.0.7"
-    "@nrwl/workspace": "npm:15.0.7"
+    "@nrwl/devkit": "npm:15.0.13"
+    "@nrwl/js": "npm:15.0.13"
+    "@nrwl/workspace": "npm:15.0.13"
     autoprefixer: "npm:^10.4.9"
     babel-loader: "npm:^8.2.2"
     browserslist: "npm:^4.16.6"
@@ -3109,7 +3115,7 @@ __metadata:
     less: "npm:3.12.2"
     less-loader: "npm:^11.1.0"
     license-webpack-plugin: "npm:^4.0.2"
-    loader-utils: "npm:1.2.3"
+    loader-utils: "npm:^2.0.3"
     mini-css-extract-plugin: "npm:~2.4.7"
     parse5: "npm:4.0.0"
     parse5-html-rewriting-stream: "npm:6.0.1"
@@ -3136,17 +3142,17 @@ __metadata:
     webpack-node-externals: "npm:^3.0.0"
     webpack-sources: "npm:^3.2.3"
     webpack-subresource-integrity: "npm:^5.1.0"
-  checksum: db7e11efb6d6deccf02841e0dbdf329b12446eb3feb969af14e2cfca7041fc3fe5ff61df1057dd87203685fb867163c36afc087be2e1e306bbbcd7798d4bc905
+  checksum: 112b03e02d7fb154342d3ce4e920789792ef1baa5b44ff41b5f7f14b554d0c8a4113f46d65b459697bdb1b7590b8028c013e96d4aaee8741b2b35440937ddc01
   languageName: node
   linkType: hard
 
-"@nrwl/workspace@npm:15.0.7":
-  version: 15.0.7
-  resolution: "@nrwl/workspace@npm:15.0.7"
+"@nrwl/workspace@npm:15.0.13":
+  version: 15.0.13
+  resolution: "@nrwl/workspace@npm:15.0.13"
   dependencies:
-    "@nrwl/devkit": "npm:15.0.7"
-    "@nrwl/jest": "npm:15.0.7"
-    "@nrwl/linter": "npm:15.0.7"
+    "@nrwl/devkit": "npm:15.0.13"
+    "@nrwl/jest": "npm:15.0.13"
+    "@nrwl/linter": "npm:15.0.13"
     "@parcel/watcher": "npm:2.0.4"
     chalk: "npm:4.1.0"
     chokidar: "npm:^3.5.1"
@@ -3161,20 +3167,20 @@ __metadata:
     ignore: "npm:^5.0.4"
     minimatch: "npm:3.0.5"
     npm-run-path: "npm:^4.0.1"
-    nx: "npm:15.0.7"
+    nx: "npm:15.0.13"
     open: "npm:^8.4.0"
     rxjs: "npm:^6.5.4"
     semver: "npm:7.3.4"
     tmp: "npm:~0.2.1"
     tslib: "npm:^2.3.0"
-    yargs: "npm:^17.4.0"
-    yargs-parser: "npm:21.0.1"
+    yargs: "npm:^17.6.2"
+    yargs-parser: "npm:21.1.1"
   peerDependencies:
     prettier: ^2.6.2
   peerDependenciesMeta:
     prettier:
       optional: true
-  checksum: 8e66a38161721e42eb3f7da6b4e07f7ec6126b36dfcec758fbee199376681458673f98b1a3c010c32ef667985813282f0b25ab1381daec8d01bec2b4df225bad
+  checksum: 0a9256c81af72163e7c8410ef76ef47588dd9a269ea3f65900549299fc072f4e13b060465d9a232155983929f4c01045bd38811b183ecf3eba4b0283b914cd13
   languageName: node
   linkType: hard
 
@@ -4273,12 +4279,12 @@ __metadata:
   linkType: hard
 
 "@yarnpkg/parsers@npm:^3.0.0-rc.18":
-  version: 3.0.0-rc.27
-  resolution: "@yarnpkg/parsers@npm:3.0.0-rc.27"
+  version: 3.0.0-rc.28
+  resolution: "@yarnpkg/parsers@npm:3.0.0-rc.28"
   dependencies:
     js-yaml: "npm:^3.10.0"
     tslib: "npm:^2.4.0"
-  checksum: d0ad72d0362e065e3e13fa981ef78c93b0c2f5d8687d9267ea7cd1090f5569963117d747bea5185f9d48441d07458466b6ce5738c446baed0397c03043cf7d5a
+  checksum: 79ec8f096c5768362ea5a85ab77a110284df724710a4a8e679cf2f8cb7def0b18ecc87b9d0db3a0dc1bc377c51f64aea67ac42e53c2ed15a0132e4b4f6bca1bb
   languageName: node
   linkType: hard
 
@@ -6173,15 +6179,15 @@ __metadata:
   linkType: hard
 
 "cosmiconfig@npm:^7.0.0, cosmiconfig@npm:^7.0.1":
-  version: 7.0.1
-  resolution: "cosmiconfig@npm:7.0.1"
+  version: 7.1.0
+  resolution: "cosmiconfig@npm:7.1.0"
   dependencies:
     "@types/parse-json": "npm:^4.0.0"
     import-fresh: "npm:^3.2.1"
     parse-json: "npm:^5.0.0"
     path-type: "npm:^4.0.0"
     yaml: "npm:^1.10.0"
-  checksum: f5b0588faeb39d1bcb846504cb6693121bf6af4d09a5a0523a9201d189a769a067db33e36d6c6fe23937cc24f9771ad0e76ecb3056a4e244697867d62aa50ec0
+  checksum: 8add352f0abd55fc5eaef0823937c33992e5ae670831418c8ff98bb301952260467533b09b8e9257dc360baa270610a7a92b288d94eb25d6f577a0d7e507801b
   languageName: node
   linkType: hard
 
@@ -6837,14 +6843,23 @@ __metadata:
     "@angular/platform-browser": "npm:~14.2.0"
     "@angular/platform-browser-dynamic": "npm:~14.2.0"
     "@angular/router": "npm:~14.2.0"
-    "@nrwl/angular": "npm:15.0.7"
-    "@nrwl/cli": "npm:15.0.7"
-    "@nrwl/cypress": "npm:15.0.7"
-    "@nrwl/eslint-plugin-nx": "npm:15.0.7"
-    "@nrwl/jest": "npm:15.0.7"
-    "@nrwl/linter": "npm:^15.0.7"
-    "@nrwl/nx-cloud": "npm:15.0.1"
-    "@nrwl/workspace": "npm:15.0.7"
+    "@fortawesome/angular-fontawesome": "npm:^0.11.1"
+    "@fortawesome/fontawesome-common-types": "npm:^6.2.0"
+    "@fortawesome/fontawesome-pro": "npm:^6.2.0"
+    "@fortawesome/fontawesome-svg-core": "npm:^6.2.0"
+    "@fortawesome/free-solid-svg-icons": "npm:^6.2.0"
+    "@fortawesome/pro-duotone-svg-icons": "npm:^6.2.0"
+    "@fortawesome/pro-light-svg-icons": "npm:^6.2.0"
+    "@fortawesome/pro-thin-svg-icons": "npm:^6.2.0"
+    "@fortawesome/sharp-solid-svg-icons": "npm:^6.2.0"
+    "@nrwl/angular": "npm:15.0.13"
+    "@nrwl/cli": "npm:15.0.13"
+    "@nrwl/cypress": "npm:15.0.13"
+    "@nrwl/eslint-plugin-nx": "npm:15.0.13"
+    "@nrwl/jest": "npm:15.0.13"
+    "@nrwl/linter": "npm:15.0.13"
+    "@nrwl/nx-cloud": "npm:15.0.2"
+    "@nrwl/workspace": "npm:15.0.13"
     "@types/jest": "npm:28.1.1"
     "@types/lodash": "npm:^4.14.188"
     "@types/node": "npm:16.11.7"
@@ -6860,7 +6875,7 @@ __metadata:
     jest-environment-jsdom: "npm:28.1.1"
     jest-preset-angular: "npm:12.2.2"
     lodash: "npm:^4.17.21"
-    nx: "npm:15.0.7"
+    nx: "npm:15.0.13"
     prettier: "npm:^2.6.2"
     rxjs: "npm:~7.5.0"
     ts-jest: "npm:28.0.5"
@@ -7081,13 +7096,6 @@ __metadata:
   version: 8.0.0
   resolution: "emoji-regex@npm:8.0.0"
   checksum: 0b84c9059a3f051e3da79112ee450f22bc8466dde2a7e09a0b1fc4eff3b98183596e6e2704d5356266851e2a013d95467421eb81c36408fbab1aeb3fc5e4764f
-  languageName: node
-  linkType: hard
-
-"emojis-list@npm:^2.0.0":
-  version: 2.1.0
-  resolution: "emojis-list@npm:2.1.0"
-  checksum: 1377587bd58958a6990849d92175b2cdc7f13121b961b27398eccc3a63d4c5e42bb5bc3b67d32ae7dcde6154a86e5d7b497f7ad7e0d74016251b9ca579671105
   languageName: node
   linkType: hard
 
@@ -11347,17 +11355,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"loader-utils@npm:1.2.3":
-  version: 1.2.3
-  resolution: "loader-utils@npm:1.2.3"
-  dependencies:
-    big.js: "npm:^5.2.2"
-    emojis-list: "npm:^2.0.0"
-    json5: "npm:^1.0.1"
-  checksum: ae5da0d5d7ffc582ae047ebfbb19822f8eab2103d679acb6b05ab1a4c8f09f524d927cb62dc888f0726110d4d6c7b84ac96bbf31e9608a443c4bb54a98a66fca
-  languageName: node
-  linkType: hard
-
 "loader-utils@npm:3.2.0":
   version: 3.2.0
   resolution: "loader-utils@npm:3.2.0"
@@ -11365,14 +11362,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"loader-utils@npm:^2.0.0":
-  version: 2.0.3
-  resolution: "loader-utils@npm:2.0.3"
+"loader-utils@npm:^2.0.0, loader-utils@npm:^2.0.3":
+  version: 2.0.4
+  resolution: "loader-utils@npm:2.0.4"
   dependencies:
     big.js: "npm:^5.2.2"
     emojis-list: "npm:^3.0.0"
     json5: "npm:^2.1.2"
-  checksum: 347419ce5bd826ab3692e8c1b23672229496c640f3d12349116688daa7d61b0646c5346aa401a8283e0fb9c96fd1186d132e632f8cd816ff0557a0c90ba6f8cb
+  checksum: 84384affee014c6b404124509f5550ce2bae3ae111df239e485e737ab3246c95fc84cd8918764471a4be4c64c3ca5bf3bf30e7e40baa5a5f363a043aec3aefa5
   languageName: node
   linkType: hard
 
@@ -11994,11 +11991,11 @@ __metadata:
   linkType: hard
 
 "minipass@npm:^3.0.0, minipass@npm:^3.1.1, minipass@npm:^3.1.6":
-  version: 3.3.4
-  resolution: "minipass@npm:3.3.4"
+  version: 3.3.5
+  resolution: "minipass@npm:3.3.5"
   dependencies:
     yallist: "npm:^4.0.0"
-  checksum: bddf78663156eebaec346762d56ce096ac45f5cb4917e9c43947b1b8146acacbaf523f2031907b3ad27d585f7a684f39dba96382739efcd7d87fac5c7ee0c66c
+  checksum: 54b7be3d5d111832afcb7cc2bcb9e1bd21c3701731d1cd6dd91d673b7658f0c01bd52887764cf08f5dafe9a94abd7ce8fc800a2afe2bc19207bd83daac5ee052
   languageName: node
   linkType: hard
 
@@ -12523,59 +12520,6 @@ __metadata:
   bin:
     nx: bin/nx.js
   checksum: c01600a70fb5ab6a1c3f0c65d402012afce1816f37c5ece856a64572c60a10a5adbec99e13cadee18786eea6539b5e57dbe65475fcd31908341f63b0b78b1f88
-  languageName: node
-  linkType: hard
-
-"nx@npm:15.0.7":
-  version: 15.0.7
-  resolution: "nx@npm:15.0.7"
-  dependencies:
-    "@nrwl/cli": "npm:15.0.7"
-    "@nrwl/tao": "npm:15.0.7"
-    "@parcel/watcher": "npm:2.0.4"
-    "@yarnpkg/lockfile": "npm:^1.1.0"
-    "@yarnpkg/parsers": "npm:^3.0.0-rc.18"
-    "@zkochan/js-yaml": "npm:0.0.6"
-    axios: "npm:^1.0.0"
-    chalk: "npm:4.1.0"
-    chokidar: "npm:^3.5.1"
-    cli-cursor: "npm:3.1.0"
-    cli-spinners: "npm:2.6.1"
-    cliui: "npm:^7.0.2"
-    dotenv: "npm:~10.0.0"
-    enquirer: "npm:~2.3.6"
-    fast-glob: "npm:3.2.7"
-    figures: "npm:3.2.0"
-    flat: "npm:^5.0.2"
-    fs-extra: "npm:^10.1.0"
-    glob: "npm:7.1.4"
-    ignore: "npm:^5.0.4"
-    js-yaml: "npm:4.1.0"
-    jsonc-parser: "npm:3.2.0"
-    minimatch: "npm:3.0.5"
-    npm-run-path: "npm:^4.0.1"
-    open: "npm:^8.4.0"
-    semver: "npm:7.3.4"
-    string-width: "npm:^4.2.3"
-    strong-log-transformer: "npm:^2.1.0"
-    tar-stream: "npm:~2.2.0"
-    tmp: "npm:~0.2.1"
-    tsconfig-paths: "npm:^3.9.0"
-    tslib: "npm:^2.3.0"
-    v8-compile-cache: "npm:2.3.0"
-    yargs: "npm:^17.4.0"
-    yargs-parser: "npm:21.0.1"
-  peerDependencies:
-    "@swc-node/register": ^1.4.2
-    "@swc/core": ^1.2.173
-  peerDependenciesMeta:
-    "@swc-node/register":
-      optional: true
-    "@swc/core":
-      optional: true
-  bin:
-    nx: bin/nx.js
-  checksum: 0f4e93c96a1a17d499cd6dbab7451fe6d65822b5c5638c3ecd818edc664154f5a53b0dbb05daae39c353693db947f1579d3193e26153c27c6b1b7824e4fb0a9c
   languageName: node
   linkType: hard
 
@@ -13918,13 +13862,13 @@ __metadata:
   linkType: hard
 
 "postcss@npm:^8.2.14, postcss@npm:^8.3.5, postcss@npm:^8.3.7, postcss@npm:^8.4.14, postcss@npm:^8.4.7":
-  version: 8.4.18
-  resolution: "postcss@npm:8.4.18"
+  version: 8.4.19
+  resolution: "postcss@npm:8.4.19"
   dependencies:
     nanoid: "npm:^3.3.4"
     picocolors: "npm:^1.0.0"
     source-map-js: "npm:^1.0.2"
-  checksum: 686b922e5ced3d7dd5a6fe2d4b00f7787ac50db22f078f23f50462fdd9c00885e992f576c72eb804f62c5908a8b476d61d81d66ec91bb90eb4af2014eb3c321e
+  checksum: 583897de1f1b39bed59fecfd2697e34195d6f2f85710572a8f060a14898102e13b0a74a96fd5490b2f8bdc6ed51ae43169a5a24f37684606f7c8272221b5d111
   languageName: node
   linkType: hard
 
@@ -17398,13 +17342,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yargs-parser@npm:21.0.1":
-  version: 21.0.1
-  resolution: "yargs-parser@npm:21.0.1"
-  checksum: acaedd6c21306da55dfabb5ea5967012a322bb103eab6034cee3ace61cefda1faaac89ea10bdee3bdfed2904f43cf71f346ccecf72e85b5005e6b2b2d17201d5
-  languageName: node
-  linkType: hard
-
 "yargs-parser@npm:21.1.1, yargs-parser@npm:>=21.0.1, yargs-parser@npm:^21.0.0, yargs-parser@npm:^21.0.1, yargs-parser@npm:^21.1.1":
   version: 21.1.1
   resolution: "yargs-parser@npm:21.1.1"
@@ -17449,7 +17386,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yargs@npm:^17.2.1, yargs@npm:^17.3.1, yargs@npm:^17.4.0, yargs@npm:^17.6.2":
+"yargs@npm:^17.2.1, yargs@npm:^17.3.1, yargs@npm:^17.6.2":
   version: 17.6.2
   resolution: "yargs@npm:17.6.2"
   dependencies:
