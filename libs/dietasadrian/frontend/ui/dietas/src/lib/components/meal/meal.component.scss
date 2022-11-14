@@ -106,17 +106,15 @@
 }
 /// Material drag and drop end ///
 
-@media screen and (max-width: 400px){
+@media screen and (max-width: 400px) {
   .foodLine-placeholder {
     flex-direction: column;
     gap: 0;
   }
 }
 
-@media screen and (max-width: 450px){
+@media screen and (max-width: 450px) {
   .meals {
     margin: 0.2rem;
   }
 }
-
-//foodLine-placeholder
