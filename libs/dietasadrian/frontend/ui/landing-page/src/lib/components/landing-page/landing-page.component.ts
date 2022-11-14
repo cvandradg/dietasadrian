@@ -3,14 +3,12 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SharedModuleModule } from '@shared-modules';
 
-import { Fontawesome } from '@classes/fontawesome';
-
 @Component({
   selector: 'dietas-adrian-nx-workspace-landing-page',
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.scss'],
 })
-export class LandingPageComponent extends Fontawesome {}
+export class LandingPageComponent {}
 
 @NgModule({
   imports: [CommonModule, RouterModule, SharedModuleModule],
