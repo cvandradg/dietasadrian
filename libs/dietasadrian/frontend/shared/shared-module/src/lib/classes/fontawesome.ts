@@ -9,6 +9,7 @@ import {
   faTrashCan,
   faCaretRight,
   faFilePen,
+  faXmark,
 } from '@fortawesome/pro-duotone-svg-icons';
 
 import { faClipboardQuestion } from '@fortawesome/pro-light-svg-icons';
@@ -30,7 +31,8 @@ export class Fontawesome {
       faFilePen,
       faClipboardQuestion,
       faGripLines,
-      faPlus
+      faPlus,
+      faXmark
     );
   }
 }

@@ -14,7 +14,11 @@
       {{ ingredient }}
 
       <button matChipRemove>
-        <mat-icon (click)="deleteIngredient()">cancel</mat-icon>
+        <i class="fa-duotone fa-xmark"></i>
+        <fa-icon
+          [icon]="['fad', 'xmark']"
+          (click)="deleteIngredient()"
+        ></fa-icon>
       </button>
     </mat-chip>
   </mat-chip-list>
