@@ -12,6 +12,8 @@
             aria-label="State"
             [matAutocomplete]="ingredients"
             [formControl]="stateCtrl"
+            #focusInput
+            (click)="focusInput.focus()"
           />
           <mat-autocomplete #ingredients="matAutocomplete">
             <mat-option
