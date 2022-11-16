@@ -46,7 +46,7 @@ export class HelperService {
         panelClass: 'dialog-size',
         enterAnimationDuration: '200ms',
         closeOnNavigation: false,
-        autoFocus: true,
+        autoFocus: false,
         data: {},
       }
     ));
