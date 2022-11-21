@@ -8,6 +8,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { SharedModuleModule } from '@shared-modules';
 import { HelperService } from '@helperFunctionsService';
+import { MatChipsModule } from '@angular/material/chips';
 
 @Component({
   selector: 'dietas-adrian-nx-workspace-food-line',

@@ -4,8 +4,8 @@
     <!-- <i class="fa-duotone fa-turkey"></i> -->
     <fa-icon [icon]="['fad', 'turkey']"></fa-icon>
   </div>
-  <mat-chip-list *ngIf="foodLine.ingredients.length">
-    <mat-chip
+  <mat-chip-grid *ngIf="foodLine.ingredients.length">
+    <mat-chip-row
       *ngFor="
         let ingredient of foodLine.ingredients;
         let ingredientIndex = index
@@ -20,8 +20,8 @@
           (click)="deleteIngredient()"
         ></fa-icon>
       </button>
-    </mat-chip>
-  </mat-chip-list>
+    </mat-chip-row>
+  </mat-chip-grid>
 
   <div (click)="addIngredient()">
     <div class="food-buttons">
