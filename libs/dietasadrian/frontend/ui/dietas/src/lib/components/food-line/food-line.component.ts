@@ -48,3 +48,4 @@ export class FoodLineComponent {
     this.deleteFoodLine.emit({ foodLineId });
   }
 }
+
