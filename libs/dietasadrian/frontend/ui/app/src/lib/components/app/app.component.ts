@@ -1,19 +1,13 @@
-import { Component, NgModule } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HeaderComponentModule } from '../header/header.component';
+import { HeaderComponent } from '../header/header.component';
 import { RouterModule } from '@angular/router';
 
 @Component({
+  standalone: true,
   selector: 'dietas-adrian-nx-workspace-app',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  imports: [CommonModule, HeaderComponent, RouterModule],
 })
-export class AppComponent {
-}
-
-@NgModule({
-  imports: [CommonModule, HeaderComponentModule, RouterModule],
-  declarations: [AppComponent],
-  exports: [AppComponent],
-})
-export class AppComponentModule {}
+export class AppComponent {}
