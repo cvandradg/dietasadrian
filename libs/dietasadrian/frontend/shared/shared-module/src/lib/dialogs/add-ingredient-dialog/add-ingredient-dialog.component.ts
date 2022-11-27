@@ -14,6 +14,9 @@ export interface State {
 }
 
 @Component({
+  standalone: true,
+  imports: [CommonModule, ...MODULES],
+
   selector: 'dietas-adrian-nx-workspace-add-ingredient-dialog',
   templateUrl: './add-ingredient-dialog.component.html',
   styleUrls: ['./add-ingredient-dialog.component.scss'],
@@ -97,10 +100,3 @@ export class AddIngredientDialogComponent implements OnInit {
     });
   }
 }
-
-@NgModule({
-  imports: [CommonModule, ...MODULES],
-  declarations: [AddIngredientDialogComponent],
-  exports: [AddIngredientDialogComponent],
-})
-export class AddIngredientDialogComponentModule {}

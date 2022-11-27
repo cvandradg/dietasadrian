@@ -2,18 +2,20 @@ import {
   Component,
   EventEmitter,
   Input,
-  NgModule,
   Output,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Meal } from '@interfaces';
 import { SharedModuleModule } from '@shared-modules';
-import { FoodLineComponentModule } from '../food-line/food-line.component';
+import { FoodLineComponent } from '../food-line/food-line.component';
 import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { HelperService } from '@helperFunctionsService';
 import { v4 as uuidv4 } from 'uuid';
 
 @Component({
+  standalone: true,
+  imports: [CommonModule, SharedModuleModule, FoodLineComponent],
+
   selector: 'dietas-adrian-nx-workspace-meal',
   templateUrl: './meal.component.html',
   styleUrls: ['./meal.component.scss'],
@@ -85,10 +87,3 @@ export class MealComponent {
     );
   }
 }
-
-@NgModule({
-  imports: [CommonModule, SharedModuleModule, FoodLineComponentModule],
-  declarations: [MealComponent],
-  exports: [MealComponent],
-})
-export class MealComponentModule {}

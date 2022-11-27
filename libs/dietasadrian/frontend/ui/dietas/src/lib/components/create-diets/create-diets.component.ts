@@ -1,4 +1,4 @@
-import { Component, HostListener, NgModule, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
@@ -6,10 +6,12 @@ import { SharedModuleModule } from '@shared-modules';
 import { v4 as uuidv4 } from 'uuid';
 import { HelperService, debounce } from '@helperFunctionsService';
 import { Overlay } from '@angular/cdk/overlay';
-import { MealComponentModule } from '../meal/meal.component';
+import { MealComponent } from '../meal/meal.component';
 import { Meal } from '@interfaces';
 
 @Component({
+  standalone: true,
+  imports: [CommonModule, SharedModuleModule, MealComponent],
   selector: 'dietas-adrian-nx-workspace-create-diets',
   templateUrl: './create-diets.component.html',
   styleUrls: ['./create-diets.component.scss'],
@@ -19,8 +21,7 @@ export class CreateDietsComponent implements OnInit {
 
   screenSize = 0;
 
-  constructor(public overlay: Overlay, private helper: HelperService) {
-  }
+  constructor(public overlay: Overlay, private helper: HelperService) {}
 
   ngOnInit(): void {
     window.dispatchEvent(new Event('resize'));
@@ -53,10 +54,3 @@ export class CreateDietsComponent implements OnInit {
     moveItemInArray(this.meals, event.previousIndex, event.currentIndex);
   }
 }
-
-@NgModule({
-  imports: [CommonModule, SharedModuleModule, MealComponentModule],
-  declarations: [CreateDietsComponent],
-  exports: [CreateDietsComponent],
-})
-export class CreateDietsComponentModule {}
