@@ -3,14 +3,15 @@ import {
   Input,
   NgModule,
   Output,
-  EventEmitter
+  EventEmitter,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModuleModule } from '@shared-modules';
 import { HelperService } from '@helperFunctionsService';
-import { MatChipsModule } from '@angular/material/chips';
 
 @Component({
+  standalone: true,
+  imports: [CommonModule, SharedModuleModule],
   selector: 'dietas-adrian-nx-workspace-food-line',
   templateUrl: './food-line.component.html',
   styleUrls: ['./food-line.component.scss'],
@@ -33,11 +34,14 @@ export class FoodLineComponent {
       .openAddIngredientDialog()
       .afterClosed()
       .subscribe((result: any) => {
-        if(!result){
-          return
+        if (!result) {
+          return;
         }
-        
-        return this.foodLine.ingredients.push(`${result.ingredient} ${result.quantity}`)});
+
+        return this.foodLine.ingredients.push(
+          `${result.ingredient} ${result.quantity}`
+        );
+      });
   }
 
   deleteLine(foodLineId: string) {
@@ -45,9 +49,3 @@ export class FoodLineComponent {
   }
 }
 
-@NgModule({
-  imports: [CommonModule, SharedModuleModule],
-  declarations: [FoodLineComponent],
-  exports: [FoodLineComponent],
-})
-export class FoodLineComponentModule {}
