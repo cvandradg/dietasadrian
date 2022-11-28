@@ -8,10 +8,11 @@ import { HelperService, debounce } from '@helperFunctionsService';
 import { Overlay } from '@angular/cdk/overlay';
 import { MealComponent } from '../meal/meal.component';
 import { Meal } from '@interfaces';
+import { NutritionalCompositionComponent } from '../nutritional-composition/nutritional-composition.component';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, SharedModuleModule, MealComponent],
+  imports: [CommonModule, SharedModuleModule, MealComponent, NutritionalCompositionComponent],
   selector: 'dietas-adrian-nx-workspace-create-diets',
   templateUrl: './create-diets.component.html',
   styleUrls: ['./create-diets.component.scss'],

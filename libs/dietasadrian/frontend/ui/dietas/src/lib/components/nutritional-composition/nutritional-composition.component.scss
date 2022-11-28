@@ -1,0 +1,21 @@
+.nutrional-facts-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 15rem;
+}
+
+mat-chip-option > button,
+::ng-deep mat-chip-option .mdc-evolution-chip__text-label {
+  display: flex;
+  width: 100%;
+}
+
+.user-data > mat-chip-option {
+  justify-content: space-between;
+  width: 47%;
+//   width: fit-content;
+}
+
+::ng-deep .user-data .mdc-evolution-chip {
+    width: 40%;
+}

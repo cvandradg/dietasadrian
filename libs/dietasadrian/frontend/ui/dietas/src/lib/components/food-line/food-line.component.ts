@@ -8,6 +8,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { SharedModuleModule } from '@shared-modules';
 import { HelperService } from '@helperFunctionsService';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   standalone: true,
@@ -46,6 +47,10 @@ export class FoodLineComponent {
 
   deleteLine(foodLineId: string) {
     this.deleteFoodLine.emit({ foodLineId });
+  }
+
+  drop(event: CdkDragDrop<any[]>, ingredients: any[]) {
+    moveItemInArray(ingredients, event.previousIndex, event.currentIndex);
   }
 }
 

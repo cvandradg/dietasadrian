@@ -15,8 +15,14 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@dietasadrian/frontend/app": [
-        "libs/dietasadrian/frontend/ui/app/src/index.ts"
+      "@classes/*": [
+        "libs/dietasadrian/frontend/shared/shared-module/src/lib/classes/*"
+      ],
+      "@decorators/*": [
+        "libs/dietasadrian/frontend/shared/shared-module/src/lib/decorators/*"
+      ],
+      "@dialogs/*": [
+        "libs/dietasadrian/frontend/shared/shared-module/src/lib/dialogs/*"
       ],
       "@dietas-adrian-nx-workspace/dietasadrian/frontend/ui/dietas": [
         "libs/dietasadrian/frontend/ui/dietas/src/index.ts"
@@ -24,23 +30,17 @@
       "@dietas-adrian-nx-workspace/dietasadrian/frontend/ui/landing-page": [
         "libs/dietasadrian/frontend/ui/landing-page/src/index.ts"
       ],
-      "@helperFunctionsService": [
-        "libs/dietasadrian/frontend/shared/shared-module/src/lib/services/helperFunctions.service.ts"
-      ],
-      "@classes/*": [
-        "libs/dietasadrian/frontend/shared/shared-module/src/lib/classes/*"
-      ],
-      "@interfaces": [
-        "libs/dietasadrian/frontend/shared/shared-module/src/lib/interfaces/interfaces.interfaces.ts"
+      "@dietasadrian/frontend/app": [
+        "libs/dietasadrian/frontend/ui/app/src/index.ts"
       ],
       "@guards/*": [
         "libs/dietasadrian/frontend/shared/shared-module/src/lib/guards/*"
       ],
-      "@dialogs/*": [
-        "libs/dietasadrian/frontend/shared/shared-module/src/lib/dialogs/*"
+      "@helperFunctionsService": [
+        "libs/dietasadrian/frontend/shared/shared-module/src/lib/services/helperFunctions.service.ts"
       ],
-      "@decorators/*": [
-        "libs/dietasadrian/frontend/shared/shared-module/src/lib/decorators/*"
+      "@interfaces": [
+        "libs/dietasadrian/frontend/shared/shared-module/src/lib/interfaces/interfaces.interfaces.ts"
       ],
       "@libs/dietas/dietas.module": [
         "libs/dietasadrian/frontend/ui/dietas/src/lib/dietas.module"

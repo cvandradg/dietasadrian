@@ -1,0 +1,28 @@
+<div class="nutrional-facts-container">
+
+  <mat-chip-listbox aria-label="Fish selection" class="mat-mdc-chip-set-stacked molecules-listbox">
+    <mat-chip-option [highlighted]="true">
+      <p>Calorias</p>
+      <p> {{ '156/4300' }}</p>
+      </mat-chip-option>
+    <mat-chip-option [highlighted]="true">
+      <p>Proteinas</p>
+      <p> {{ '156/4300' }}</p>
+      </mat-chip-option>
+    <mat-chip-option [highlighted]="true">
+      <p>Carbohidratos</p>
+      <p> {{ '156/4300' }}</p>
+      </mat-chip-option>
+    <mat-chip-option [highlighted]="true">
+      <p>Grasas</p>
+      <p> {{ '156/4300' }}</p>
+      </mat-chip-option>
+  </mat-chip-listbox>
+  
+  <mat-chip-listbox aria-label="Fish selection" class="user-data">
+    <mat-chip-option>TMB {{ 1300 }}</mat-chip-option>
+    <mat-chip-option>Peso {{ 1300 }}</mat-chip-option>
+    <mat-chip-option [selected]="false" >Grasa {{ 1300 }}</mat-chip-option>
+    <mat-chip-option>Altura {{ 1300 }}</mat-chip-option>
+  </mat-chip-listbox>
+</div>
