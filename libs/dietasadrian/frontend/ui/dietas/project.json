@@ -7,7 +7,9 @@
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/dietasadrian/frontend/ui/dietas"],
+      "outputs": [
+        "coverage/libs/dietasadrian/frontend/ui/dietas"
+      ],
       "options": {
         "jestConfig": "libs/dietasadrian/frontend/ui/dietas/jest.config.ts",
         "passWithNoTests": true

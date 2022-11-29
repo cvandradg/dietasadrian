@@ -7,7 +7,9 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/dietasadrian",
         "index": "apps/dietasadrian/src/index.html",
@@ -20,7 +22,7 @@
           "apps/dietasadrian/src/assets"
         ],
         "styles": [
-          "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+          "@angular/material/prebuilt-themes/indigo-pink.css",
           "apps/dietasadrian/src/styles.scss"
         ],
         "scripts": []
@@ -87,7 +89,9 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/dietasadrian"],
+      "outputs": [
+        "coverage/apps/dietasadrian"
+      ],
       "options": {
         "jestConfig": "apps/dietasadrian/jest.config.ts",
         "passWithNoTests": true

@@ -1,0 +1,25 @@
+.example-stepper {
+  margin-top: 8px;
+}
+
+.mat-mdc-form-field {
+  margin-top: 16px;
+}
+
+.input-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 70%;
+  margin: 10% auto;
+}
+
+::ng-deep .mat-stepper-label-position-bottom .mat-horizontal-stepper-header,
+::ng-deep .mat-horizontal-stepper-header,
+::ng-deep .mat-vertical-stepper-header {
+  padding: 24px 0;
+}
+
+::ng-deep mat-step-header {
+  background-color: transparent !important;
+}
