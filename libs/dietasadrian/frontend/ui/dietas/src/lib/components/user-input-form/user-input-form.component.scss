@@ -11,7 +11,8 @@
   flex-direction: column;
   justify-content: center;
   max-width: 70%;
-  margin: 10% auto;
+  margin: 8% auto;
+  text-align: center;
 }
 
 ::ng-deep .mat-stepper-label-position-bottom .mat-horizontal-stepper-header,
@@ -22,4 +23,10 @@
 
 ::ng-deep mat-step-header {
   background-color: transparent !important;
+}
+
+@media screen and (width < 800px) {
+  .input-form-container {
+    text-align: initial;
+  }
 }

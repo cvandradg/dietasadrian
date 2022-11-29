@@ -7514,6 +7514,7 @@ __metadata:
     jest-environment-jsdom: "npm:28.1.1"
     jest-preset-angular: "npm:12.2.2"
     lodash: "npm:^4.17.21"
+    material-icons-font: "npm:^2.1.0"
     nx: "npm:15.2.1"
     prettier: "npm:^2.6.2"
     rxjs: "npm:~7.5.0"
@@ -12249,6 +12250,13 @@ __metadata:
   bin:
     marked: bin/marked.js
   checksum: 03d68d73414bf7b5c4acc2b54a554f28979f1aaddbe74fb1d453b8d3d616f8f6a33f63ce61ac62024faf44488bc337d4d9cef76a3d974fb871d9194912f9d572
+  languageName: node
+  linkType: hard
+
+"material-icons-font@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "material-icons-font@npm:2.1.0"
+  checksum: 00909c34daa3f273bebf2f948dcf7d512fa09eb4305d594f480b8717ccf9c4e219410c2be7b7fd866c8d07f6876460f96e125d0f6a23e22368c339a563fab36d
   languageName: node
   linkType: hard
 
