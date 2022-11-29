@@ -16,11 +16,17 @@ import { faClipboardQuestion } from '@fortawesome/pro-light-svg-icons';
 
 import { faGripLines } from '@fortawesome/pro-thin-svg-icons';
 
-import { faPlus } from '@fortawesome/sharp-solid-svg-icons';
+import {
+  faPlus,
+  faBolt,
+  faDrumstick,
+  faBowlRice,
+  faPeanuts,
+} from '@fortawesome/sharp-solid-svg-icons';
 
 @Directive()
 export class Fontawesome {
-  constructor(private library: FaIconLibrary) {    
+  constructor(private library: FaIconLibrary) {
     library?.addIcons(
       faBookOpenCover,
       faPlateUtensils,
@@ -32,7 +38,11 @@ export class Fontawesome {
       faClipboardQuestion,
       faGripLines,
       faPlus,
-      faXmark
+      faXmark,
+      faBolt,
+      faDrumstick,
+      faBowlRice,
+      faPeanuts
     );
   }
 }

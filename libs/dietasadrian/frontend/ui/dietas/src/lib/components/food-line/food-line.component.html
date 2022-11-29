@@ -3,12 +3,18 @@
     <p>Agrega un alimento a tu línea de comida con el boton</p>
     <fa-icon [icon]="['fad', 'turkey']"></fa-icon>
   </div>
-  <mat-chip-set *ngIf="foodLine.ingredients.length">
+  <mat-chip-set
+    *ngIf="foodLine.ingredients.length"
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    (cdkDropListDropped)="drop($event, foodLine.ingredients)"
+    >
     <mat-chip
       *ngFor="
         let ingredient of foodLine.ingredients;
         let ingredientIndex = index
       "
+      cdkDrag
     >
       {{ ingredient }}
 

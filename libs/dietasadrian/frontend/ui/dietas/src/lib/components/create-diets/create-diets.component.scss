@@ -3,7 +3,7 @@
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 7rem;
+  margin-top: 3rem;
   max-width: 650px;
   padding: 1rem;
   padding-right: 1rem;
@@ -88,7 +88,7 @@
   color: rgb(161, 161, 161);
   background-color: white;
   border-radius: 4px;
-  box-shadow: 0 26px 42px -17px rgb(228, 224, 224), 0 0px 9px 0px white;
+  // box-shadow: 0 26px 42px -17px rgb(228, 224, 224), 0 0px 9px 0px white;
 }
 
 .empty-placeholder-container p,
@@ -114,6 +114,13 @@
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* Internet Explorer/Edge */
   /** Avoid selection when double clicked end **/
+}
+
+.nutricional-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0rem 3rem 0 3rem;
 }
 
 ///////////////// Material drag and drop start //////////////////

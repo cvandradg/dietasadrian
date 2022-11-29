@@ -7,3 +7,5 @@ export * from './lib/components/my-diets/my-diets.component';
 export * from './lib/components/food-line/food-line.component';
 
 export * from './lib/components/meal/meal.component';
+
+export * from './lib/components/nutritional-composition/nutritional-composition.component';

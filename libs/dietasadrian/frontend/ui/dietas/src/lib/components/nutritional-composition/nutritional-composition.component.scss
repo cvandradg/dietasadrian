@@ -1,0 +1,62 @@
+.nutrional-facts-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.molecules-quantity-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.molecule {
+  display: flex;
+  justify-content: space-around;
+  background-color: #3f51b5;
+  border-radius: 2rem;
+  font-size: 0.88rem;
+  flex-shrink: 0;
+
+  & p {
+    margin: 0.5rem;
+    color: white;
+  }
+}
+
+.user-characteristics {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1rem 0 3rem 0rem;
+
+  & .user-input {
+    border-radius: 2rem;
+    font-size: 0.73rem;
+    background-color: gray;
+    justify-content: center;
+    color: white;
+    width: 2.9rem;
+    text-align: center;
+    padding: 0.5rem 0;
+  }
+}
+
+fa-icon {
+  margin: 0 0.1rem 0 0;
+  color: lightgray;
+}
+
+@media screen and (width > 700px) {
+  .molecules-quantity-container {
+    flex-direction: row;
+  }
+
+  .nutrional-facts-container {
+    max-width: unset;
+  }
+
+  .user-characteristics {
+    flex-wrap: unset;
+  }
+}
