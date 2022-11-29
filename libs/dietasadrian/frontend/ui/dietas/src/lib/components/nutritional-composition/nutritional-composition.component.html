@@ -1,28 +1,39 @@
 <div class="nutrional-facts-container">
+  <div class="user-characteristics">
+    <div class="user-input">TMB {{ 1300 }}</div>
+    <div class="user-input">Peso {{ 1300 }}</div>
+    <div class="user-input">Grasa {{ 1300 }}</div>
+    <div class="user-input">Altura {{ 1300 }}</div>
+  </div>
 
-  <mat-chip-listbox aria-label="Fish selection" class="mat-mdc-chip-set-stacked molecules-listbox">
-    <mat-chip-option [highlighted]="true">
-      <p>Calorias</p>
-      <p> {{ '156/4300' }}</p>
-      </mat-chip-option>
-    <mat-chip-option [highlighted]="true">
-      <p>Proteinas</p>
-      <p> {{ '156/4300' }}</p>
-      </mat-chip-option>
-    <mat-chip-option [highlighted]="true">
-      <p>Carbohidratos</p>
-      <p> {{ '156/4300' }}</p>
-      </mat-chip-option>
-    <mat-chip-option [highlighted]="true">
-      <p>Grasas</p>
-      <p> {{ '156/4300' }}</p>
-      </mat-chip-option>
-  </mat-chip-listbox>
-  
-  <mat-chip-listbox aria-label="Fish selection" class="user-data">
-    <mat-chip-option>TMB {{ 1300 }}</mat-chip-option>
-    <mat-chip-option>Peso {{ 1300 }}</mat-chip-option>
-    <mat-chip-option [selected]="false" >Grasa {{ 1300 }}</mat-chip-option>
-    <mat-chip-option>Altura {{ 1300 }}</mat-chip-option>
-  </mat-chip-listbox>
+  <div class="molecules-quantity-container">
+    <div class="molecule">
+      <p>
+        <fa-icon [icon]="['fass', 'bolt']"></fa-icon>
+        Cals
+      </p>
+      <p>{{ '156/4300' }}</p>
+    </div>
+    <div class="molecule">
+      <p>
+        <fa-icon [icon]="['fass', 'drumstick']"></fa-icon>
+        Protes
+      </p>
+      <p>{{ '156/4300' }}</p>
+    </div>
+    <div class="molecule">
+      <p>
+        <fa-icon [icon]="['fass', 'bowl-rice']"></fa-icon>
+        Carbos
+      </p>
+      <p>{{ '156/4300' }}</p>
+    </div>
+    <div class="molecule">
+      <p>
+        <fa-icon [icon]="['fass', 'peanuts']"></fa-icon>
+        Grasas
+      </p>
+      <p>{{ '156/4300' }}</p>
+    </div>
+  </div>
 </div>
