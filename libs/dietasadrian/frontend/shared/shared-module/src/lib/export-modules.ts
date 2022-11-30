@@ -11,6 +11,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatStepperModule } from '@angular/material/stepper';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MatRadioModule } from '@angular/material/radio';
 
 export const MODULES = [
   MatFormFieldModule,
@@ -26,4 +27,5 @@ export const MODULES = [
   MatChipsModule,
   FontAwesomeModule,
   MatStepperModule,
+  MatRadioModule,
 ];

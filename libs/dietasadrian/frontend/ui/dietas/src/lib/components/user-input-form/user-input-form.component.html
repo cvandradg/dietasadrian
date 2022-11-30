@@ -1,29 +1,45 @@
 <div class="input-form-container">
   <mat-stepper
     class="example-stepper"
+    linear
     [orientation]="(stepperOrientation | async)!"
     labelPosition="bottom"
   >
-    <mat-step [stepControl]="firstFormGroup" label="Fill out your name">
-      <form [formGroup]="firstFormGroup">
+    <mat-step [stepControl]="firstFormGroup" label="Escoge to sexo">
+      <div class="sex-buttons">
+        <button class="masculine">
+          <fa-icon [icon]="['fad', 'person']"></fa-icon>
+          Hombre
+        </button>
+        <button class="femenine">
+          <fa-icon [icon]="['fad', 'person-dress']"></fa-icon>
+          Mujer
+        </button>
+      </div>
+
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+
+      <!-- <form [formGroup]="firstFormGroup">
         <mat-form-field appearance="fill">
-          <mat-label>Name</mat-label>
+          <mat-label>Sexo</mat-label>
+
           <input
             matInput
             placeholder="Last name, First name"
             formControlName="firstCtrl"
             required
           />
+
+           MatRadioModule 
         </mat-form-field>
-        <div>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
+      </form> -->
     </mat-step>
-    <mat-step [stepControl]="secondFormGroup" label="Fill out your address">
+    <mat-step [stepControl]="secondFormGroup" label="¿Cuál es tu edad?">
       <form [formGroup]="secondFormGroup">
         <mat-form-field appearance="fill">
-          <mat-label>Address</mat-label>
+          <mat-label>Edad</mat-label>
           <input
             matInput
             formControlName="secondCtrl"
@@ -37,10 +53,10 @@
         </div>
       </form>
     </mat-step>
-    <mat-step [stepControl]="thirdFormGroup" label="Fill out your phone number">
+    <mat-step [stepControl]="thirdFormGroup" label="Grasa corporal">
       <form [formGroup]="thirdFormGroup">
         <mat-form-field appearance="fill">
-          <mat-label>Phone number</mat-label>
+          <mat-label>Grasa</mat-label>
           <input
             matInput
             formControlName="thirdCtrl"
@@ -55,7 +71,7 @@
       </form>
     </mat-step>
     <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
+      <ng-template matStepLabel>Crear dieta</ng-template>
       <p>You are now done.</p>
       <div>
         <button mat-button matStepperPrevious>Back</button>
