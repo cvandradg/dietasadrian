@@ -17,7 +17,7 @@ import { map } from 'rxjs/operators';
 })
 export class UserInputFormComponent {
   firstFormGroup = this._formBuilder.group({
-    firstCtrl: ['', Validators.required],
+    firstCtrl: [''],
   });
   secondFormGroup = this._formBuilder.group({
     secondCtrl: ['', Validators.required],

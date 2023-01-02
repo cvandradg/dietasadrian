@@ -7,20 +7,15 @@
   >
     <mat-step [stepControl]="firstFormGroup" label="Escoge to sexo">
       <div class="sex-buttons">
-        <button class="masculine">
+        <button  mat-button matStepperNext class="masculine">
           <fa-icon [icon]="['fad', 'person']"></fa-icon>
           Hombre
         </button>
-        <button class="femenine">
+        <button  mat-button matStepperNext class="femenine">
           <fa-icon [icon]="['fad', 'person-dress']"></fa-icon>
           Mujer
         </button>
       </div>
-
-      <div>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-
       <!-- <form [formGroup]="firstFormGroup">
         <mat-form-field appearance="fill">
           <mat-label>Sexo</mat-label>

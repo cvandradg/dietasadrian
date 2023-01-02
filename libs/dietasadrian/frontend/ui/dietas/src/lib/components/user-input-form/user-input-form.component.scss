@@ -39,17 +39,17 @@
     min-height: 3rem;
     background-color: #fff;
     outline: none;
+
+    &.masculine {
+      color: #56468f;
+      box-shadow: 0 4px 11px -2px rgb(86 70 143 / 50%);
+    }
+
+    &.femenine {
+      color: #ff3464;
+      box-shadow: 0 4px 11px -2px rgb(255 52 100 / 50%);
+    }
   }
-}
-
-.masculine {
-  color: #56468f;
-  box-shadow: 0 4px 11px -2px rgb(86 70 143 / 50%);
-}
-
-.femenine {
-  color: #ff3464;
-  box-shadow: 0 4px 11px -2px rgb(255 52 100 / 50%);
 }
 
 @media screen and (width < 800px) {
