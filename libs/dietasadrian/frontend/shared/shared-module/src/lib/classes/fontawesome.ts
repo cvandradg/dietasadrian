@@ -10,6 +10,8 @@ import {
   faCaretRight,
   faFilePen,
   faXmark,
+  faPersonDress,
+  faPerson,
 } from '@fortawesome/pro-duotone-svg-icons';
 
 import { faClipboardQuestion } from '@fortawesome/pro-light-svg-icons';
@@ -42,7 +44,9 @@ export class Fontawesome {
       faBolt,
       faDrumstick,
       faBowlRice,
-      faPeanuts
+      faPeanuts,
+      faPersonDress,
+      faPerson
     );
   }
 }

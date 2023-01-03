@@ -9,3 +9,5 @@ export * from './lib/components/food-line/food-line.component';
 export * from './lib/components/meal/meal.component';
 
 export * from './lib/components/nutritional-composition/nutritional-composition.component';
+
+export * from './lib/components/user-input-form/user-input-form.component';

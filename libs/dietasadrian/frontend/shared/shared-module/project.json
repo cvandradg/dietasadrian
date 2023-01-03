@@ -7,7 +7,9 @@
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/dietasadrian/frontend/shared/shared-module"],
+      "outputs": [
+        "coverage/libs/dietasadrian/frontend/shared/shared-module"
+      ],
       "options": {
         "jestConfig": "libs/dietasadrian/frontend/shared/shared-module/jest.config.ts",
         "passWithNoTests": true

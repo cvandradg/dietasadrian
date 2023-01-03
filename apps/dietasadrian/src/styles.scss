@@ -1,7 +1,5 @@
-body {
-  margin: 0;
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
-}
+@import './assets/material-icons.scss';
+@import './assets/roboto.scss';
 
 html,
 body {
@@ -27,4 +25,13 @@ body {
   min-width: 100%;
   position: absolute;
   border: solid 3px yellow; /* for debugging purposes */
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
 }

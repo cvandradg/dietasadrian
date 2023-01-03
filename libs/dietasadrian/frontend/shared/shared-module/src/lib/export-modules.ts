@@ -8,8 +8,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatStepperModule } from '@angular/material/stepper';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MatRadioModule } from '@angular/material/radio';
 
 export const MODULES = [
   MatFormFieldModule,
@@ -24,4 +26,6 @@ export const MODULES = [
   DragDropModule,
   MatChipsModule,
   FontAwesomeModule,
+  MatStepperModule,
+  MatRadioModule,
 ];

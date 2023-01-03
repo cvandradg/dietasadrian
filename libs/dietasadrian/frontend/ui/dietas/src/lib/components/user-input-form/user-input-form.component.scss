@@ -1,0 +1,59 @@
+.example-stepper {
+  margin-top: 8px;
+}
+
+.mat-mdc-form-field {
+  margin-top: 16px;
+}
+
+.input-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 70%;
+  margin: 8% auto;
+  text-align: center;
+}
+
+::ng-deep .mat-stepper-label-position-bottom .mat-horizontal-stepper-header,
+::ng-deep .mat-horizontal-stepper-header,
+::ng-deep .mat-vertical-stepper-header {
+  padding: 24px 0;
+}
+
+::ng-deep mat-step-header {
+  background-color: transparent !important;
+}
+
+.sex-buttons {
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+  align-items: center;
+  padding: 8rem;
+
+  & button {
+    border: 1px solid transparent;
+    border-radius: 9px;
+    min-width: 10rem;
+    min-height: 3rem;
+    background-color: #fff;
+    outline: none;
+
+    &.masculine {
+      color: #56468f;
+      box-shadow: 0 4px 11px -2px rgb(86 70 143 / 50%);
+    }
+
+    &.femenine {
+      color: #ff3464;
+      box-shadow: 0 4px 11px -2px rgb(255 52 100 / 50%);
+    }
+  }
+}
+
+@media screen and (width < 800px) {
+  .input-form-container {
+    text-align: initial;
+  }
+}
