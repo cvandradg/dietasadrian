@@ -6,17 +6,15 @@
   "prefix": "dietas-adrian-nx-workspace",
   "targets": {
     "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/libs/dietasadrian/frontend/shared/shared-module"
-      ],
+      "executor": "@nx/jest:jest",
+      "outputs": ["coverage/libs/dietasadrian/frontend/shared/shared-module"],
       "options": {
         "jestConfig": "libs/dietasadrian/frontend/shared/shared-module/jest.config.ts",
         "passWithNoTests": true
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/linter:eslint",
       "options": {
         "lintFilePatterns": [
           "libs/dietasadrian/frontend/shared/shared-module/**/*.ts",
