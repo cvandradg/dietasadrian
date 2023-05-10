@@ -1,0 +1,166 @@
+::ng-deep {
+  html,
+  body {
+    background-color: #121418 !important;
+  }
+}
+
+.login-container {
+  background-color: #121418;
+  color: #fff;
+  height: 100%;
+  max-width: 100%;
+}
+
+.container,
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 4rem 0;
+  gap: 2rem;
+  width: 100%;
+}
+
+.container {
+  padding: 3rem 0rem;
+
+  .title {
+    font-size: 3rem;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .description {
+    font-size: 1.3rem;
+    font-weight: 400;
+    text-align: center;
+    max-width: 75%;
+    color: #88898e;
+    margin-bottom: 3rem;
+  }
+}
+
+.login-header,
+.login-components-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.login-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.login-components-container {
+  gap: 3rem;
+  width: 50%;
+
+  .manual-login-inputs,
+  .automatic-signin-tools {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    button {
+      width: 23rem;
+      height: 4rem;
+    }
+  }
+
+  .automatic-signin-tools {
+    button {
+      background: transparent;
+      padding: 0.5rem 1rem;
+      background-image: linear-gradient(90deg, #222222, #222222),
+        linear-gradient(90deg, rgb(163, 31, 31), hsl(226, 78%, 67%));
+      background-clip: padding-box, border-box;
+      background-origin: border-box;
+      border: 1px solid transparent;
+      border-radius: 0.3rem;
+    }
+
+    button:nth-child(2) {
+      background: transparent;
+      padding: 0.5rem 1rem;
+      background-image: linear-gradient(90deg, #222222, #222222),
+        linear-gradient(90deg, hsl(226, 78%, 67%), rgb(163, 31, 31));
+      background-clip: padding-box, border-box;
+      background-origin: border-box;
+      border: 1px solid transparent;
+      border-radius: 0.3rem;
+    }
+
+    ::ng-deep {
+      .mdc-button__label {
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: white;
+        font-weight: 600;
+        font-size: 1.25rem;
+        line-height: 1.5rem;
+      }
+    }
+  }
+
+  .manual-login-inputs {
+    button {
+      background: transparent!important;
+   }
+
+      .animation {
+    color: white;
+    background: red; /* default color */
+  
+    /* "to left" / "to right" - affects initial color */
+    background: linear-gradient(
+        to left,
+        rgb(105, 136, 236),
+        red
+      ) right;
+    // background: linear-gradient(to left, salmon 50%, lightblue 50%) right;
+    background-size: 200%;
+    transition: 1s ease-out;
+  }
+  .animation:hover {
+    background-position: left;
+  }
+
+
+    ::ng-deep {
+      .mdc-button__label {
+        width: 80%;
+      }
+    }
+  }
+}
+
+::ng-deep {
+  .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: #222222 !important;
+  }
+
+  mat-label {
+    color: #88898e !important;
+    text-align: center !important;
+  }
+
+  input {
+    color: #fff !important;
+  }
+}
+
+::ng-deep .mdc-button,
+.mdc-text-field--filled {
+  background-color: #222222 !important;
+  color: #fff !important;
+}
+
+::ng-deep .mat-mdc-form-field-subscript-wrapper,
+.mat-mdc-form-field-bottom-align {
+  display: none;
+}

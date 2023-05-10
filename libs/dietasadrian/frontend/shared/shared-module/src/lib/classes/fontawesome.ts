@@ -11,8 +11,8 @@ import {
   faFilePen,
   faXmark,
   faPersonDress,
-  faPerson,
-} from '@fortawesome/pro-duotone-svg-icons';
+  faPerson
+  } from '@fortawesome/pro-duotone-svg-icons';
 
 import { faClipboardQuestion } from '@fortawesome/pro-light-svg-icons';
 
@@ -25,6 +25,8 @@ import {
   faBowlRice,
   faPeanuts,
 } from '@fortawesome/sharp-solid-svg-icons';
+
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 @Directive()
 export class Fontawesome {
@@ -46,7 +48,8 @@ export class Fontawesome {
       faBowlRice,
       faPeanuts,
       faPersonDress,
-      faPerson
+      faPerson,
+      faArrowRight
     );
   }
 }
