@@ -11,10 +11,10 @@ import {
   faFilePen,
   faXmark,
   faPersonDress,
-  faPerson
-  } from '@fortawesome/pro-duotone-svg-icons';
+  faPerson,
+} from '@fortawesome/pro-duotone-svg-icons';
 
-import { faClipboardQuestion } from '@fortawesome/pro-light-svg-icons';
+import { faClipboardQuestion, faRightToBracket} from '@fortawesome/pro-light-svg-icons';
 
 import { faGripLines } from '@fortawesome/pro-thin-svg-icons';
 
@@ -26,7 +26,12 @@ import {
   faPeanuts,
 } from '@fortawesome/sharp-solid-svg-icons';
 
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import {
+  faGoogle,
+  faTwitter,
+  faFacebookF,
+} from '@fortawesome/free-brands-svg-icons';
 
 @Directive()
 export class Fontawesome {
@@ -49,7 +54,11 @@ export class Fontawesome {
       faPeanuts,
       faPersonDress,
       faPerson,
-      faArrowRight
+      faArrowRight,
+      faGoogle,
+      faTwitter,
+      faFacebookF,
+      faRightToBracket
     );
   }
 }

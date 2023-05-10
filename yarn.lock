@@ -2400,6 +2400,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fortawesome/free-brands-svg-icons@npm:^6.4.0":
+  version: 6.4.0
+  resolution: "@fortawesome/free-brands-svg-icons@npm:6.4.0::__archiveUrl=https%3A%2F%2Fnpm.fontawesome.com%2F%40fortawesome%2Ffree-brands-svg-icons%2F-%2F6.4.0%2Ffree-brands-svg-icons-6.4.0.tgz"
+  dependencies:
+    "@fortawesome/fontawesome-common-types": "npm:6.4.0"
+  checksum: 431215bda99cc3d2c0fccab83e6f69870302ff739650825e61e2d1fe4814a7a7e8592fc0d5a7e1a200cec200528c2978f0e1d448167fea2774e78e7d5f0ce0f8
+  languageName: node
+  linkType: hard
+
 "@fortawesome/free-solid-svg-icons@npm:^6.2.0":
   version: 6.4.0
   resolution: "@fortawesome/free-solid-svg-icons@npm:6.4.0::__archiveUrl=https%3A%2F%2Fnpm.fontawesome.com%2F%40fortawesome%2Ffree-solid-svg-icons%2F-%2F6.4.0%2Ffree-solid-svg-icons-6.4.0.tgz"
@@ -8284,6 +8293,7 @@ __metadata:
     "@fortawesome/fontawesome-common-types": "npm:^6.2.0"
     "@fortawesome/fontawesome-pro": "npm:^6.2.0"
     "@fortawesome/fontawesome-svg-core": "npm:^6.2.0"
+    "@fortawesome/free-brands-svg-icons": "npm:^6.4.0"
     "@fortawesome/free-solid-svg-icons": "npm:^6.2.0"
     "@fortawesome/pro-duotone-svg-icons": "npm:^6.2.0"
     "@fortawesome/pro-light-svg-icons": "npm:^6.2.0"
