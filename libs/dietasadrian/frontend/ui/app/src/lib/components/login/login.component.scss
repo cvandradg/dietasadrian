@@ -132,7 +132,6 @@
         z-index: 1;
         background-color: transparent;
         border: 0px solid transparent;
-
       }
 
       &::after {
@@ -214,7 +213,8 @@ mat-form-field {
 }
 
 ::ng-deep {
-  .mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input::placeholder {
+  .mdc-text-field:not(.mdc-text-field--disabled)
+    .mdc-text-field__input::placeholder {
     color: #88898e;
   }
   .mdc-text-field--filled:not(.mdc-text-field--disabled) {
