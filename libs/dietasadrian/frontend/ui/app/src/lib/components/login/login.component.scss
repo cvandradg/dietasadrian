@@ -33,7 +33,7 @@
     font-size: 3rem;
     font-weight: 700;
     text-align: center;
-    margin: 5rem 0;
+    margin: 7.5% 0;
   }
 
   .description {
@@ -42,7 +42,7 @@
     text-align: center;
     max-width: 55%;
     color: #88898e;
-    margin-bottom: 3rem;
+    margin-bottom: 5%;
   }
 }
 
@@ -77,9 +77,13 @@
 }
 
 .login-components-container {
-  gap: 4rem;
   width: 100%;
   max-width: 1200px;
+
+  .divison {
+    width: 20%;
+    text-align: center;
+  }
 
   .manual-login-inputs,
   .automatic-signin-tools {
@@ -96,7 +100,6 @@
   .automatic-signin-tools {
     width: 100%;
     gap: 0.7rem;
-
 
     .animacion {
       position: relative;
@@ -119,7 +122,6 @@
         position: absolute;
         inset: 0px;
 
-        
         border-radius: inherit;
       }
 
@@ -174,7 +176,6 @@
 
   .manual-login-inputs {
     width: 100%;
-    
 
     button {
       border-radius: 0.3rem;
@@ -202,7 +203,7 @@
 }
 
 .forgot-password {
-  margin: 6rem 0 0 0;
+  margin: 10% 0 0 0;
 }
 
 footer {
@@ -249,4 +250,111 @@ mat-form-field {
 ::ng-deep .mat-mdc-form-field-subscript-wrapper,
 .mat-mdc-form-field-bottom-align {
   display: none;
+}
+
+/// Media Queries///
+@media screen and (max-width: 768px) {
+  .container .description {
+    font-size: 1.2rem;
+    margin-bottom: 10%;
+  }
+}
+
+@media (600px <= width <= 670px) {
+  .signin-button p {
+    padding: 0 1rem;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .container .description {
+    font-size: 1.2rem;
+    margin-bottom: 10%;
+  }
+
+  @media (490px <= width <= 600px) {
+    .signin-button {
+      p {
+        line-height: 1rem;
+        font-size: 0.8rem;
+        padding: 0 0.5rem;
+      }
+    }
+  }
+
+  
+
+  
+  @media (450px <= width < 490px) {
+    .signin-button {
+      p {
+        padding: 0 0.5rem;
+      }
+    }
+
+  }
+
+
+  @media (401px <= width < 490px) {
+    .container, .login-container {
+      width: 95%;
+    }
+
+    .container .description {
+      max-width: 70%;
+    }
+
+    .signin-button {
+      gap: 0.1rem;
+      p {
+        line-height: 1rem;
+        font-size: 0.8rem;
+      }
+    }
+
+    footer {
+      margin-top: 5rem;
+      gap: 8rem;
+      position: initial;
+
+      p {
+        font-size: 0.8rem;
+      }
+    }
+  }
+
+  @media (40px <= width <= 400px) {
+    .container, .login-container {
+      width: 95%;
+    }
+
+    .container {
+      .description {
+        max-width: 90%;
+      }
+    }
+
+    .login-components-container {
+      flex-direction: column;
+    }
+
+    .divison {
+      display: none;
+    }
+
+    .manual-login-inputs {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+
+    footer {
+      margin-top: 5rem;
+      gap: 8rem;
+      position: initial;
+
+      p {
+        font-size: 0.8rem;
+      }
+    }
+  }
 }
