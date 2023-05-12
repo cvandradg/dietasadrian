@@ -54,7 +54,7 @@
   justify-content: space-around;
 }
 
-.signin-button {
+.signup-button {
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -101,7 +101,7 @@
     width: 100%;
     gap: 0.7rem;
 
-    .animacion {
+    .signup-animation {
       position: relative;
       background-clip: padding-box, border-box;
       background-origin: border-box;
@@ -181,7 +181,7 @@
       background: transparent !important;
     }
 
-    .animation {
+    .horizontal-animation {
       color: white;
       background: linear-gradient(to left, rgb(105, 136, 236), red) right;
       background-size: 200%;
@@ -189,7 +189,7 @@
       border-bottom-right-radius: 0.3rem;
       border-bottom-left-radius: 0.3rem;
     }
-    .animation:hover {
+    .horizontal-animation:hover {
       background-position: left;
     }
 
@@ -260,7 +260,7 @@ mat-form-field {
 }
 
 @media (600px <= width <= 670px) {
-  .signin-button p {
+  .signup-button p {
     padding: 0 1rem;
   }
 }
@@ -272,7 +272,7 @@ mat-form-field {
   }
 
   @media (490px <= width <= 600px) {
-    .signin-button {
+    .signup-button {
       p {
         line-height: 1rem;
         font-size: 0.8rem;
@@ -282,7 +282,7 @@ mat-form-field {
   }
 
   @media (450px <= width < 490px) {
-    .signin-button {
+    .signup-button {
       p {
         padding: 0 0.5rem;
       }
@@ -299,7 +299,7 @@ mat-form-field {
       max-width: 70%;
     }
 
-    .signin-button {
+    .signup-button {
       gap: 0.1rem;
       p {
         line-height: 1rem;
