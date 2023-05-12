@@ -14,7 +14,10 @@ import {
   faPerson,
 } from '@fortawesome/pro-duotone-svg-icons';
 
-import { faClipboardQuestion, faRightToBracket} from '@fortawesome/pro-light-svg-icons';
+import {
+  faClipboardQuestion,
+  faRightToBracket,
+} from '@fortawesome/pro-light-svg-icons';
 
 import { faGripLines } from '@fortawesome/pro-thin-svg-icons';
 

@@ -26,6 +26,6 @@ export const appRoutes: Route[] = [
   {
     path: '',
     component: LoginComponent,
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
 ];

@@ -7,6 +7,6 @@ import { SharedModuleModule } from '@shared-modules';
   selector: 'dietas-adrian-nx-workspace-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  imports: [HeaderComponent, SharedModuleModule]
+  imports: [HeaderComponent, SharedModuleModule],
 })
 export class LoginComponent {}
