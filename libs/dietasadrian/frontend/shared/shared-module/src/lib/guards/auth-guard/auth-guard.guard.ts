@@ -26,6 +26,7 @@ export class AuthGuard implements CanActivateChild {
     | Promise<boolean | UrlTree> {
     if (this.helper.getMatDialog()?.getState() === MatDialogState.OPEN) {
       this.helper.getMatDialog().close();
+
       return false;
     }
 

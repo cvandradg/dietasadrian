@@ -1,10 +1,11 @@
 import { Route } from '@angular/router';
 import { AuthGuard } from '@guards/auth-guard/auth-guard.guard';
 import { AppComponent } from './components/app/app.component';
+import { LoginComponent } from './components/login/login.component';
 
 export const appRoutes: Route[] = [
   {
-    path: '',
+    path: 'landing',
     component: AppComponent,
     canActivateChild: [AuthGuard],
     children: [
@@ -21,5 +22,10 @@ export const appRoutes: Route[] = [
           import('@libs/dietas/dietas.module').then((m) => m.DietasModule),
       },
     ],
+  },
+  {
+    path: '',
+    component: LoginComponent,
+    pathMatch: 'full',
   },
 ];
