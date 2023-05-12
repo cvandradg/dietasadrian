@@ -259,7 +259,7 @@ mat-form-field {
   }
 }
 
-@media (600px <= width <= 670px) {
+@media screen and (min-width: 600px) and (max-width: 670px) {
   .signup-button p {
     padding: 0 1rem;
   }
@@ -271,7 +271,7 @@ mat-form-field {
     margin-bottom: 10%;
   }
 
-  @media (490px <= width <= 600px) {
+  @media screen and (min-width: 490px) and (max-width: 600px) {
     .signup-button {
       p {
         line-height: 1rem;
@@ -281,7 +281,7 @@ mat-form-field {
     }
   }
 
-  @media (450px <= width < 490px) {
+  @media screen and (min-width: 450px) and (max-width: 490px) {
     .signup-button {
       p {
         padding: 0 0.5rem;
@@ -289,7 +289,7 @@ mat-form-field {
     }
   }
 
-  @media (401px <= width < 490px) {
+  @media screen and (min-width: 401px) and (max-width: 490px) {
     .container,
     .login-container {
       width: 95%;
@@ -318,7 +318,7 @@ mat-form-field {
     }
   }
 
-  @media (40px <= width <= 400px) {
+  @media screen and (min-width: 40px) and (max-width: 400px)  {
     .container,
     .login-container {
       width: 95%;
