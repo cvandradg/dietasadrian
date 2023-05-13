@@ -4,7 +4,10 @@
     class="example-icon"
     aria-label="Example icon-button with menu icon"
   ></button>
-  <span [routerLink]="'/'" class="trim-dots">Adrian Badilla</span>
+  <span [routerLink]="'/'" class="trim-dots">
+    <p *ngIf="screenWidth <= 600; else elseBlock">AB</p>
+    <ng-template #elseBlock>Adrian Badilla</ng-template>
+  </span>
   <span class="example-spacer"></span>
   <button
     mat-icon-button
