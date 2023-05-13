@@ -281,7 +281,7 @@ mat-form-field {
     }
   }
 
-  @media (450px <= width < 490px) {
+  @media screen and (min-width: 450px) and (max-width: 490px) {
     .signup-button {
       p {
         padding: 0 0.5rem;
@@ -289,7 +289,7 @@ mat-form-field {
     }
   }
 
-  @media (401px <= width < 490px) {
+  @media screen and (min-width: 401px) and (max-width: 490px) {
     .container,
     .login-container {
       width: 95%;
@@ -318,7 +318,7 @@ mat-form-field {
     }
   }
 
-  @media (40px <= width <= 400px) {
+  @media screen and (min-width: 40px) and (max-width: 400px) {
     .container,
     .login-container {
       width: 95%;
