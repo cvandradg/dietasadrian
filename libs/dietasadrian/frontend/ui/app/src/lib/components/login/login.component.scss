@@ -136,7 +136,7 @@
           rgb(163, 31, 31)
         );
         filter: blur(1rem);
-        @media (pointer: coarse){
+        @media (pointer: coarse) {
           filter: blur(0);
         }
       }
@@ -149,7 +149,7 @@
         );
 
         filter: blur(1rem);
-        @media (pointer: coarse){
+        @media (pointer: coarse) {
           filter: blur(0);
         }
         z-index: 1;
@@ -298,13 +298,23 @@ mat-form-field {
   }
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 650px) {
   .container .description {
     font-size: 1.2rem;
     margin-bottom: 10%;
   }
 
-  @media screen and (min-width: 490px) and (max-width: 600px) {
+  @media screen and (min-width: 690px) and (max-width: 700px) {
+    .container {
+      .title {
+        font-size: 1.5rem;
+      }
+
+      .description {
+        font-size: 0.7rem;
+      }
+    }
+
     .signup-button {
       p {
         line-height: 1rem;
@@ -314,7 +324,7 @@ mat-form-field {
     }
   }
 
-  @media screen and (min-width: 450px) and (max-width: 490px) {
+  @media screen and (min-width: 550px) and (max-width: 590px) {
     .signup-button {
       p {
         padding: 0 0.5rem;
@@ -322,14 +332,21 @@ mat-form-field {
     }
   }
 
-  @media screen and (min-width: 401px) and (max-width: 490px) {
+  @media screen and (min-width: 601px) and (max-width: 650px) {
     .container,
     .login-container {
       width: 95%;
     }
 
-    .container .description {
-      max-width: 70%;
+    .container {
+      .title {
+        font-size: 1.5rem;
+      }
+
+      .description {
+        max-width: 70%;
+        font-size: 0.7rem;
+      }
     }
 
     .signup-button {
@@ -351,14 +368,19 @@ mat-form-field {
     }
   }
 
-  @media screen and (min-width: 40px) and (max-width: 400px) {
+  @media screen and (min-width: 40px) and (max-width: 600px) {
     .container,
     .login-container {
       width: 95%;
     }
 
     .container {
+      .title {
+        font-size: 1.5rem;
+      }
+
       .description {
+        font-size: 0.7rem;
         max-width: 90%;
       }
     }
@@ -373,7 +395,7 @@ mat-form-field {
 
     .manual-login-inputs {
       width: 100%;
-      margin-bottom: 1rem;
+      margin-bottom: 3rem;
     }
 
     footer {
