@@ -163,6 +163,7 @@
           hsl(226, 78%, 67%),
           rgb(163, 31, 31)
         );
+
         filter: blur(8px);
         z-index: 0;
         color: white !important;
@@ -185,7 +186,7 @@
 
       &:focus::after,
       &:focus::before {
-        filter: blur(8px);
+        // filter: blur(8px);
         background-image: linear-gradient(
           90deg,
           hsla(226, 78%, 67%, 0.397),
