@@ -136,7 +136,7 @@
           rgb(163, 31, 31)
         );
         filter: blur(1rem);
-        @media (pointer: coarse){
+        @media (pointer: coarse) {
           filter: blur(0);
         }
       }
@@ -149,7 +149,7 @@
         );
 
         filter: blur(1rem);
-        @media (pointer: coarse){
+        @media (pointer: coarse) {
           filter: blur(0);
         }
         z-index: 1;
