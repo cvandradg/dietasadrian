@@ -8,17 +8,20 @@
     </div>
     <div class="login-components-container">
       <div class="manual-login-inputs">
-        <mat-form-field class="example-full-width employee-search-field">
-          <mat-label>Usuario</mat-label>
-          <input matInput placeholder="EjemploDeUsuario1!" type="text" />
-        </mat-form-field>
-        <mat-form-field class="example-full-width">
-          <mat-label>Contraseña</mat-label>
-          <input matInput placeholder="EjemploDeClave1!" type="password" />
-        </mat-form-field>
+        <form [formGroup]="loginInputForm" class="manual-login-inputs">
+          <mat-form-field class="example-full-width employee-search-field" >
+            <mat-label>Usuario</mat-label>
+            <input matInput placeholder="EjemploDeUsuario1!" type="text" formControlName="user"/>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>Contraseña</mat-label>
+            <input matInput placeholder="EjemploDeClave1!" type="password" formControlName="pass"/>
+          </mat-form-field>
+        </form>
 
-        <div class="horizontal-animation">
-          <button mat-button>
+
+        <div class="horizontal-animation clase" [ngClass]="{'enabled-button': !loginInputForm.invalid}">
+          <button mat-button [disabled]="loginInputForm.invalid"  (click)="onSubmit()">
             <div class="login-button">
               <p>Accede a Tu Cuenta</p>
               <fa-icon
