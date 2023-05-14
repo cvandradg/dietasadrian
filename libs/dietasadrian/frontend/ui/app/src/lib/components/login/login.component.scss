@@ -113,14 +113,14 @@
       border: 1px solid transparent;
 
       &:hover {
-        border: none;
+        border: 1px solid transparent;
       }
 
       &::after,
       &::before {
         content: '';
         position: absolute;
-        inset: 0px;
+        inset: -4px;
         border-radius: inherit;
       }
 
