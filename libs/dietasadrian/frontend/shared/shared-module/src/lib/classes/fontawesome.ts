@@ -36,6 +36,9 @@ import {
   faFacebookF,
 } from '@fortawesome/free-brands-svg-icons';
 
+import { faSpinnerThird } from "@fortawesome/pro-solid-svg-icons";
+
+
 @Directive()
 export class Fontawesome {
   constructor(private library: FaIconLibrary) {
@@ -61,7 +64,8 @@ export class Fontawesome {
       faGoogle,
       faTwitter,
       faFacebookF,
-      faRightToBracket
+      faRightToBracket,
+      faSpinnerThird
     );
   }
 }

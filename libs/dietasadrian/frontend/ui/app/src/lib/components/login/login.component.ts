@@ -9,9 +9,11 @@ import { CommonModule } from '@angular/common';
   selector: 'dietas-adrian-nx-workspace-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  imports: [CommonModule,HeaderComponent, SharedModuleModule],
+  imports: [CommonModule, HeaderComponent, SharedModuleModule],
 })
 export class LoginComponent {
+  loading = false;
+
   constructor(private formBuilder: FormBuilder) {}
 
   loginInputForm = this.formBuilder.group({
@@ -34,6 +36,6 @@ export class LoginComponent {
   });
 
   onSubmit() {
-    // some operations here
+    this.loading = true;
   }
 }

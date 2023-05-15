@@ -9,27 +9,52 @@
     <div class="login-components-container">
       <div class="manual-login-inputs">
         <form [formGroup]="loginInputForm" class="manual-login-inputs">
-          <mat-form-field class="example-full-width employee-search-field" >
+          <mat-form-field class="example-full-width employee-search-field">
             <mat-label>Usuario</mat-label>
-            <input matInput placeholder="EjemploDeUsuario1!" type="text" formControlName="user"/>
+            <input
+              matInput
+              placeholder="EjemploDeUsuario1!"
+              type="text"
+              formControlName="user"
+            />
           </mat-form-field>
           <mat-form-field class="example-full-width">
             <mat-label>Contraseña</mat-label>
-            <input matInput placeholder="EjemploDeClave1!" type="password" formControlName="pass"/>
+            <input
+              matInput
+              placeholder="EjemploDeClave1!"
+              type="password"
+              formControlName="pass"
+            />
           </mat-form-field>
         </form>
 
-
-        <div class="horizontal-animation clase" [ngClass]="{'enabled-button': !loginInputForm.invalid}">
-          <button mat-button [disabled]="loginInputForm.invalid"  (click)="onSubmit()">
+        <div
+          class="horizontal-animation clase"
+          [ngClass]="{ 'enabled-button': !loginInputForm.invalid }"
+        >
+          <button
+            mat-button
+            [disabled]="loginInputForm.invalid"
+            (click)="onSubmit()"
+          >
             <div class="login-button">
               <p>Accede a Tu Cuenta</p>
               <fa-icon
+                *ngIf="!loading; else elseBlock"
                 [icon]="['fas', 'arrow-right']"
                 style="--fa-animation-iteration-count: 2"
                 class="icon fa-xl fa-shake"
                 style="--fa-animation-iteration-count: 2"
               ></fa-icon>
+
+              <ng-template #elseBlock>
+                <fa-icon
+                  [icon]="['fas', 'spinner-third']"
+                  class="icon fa-xl fa-spin"
+                  style="--fa-animation-duration: 1s;"
+                ></fa-icon
+              ></ng-template>
             </div>
           </button>
         </div>
