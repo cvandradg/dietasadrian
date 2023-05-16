@@ -56,7 +56,7 @@
       ],
       "@shared-modules/*": [
         "libs/dietasadrian/frontend/shared/shared-module/src/lib/*"
-      ],
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

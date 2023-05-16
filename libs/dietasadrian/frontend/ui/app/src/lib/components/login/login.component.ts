@@ -17,8 +17,8 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   loading = false;
   error = false;
-  missingMail = false
-  successMailSent = false
+  missingMail = false;
+  successMailSent = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -47,15 +47,14 @@ export class LoginComponent {
   });
 
   onSubmit() {
-    if(this.loginInputForm.invalid) {
-      return
+    if (this.loginInputForm.invalid) {
+      return;
     }
 
     this.loading = true;
-    this.successMailSent = false
-    this.missingMail = false
+    this.successMailSent = false;
+    this.missingMail = false;
     this.error = false;
-
 
     this.authService
       .auth(this.loginInputForm.value as { user: string; pass: string })
@@ -75,27 +74,29 @@ export class LoginComponent {
 
   forgotPassword() {
     this.loading = true;
-    this.successMailSent = false
-    this.missingMail = false
+    this.successMailSent = false;
+    this.missingMail = false;
     this.error = false;
 
-    if(this.loginInputForm.value.user === '') {
-      this.missingMail = true
+    if (this.loginInputForm.value.user === '') {
+      this.missingMail = true;
       this.loading = false;
-      return
+      return;
     }
 
-    this.authService.recoverPassword(this.loginInputForm.value.user as string).subscribe({
-      next: (res) => {
-        this.successMailSent = true
-        this.loading = false;
-        return 'ok';
-      },
-      error: (err) => {
-        this.successMailSent = true
-        this.loading = false;
-        return 'err';
-      },
-    })
+    this.authService
+      .recoverPassword(this.loginInputForm.value.user as string)
+      .subscribe({
+        next: (res) => {
+          this.successMailSent = true;
+          this.loading = false;
+          return 'ok';
+        },
+        error: (err) => {
+          this.successMailSent = true;
+          this.loading = false;
+          return 'err';
+        },
+      });
   }
 }

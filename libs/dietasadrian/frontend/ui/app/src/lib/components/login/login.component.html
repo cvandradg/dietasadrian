@@ -102,11 +102,11 @@
     <div class="forgot-password" (click)="forgotPassword()">
       <p>Forgot Password?</p>
       <fa-icon
-      *ngIf="loading"
-      [icon]="['fas', 'spinner-third']"
-      class="icon fa-xl fa-spin"
-      style="--fa-animation-duration: 1s"
-    ></fa-icon>
+        *ngIf="loading"
+        [icon]="['fas', 'spinner-third']"
+        class="icon fa-xl fa-spin"
+        style="--fa-animation-duration: 1s"
+      ></fa-icon>
     </div>
     <div class="error-message centered" *ngIf="!loading && missingMail">
       <p>Escribe tu correo.</p>
@@ -118,7 +118,10 @@
       ></fa-icon>
     </div>
     <div class="success-message centered" *ngIf="!loading && successMailSent">
-      <p>Si el correo es válido, revisa tus bandejas para recuperar tu contraseña.</p>
+      <p>
+        Si el correo es válido, revisa tus bandejas para recuperar tu
+        contraseña.
+      </p>
       <fa-icon
         [icon]="['fas', 'check']"
         style="--fa-animation-iteration-count: 2"
