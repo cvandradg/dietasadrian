@@ -21,7 +21,7 @@ export class AuthService {
     return from(this.firebaseAuth.sendPasswordResetEmail(email));
   }
 
-  // resetPass(email: string) {
-  //   return from(this.firebaseAuth.confirmPasswordReset());
-  // }
+  resetPass(code: string, pass: string) {
+    return from(this.firebaseAuth.confirmPasswordReset(code, pass));
+  }
 }
