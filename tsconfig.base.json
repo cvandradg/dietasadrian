@@ -53,6 +53,9 @@
       ],
       "@shared-modules": [
         "libs/dietasadrian/frontend/shared/shared-module/src/index.ts"
+      ],
+      "@shared-modules/*": [
+        "libs/dietasadrian/frontend/shared/shared-module/src/lib/*"
       ]
     }
   },

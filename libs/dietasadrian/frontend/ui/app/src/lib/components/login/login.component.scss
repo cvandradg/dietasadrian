@@ -86,10 +86,12 @@
   }
 
   .manual-login-inputs,
+  .form-login-inputs,
   .automatic-signin-tools {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-self: flex-start;
 
     button {
       width: 100%;
@@ -97,9 +99,13 @@
     }
   }
 
+  .form-login-inputs {
+    width: 100%;
+  }
+
   .automatic-signin-tools {
     width: 100%;
-    gap: 0.7rem;
+    gap: 0.5rem;
 
     .signup-animation {
       position: relative;
@@ -113,14 +119,14 @@
       border: 1px solid transparent;
 
       &:hover {
-        border: none;
+        border: 1px solid transparent;
       }
 
       &::after,
       &::before {
         content: '';
         position: absolute;
-        inset: 0px;
+        inset: -4px;
         border-radius: inherit;
       }
 
@@ -216,14 +222,18 @@
 
     .horizontal-animation {
       color: white;
-      background: linear-gradient(to left, rgb(105, 136, 236), red) right;
+      background: linear-gradient(to left, rgb(126, 156, 255), rgb(143, 18, 18))
+        right;
       background-size: 200%;
       transition: 1s ease-out;
       border-bottom-right-radius: 0.3rem;
       border-bottom-left-radius: 0.3rem;
-    }
-    .horizontal-animation:hover {
       background-position: left;
+    }
+
+    .enabled-button {
+      background-size: 400%;
+      background-position: 100%;
     }
 
     ::ng-deep {
@@ -234,8 +244,42 @@
   }
 }
 
+.error-message {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 0rem 0.5rem;
+  gap: 0.5rem;
+  width: 100%;
+  color: rgb(235, 116, 116);
+}
+
+.success-message {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 0rem 0.5rem;
+  gap: 0.5rem;
+  width: 100%;
+  color: rgb(126, 207, 160);
+}
+
+.centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
 .forgot-password {
-  margin: 10% 0 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+  margin: 5% 0 0 0;
 }
 
 footer {

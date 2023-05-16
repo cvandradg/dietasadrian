@@ -29,12 +29,18 @@ import {
   faPeanuts,
 } from '@fortawesome/sharp-solid-svg-icons';
 
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import {
+  faArrowRight,
+  faXmark as faXmarkSolid,
+  faCheck,
+} from '@fortawesome/free-solid-svg-icons';
 import {
   faGoogle,
   faTwitter,
   faFacebookF,
 } from '@fortawesome/free-brands-svg-icons';
+
+import { faSpinnerThird } from '@fortawesome/pro-solid-svg-icons';
 
 @Directive()
 export class Fontawesome {
@@ -49,6 +55,7 @@ export class Fontawesome {
       faFilePen,
       faClipboardQuestion,
       faGripLines,
+      faCheck,
       faPlus,
       faXmark,
       faBolt,
@@ -61,7 +68,9 @@ export class Fontawesome {
       faGoogle,
       faTwitter,
       faFacebookF,
-      faRightToBracket
+      faRightToBracket,
+      faSpinnerThird,
+      faXmarkSolid
     );
   }
 }
