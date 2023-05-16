@@ -9,7 +9,7 @@
     <div class="login-components-container">
       <div class="manual-login-inputs">
         <form [formGroup]="loginInputForm" class="form-login-inputs">
-          <mat-form-field class="example-full-width employee-search-field">
+          <mat-form-field>
             <mat-label>Correo</mat-label>
             <input
               matInput
@@ -102,13 +102,13 @@
     <div class="forgot-password" (click)="forgotPassword()">
       <p>Forgot Password?</p>
       <fa-icon
-        *ngIf="loading"
+        *ngIf="loadingRecoverPassword"
         [icon]="['fas', 'spinner-third']"
         class="icon fa-xl fa-spin"
         style="--fa-animation-duration: 1s"
       ></fa-icon>
     </div>
-    <div class="error-message centered" *ngIf="!loading && missingMail">
+    <div class="error-message centered" *ngIf="!loadingRecoverPassword && missingMail">
       <p>Escribe tu correo.</p>
       <fa-icon
         [icon]="['fas', 'xmark']"
@@ -117,7 +117,7 @@
         style="--fa-animation-iteration-count: 2"
       ></fa-icon>
     </div>
-    <div class="success-message centered" *ngIf="!loading && successMailSent">
+    <div class="success-message centered" *ngIf="!loadingRecoverPassword && successMailSent">
       <p>
         Si el correo es válido, revisa tus bandejas para recuperar tu
         contraseña.

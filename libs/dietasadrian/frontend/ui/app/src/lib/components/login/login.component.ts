@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   loading = false;
+  loadingRecoverPassword = false;
   error = false;
   missingMail = false;
   successMailSent = false;
@@ -73,14 +74,14 @@ export class LoginComponent {
   }
 
   forgotPassword() {
-    this.loading = true;
+    this.loadingRecoverPassword = true;
     this.successMailSent = false;
     this.missingMail = false;
     this.error = false;
 
     if (this.loginInputForm.value.user === '') {
       this.missingMail = true;
-      this.loading = false;
+      this.loadingRecoverPassword = false;
       return;
     }
 
@@ -89,12 +90,12 @@ export class LoginComponent {
       .subscribe({
         next: (res) => {
           this.successMailSent = true;
-          this.loading = false;
+          this.loadingRecoverPassword = false;
           return 'ok';
         },
         error: (err) => {
           this.successMailSent = true;
-          this.loading = false;
+          this.loadingRecoverPassword = false;
           return 'err';
         },
       });

@@ -2,6 +2,7 @@ import { Route } from '@angular/router';
 import { AuthGuard } from '@guards/auth-guard/auth-guard.guard';
 import { AppComponent } from './components/app/app.component';
 import { LoginComponent } from './components/login/login.component';
+import { PassResetComponent } from './components/pass-reset/pass-reset.component';
 
 export const appRoutes: Route[] = [
   {
@@ -27,5 +28,10 @@ export const appRoutes: Route[] = [
     path: '',
     component: LoginComponent,
     pathMatch: 'full',
+  },
+    {
+    path: 'passReset',
+    component: PassResetComponent,
+    pathMatch: 'full'
   },
 ];
