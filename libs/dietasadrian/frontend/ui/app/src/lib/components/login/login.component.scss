@@ -33,7 +33,7 @@
     font-size: 3rem;
     font-weight: 700;
     text-align: center;
-    margin: 7.5% 0;
+    margin: 6.5% 0;
   }
 
   .description {
@@ -84,7 +84,10 @@
   .divison {
     width: 20%;
     text-align: center;
+    align-self: flex-start;
+    margin-top: 6rem;
   }
+
 
   .manual-login-inputs,
   .form-login-inputs,
@@ -273,6 +276,7 @@
   justify-content: center;
   gap: 0.5rem;
   width: 100%;
+  margin: 0;
 }
 
 .forgot-password {
@@ -280,7 +284,7 @@
   justify-content: center;
   align-items: center;
   gap: 0.3rem;
-  margin: 5% 0 0 0;
+  margin: 2% 0 0 0;
 }
 
 footer {
