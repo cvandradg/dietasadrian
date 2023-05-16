@@ -29,9 +29,9 @@ export const appRoutes: Route[] = [
     component: LoginComponent,
     pathMatch: 'full',
   },
-    {
+  {
     path: 'passReset',
     component: PassResetComponent,
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
 ];

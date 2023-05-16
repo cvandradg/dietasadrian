@@ -108,7 +108,10 @@
         style="--fa-animation-duration: 1s"
       ></fa-icon>
     </div>
-    <div class="error-message centered" *ngIf="!loadingRecoverPassword && missingMail">
+    <div
+      class="error-message centered"
+      *ngIf="!loadingRecoverPassword && missingMail"
+    >
       <p>Escribe tu correo.</p>
       <fa-icon
         [icon]="['fas', 'xmark']"
@@ -117,7 +120,10 @@
         style="--fa-animation-iteration-count: 2"
       ></fa-icon>
     </div>
-    <div class="success-message centered" *ngIf="!loadingRecoverPassword && successMailSent">
+    <div
+      class="success-message centered"
+      *ngIf="!loadingRecoverPassword && successMailSent"
+    >
       <p>
         Si el correo es válido, revisa tus bandejas para recuperar tu
         contraseña.

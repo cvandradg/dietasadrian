@@ -12,14 +12,12 @@ import { AuthService } from '@shared-modules/services/auth/auth-service.service'
   styleUrls: ['./pass-reset.component.scss'],
   imports: [CommonModule, SharedModuleModule],
 })
-export class PassResetComponent implements OnInit{
-
+export class PassResetComponent implements OnInit {
   loading = false;
   error = false;
 
   successPassReset = false;
   firebaseCode = '';
-
 
   constructor(
     private authService: AuthService,
@@ -28,8 +26,7 @@ export class PassResetComponent implements OnInit{
   ) {}
 
   ngOnInit(): void {
-   this.firebaseCode = this.route.snapshot.queryParamMap.get('oobCode') || ''
-    
+    this.firebaseCode = this.route.snapshot.queryParamMap.get('oobCode') || '';
   }
 
   loginInputForm = this.formBuilder.group({
@@ -50,13 +47,14 @@ export class PassResetComponent implements OnInit{
       return;
     }
 
-    this.authService.resetPass(this.firebaseCode, this.loginInputForm.value.pass as string)
+    this.authService
+      .resetPass(this.firebaseCode, this.loginInputForm.value.pass as string)
       .subscribe({
         next: (res) => {
           this.loading = false;
           this.error = false;
           this.successPassReset = true;
-          
+
           return 'ok';
         },
         error: (err) => {
@@ -64,7 +62,6 @@ export class PassResetComponent implements OnInit{
           this.loading = false;
           this.error = true;
           this.successPassReset = false;
-
 
           return 'err';
         },

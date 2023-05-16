@@ -48,25 +48,25 @@
       </button>
     </div>
     <div class="success-message centered" *ngIf="!loading && successPassReset">
-        <p>
-          Creaste una nueva contraseña.
-        </p>
-        <fa-icon
-          [icon]="['fas', 'check']"
-          style="--fa-animation-iteration-count: 2"
-          class="icon fa-xl fa-shake"
-          style="--fa-animation-iteration-count: 2"
-        ></fa-icon>
-      </div>
-      <div class="error-message centered" *ngIf="!loading && error">
-        <p>Inicia el proceso de recuperacion otra vez, si crees que hay un error contáctanos.</p>
-        <fa-icon
-          [icon]="['fas', 'xmark']"
-          style="--fa-animation-iteration-count: 2"
-          class="icon fa-xl fa-shake"
-          style="--fa-animation-iteration-count: 2"
-        ></fa-icon>
-      </div>
+      <p>Creaste una nueva contraseña.</p>
+      <fa-icon
+        [icon]="['fas', 'check']"
+        style="--fa-animation-iteration-count: 2"
+        class="icon fa-xl fa-shake"
+        style="--fa-animation-iteration-count: 2"
+      ></fa-icon>
+    </div>
+    <div class="error-message centered" *ngIf="!loading && error">
+      <p>
+        Inicia el proceso de recuperacion otra vez, si crees que hay un error
+        contáctanos.
+      </p>
+      <fa-icon
+        [icon]="['fas', 'xmark']"
+        style="--fa-animation-iteration-count: 2"
+        class="icon fa-xl fa-shake"
+        style="--fa-animation-iteration-count: 2"
+      ></fa-icon>
+    </div>
   </div>
 </div>
-
