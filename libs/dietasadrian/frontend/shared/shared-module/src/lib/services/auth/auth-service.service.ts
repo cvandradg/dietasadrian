@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import {
+  GoogleAuthProvider,
+  TwitterAuthProvider,
+  FacebookAuthProvider,
+} from '@angular/fire/auth';
 import { from, of } from 'rxjs';
 
 @Injectable({
@@ -23,5 +28,19 @@ export class AuthService {
 
   resetPass(code: string, pass: string) {
     return from(this.firebaseAuth.confirmPasswordReset(code, pass));
+  }
+
+  googleSignin() {
+    console.log('llega?');
+    
+    return from(this.firebaseAuth.signInWithPopup(new GoogleAuthProvider()));
+  }
+
+  facebookSignin() {
+    return from(this.firebaseAuth.signInWithPopup(new FacebookAuthProvider()));
+  }
+
+  twitterSignin() {
+    return from(this.firebaseAuth.signInWithPopup(new TwitterAuthProvider()));
   }
 }

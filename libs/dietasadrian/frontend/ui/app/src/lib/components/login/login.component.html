@@ -72,8 +72,8 @@
       </div>
       <div class="divison">/</div>
       <div class="automatic-signin-tools">
-        <div class="signup-animation">
-          <button mat-button disableRipple="true">
+        <div class="signup-animation" >
+          <button mat-button disableRipple="true" (click)="googleSignin()">
             <div class="signup-button">
               <fa-icon [icon]="['fab', 'google']"></fa-icon>
               <p>Accede con Google</p>
@@ -81,7 +81,7 @@
           </button>
         </div>
         <div class="signup-animation">
-          <button mat-button disableRipple="true">
+          <button mat-button disableRipple="true" (click)="facebookSignin()">
             <div class="signup-button">
               <fa-icon [icon]="['fab', 'facebook-f']"></fa-icon>
               <p>Accede con Facebook</p>
@@ -89,7 +89,7 @@
           </button>
         </div>
         <div class="signup-animation">
-          <button mat-button disableRipple="true">
+          <button mat-button disableRipple="true" (click)="twitterSignin()">
             <div class="signup-button">
               <fa-icon [icon]="['fab', 'twitter']"></fa-icon>
               <p>Accede con Twitter</p>

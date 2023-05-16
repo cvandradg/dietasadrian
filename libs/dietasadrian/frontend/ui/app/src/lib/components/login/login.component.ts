@@ -100,4 +100,61 @@ export class LoginComponent {
         },
       });
   }
+
+  googleSignin() {
+    this.authService.googleSignin().subscribe({
+      next: (res) => {
+        this.successMailSent = true;
+        this.loadingRecoverPassword = false;
+        console.log('google res,',res);
+        this.router.navigate(['/landing/dietas/crear']);
+        return 'ok';
+      },
+      error: (err) => {
+        this.successMailSent = true;
+        this.loadingRecoverPassword = false;
+        console.log(err);
+        
+        return 'err';
+      },
+    });
+  }
+
+  facebookSignin() {
+    this.authService.facebookSignin().subscribe({
+      next: (res) => {
+        this.successMailSent = true;
+        this.loadingRecoverPassword = false;
+        console.log('fb res,',res);
+        this.router.navigate(['/landing/dietas/crear']);
+        return 'ok';
+      },
+      error: (err) => {
+        this.successMailSent = true;
+        this.loadingRecoverPassword = false;
+        console.log(err);
+        
+        return 'err';
+      },
+    });
+  }
+
+  twitterSignin() {
+    this.authService.twitterSignin().subscribe({
+      next: (res) => {
+        this.successMailSent = true;
+        this.loadingRecoverPassword = false;
+        console.log('twitter res,',res);
+        this.router.navigate(['/landing/dietas/crear']);
+        return 'ok';
+      },
+      error: (err) => {
+        this.successMailSent = true;
+        this.loadingRecoverPassword = false;
+        console.log(err);
+        
+        return 'err';
+      },
+    });
+  }
 }
