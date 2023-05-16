@@ -86,10 +86,12 @@
   }
 
   .manual-login-inputs,
+  .form-login-inputs,
   .automatic-signin-tools {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-self: flex-start;
 
     button {
       width: 100%;
@@ -97,9 +99,13 @@
     }
   }
 
+  .form-login-inputs {
+    width: 100%;
+  }
+
   .automatic-signin-tools {
     width: 100%;
-    gap: 0.7rem;
+    gap: 0.5rem;
 
     .signup-animation {
       position: relative;
@@ -237,8 +243,42 @@
   }
 }
 
+.error-message {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 0rem 0.5rem;
+  gap: 0.5rem;
+  width: 100%;
+  color: rgb(235, 116, 116);
+}
+
+.success-message {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 0rem 0.5rem;
+  gap: 0.5rem;
+  width: 100%;
+  color: rgb(126, 207, 160);
+}
+
+.centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
 .forgot-password {
-  margin: 10% 0 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+  margin: 5% 0 0 0;
 }
 
 footer {

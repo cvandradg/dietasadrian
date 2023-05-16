@@ -8,14 +8,15 @@
     </div>
     <div class="login-components-container">
       <div class="manual-login-inputs">
-        <form [formGroup]="loginInputForm" class="manual-login-inputs">
+        <form [formGroup]="loginInputForm" class="form-login-inputs">
           <mat-form-field class="example-full-width employee-search-field">
-            <mat-label>Usuario</mat-label>
+            <mat-label>Correo</mat-label>
             <input
               matInput
-              placeholder="EjemploDeUsuario1!"
-              type="text"
+              placeholder="AlgunCorreo@dominio.com"
+              type="email"
               formControlName="user"
+              (keyup.enter)="onSubmit()"
             />
           </mat-form-field>
           <mat-form-field class="example-full-width">
@@ -25,6 +26,7 @@
               placeholder="EjemploDeClave1!"
               type="password"
               formControlName="pass"
+              (keyup.enter)="onSubmit()"
             />
           </mat-form-field>
         </form>
@@ -37,26 +39,35 @@
             mat-button
             [disabled]="loginInputForm.invalid"
             (click)="onSubmit()"
+            (keyup.enter)="!loginInputForm.invalid && onSubmit()"
           >
             <div class="login-button">
               <p>Accede a Tu Cuenta</p>
               <fa-icon
-                *ngIf="!loading; else elseBlock"
+                *ngIf="!loading"
                 [icon]="['fas', 'arrow-right']"
                 style="--fa-animation-iteration-count: 2"
                 class="icon fa-xl fa-shake"
                 style="--fa-animation-iteration-count: 2"
               ></fa-icon>
 
-              <ng-template #elseBlock>
-                <fa-icon
-                  [icon]="['fas', 'spinner-third']"
-                  class="icon fa-xl fa-spin"
-                  style="--fa-animation-duration: 1s;"
-                ></fa-icon
-              ></ng-template>
+              <fa-icon
+                *ngIf="loading"
+                [icon]="['fas', 'spinner-third']"
+                class="icon fa-xl fa-spin"
+                style="--fa-animation-duration: 1s"
+              ></fa-icon>
             </div>
           </button>
+        </div>
+        <div class="error-message" *ngIf="!loading && error">
+          <p>Revise sus credenciales, si cree que es un error contactanos.</p>
+          <fa-icon
+            [icon]="['fas', 'xmark']"
+            style="--fa-animation-iteration-count: 2"
+            class="icon fa-xl fa-shake"
+            style="--fa-animation-iteration-count: 2"
+          ></fa-icon>
         </div>
       </div>
       <div class="divison">/</div>
@@ -85,9 +96,36 @@
             </div>
           </button>
         </div>
+        <div></div>
       </div>
     </div>
-    <div class="forgot-password">Forgot Password?</div>
+    <div class="forgot-password" (click)="forgotPassword()">
+      <p>Forgot Password?</p>
+      <fa-icon
+      *ngIf="loading"
+      [icon]="['fas', 'spinner-third']"
+      class="icon fa-xl fa-spin"
+      style="--fa-animation-duration: 1s"
+    ></fa-icon>
+    </div>
+    <div class="error-message centered" *ngIf="!loading && missingMail">
+      <p>Escribe tu correo.</p>
+      <fa-icon
+        [icon]="['fas', 'xmark']"
+        style="--fa-animation-iteration-count: 2"
+        class="icon fa-xl fa-shake"
+        style="--fa-animation-iteration-count: 2"
+      ></fa-icon>
+    </div>
+    <div class="success-message centered" *ngIf="!loading && successMailSent">
+      <p>Si el correo es válido, revisa tus bandejas para recuperar tu contraseña.</p>
+      <fa-icon
+        [icon]="['fas', 'check']"
+        style="--fa-animation-iteration-count: 2"
+        class="icon fa-xl fa-shake"
+        style="--fa-animation-iteration-count: 2"
+      ></fa-icon>
+    </div>
   </div>
   <footer class="login-footer">
     <p>Privacy Policy</p>
