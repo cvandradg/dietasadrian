@@ -40,7 +40,7 @@ import {
   faFacebookF,
 } from '@fortawesome/free-brands-svg-icons';
 
-import { faSpinnerThird } from '@fortawesome/pro-solid-svg-icons';
+import { faSpinnerThird, faUser } from '@fortawesome/pro-solid-svg-icons';
 
 @Directive()
 export class Fontawesome {
@@ -70,7 +70,8 @@ export class Fontawesome {
       faFacebookF,
       faRightToBracket,
       faSpinnerThird,
-      faXmarkSolid
+      faXmarkSolid,
+      faUser
     );
   }
 }

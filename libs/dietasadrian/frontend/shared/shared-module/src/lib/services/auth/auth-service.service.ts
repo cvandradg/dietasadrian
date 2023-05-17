@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import {
   GoogleAuthProvider,
-  TwitterAuthProvider,
-  FacebookAuthProvider,
 } from '@angular/fire/auth';
+
+
 import { from, of } from 'rxjs';
 
 @Injectable({
@@ -36,11 +36,14 @@ export class AuthService {
     return from(this.firebaseAuth.signInWithPopup(new GoogleAuthProvider()));
   }
 
-  facebookSignin() {
-    return from(this.firebaseAuth.signInWithPopup(new FacebookAuthProvider()));
-  }
+  // facebookSignin() {
+  //   // return from(this.firebaseAuth.signInWithPopup(new FacebookAuthProvider()));
+  //   return from(this.firebaseAuth.signInWithRedirect(new FacebookAuthProvider()));
+  // }
 
-  twitterSignin() {
-    return from(this.firebaseAuth.signInWithPopup(new TwitterAuthProvider()));
-  }
+  // twitterSignin() {
+  //   // return from(this.firebaseAuth.signInWithPopup(new TwitterAuthProvider()));
+  //   return from(this.firebaseAuth.signInWithRedirect(new TwitterAuthProvider()));
+  // }
 }
+
