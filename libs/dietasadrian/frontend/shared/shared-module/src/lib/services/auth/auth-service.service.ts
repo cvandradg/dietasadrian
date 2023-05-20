@@ -22,6 +22,15 @@ export class AuthService {
     );
   }
 
+  createAccount(credentials: { user: string; pass: string }) {
+    return from(
+      this.firebaseAuth.createUserWithEmailAndPassword(
+        credentials.user,
+        credentials.pass
+      )
+    );
+  }
+
   recoverPassword(email: string) {
     return from(this.firebaseAuth.sendPasswordResetEmail(email));
   }

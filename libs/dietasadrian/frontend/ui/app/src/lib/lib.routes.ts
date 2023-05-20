@@ -3,6 +3,7 @@ import { AuthGuard } from '@guards/auth-guard/auth-guard.guard';
 import { AppComponent } from './components/app/app.component';
 import { LoginComponent } from './components/login/login.component';
 import { PassResetComponent } from './components/pass-reset/pass-reset.component';
+import { RegisterComponent } from './components/register/register/register.component';
 
 export const appRoutes: Route[] = [
   {
@@ -32,6 +33,11 @@ export const appRoutes: Route[] = [
   {
     path: 'passReset',
     component: PassResetComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
     pathMatch: 'full',
   },
 ];

@@ -1,0 +1,80 @@
+<div class="container">
+  <div class="title">Crea tu cuenta</div>
+  <div class="description">Recuerda crear una contraseña segura.</div>
+
+  <div class="manual-login-inputs">
+    <form [formGroup]="loginInputForm" class="form-login-inputs">
+      <mat-form-field class="example-full-width">
+        <mat-label>Correo</mat-label>
+        <input
+          matInput
+          placeholder="AlgunCorreo@dominio.com"
+          type="email"
+          formControlName="UserEmail"
+          (keyup.enter)="createAccount()"
+        />
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Contraseña</mat-label>
+        <input
+          matInput
+          placeholder="EjemploDeClave1!"
+          type="password"
+          formControlName="pass"
+          (keyup.enter)="createAccount()"
+        />
+      </mat-form-field>
+    </form>
+
+    <div
+      class="horizontal-animation clase"
+      [ngClass]="{ 'enabled-button': !loginInputForm.invalid }"
+    >
+      <button
+        mat-button
+        [disabled]="loginInputForm.invalid"
+        (click)="createAccount()"
+        (keyup.enter)="!loginInputForm.invalid && createAccount()"
+      >
+        <div class="login-button">
+          <p>Crear Cuenta</p>
+          <fa-icon
+            *ngIf="!loading"
+            [icon]="['fas', 'arrow-right']"
+            style="--fa-animation-iteration-count: 2"
+            class="icon fa-xl fa-shake"
+            style="--fa-animation-iteration-count: 2"
+          ></fa-icon>
+
+          <fa-icon
+            *ngIf="loading"
+            [icon]="['fas', 'spinner-third']"
+            class="icon fa-xl fa-spin"
+            style="--fa-animation-duration: 1s"
+          ></fa-icon>
+        </div>
+      </button>
+    </div>
+    <div class="success-message centered" *ngIf="!loading && successPassReset">
+      <p>Creaste una nueva contraseña.</p>
+      <fa-icon
+        [icon]="['fas', 'check']"
+        style="--fa-animation-iteration-count: 2"
+        class="icon fa-xl fa-shake"
+        style="--fa-animation-iteration-count: 2"
+      ></fa-icon>
+    </div>
+    <div class="error-message centered" *ngIf="!loading && error">
+      <p>
+        Inicia el proceso de recuperacion otra vez, si crees que hay un error
+        contáctanos.
+      </p>
+      <fa-icon
+        [icon]="['fas', 'xmark']"
+        style="--fa-animation-iteration-count: 2"
+        class="icon fa-xl fa-shake"
+        style="--fa-animation-iteration-count: 2"
+      ></fa-icon>
+    </div>
+  </div>
+</div>
