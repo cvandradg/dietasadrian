@@ -1,9 +1,8 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModuleModule } from '@shared-modules';
 import { AuthService } from '@shared-modules/services/auth/auth-service.service';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -12,24 +11,20 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./register.component.scss'],
   imports: [CommonModule, SharedModuleModule],
 })
-export class RegisterComponent { loading = false;
+export class RegisterComponent {
+  loading = false;
   error = false;
-
+  buttonEnable = false;
   successPassReset = false;
-  firebaseCode = '';
 
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute
+    private changeDetectorRef: ChangeDetectorRef
   ) {}
 
-  ngOnInit(): void {
-    this.firebaseCode = this.route.snapshot.queryParamMap.get('oobCode') || '';
-  }
-
   loginInputForm = this.formBuilder.group({
-    UserEmail: [
+    userEmail: [
       '',
       [
         Validators.required, // Validators
@@ -45,10 +40,13 @@ export class RegisterComponent { loading = false;
         Validators.min(5),
         Validators.max(30),
       ],
-    ]
+    ],
   });
-  
-  
+
+  get isSubmitButtonEnable() {
+    return !this.loginInputForm.invalid && this.buttonEnable;
+  }
+
   createAccount() {
     this.loading = true;
 
@@ -56,8 +54,10 @@ export class RegisterComponent { loading = false;
       return;
     }
 
+    console.log('values,', this.loginInputForm.value);
+
     // this.authService
-    // .createAccount(this.loginInputForm.value as { user: string; pass: string })
+    // .createAccount(this.loginInputForm.value as { userEmail: string; pass: string })
     // .subscribe({
     //   next: (res) => {
     //     this.loading = false;
@@ -67,12 +67,27 @@ export class RegisterComponent { loading = false;
     //     return 'ok';
     //   },
     //   error: (err) => {
-    //     console.log('err', err);
     //     this.loading = false;
     //     this.error = true;
     //     this.successPassReset = false;
     //     return 'err';
     //   },
     // });
+
+    this.authService
+      .createAccount(
+        this.loginInputForm.value as { userEmail: string; pass: string }
+      )
+      .then(
+        (res) => {console.log('res', res);
+        },
+        (err) => {console.log('err', err);
+        }
+      );
+  }
+
+  enableButton(isEnable: boolean) {
+    this.buttonEnable = isEnable;
+    this.changeDetectorRef.detectChanges();
   }
 }

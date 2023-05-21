@@ -1,0 +1,10 @@
+<div class="container">
+  <ng-container *ngIf="password.length">
+   
+    <p [ngClass]="result">
+      Su contraseña es de complejidad {{ result }} {{ result }}
+    </p>
+
+    <div class="strenyMeter" [ngClass]="result"></div>
+  </ng-container>
+</div>

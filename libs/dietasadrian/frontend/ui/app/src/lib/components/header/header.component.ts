@@ -14,7 +14,6 @@ export class HeaderComponent implements OnInit {
   screenWidth = 0
 
   ngOnInit(): void {
-    console.log('HeaderComponent');
     this.screenWidth = window.innerWidth;  
   }
 }

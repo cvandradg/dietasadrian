@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import {
-  GoogleAuthProvider,
-} from '@angular/fire/auth';
+import { GoogleAuthProvider } from '@angular/fire/auth';
 
-
-import { from, of } from 'rxjs';
+import { from } from 'rxjs';
+import { sendEmailVerification, UserCredential } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -22,13 +20,23 @@ export class AuthService {
     );
   }
 
-  createAccount(credentials: { user: string; pass: string }) {
-    return from(
-      this.firebaseAuth.createUserWithEmailAndPassword(
-        credentials.user,
-        credentials.pass
-      )
+  async createAccount(credentials: { userEmail: string; pass: string }) {
+    const userCredentials:any = await this.firebaseAuth.createUserWithEmailAndPassword(
+      credentials.userEmail,
+      credentials.pass
     );
+
+    await sendEmailVerification(userCredentials?.user);
+
+    return userCredentials;
+  }
+
+  confirmEmail(code: string) {
+    return this.firebaseAuth.applyActionCode(code);
+  }
+
+  signOut() {
+    return this.firebaseAuth.signOut();
   }
 
   recoverPassword(email: string) {
@@ -40,8 +48,6 @@ export class AuthService {
   }
 
   googleSignin() {
-    console.log('llega?');
-    
     return from(this.firebaseAuth.signInWithPopup(new GoogleAuthProvider()));
   }
 
@@ -55,4 +61,3 @@ export class AuthService {
   //   return from(this.firebaseAuth.signInWithRedirect(new TwitterAuthProvider()));
   // }
 }
-

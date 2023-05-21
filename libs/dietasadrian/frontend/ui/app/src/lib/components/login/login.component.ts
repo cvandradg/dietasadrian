@@ -106,14 +106,12 @@ export class LoginComponent {
       next: (res) => {
         this.successMailSent = true;
         this.loadingRecoverPassword = false;
-        console.log('google res,',res);
         this.router.navigate(['/landing/dietas/crear']);
         return 'ok';
       },
       error: (err) => {
         this.successMailSent = true;
         this.loadingRecoverPassword = false;
-        console.log(err);
         
         return 'err';
       },

@@ -10,7 +10,8 @@
           matInput
           placeholder="AlgunCorreo@dominio.com"
           type="email"
-          formControlName="UserEmail"
+          required="true"
+          formControlName="userEmail"
           (keyup.enter)="createAccount()"
         />
       </mat-form-field>
@@ -20,6 +21,7 @@
           matInput
           placeholder="EjemploDeClave1!"
           type="password"
+          required="true"
           formControlName="pass"
           (keyup.enter)="createAccount()"
         />
@@ -28,13 +30,13 @@
 
     <div
       class="horizontal-animation clase"
-      [ngClass]="{ 'enabled-button': !loginInputForm.invalid }"
+      [ngClass]="{ 'enabled-button': isSubmitButtonEnable }"
     >
       <button
         mat-button
-        [disabled]="loginInputForm.invalid"
-        (click)="createAccount()"
-        (keyup.enter)="!loginInputForm.invalid && createAccount()"
+        [disabled]="!isSubmitButtonEnable"
+        (click)="isSubmitButtonEnable && createAccount()"
+        (keyup.enter)="isSubmitButtonEnable && createAccount()"
       >
         <div class="login-button">
           <p>Crear Cuenta</p>
@@ -56,7 +58,7 @@
       </button>
     </div>
     <div class="success-message centered" *ngIf="!loading && successPassReset">
-      <p>Creaste una nueva contraseña.</p>
+      <p>Creaste una nueva cuenta.</p>
       <fa-icon
         [icon]="['fas', 'check']"
         style="--fa-animation-iteration-count: 2"
@@ -66,7 +68,7 @@
     </div>
     <div class="error-message centered" *ngIf="!loading && error">
       <p>
-        Inicia el proceso de recuperacion otra vez, si crees que hay un error
+        Inicia el proceso de crear cuenta otra vez, si crees que hay un error
         contáctanos.
       </p>
       <fa-icon
@@ -76,5 +78,9 @@
         style="--fa-animation-iteration-count: 2"
       ></fa-icon>
     </div>
+    <dietas-adrian-nx-workspace-strength-meter
+      [password]="loginInputForm.get('pass')?.value || ''"
+      (enableButton)="enableButton($event)"
+    ></dietas-adrian-nx-workspace-strength-meter>
   </div>
 </div>
