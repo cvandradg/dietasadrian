@@ -3,19 +3,20 @@ import { CommonModule } from '@angular/common';
 import { SharedModuleModule } from '@shared-modules';
 import { AuthService } from '@shared-modules/services/auth/auth-service.service';
 import { FormBuilder, Validators } from '@angular/forms';
+import { HeaderComponent } from '../../header/header.component';
 
 @Component({
   standalone: true,
   selector: 'dietas-adrian-nx-workspace-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
-  imports: [CommonModule, SharedModuleModule],
+  imports: [CommonModule, SharedModuleModule, HeaderComponent],
 })
 export class RegisterComponent {
   loading = false;
   error = false;
   buttonEnable = false;
-  successPassReset = false;
+  successAccountCreation = false;
 
   constructor(
     private authService: AuthService,
@@ -44,7 +45,8 @@ export class RegisterComponent {
   });
 
   get isSubmitButtonEnable() {
-    return !this.loginInputForm.invalid && this.buttonEnable;
+    return !this.loginInputForm.invalid && this.buttonEnable && this.successAccountCreation
+    ;
   }
 
   createAccount() {
@@ -53,8 +55,6 @@ export class RegisterComponent {
     if (this.loginInputForm.invalid) {
       return;
     }
-
-    console.log('values,', this.loginInputForm.value);
 
     // this.authService
     // .createAccount(this.loginInputForm.value as { userEmail: string; pass: string })
@@ -79,9 +79,17 @@ export class RegisterComponent {
         this.loginInputForm.value as { userEmail: string; pass: string }
       )
       .then(
-        (res) => {console.log('res', res);
+        (res) => {
+          console.log('res register', res);
+          this.successAccountCreation = true
+          this.loading = false;
         },
-        (err) => {console.log('err', err);
+        (err) => 
+        {
+
+          this.loading = false;
+          this.error = true;
+          console.log('err', err);
         }
       );
   }

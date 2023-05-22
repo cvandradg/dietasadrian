@@ -31,8 +31,12 @@ export class AuthService {
     return userCredentials;
   }
 
-  confirmEmail(code: string) {
-    return this.firebaseAuth.applyActionCode(code);
+  verifyEmail(code: string) {
+    return from(this.firebaseAuth.applyActionCode(code));
+  }
+
+  checkOobCode(oobCode: string){
+    return from(this.firebaseAuth.checkActionCode(oobCode));
   }
 
   signOut() {

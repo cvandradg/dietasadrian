@@ -17,6 +17,7 @@ import {
 import {
   faClipboardQuestion,
   faRightToBracket,
+  faEnvelopeCircleCheck,
 } from '@fortawesome/pro-light-svg-icons';
 
 import { faGripLines } from '@fortawesome/pro-thin-svg-icons';
@@ -71,7 +72,8 @@ export class Fontawesome {
       faRightToBracket,
       faSpinnerThird,
       faXmarkSolid,
-      faUser
+      faUser,
+      faEnvelopeCircleCheck
     );
   }
 }

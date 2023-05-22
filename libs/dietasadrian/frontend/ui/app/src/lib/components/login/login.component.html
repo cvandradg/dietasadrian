@@ -60,6 +60,20 @@
             </div>
           </button>
         </div>
+        <div
+          class="warning-message centered"
+          *ngIf="!loading && verificationRequired"
+        >
+          <fa-icon
+            [icon]="['fal', 'envelope-circle-check']"
+            style="--fa-animation-iteration-count: 2"
+            class="icon fa-xl fa-shake"
+            style="--fa-animation-iteration-count: 2"
+          ></fa-icon>
+          <p>
+            Necesitas verificar tu correo, te hemos enviado un link.
+          </p>
+        </div>
         <div class="error-message" *ngIf="!loading && error">
           <p>Revise sus credenciales, si cree que es un error contactanos.</p>
           <fa-icon
@@ -72,7 +86,7 @@
       </div>
       <div class="divison">/</div>
       <div class="automatic-signin-tools">
-        <div class="signup-animation" >
+        <div class="signup-animation">
           <button mat-button disableRipple="true" (click)="googleSignin()">
             <div class="signup-button">
               <fa-icon [icon]="['fab', 'google']"></fa-icon>
@@ -80,8 +94,8 @@
             </div>
           </button>
         </div>
- 
-        <div class="signup-animation">
+
+        <div class="signup-animation" [routerLink]="'/register'">
           <button mat-button disableRipple="true">
             <div class="signup-button">
               <fa-icon [icon]="['fas', 'user']"></fa-icon>
@@ -113,20 +127,21 @@
         style="--fa-animation-iteration-count: 2"
       ></fa-icon>
     </div>
+
     <div
       class="success-message centered"
       *ngIf="!loadingRecoverPassword && successMailSent"
     >
-      <p>
-        Si el correo es válido, revisa tus bandejas para recuperar tu
-        contraseña.
-      </p>
       <fa-icon
         [icon]="['fas', 'check']"
         style="--fa-animation-iteration-count: 2"
         class="icon fa-xl fa-shake"
         style="--fa-animation-iteration-count: 2"
       ></fa-icon>
+      <p>
+        Si el correo es válido, revisa tus bandejas para recuperar tu
+        contraseña.
+      </p>
     </div>
   </div>
   <footer class="login-footer">

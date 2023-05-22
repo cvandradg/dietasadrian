@@ -1,3 +1,4 @@
+<dietas-adrian-nx-workspace-header></dietas-adrian-nx-workspace-header>
 <div class="container">
   <div class="title">Crea tu cuenta</div>
   <div class="description">Recuerda crear una contraseña segura.</div>
@@ -11,6 +12,7 @@
           placeholder="AlgunCorreo@dominio.com"
           type="email"
           required="true"
+          [disabled]="successAccountCreation"
           formControlName="userEmail"
           (keyup.enter)="createAccount()"
         />
@@ -21,6 +23,7 @@
           matInput
           placeholder="EjemploDeClave1!"
           type="password"
+          [disabled]="successAccountCreation"
           required="true"
           formControlName="pass"
           (keyup.enter)="createAccount()"
@@ -41,7 +44,7 @@
         <div class="login-button">
           <p>Crear Cuenta</p>
           <fa-icon
-            *ngIf="!loading"
+            *ngIf="!loading && !successAccountCreation"
             [icon]="['fas', 'arrow-right']"
             style="--fa-animation-iteration-count: 2"
             class="icon fa-xl fa-shake"
@@ -54,10 +57,21 @@
             class="icon fa-xl fa-spin"
             style="--fa-animation-duration: 1s"
           ></fa-icon>
+
+          <fa-icon
+            *ngIf="!loading && successAccountCreation"
+            [icon]="['fas', 'check']"
+            style="--fa-animation-iteration-count: 2"
+            class="icon fa-xl fa-shake"
+            style="--fa-animation-iteration-count: 2"
+          ></fa-icon>
         </div>
       </button>
     </div>
-    <div class="success-message centered" *ngIf="!loading && successPassReset">
+    <div
+      class="success-message centered"
+      *ngIf="!loading && successAccountCreation"
+    >
       <p>Creaste una nueva cuenta.</p>
       <fa-icon
         [icon]="['fas', 'check']"

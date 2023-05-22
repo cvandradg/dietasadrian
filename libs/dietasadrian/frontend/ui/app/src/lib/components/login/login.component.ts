@@ -5,14 +5,14 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 import { AuthService } from '@shared-modules/services/auth/auth-service.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule} from '@angular/router';
 
 @Component({
   standalone: true,
   selector: 'dietas-adrian-nx-workspace-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  imports: [CommonModule, HeaderComponent, SharedModuleModule],
+  imports: [CommonModule, HeaderComponent, SharedModuleModule, RouterModule],
 })
 export class LoginComponent {
   loading = false;
@@ -20,6 +20,7 @@ export class LoginComponent {
   error = false;
   missingMail = false;
   successMailSent = false;
+  verificationRequired = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -62,9 +63,14 @@ export class LoginComponent {
       .subscribe({
         next: (res: any) => {
           this.loading = false;
+          this.verificationRequired = false;
           console.log('res login', res);
-
-
+          
+          
+          if(!res.user._delegate.emailVerified){
+            this.verificationRequired = true;
+            return
+          }
           
           this.router.navigate(['/landing/dietas/crear']);
           return 'ok';

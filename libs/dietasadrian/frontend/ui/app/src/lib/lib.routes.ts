@@ -4,6 +4,7 @@ import { AppComponent } from './components/app/app.component';
 import { LoginComponent } from './components/login/login.component';
 import { PassResetComponent } from './components/pass-reset/pass-reset.component';
 import { RegisterComponent } from './components/register/register/register.component';
+import { EmailVerificationComponent } from './components/email-verification/email-verification.component';
 
 export const appRoutes: Route[] = [
   {
@@ -38,6 +39,11 @@ export const appRoutes: Route[] = [
   {
     path: 'register',
     component: RegisterComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: 'email-verification',
+    component: EmailVerificationComponent,
     pathMatch: 'full',
   },
 ];
