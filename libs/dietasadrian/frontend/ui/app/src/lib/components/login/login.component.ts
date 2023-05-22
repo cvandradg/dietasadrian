@@ -60,14 +60,29 @@ export class LoginComponent {
     this.authService
       .auth(this.loginInputForm.value as { user: string; pass: string })
       .subscribe({
-        next: (res) => {
+        next: (res: any) => {
           this.loading = false;
+          console.log('res login', res);
+
+
+          
           this.router.navigate(['/landing/dietas/crear']);
           return 'ok';
         },
         error: (err) => {
           this.loading = false;
           this.error = true;
+
+          const errorCode = err.code;
+          const errorMessage = err.message;
+          console.log(errorCode, errorMessage);
+          
+          if (errorCode === 'auth/wrong-password') {
+            alert('Wrong password.');
+          } else {
+            alert(errorMessage);
+          }
+
           return 'err';
         },
       });
