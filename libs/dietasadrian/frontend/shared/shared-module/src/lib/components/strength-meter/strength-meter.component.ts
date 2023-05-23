@@ -44,20 +44,17 @@ export class StrengthMeterComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: any): void {
-
     this.passStrengthMeter(changes?.password?.currentValue);
   }
 
   passStrengthMeter(pass: string): 'debil' | 'media' | 'fuerte' {
     const result = this.validationFlags.filter((regexFlags: any) => {
-
       if (regexFlags.test(pass)) {
         return true;
       }
 
       return false;
     });
-
 
     if (result.length <= 2) {
       this.result = 'debil';

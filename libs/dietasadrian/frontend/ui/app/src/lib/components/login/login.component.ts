@@ -73,7 +73,7 @@ export class LoginComponent implements OnDestroy {
           this.clearVariables();
 
           if (!UserCredendial.user._delegate.emailVerified) {
-            this.authService.sendEmailVerification(UserCredendial)
+            this.authService.sendEmailVerification(UserCredendial);
             this.verificationRequired = true;
             return;
           }

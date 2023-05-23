@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ChangeDetectorRef,OnInit } from '@angular/core';
+import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { SharedModuleModule } from '@shared-modules';
@@ -10,12 +10,12 @@ import { AuthService } from '@shared-modules/services/auth/auth-service.service'
   selector: 'dietas-adrian-nx-workspace-pass-reset',
   templateUrl: './pass-reset.component.html',
   styleUrls: ['./pass-reset.component.scss'],
-  imports: [CommonModule, SharedModuleModule, RouterModule ],
+  imports: [CommonModule, SharedModuleModule, RouterModule],
 })
 export class PassResetComponent implements OnInit {
   loading = false;
   error = false;
-  buttonEnable = false
+  buttonEnable = false;
 
   successPassReset = false;
   firebaseCode = '';

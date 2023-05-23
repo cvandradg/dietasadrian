@@ -1,7 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Component,
-} from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModuleModule } from '@shared-modules';
 import { AuthService } from '@shared-modules/services/auth/auth-service.service';
@@ -69,7 +66,7 @@ export class RegisterComponent {
       .then((userCredendial) => {
         this.loading = false;
         this.successAccountCreation = true;
-        this.authService.sendEmailVerification(userCredendial)
+        this.authService.sendEmailVerification(userCredendial);
         setTimeout(() => {
           this.router.navigate(['/']);
         }, 6000);

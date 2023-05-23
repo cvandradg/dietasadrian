@@ -37,8 +37,7 @@ export class EmailVerificationComponent implements OnInit {
 
     this.error = {
       status: true,
-      message:
-        'En tu correo encontrarás un link válido de verificación.',
+      message: 'En tu correo encontrarás un link válido de verificación.',
     };
   }
 

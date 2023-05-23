@@ -1,6 +1,3 @@
-import { StrengthMeterComponent } from "./components/strength-meter/strength-meter.component";
+import { StrengthMeterComponent } from './components/strength-meter/strength-meter.component';
 
-
-export const COMPONENTS = [
-    StrengthMeterComponent
-];
+export const COMPONENTS = [StrengthMeterComponent];
