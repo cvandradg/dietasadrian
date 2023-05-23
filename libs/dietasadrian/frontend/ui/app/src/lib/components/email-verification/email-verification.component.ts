@@ -21,6 +21,7 @@ export class EmailVerificationComponent implements OnInit {
   };
 
   successVerification = false;
+  requiresVerification = false;
 
   constructor(
     private authService: AuthService,
@@ -29,22 +30,20 @@ export class EmailVerificationComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    if (this.route.snapshot.queryParamMap.has('oobCode')) {
+      this.verifyMail();
+      return;
+    }
+
+    this.error = {
+      status: true,
+      message:
+        'En tu correo encontrarás un link válido de verificación.',
+    };
+  }
+
+  verifyMail() {
     this.firebaseCode = this.route.snapshot.queryParamMap.get('oobCode') || '';
-
-        // this.authService
-    //   .sendEmailVerification(createAccountRequest)
-    //   .then((res: any) => {
-    //     this.successAccountCreation = true;
-    //     throw new Error('error en send mail');
-    //     this.changeDetectorRef.detectChanges();
-    //   })
-    //   .catch((err: { code: any; message: any }) => {
-    //     this.loading = false;
-
-    //     this.error = this.errorHelper.handleError(err);
-    //     console.log('error en send mail', this.error);
-    //     this.changeDetectorRef.detectChanges();
-    //   });
 
     this.authService.verifyEmail(this.firebaseCode).subscribe({
       next: (res: any) => {
@@ -63,3 +62,8 @@ export class EmailVerificationComponent implements OnInit {
     });
   }
 }
+
+// if (!res.user._delegate.emailVerified) {
+//   this.verificationRequired = true;
+//   return;
+// }

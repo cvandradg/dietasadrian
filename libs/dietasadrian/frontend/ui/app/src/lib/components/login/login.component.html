@@ -70,7 +70,7 @@
             class="icon fa-xl fa-shake"
             style="--fa-animation-iteration-count: 2"
           ></fa-icon>
-          <p>Necesitas verificar tu correo, te hemos enviado un link.</p>
+          <p>Verifica tu cuenta, te hemos enviado un link al correo.</p>
         </div>
         <div class="error-message" *ngIf="!loading && error.status">
           <p>{{ error.message }}</p>
@@ -131,8 +131,7 @@
       *ngIf="!loadingRecoverPassword && successMailSent"
     >
       <p>
-        Si el correo es válido, revisa tus bandejas para recuperar tu
-        contraseña.
+        Si el correo es válido te llegará un link para cambiar tu contraseña.
       </p>
       <fa-icon
         [icon]="['fas', 'check']"

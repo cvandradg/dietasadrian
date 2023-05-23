@@ -69,11 +69,11 @@ export class LoginComponent implements OnDestroy {
       .auth(this.loginInputForm.value as { user: string; pass: string })
       .pipe(takeUntil(this.notifier))
       .subscribe({
-        next: (res: any) => {
+        next: (UserCredendial: any) => {
           this.clearVariables();
-          console.log('res login', res);
 
-          if (!res.user._delegate.emailVerified) {
+          if (!UserCredendial.user._delegate.emailVerified) {
+            this.authService.sendEmailVerification(UserCredendial)
             this.verificationRequired = true;
             return;
           }

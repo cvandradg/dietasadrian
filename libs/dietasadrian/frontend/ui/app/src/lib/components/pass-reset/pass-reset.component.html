@@ -20,13 +20,13 @@
 
     <div
       class="horizontal-animation clase"
-      [ngClass]="{ 'enabled-button': !loginInputForm.invalid }"
+      [ngClass]="{ 'enabled-button': isSubmitButtonEnable || successPassReset }"
     >
       <button
         mat-button
-        [disabled]="loginInputForm.invalid"
-        (click)="resetPassword()"
-        (keyup.enter)="!loginInputForm.invalid && resetPassword()"
+        [disabled]="successPassReset"
+        (click)="isSubmitButtonEnable && resetPassword()"
+        (keyup.enter)="isSubmitButtonEnable && resetPassword()"
       >
         <div class="login-button">
           <p>Cambiar contraseña</p>
@@ -47,15 +47,27 @@
         </div>
       </button>
     </div>
-    <div class="success-message centered" *ngIf="!loading && successPassReset">
-      <p>Creaste una nueva contraseña.</p>
-      <fa-icon
-        [icon]="['fas', 'check']"
-        style="--fa-animation-iteration-count: 2"
-        class="icon fa-xl fa-shake"
-        style="--fa-animation-iteration-count: 2"
-      ></fa-icon>
+    <div [routerLink]="'/'">
+      <div
+        class="success-message centered"
+        *ngIf="!loading && successPassReset"
+      >
+        <p>Creaste una nueva contraseña.</p>
+        <fa-icon
+          [icon]="['fas', 'check']"
+          style="--fa-animation-iteration-count: 2"
+          class="icon fa-xl fa-shake"
+          style="--fa-animation-iteration-count: 2"
+        ></fa-icon>
+      </div>
+      <div
+        class="success-message centered"
+        *ngIf="!loading && successPassReset"
+      >
+        Click aca para acceder
+      </div>
     </div>
+
     <div class="error-message centered" *ngIf="!loading && error">
       <p>
         Inicia el proceso de recuperacion otra vez, si crees que hay un error
@@ -68,5 +80,9 @@
         style="--fa-animation-iteration-count: 2"
       ></fa-icon>
     </div>
+    <dietas-adrian-nx-workspace-strength-meter
+      [password]="loginInputForm.get('pass')?.value || ''"
+      (enableButton)="enableButton($event)"
+    ></dietas-adrian-nx-workspace-strength-meter>
   </div>
 </div>

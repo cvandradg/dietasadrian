@@ -35,7 +35,7 @@ export class OobcodeCheckerComponent implements OnInit {
 
             break;
           case 'PASSWORD_RESET':
-            this.router.navigate(['/code'], {
+            this.router.navigate(['/passReset'], {
               queryParamsHandling: 'preserve',
             });
             break;

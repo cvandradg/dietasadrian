@@ -33,7 +33,9 @@
 
     <div
       class="horizontal-animation clase"
-      [ngClass]="{ 'enabled-button': isSubmitButtonEnable || successAccountCreation}"
+      [ngClass]="{
+        'enabled-button': isSubmitButtonEnable || successAccountCreation
+      }"
     >
       <button
         mat-button
@@ -68,30 +70,31 @@
         </div>
       </button>
     </div>
-    <div
-      class="success-message centered"
-      *ngIf="!loading && successAccountCreation"
-    >
-      Revisa tu correo para activar tu cuenta
-    </div>
-    <div
-      class="success-message centered"
-      *ngIf="!loading && successAccountCreation"
-    >
-      <p>Creaste una nueva cuenta.</p>
-      <fa-icon
-        [icon]="['fas', 'check']"
-        style="--fa-animation-iteration-count: 2"
-        class="icon fa-xl fa-shake"
-        style="--fa-animation-iteration-count: 2"
-      ></fa-icon>
-    </div>
-    <div
-      class="success-message centered"
-      *ngIf="!loading && successAccountCreation"
-      [routerLink]="'/'"
-    >
-      Click aca para acceder, o espera 10 segundos
+    <div [routerLink]="'/'">
+      <div
+        class="success-message centered"
+        *ngIf="!loading && successAccountCreation"
+      >
+        Revisa tu correo para activar tu cuenta
+      </div>
+      <div
+        class="success-message centered"
+        *ngIf="!loading && successAccountCreation"
+      >
+        <p>Creaste una nueva cuenta.</p>
+        <fa-icon
+          [icon]="['fas', 'check']"
+          style="--fa-animation-iteration-count: 2"
+          class="icon fa-xl fa-shake"
+          style="--fa-animation-iteration-count: 2"
+        ></fa-icon>
+      </div>
+      <div
+        class="success-message centered"
+        *ngIf="!loading && successAccountCreation"
+      >
+        Click aca para acceder, o espera 6 segundos
+      </div>
     </div>
 
     <div class="error-message centered" *ngIf="!loading && error.status">

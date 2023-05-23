@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
 } from '@angular/core';
@@ -67,12 +66,13 @@ export class RegisterComponent {
       .createAccount(
         this.loginInputForm.value as { userEmail: string; pass: string }
       )
-      .then(() => {
+      .then((userCredendial) => {
         this.loading = false;
         this.successAccountCreation = true;
+        this.authService.sendEmailVerification(userCredendial)
         setTimeout(() => {
           this.router.navigate(['/']);
-        }, 10000);
+        }, 6000);
       })
       .catch((err: { code: boolean; message: string }) => {
         this.loading = false;
