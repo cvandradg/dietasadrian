@@ -1,30 +1,40 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { SharedModuleModule } from '@shared-modules';
 import { FormBuilder, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 import { AuthService } from '@shared-modules/services/auth/auth-service.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
+import { HelperErrorHandlerService } from '@shared-modules/services/helperErrorHandler.service';
 
 @Component({
   standalone: true,
   selector: 'dietas-adrian-nx-workspace-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  imports: [CommonModule, HeaderComponent, SharedModuleModule],
+  imports: [CommonModule, HeaderComponent, SharedModuleModule, RouterModule],
 })
-export class LoginComponent {
+export class LoginComponent implements OnDestroy {
+  notifier = new Subject();
+
   loading = false;
   loadingRecoverPassword = false;
-  error = false;
   missingMail = false;
   successMailSent = false;
+  verificationRequired = false;
+
+  error = {
+    status: false,
+    message: '',
+  };
 
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private errorHandler: HelperErrorHandlerService
   ) {}
 
   loginInputForm = this.formBuilder.group({
@@ -52,32 +62,37 @@ export class LoginComponent {
       return;
     }
 
+    this.clearVariables();
     this.loading = true;
-    this.successMailSent = false;
-    this.missingMail = false;
-    this.error = false;
 
     this.authService
       .auth(this.loginInputForm.value as { user: string; pass: string })
+      .pipe(takeUntil(this.notifier))
       .subscribe({
-        next: (res) => {
-          this.loading = false;
+        next: (UserCredendial: any) => {
+          this.clearVariables();
+
+          if (!UserCredendial.user._delegate.emailVerified) {
+            this.authService.sendEmailVerification(UserCredendial);
+            this.verificationRequired = true;
+            return;
+          }
+
           this.router.navigate(['/landing/dietas/crear']);
           return 'ok';
         },
         error: (err) => {
           this.loading = false;
-          this.error = true;
+
+          this.error = this.errorHandler.handleError(err);
           return 'err';
         },
       });
   }
 
   forgotPassword() {
+    this.clearVariables();
     this.loadingRecoverPassword = true;
-    this.successMailSent = false;
-    this.missingMail = false;
-    this.error = false;
 
     if (this.loginInputForm.value.user === '') {
       this.missingMail = true;
@@ -106,17 +121,34 @@ export class LoginComponent {
       next: (res) => {
         this.successMailSent = true;
         this.loadingRecoverPassword = false;
-        console.log('google res,',res);
         this.router.navigate(['/landing/dietas/crear']);
         return 'ok';
       },
       error: (err) => {
         this.successMailSent = true;
         this.loadingRecoverPassword = false;
-        console.log(err);
-        
+
         return 'err';
       },
     });
+  }
+
+  clearVariables() {
+    this.loading = false;
+    this.loadingRecoverPassword = false;
+
+    this.missingMail = false;
+    this.successMailSent = false;
+    this.verificationRequired = false;
+
+    this.error = {
+      status: false,
+      message: '',
+    };
+  }
+
+  ngOnDestroy() {
+    this.notifier.next(undefined);
+    this.notifier.complete();
   }
 }

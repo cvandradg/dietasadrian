@@ -11,10 +11,9 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  screenWidth = 0
+  screenWidth = 0;
 
   ngOnInit(): void {
-    console.log('HeaderComponent');
-    this.screenWidth = window.innerWidth;  
+    this.screenWidth = window.innerWidth;
   }
 }

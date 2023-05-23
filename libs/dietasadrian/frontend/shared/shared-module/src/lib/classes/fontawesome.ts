@@ -17,6 +17,7 @@ import {
 import {
   faClipboardQuestion,
   faRightToBracket,
+  faEnvelopeCircleCheck,
 } from '@fortawesome/pro-light-svg-icons';
 
 import { faGripLines } from '@fortawesome/pro-thin-svg-icons';
@@ -40,7 +41,11 @@ import {
   faFacebookF,
 } from '@fortawesome/free-brands-svg-icons';
 
-import { faSpinnerThird, faUser } from '@fortawesome/pro-solid-svg-icons';
+import {
+  faSpinnerThird,
+  faUser,
+  faCircleNotch,
+} from '@fortawesome/pro-solid-svg-icons';
 
 @Directive()
 export class Fontawesome {
@@ -71,7 +76,9 @@ export class Fontawesome {
       faRightToBracket,
       faSpinnerThird,
       faXmarkSolid,
-      faUser
+      faUser,
+      faCircleNotch,
+      faEnvelopeCircleCheck
     );
   }
 }
