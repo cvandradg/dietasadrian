@@ -61,8 +61,3 @@ export class EmailVerificationComponent implements OnInit {
     });
   }
 }
-
-// if (!res.user._delegate.emailVerified) {
-//   this.verificationRequired = true;
-//   return;
-// }
