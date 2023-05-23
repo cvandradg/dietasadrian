@@ -1,27 +1,39 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModuleModule } from '@shared-modules';
 import { AuthService } from '@shared-modules/services/auth/auth-service.service';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
 import { HeaderComponent } from '../../header/header.component';
+import { HelperErrorHandlerService } from '@shared-modules/services/helperErrorHandler.service';
 
 @Component({
   standalone: true,
   selector: 'dietas-adrian-nx-workspace-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
-  imports: [CommonModule, SharedModuleModule, HeaderComponent],
+  imports: [CommonModule, SharedModuleModule, HeaderComponent, RouterModule],
 })
 export class RegisterComponent {
   loading = false;
-  error = false;
+  error = {
+    status: false,
+    message: '',
+    error: {},
+  };
   buttonEnable = false;
   successAccountCreation = false;
 
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
-    private changeDetectorRef: ChangeDetectorRef
+    private changeDetectorRef: ChangeDetectorRef,
+    private errorHelper: HelperErrorHandlerService,
+    private router: Router
   ) {}
 
   loginInputForm = this.formBuilder.group({
@@ -45,53 +57,28 @@ export class RegisterComponent {
   });
 
   get isSubmitButtonEnable() {
-    return !this.loginInputForm.invalid && this.buttonEnable && this.successAccountCreation
-    ;
+    return !this.loginInputForm.invalid && this.buttonEnable;
   }
 
-  createAccount() {
+  async createAccount() {
     this.loading = true;
 
-    if (this.loginInputForm.invalid) {
-      return;
-    }
-
-    // this.authService
-    // .createAccount(this.loginInputForm.value as { userEmail: string; pass: string })
-    // .subscribe({
-    //   next: (res) => {
-    //     this.loading = false;
-    //     this.error = false;
-    //     this.successPassReset = true;
-
-    //     return 'ok';
-    //   },
-    //   error: (err) => {
-    //     this.loading = false;
-    //     this.error = true;
-    //     this.successPassReset = false;
-    //     return 'err';
-    //   },
-    // });
-
-    this.authService
+    await this.authService
       .createAccount(
         this.loginInputForm.value as { userEmail: string; pass: string }
       )
-      .then(
-        (res) => {
-          console.log('res register', res);
-          this.successAccountCreation = true
-          this.loading = false;
-        },
-        (err) => 
-        {
-
-          this.loading = false;
-          this.error = true;
-          console.log('err', err);
-        }
-      );
+      .then(() => {
+        this.loading = false;
+        this.successAccountCreation = true;
+        setTimeout(() => {
+          this.router.navigate(['/']);
+        }, 10000);
+      })
+      .catch((err: { code: boolean; message: string }) => {
+        this.loading = false;
+        this.error = this.errorHelper.handleError(err);
+      });
+    // .finally(() => {this.loading = false;}) //It seems that I need a further version of ES, currentl ES02018?
   }
 
   enableButton(isEnable: boolean) {

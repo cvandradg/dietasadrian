@@ -70,12 +70,10 @@
             class="icon fa-xl fa-shake"
             style="--fa-animation-iteration-count: 2"
           ></fa-icon>
-          <p>
-            Necesitas verificar tu correo, te hemos enviado un link.
-          </p>
+          <p>Necesitas verificar tu correo, te hemos enviado un link.</p>
         </div>
-        <div class="error-message" *ngIf="!loading && error">
-          <p>Revise sus credenciales, si cree que es un error contactanos.</p>
+        <div class="error-message" *ngIf="!loading && error.status">
+          <p>{{ error.message }}</p>
           <fa-icon
             [icon]="['fas', 'xmark']"
             style="--fa-animation-iteration-count: 2"
@@ -132,16 +130,16 @@
       class="success-message centered"
       *ngIf="!loadingRecoverPassword && successMailSent"
     >
+      <p>
+        Si el correo es válido, revisa tus bandejas para recuperar tu
+        contraseña.
+      </p>
       <fa-icon
         [icon]="['fas', 'check']"
         style="--fa-animation-iteration-count: 2"
         class="icon fa-xl fa-shake"
         style="--fa-animation-iteration-count: 2"
       ></fa-icon>
-      <p>
-        Si el correo es válido, revisa tus bandejas para recuperar tu
-        contraseña.
-      </p>
     </div>
   </div>
   <footer class="login-footer">

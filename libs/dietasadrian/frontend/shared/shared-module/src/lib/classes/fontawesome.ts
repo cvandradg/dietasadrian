@@ -41,7 +41,7 @@ import {
   faFacebookF,
 } from '@fortawesome/free-brands-svg-icons';
 
-import { faSpinnerThird, faUser } from '@fortawesome/pro-solid-svg-icons';
+import { faSpinnerThird, faUser, faCircleNotch} from '@fortawesome/pro-solid-svg-icons';
 
 @Directive()
 export class Fontawesome {
@@ -73,6 +73,7 @@ export class Fontawesome {
       faSpinnerThird,
       faXmarkSolid,
       faUser,
+      faCircleNotch,
       faEnvelopeCircleCheck
     );
   }

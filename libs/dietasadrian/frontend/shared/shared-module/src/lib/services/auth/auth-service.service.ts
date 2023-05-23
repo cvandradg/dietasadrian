@@ -20,22 +20,22 @@ export class AuthService {
     );
   }
 
-  async createAccount(credentials: { userEmail: string; pass: string }) {
-    const userCredentials:any = await this.firebaseAuth.createUserWithEmailAndPassword(
+  createAccount(credentials: { userEmail: string; pass: string }) {
+    return this.firebaseAuth.createUserWithEmailAndPassword(
       credentials.userEmail,
       credentials.pass
     );
+  }
 
-    await sendEmailVerification(userCredentials?.user);
-
-    return userCredentials;
+  sendEmailVerification(userCredentials: any) {
+    return sendEmailVerification(userCredentials?.user);
   }
 
   verifyEmail(code: string) {
     return from(this.firebaseAuth.applyActionCode(code));
   }
 
-  checkOobCode(oobCode: string){
+  checkOobCode(oobCode: string) {
     return from(this.firebaseAuth.checkActionCode(oobCode));
   }
 

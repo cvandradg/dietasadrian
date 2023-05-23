@@ -9,3 +9,5 @@ export * from './lib/components/pass-reset/pass-reset.component';
 export * from './lib/components/register/register/register.component';
 
 export * from './lib/components/email-verification/email-verification.component';
+
+export * from './lib/components/oobcode-checker/oobcode-checker/oobcode-checker.component';

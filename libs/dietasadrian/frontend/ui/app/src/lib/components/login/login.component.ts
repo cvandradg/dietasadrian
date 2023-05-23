@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { SharedModuleModule } from '@shared-modules';
 import { FormBuilder, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 import { AuthService } from '@shared-modules/services/auth/auth-service.service';
-import { Router, RouterModule} from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
+import { HelperErrorHandlerService } from '@shared-modules/services/helperErrorHandler.service';
 
 @Component({
   standalone: true,
@@ -14,18 +16,25 @@ import { Router, RouterModule} from '@angular/router';
   styleUrls: ['./login.component.scss'],
   imports: [CommonModule, HeaderComponent, SharedModuleModule, RouterModule],
 })
-export class LoginComponent {
+export class LoginComponent implements OnDestroy {
+  notifier = new Subject();
+
   loading = false;
   loadingRecoverPassword = false;
-  error = false;
   missingMail = false;
   successMailSent = false;
   verificationRequired = false;
 
+  error = {
+    status: false,
+    message: '',
+  };
+
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private errorHandler: HelperErrorHandlerService
   ) {}
 
   loginInputForm = this.formBuilder.group({
@@ -53,52 +62,37 @@ export class LoginComponent {
       return;
     }
 
+    this.clearVariables();
     this.loading = true;
-    this.successMailSent = false;
-    this.missingMail = false;
-    this.error = false;
 
     this.authService
       .auth(this.loginInputForm.value as { user: string; pass: string })
+      .pipe(takeUntil(this.notifier))
       .subscribe({
         next: (res: any) => {
-          this.loading = false;
-          this.verificationRequired = false;
+          this.clearVariables();
           console.log('res login', res);
-          
-          
-          if(!res.user._delegate.emailVerified){
+
+          if (!res.user._delegate.emailVerified) {
             this.verificationRequired = true;
-            return
+            return;
           }
-          
+
           this.router.navigate(['/landing/dietas/crear']);
           return 'ok';
         },
         error: (err) => {
           this.loading = false;
-          this.error = true;
 
-          const errorCode = err.code;
-          const errorMessage = err.message;
-          console.log(errorCode, errorMessage);
-          
-          if (errorCode === 'auth/wrong-password') {
-            alert('Wrong password.');
-          } else {
-            alert(errorMessage);
-          }
-
+          this.error = this.errorHandler.handleError(err);
           return 'err';
         },
       });
   }
 
   forgotPassword() {
+    this.clearVariables();
     this.loadingRecoverPassword = true;
-    this.successMailSent = false;
-    this.missingMail = false;
-    this.error = false;
 
     if (this.loginInputForm.value.user === '') {
       this.missingMail = true;
@@ -133,9 +127,28 @@ export class LoginComponent {
       error: (err) => {
         this.successMailSent = true;
         this.loadingRecoverPassword = false;
-        
+
         return 'err';
       },
     });
+  }
+
+  clearVariables() {
+    this.loading = false;
+    this.loadingRecoverPassword = false;
+
+    this.missingMail = false;
+    this.successMailSent = false;
+    this.verificationRequired = false;
+
+    this.error = {
+      status: false,
+      message: '',
+    };
+  }
+
+  ngOnDestroy() {
+    this.notifier.next(undefined);
+    this.notifier.complete();
   }
 }
