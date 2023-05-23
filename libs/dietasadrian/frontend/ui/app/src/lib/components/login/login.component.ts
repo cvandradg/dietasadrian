@@ -34,7 +34,7 @@ export class LoginComponent implements OnDestroy {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private errorHandler: HelperErrorHandlerService
+    private errorHelper: HelperErrorHandlerService
   ) {}
 
   loginInputForm = this.formBuilder.group({
@@ -84,7 +84,7 @@ export class LoginComponent implements OnDestroy {
         error: (err) => {
           this.loading = false;
 
-          this.error = this.errorHandler.handleError(err);
+          this.error = this.errorHelper.handleError(err);
           return 'err';
         },
       });
@@ -111,6 +111,7 @@ export class LoginComponent implements OnDestroy {
         error: (err) => {
           this.successMailSent = true;
           this.loadingRecoverPassword = false;
+          this.error = this.errorHelper.handleError(err);
           return 'err';
         },
       });
@@ -125,8 +126,7 @@ export class LoginComponent implements OnDestroy {
         return 'ok';
       },
       error: (err) => {
-        this.successMailSent = true;
-        this.loadingRecoverPassword = false;
+        this.error = this.errorHelper.handleError(err);
 
         return 'err';
       },

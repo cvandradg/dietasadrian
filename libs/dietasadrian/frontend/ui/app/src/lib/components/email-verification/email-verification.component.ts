@@ -26,7 +26,7 @@ export class EmailVerificationComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private route: ActivatedRoute,
-    private errorHandler: HelperErrorHandlerService
+    private errorHelper: HelperErrorHandlerService
   ) {}
 
   ngOnInit(): void {
@@ -54,7 +54,7 @@ export class EmailVerificationComponent implements OnInit {
         const errorMessage = err.message;
         console.log(errorCode, errorMessage);
 
-        this.errorHandler.handleError(err);
+        this.error = this.errorHelper.handleError(err);
 
         return 'err';
       },

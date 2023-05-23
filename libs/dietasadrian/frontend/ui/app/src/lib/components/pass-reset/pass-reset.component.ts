@@ -4,6 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { SharedModuleModule } from '@shared-modules';
 import { AuthService } from '@shared-modules/services/auth/auth-service.service';
+import { HelperErrorHandlerService } from '@shared-modules/services/helperErrorHandler.service';
 
 @Component({
   standalone: true,
@@ -14,7 +15,7 @@ import { AuthService } from '@shared-modules/services/auth/auth-service.service'
 })
 export class PassResetComponent implements OnInit {
   loading = false;
-  error = false;
+  error = {status: false, message: ''};
   buttonEnable = false;
 
   successPassReset = false;
@@ -24,7 +25,8 @@ export class PassResetComponent implements OnInit {
     private authService: AuthService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private changeDetectorRef: ChangeDetectorRef
+    private changeDetectorRef: ChangeDetectorRef,
+    private errorHelper: HelperErrorHandlerService
   ) {}
 
   ngOnInit(): void {
@@ -54,7 +56,7 @@ export class PassResetComponent implements OnInit {
       .subscribe({
         next: (res) => {
           this.loading = false;
-          this.error = false;
+          this.error.status = false;
           this.successPassReset = true;
 
           return 'ok';
@@ -62,7 +64,7 @@ export class PassResetComponent implements OnInit {
         error: (err) => {
           console.log('err', err);
           this.loading = false;
-          this.error = true;
+          this.error = this.errorHelper.handleError(err);
           this.successPassReset = false;
 
           return 'err';

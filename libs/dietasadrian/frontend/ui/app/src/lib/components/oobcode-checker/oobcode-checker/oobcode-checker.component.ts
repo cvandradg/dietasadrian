@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from '@shared-modules/services/auth/auth-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SharedModuleModule } from '@shared-modules';
+import { HelperErrorHandlerService } from '@shared-modules/services/helperErrorHandler.service';
 
 @Component({
   standalone: true,
@@ -13,12 +14,14 @@ import { SharedModuleModule } from '@shared-modules';
 })
 export class OobcodeCheckerComponent implements OnInit {
   firebaseCode = '';
+  error = { status: false, message: '' };
   test: any;
 
   constructor(
     private authService: AuthService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private errorHelper: HelperErrorHandlerService
   ) {}
 
   ngOnInit(): void {
@@ -42,15 +45,9 @@ export class OobcodeCheckerComponent implements OnInit {
           default:
             break;
         }
-
-        return 'ok';
       },
       error: (err) => {
-        const errorCode = err.code;
-        const errorMessage = err.message;
-        console.log('err in code verification.', errorCode, errorMessage);
-
-        return 'err';
+        this.error = this.errorHelper.handleError(err);
       },
     });
   }

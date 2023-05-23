@@ -3,9 +3,9 @@
   <div class="title">Crea tu cuenta</div>
   <div class="description">Recuerda crear una contraseña segura.</div>
 
-  <div class="manual-login-inputs">
-    <form [formGroup]="loginInputForm" class="form-login-inputs">
-      <mat-form-field class="example-full-width">
+  <div class="register-login-inputs">
+    <form [formGroup]="loginInputForm" class="form-register-inputs">
+      <mat-form-field>
         <mat-label>Correo</mat-label>
         <input
           matInput
@@ -17,7 +17,7 @@
           (keyup.enter)="createAccount()"
         />
       </mat-form-field>
-      <mat-form-field class="example-full-width">
+      <mat-form-field>
         <mat-label>Contraseña</mat-label>
         <input
           matInput
@@ -43,7 +43,7 @@
         (click)="isSubmitButtonEnable && createAccount()"
         (keyup.enter)="isSubmitButtonEnable && createAccount()"
       >
-        <div class="login-button">
+        <div class="register-button">
           <p>Crear Cuenta</p>
           <fa-icon
             *ngIf="!loading && !successAccountCreation"

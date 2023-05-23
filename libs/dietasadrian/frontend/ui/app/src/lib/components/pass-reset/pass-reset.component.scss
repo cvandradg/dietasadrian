@@ -32,8 +32,8 @@
   }
 }
 
-.manual-login-inputs,
-.form-login-inputs {
+.reset-pass-input,
+.form-pass-reset-inputs {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -45,7 +45,7 @@
   }
 }
 
-.form-login-inputs {
+.form-pass-reset-inputs {
   width: 100%;
 }
 
@@ -54,14 +54,14 @@ button {
   background: transparent !important;
 }
 
-.login-button {
+.pass-reset-button {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 }
 
-.manual-login-inputs {
+.reset-pass-input {
   width: 100%;
   margin: auto;
   max-width: 30rem;

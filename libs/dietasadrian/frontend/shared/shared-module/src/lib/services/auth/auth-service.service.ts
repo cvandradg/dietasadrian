@@ -3,7 +3,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { GoogleAuthProvider } from '@angular/fire/auth';
 
 import { from } from 'rxjs';
-import { sendEmailVerification, UserCredential } from 'firebase/auth';
+import { sendEmailVerification } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root',

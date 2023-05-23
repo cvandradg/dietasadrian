@@ -4,9 +4,9 @@
     Si no deseas cambiar la contraseña cierra esta ventana.
   </div>
 
-  <div class="manual-login-inputs">
-    <form [formGroup]="loginInputForm" class="form-login-inputs">
-      <mat-form-field class="example-full-width">
+  <div class="reset-pass-input">
+    <form [formGroup]="loginInputForm" class="form-pass-reset-inputs">
+      <mat-form-field>
         <mat-label>Contraseña</mat-label>
         <input
           matInput
@@ -28,7 +28,7 @@
         (click)="isSubmitButtonEnable && resetPassword()"
         (keyup.enter)="isSubmitButtonEnable && resetPassword()"
       >
-        <div class="login-button">
+        <div class="pass-reset-button">
           <p>Cambiar contraseña</p>
           <fa-icon
             *ngIf="!loading"
@@ -68,10 +68,9 @@
       </div>
     </div>
 
-    <div class="error-message centered" *ngIf="!loading && error">
+    <div class="error-message centered" *ngIf="!loading && error.status">
       <p>
-        Inicia el proceso de recuperacion otra vez, si crees que hay un error
-        contáctanos.
+        {{ error.message }}
       </p>
       <fa-icon
         [icon]="['fas', 'xmark']"
