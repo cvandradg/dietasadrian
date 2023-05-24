@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, Output} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MODULES } from '@shared-modules/exports/export-modules';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 @Component({
   standalone: true,
@@ -11,9 +12,10 @@ import { MODULES } from '@shared-modules/exports/export-modules';
 })
 export class SecondaryAnimatedButtonComponent {
   @Output() submitEvent = new EventEmitter<any>();
-  @Input() buttonText!: string
+  @Input() buttonText = "Some Text";
+  @Input() fontawesomeIcon: IconProp = ['fas', 'user'];
 
   onClickEvent() {
-    this.submitEvent.emit()
+    this.submitEvent.emit();
   }
 }
