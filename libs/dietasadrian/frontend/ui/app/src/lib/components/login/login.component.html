@@ -11,6 +11,7 @@
         <form [formGroup]="loginInputForm" class="form-login-inputs">
           <mat-form-field>
             <mat-label>Correo</mat-label>
+
             <input
               matInput
               placeholder="AlgunCorreo@dominio.com"
@@ -62,24 +63,17 @@
       </div>
       <div class="divison">/</div>
       <div class="automatic-signin-tools">
-        <div class="signup-animation">
-          <button mat-button disableRipple="true" (click)="googleSignin()">
-            <div class="signup-button">
-              <fa-icon [icon]="['fab', 'google']"></fa-icon>
-              <p>Accede con Google</p>
-            </div>
-          </button>
-        </div>
+        <dietas-adrian-nx-workspace-secondary-animated-button
+          (submitEvent)="googleSignin()"
+          [buttonText]="'Accede con Google'"
+        >
+        </dietas-adrian-nx-workspace-secondary-animated-button>
 
-        <div class="signup-animation" [routerLink]="'/register'">
-          <button mat-button disableRipple="true">
-            <div class="signup-button">
-              <fa-icon [icon]="['fas', 'user']"></fa-icon>
-              <p>Crear Cuenta</p>
-            </div>
-          </button>
-        </div>
-        <div></div>
+        <dietas-adrian-nx-workspace-secondary-animated-button
+          (submitEvent)="createAccount()"
+          [buttonText]="'Crear Cuenta'"
+        >
+        </dietas-adrian-nx-workspace-secondary-animated-button>
       </div>
     </div>
     <div class="forgot-password" (click)="forgotPassword()">

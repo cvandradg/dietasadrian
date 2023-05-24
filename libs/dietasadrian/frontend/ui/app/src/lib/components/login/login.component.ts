@@ -33,8 +33,8 @@ export class LoginComponent implements OnDestroy {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private router: Router,
-    private errorHelper: HelperErrorHandlerService
+    private errorHelper: HelperErrorHandlerService,
+    private router: Router
   ) {}
 
   loginInputForm = this.formBuilder.group({
@@ -131,6 +131,10 @@ export class LoginComponent implements OnDestroy {
         return 'err';
       },
     });
+  }
+
+  createAccount() {
+    this.router.navigate(['/register']);
   }
 
   clearVariables() {

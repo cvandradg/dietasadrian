@@ -18,6 +18,6 @@ export class PrimaryAnimatedButtonComponent {
   buttonText!: string;
 
   onSubmit() {
-    this.submitEvent.emit('submit event');
+    this.submitEvent.emit();
   }
 }
