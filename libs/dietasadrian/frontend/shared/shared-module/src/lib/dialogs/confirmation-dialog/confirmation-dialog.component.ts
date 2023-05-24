@@ -1,7 +1,7 @@
 import { Component, Inject, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MODULES } from '../../export-modules';
+import { MODULES } from '../../exports/export-modules';
 
 @Component({
   standalone: true,

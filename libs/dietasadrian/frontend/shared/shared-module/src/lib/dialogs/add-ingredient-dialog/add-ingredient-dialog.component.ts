@@ -5,7 +5,7 @@ import { FormControl } from '@angular/forms';
 
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { MODULES } from '../../export-modules';
+import { MODULES } from '../../exports/export-modules';
 
 export interface State {
   flag: string;
@@ -15,7 +15,7 @@ export interface State {
 
 @Component({
   standalone: true,
-  imports: [CommonModule, ...MODULES],
+  imports: [CommonModule, MODULES],
 
   selector: 'dietas-adrian-nx-workspace-add-ingredient-dialog',
   templateUrl: './add-ingredient-dialog.component.html',
