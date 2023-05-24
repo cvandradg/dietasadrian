@@ -17,7 +17,7 @@ import { HelperErrorHandlerService } from '@shared-modules/services/helperErrorH
   imports: [CommonModule, HeaderComponent, SharedModuleModule, RouterModule],
 })
 export class LoginComponent implements OnDestroy {
-  notifier = new Subject();
+  destroy = new Subject();
 
   loading = false;
   loadingRecoverPassword = false;
@@ -33,8 +33,8 @@ export class LoginComponent implements OnDestroy {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private router: Router,
-    private errorHandler: HelperErrorHandlerService
+    private errorHelper: HelperErrorHandlerService,
+    private router: Router
   ) {}
 
   loginInputForm = this.formBuilder.group({
@@ -67,7 +67,7 @@ export class LoginComponent implements OnDestroy {
 
     this.authService
       .auth(this.loginInputForm.value as { user: string; pass: string })
-      .pipe(takeUntil(this.notifier))
+      .pipe(takeUntil(this.destroy))
       .subscribe({
         next: (UserCredendial: any) => {
           this.clearVariables();
@@ -84,7 +84,7 @@ export class LoginComponent implements OnDestroy {
         error: (err) => {
           this.loading = false;
 
-          this.error = this.errorHandler.handleError(err);
+          this.error = this.errorHelper.handleError(err);
           return 'err';
         },
       });
@@ -102,6 +102,7 @@ export class LoginComponent implements OnDestroy {
 
     this.authService
       .recoverPassword(this.loginInputForm.value.user as string)
+      .pipe(takeUntil(this.destroy))
       .subscribe({
         next: (res) => {
           this.successMailSent = true;
@@ -111,26 +112,33 @@ export class LoginComponent implements OnDestroy {
         error: (err) => {
           this.successMailSent = true;
           this.loadingRecoverPassword = false;
+          this.error = this.errorHelper.handleError(err);
           return 'err';
         },
       });
   }
 
   googleSignin() {
-    this.authService.googleSignin().subscribe({
-      next: (res) => {
-        this.successMailSent = true;
-        this.loadingRecoverPassword = false;
-        this.router.navigate(['/landing/dietas/crear']);
-        return 'ok';
-      },
-      error: (err) => {
-        this.successMailSent = true;
-        this.loadingRecoverPassword = false;
+    this.authService
+      .googleSignin()
+      .pipe(takeUntil(this.destroy))
+      .subscribe({
+        next: (res) => {
+          this.successMailSent = true;
+          this.loadingRecoverPassword = false;
+          this.router.navigate(['/landing/dietas/crear']);
+          return 'ok';
+        },
+        error: (err) => {
+          this.error = this.errorHelper.handleError(err);
 
-        return 'err';
-      },
-    });
+          return 'err';
+        },
+      });
+  }
+
+  createAccount() {
+    this.router.navigate(['/register']);
   }
 
   clearVariables() {
@@ -148,7 +156,7 @@ export class LoginComponent implements OnDestroy {
   }
 
   ngOnDestroy() {
-    this.notifier.next(undefined);
-    this.notifier.complete();
+    this.destroy.next(undefined);
+    this.destroy.complete();
   }
 }

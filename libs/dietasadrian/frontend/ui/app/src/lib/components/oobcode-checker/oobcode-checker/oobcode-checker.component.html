@@ -4,8 +4,21 @@
     <p>No cierres esta ventana.</p>
   </div>
   <fa-icon
+    *ngIf="!error.status"
     [icon]="['fas', 'spinner-third']"
     class="icon fa-spin fa-2xl"
     style="--fa-animation-duration: 1s"
   ></fa-icon>
+
+  <div class="error-message centered" *ngIf="error.status">
+    <p>
+      {{ error.message }}
+    </p>
+    <fa-icon
+      [icon]="['fas', 'xmark']"
+      style="--fa-animation-iteration-count: 2"
+      class="icon fa-xl fa-shake"
+      style="--fa-animation-iteration-count: 2"
+    ></fa-icon>
+  </div>
 </div>

@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModuleModule } from '@shared-modules';
 import { AuthService } from '@shared-modules/services/auth/auth-service.service';
@@ -14,7 +14,7 @@ import { HelperErrorHandlerService } from '@shared-modules/services/helperErrorH
   styleUrls: ['./register.component.scss'],
   imports: [CommonModule, SharedModuleModule, HeaderComponent, RouterModule],
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnDestroy {
   loading = false;
   error = {
     status: false,
@@ -23,6 +23,7 @@ export class RegisterComponent {
   };
   buttonEnable = false;
   successAccountCreation = false;
+  redirectTimeout = 1;
 
   constructor(
     private authService: AuthService,
@@ -57,6 +58,7 @@ export class RegisterComponent {
   }
 
   async createAccount() {
+    this.clearVariables();
     this.loading = true;
 
     await this.authService
@@ -67,7 +69,7 @@ export class RegisterComponent {
         this.loading = false;
         this.successAccountCreation = true;
         this.authService.sendEmailVerification(userCredendial);
-        setTimeout(() => {
+        this.redirectTimeout = setTimeout(() => {
           this.router.navigate(['/']);
         }, 6000);
       })
@@ -81,5 +83,20 @@ export class RegisterComponent {
   enableButton(isEnable: boolean) {
     this.buttonEnable = isEnable;
     this.changeDetectorRef.detectChanges();
+  }
+
+  clearVariables() {
+    this.loading = false;
+    this.error = {
+      status: false,
+      message: '',
+      error: {},
+    };
+    this.buttonEnable = false;
+    this.successAccountCreation = false;
+  }
+
+  ngOnDestroy(): void {
+    clearTimeout(this.redirectTimeout);
   }
 }

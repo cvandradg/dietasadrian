@@ -1,9 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
+import { Component, ChangeDetectorRef, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { SharedModuleModule } from '@shared-modules';
 import { AuthService } from '@shared-modules/services/auth/auth-service.service';
+import { HelperErrorHandlerService } from '@shared-modules/services/helperErrorHandler.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -12,19 +14,21 @@ import { AuthService } from '@shared-modules/services/auth/auth-service.service'
   styleUrls: ['./pass-reset.component.scss'],
   imports: [CommonModule, SharedModuleModule, RouterModule],
 })
-export class PassResetComponent implements OnInit {
+export class PassResetComponent implements OnInit, OnDestroy {
   loading = false;
-  error = false;
+  error = { status: false, message: '' };
   buttonEnable = false;
 
   successPassReset = false;
   firebaseCode = '';
+  destroy = new Subject();
 
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private changeDetectorRef: ChangeDetectorRef
+    private changeDetectorRef: ChangeDetectorRef,
+    private errorHelper: HelperErrorHandlerService
   ) {}
 
   ngOnInit(): void {
@@ -51,10 +55,11 @@ export class PassResetComponent implements OnInit {
 
     this.authService
       .resetPass(this.firebaseCode, this.loginInputForm.value.pass as string)
+      .pipe(takeUntil(this.destroy))
       .subscribe({
         next: (res) => {
           this.loading = false;
-          this.error = false;
+          this.error.status = false;
           this.successPassReset = true;
 
           return 'ok';
@@ -62,7 +67,7 @@ export class PassResetComponent implements OnInit {
         error: (err) => {
           console.log('err', err);
           this.loading = false;
-          this.error = true;
+          this.error = this.errorHelper.handleError(err);
           this.successPassReset = false;
 
           return 'err';
@@ -77,5 +82,10 @@ export class PassResetComponent implements OnInit {
   enableButton(isEnable: boolean) {
     this.buttonEnable = isEnable;
     this.changeDetectorRef.detectChanges();
+  }
+
+  ngOnDestroy() {
+    this.destroy.next(undefined);
+    this.destroy.complete();
   }
 }

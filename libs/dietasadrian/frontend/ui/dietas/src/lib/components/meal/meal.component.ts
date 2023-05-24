@@ -3,14 +3,17 @@ import {
   EventEmitter,
   Input,
   Output,
+  OnDestroy,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Meal } from '@interfaces';
 import { SharedModuleModule } from '@shared-modules';
 import { FoodLineComponent } from '../food-line/food-line.component';
-import { moveItemInArray } from '@angular/cdk/drag-drop';
+
 import { HelperService } from '@helperFunctionsService';
 import { v4 as uuidv4 } from 'uuid';
+import { Subject, takeUntil } from 'rxjs';
+import { moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   standalone: true,
@@ -20,7 +23,7 @@ import { v4 as uuidv4 } from 'uuid';
   templateUrl: './meal.component.html',
   styleUrls: ['./meal.component.scss'],
 })
-export class MealComponent {
+export class MealComponent implements OnDestroy {
   @Input()
   meal!: Meal;
 
@@ -33,12 +36,15 @@ export class MealComponent {
   @Input()
   screenSize!: number;
 
+  destroy = new Subject();
+
   constructor(private helper: HelperService) {}
 
   onDeleteFoodLine($event: any) {
     this.helper
       .openConfirmationDialog('Desea borrar la linea?')
       .afterClosed()
+      .pipe(takeUntil(this.destroy))
       .subscribe((confirm: boolean) => {
         if (!confirm) {
           return;
@@ -57,6 +63,7 @@ export class MealComponent {
     this.helper
       .openConfirmationDialog('Desea borrar la comida?')
       .afterClosed()
+      .pipe(takeUntil(this.destroy))
       .subscribe((confirm: boolean) => {
         return confirm ? this.deleteMeal.emit({ mealId: this.meal.id }) : false;
       });
@@ -85,5 +92,10 @@ export class MealComponent {
       event.previousIndex,
       event.currentIndex
     );
+  }
+
+  ngOnDestroy() {
+    this.destroy.next(undefined);
+    this.destroy.complete();
   }
 }

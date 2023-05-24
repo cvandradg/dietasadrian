@@ -33,8 +33,8 @@
   }
 }
 
-.manual-login-inputs,
-.form-login-inputs {
+.register-login-inputs,
+.form-register-inputs {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -46,7 +46,7 @@
   }
 }
 
-.form-login-inputs {
+.form-register-inputs {
   width: 100%;
 }
 
@@ -55,14 +55,14 @@ button {
   background: transparent !important;
 }
 
-.login-button {
+.register-button {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 }
 
-.manual-login-inputs {
+.register-login-inputs {
   width: 100%;
   margin: auto;
   max-width: 30rem;

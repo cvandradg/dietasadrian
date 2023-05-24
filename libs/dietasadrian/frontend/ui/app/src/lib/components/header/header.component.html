@@ -1,22 +1,11 @@
 <mat-toolbar>
   <button
     mat-icon-button
-    class="example-icon"
-    aria-label="Example icon-button with menu icon"
+    aria-label="Adrian Badilla Home Button"
   ></button>
   <span [routerLink]="'/'" class="trim-dots">
     <p *ngIf="screenWidth <= 600; else elseBlock">AB</p>
     <ng-template #elseBlock>Adrian Badilla</ng-template>
   </span>
   <span class="example-spacer"></span>
-  <button
-    mat-icon-button
-    class="example-icon favorite-icon"
-    aria-label="Example icon-button with heart icon"
-  ></button>
-  <button
-    mat-icon-button
-    class="example-icon"
-    aria-label="Example icon-button with share icon"
-  ></button>
 </mat-toolbar>
