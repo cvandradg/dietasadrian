@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModuleModule } from '@shared-modules';
 import { AuthService } from '@shared-modules/services/auth/auth-service.service';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
 import { HelperErrorHandlerService } from '@shared-modules/services/helperErrorHandler.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -13,7 +14,7 @@ import { HelperErrorHandlerService } from '@shared-modules/services/helperErrorH
   styleUrls: ['./email-verification.component.scss'],
   imports: [CommonModule, SharedModuleModule, HeaderComponent, RouterModule],
 })
-export class EmailVerificationComponent implements OnInit {
+export class EmailVerificationComponent implements OnInit, OnDestroy {
   firebaseCode = '';
   error = {
     status: false,
@@ -22,6 +23,7 @@ export class EmailVerificationComponent implements OnInit {
 
   successVerification = false;
   requiresVerification = false;
+  destroy = new Subject();
 
   constructor(
     private authService: AuthService,
@@ -44,20 +46,28 @@ export class EmailVerificationComponent implements OnInit {
   verifyMail() {
     this.firebaseCode = this.route.snapshot.queryParamMap.get('oobCode') || '';
 
-    this.authService.verifyEmail(this.firebaseCode).subscribe({
-      next: (res: any) => {
-        console.log('res login', res);
-        this.successVerification = true;
-      },
-      error: (err) => {
-        const errorCode = err.code;
-        const errorMessage = err.message;
-        console.log(errorCode, errorMessage);
+    this.authService
+      .verifyEmail(this.firebaseCode)
+      .pipe(takeUntil(this.destroy))
+      .subscribe({
+        next: (res: any) => {
+          console.log('res login', res);
+          this.successVerification = true;
+        },
+        error: (err) => {
+          const errorCode = err.code;
+          const errorMessage = err.message;
+          console.log(errorCode, errorMessage);
 
-        this.error = this.errorHelper.handleError(err);
+          this.error = this.errorHelper.handleError(err);
 
-        return 'err';
-      },
-    });
+          return 'err';
+        },
+      });
+  }
+
+  ngOnDestroy() {
+    this.destroy.next(undefined);
+    this.destroy.complete();
   }
 }
