@@ -80,6 +80,9 @@ button {
   font-size: 1rem;
   border-radius: 0.3rem;
   z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 
   @media (pointer: coarse) {
     &::after,
@@ -109,6 +112,7 @@ button {
     --gradient-angle: 360deg;
   }
 }
+
 
 ::ng-deep {
   .mdc-text-field:not(.mdc-text-field--disabled)
