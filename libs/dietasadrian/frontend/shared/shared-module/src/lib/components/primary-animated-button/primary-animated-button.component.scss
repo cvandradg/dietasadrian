@@ -37,6 +37,8 @@ button {
 
 ::ng-deep {
   .mdc-button__label {
+    font-family: 'Roboto', sans-serif;
+    padding: 0 3.3rem;
     width: 80%;
   }
 }

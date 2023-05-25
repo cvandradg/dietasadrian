@@ -1,11 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Injector } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModuleModule } from '@shared-modules';
-import { AuthService } from '@shared-modules/services/auth/auth-service.service';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
-import { HelperErrorHandlerService } from '@shared-modules/services/helperErrorHandler.service';
-import { Subject, takeUntil } from 'rxjs';
+import { takeUntil } from 'rxjs';
+import { Handler } from '@classes/Handler';
 
 @Component({
   standalone: true,
@@ -14,22 +13,20 @@ import { Subject, takeUntil } from 'rxjs';
   styleUrls: ['./email-verification.component.scss'],
   imports: [CommonModule, SharedModuleModule, HeaderComponent, RouterModule],
 })
-export class EmailVerificationComponent implements OnInit, OnDestroy {
+export class EmailVerificationComponent
+  extends Handler
+  implements OnInit, OnDestroy
+{
   firebaseCode = '';
-  error = {
-    status: false,
-    message: '',
-  };
 
-  successVerification = false;
   requiresVerification = false;
-  destroy = new Subject();
 
   constructor(
-    private authService: AuthService,
     private route: ActivatedRoute,
-    private errorHelper: HelperErrorHandlerService
-  ) {}
+    injector: Injector
+  ) {
+    super(injector);
+  }
 
   ngOnInit(): void {
     if (this.route.snapshot.queryParamMap.has('oobCode')) {
@@ -37,10 +34,9 @@ export class EmailVerificationComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.error = {
-      status: true,
-      message: 'En tu correo encontrarás un link válido de verificación.',
-    };
+    this.error.status = true;
+    this.error.message =
+      'En tu correo encontrarás un link válido de verificación.';
   }
 
   verifyMail() {
@@ -49,21 +45,7 @@ export class EmailVerificationComponent implements OnInit, OnDestroy {
     this.authService
       .verifyEmail(this.firebaseCode)
       .pipe(takeUntil(this.destroy))
-      .subscribe({
-        next: (res: any) => {
-          console.log('res login', res);
-          this.successVerification = true;
-        },
-        error: (err) => {
-          const errorCode = err.code;
-          const errorMessage = err.message;
-          console.log(errorCode, errorMessage);
-
-          this.error = this.errorHelper.handleError(err);
-
-          return 'err';
-        },
-      });
+      .subscribe(this.basicObserver);
   }
 
   ngOnDestroy() {

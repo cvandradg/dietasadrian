@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MODULES } from '@shared-modules/exports/export-modules';
 
@@ -9,7 +9,12 @@ import { MODULES } from '@shared-modules/exports/export-modules';
   styleUrls: ['./primary-animated-button.component.scss'],
   imports: [CommonModule, MODULES],
 })
-export class PrimaryAnimatedButtonComponent {
+export class PrimaryAnimatedButtonComponent implements OnChanges{
+  
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
+    
+  }
   
   @Output() submitEvent = new EventEmitter<any>();
   @Input() loading = false;
