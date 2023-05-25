@@ -17,7 +17,7 @@
               placeholder="AlgunCorreo@dominio.com"
               type="email"
               formControlName="user"
-              (keyup.enter)="onSubmit()"
+              (keyup.enter)="login()"
             />
           </mat-form-field>
           <mat-form-field>
@@ -27,13 +27,13 @@
               placeholder="EjemploDeClave1!"
               type="password"
               formControlName="pass"
-              (keyup.enter)="onSubmit()"
+              (keyup.enter)="login()"
             />
           </mat-form-field>
         </form>
 
         <dietas-adrian-nx-workspace-primary-animated-button
-          (submitEvent)="onSubmit()"
+          (submitEvent)="login()"
           [enable]="!loginInputForm.invalid"
           [loading]="loading"
           [buttonText]="'Accede a Tu Cuenta'"
@@ -71,7 +71,7 @@
         </dietas-adrian-nx-workspace-secondary-animated-button>
 
         <dietas-adrian-nx-workspace-secondary-animated-button
-          (submitEvent)="createAccount()"
+          (submitEvent)="createAccountRedirect()"
           [buttonText]="'Crear Cuenta'"
           [fontawesomeIcon]="['fas', 'user']"
         >
@@ -102,7 +102,7 @@
 
     <div
       class="success-message centered"
-      *ngIf="!loadingRecoverPassword && successMailSent"
+      *ngIf="!loadingRecoverPassword && successfulReponse"
     >
       <p>
         Si el correo es válido te llegará un link para cambiar tu contraseña.

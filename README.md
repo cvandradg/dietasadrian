@@ -6,6 +6,20 @@ This project was generated using [Nx](https://nx.dev).
 
 🔎 **Smart, Fast and Extensible Build System**
 
+## Questions
+1. I'm trying to simplify  components code in ui/components folder. They are all using Service1, Service2 and common variables.
+I Thought into TS mixins to provide them all with SharedModulesModule (which currently, they are all using) but I ran into 2 issues
+first, I can't import a service within a TS mixin
+second, I don't think they all will always consume SharedModulesModule.
+
+So, I created a Handler class with the @Directive decorator, in its constructor I'm providing Injector to provide the service to anyone extending
+the Handler class without the need to redeclare it. Not sure if this approach is good.
+
+2. Observables vs Promises, not sure which one to pick when working with Firebase services.
+
+3. I have a bunch of Observers in a Handler helper class to reduce code in components, that doesnt seems to be right but I'm not sure how to reduce
+observers code size
+
 ## Quick Start & Documentation
 
 [Nx Documentation](https://nx.dev/angular)

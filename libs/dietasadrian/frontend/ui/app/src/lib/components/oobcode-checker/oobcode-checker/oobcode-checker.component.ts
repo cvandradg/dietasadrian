@@ -1,10 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Injector, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '@shared-modules/services/auth/auth-service.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { SharedModuleModule } from '@shared-modules';
-import { HelperErrorHandlerService } from '@shared-modules/services/helperErrorHandler.service';
-import { Subject, takeUntil } from 'rxjs';
+import { takeUntil } from 'rxjs';
+import { Handler } from '@classes/Handler';
 
 @Component({
   standalone: true,
@@ -13,48 +12,24 @@ import { Subject, takeUntil } from 'rxjs';
   styleUrls: ['./oobcode-checker.component.scss'],
   imports: [CommonModule, SharedModuleModule, SharedModuleModule],
 })
-export class OobcodeCheckerComponent implements OnInit, OnDestroy {
+export class OobcodeCheckerComponent extends Handler implements OnInit, OnDestroy {
   firebaseCode = '';
-  error = { status: false, message: '' };
-  test: any;
-  destroy = new Subject();
+
 
   constructor(
-    private authService: AuthService,
     private route: ActivatedRoute,
-    private router: Router,
-    private errorHelper: HelperErrorHandlerService
-  ) {}
+    private injector: Injector,
+  ) {
+    super(injector) 
+  }
 
   ngOnInit(): void {
     this.firebaseCode = this.route.snapshot.queryParamMap.get('oobCode') || '';
-    this.test = this.route || '';
 
     this.authService
       .checkOobCode(this.firebaseCode)
       .pipe(takeUntil(this.destroy))
-      .subscribe({
-        next: (res) => {
-          switch (res.operation) {
-            case 'VERIFY_EMAIL':
-              this.router.navigate(['/email-verification'], {
-                queryParamsHandling: 'preserve',
-              });
-
-              break;
-            case 'PASSWORD_RESET':
-              this.router.navigate(['/passReset'], {
-                queryParamsHandling: 'preserve',
-              });
-              break;
-            default:
-              break;
-          }
-        },
-        error: (err) => {
-          this.error = this.errorHelper.handleError(err);
-        },
-      });
+      .subscribe(this.codeCheckerObserver);
   }
 
   ngOnDestroy() {
