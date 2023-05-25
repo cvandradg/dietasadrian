@@ -55,7 +55,7 @@ export class Handler {
       this.loadingRecoverPassword = false;
     },
     error: (err: { code: boolean; message: string }) => {
-      this.successfulReponse = true;
+      this.missingMail = true;
       this.loadingRecoverPassword = false;
       this.error = this.errorHelper.handleError(err);
     },

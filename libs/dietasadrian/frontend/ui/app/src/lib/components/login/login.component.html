@@ -79,7 +79,7 @@
       </div>
     </div>
     <div class="forgot-password" (click)="forgotPassword()">
-      <p>Forgot Password?</p>
+      <p>Recuperar Contraseña</p>
       <fa-icon
         *ngIf="loadingRecoverPassword"
         [icon]="['fas', 'spinner-third']"
@@ -87,18 +87,18 @@
         style="--fa-animation-duration: 1s"
       ></fa-icon>
     </div>
-    <div
+    <!-- <div
       class="error-message centered"
       *ngIf="!loadingRecoverPassword && missingMail"
     >
-      <p>Escribe tu correo.</p>
+      <p>{{ error.message  }}</p>
       <fa-icon
         [icon]="['fas', 'xmark']"
         style="--fa-animation-iteration-count: 2"
         class="icon fa-xl fa-shake"
         style="--fa-animation-iteration-count: 2"
       ></fa-icon>
-    </div>
+    </div> -->
 
     <div
       class="success-message centered"

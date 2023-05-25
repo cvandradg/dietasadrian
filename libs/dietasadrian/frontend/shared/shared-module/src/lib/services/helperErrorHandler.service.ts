@@ -179,6 +179,14 @@ export class HelperErrorHandlerService {
     if (error.code === 'auth/unauthorized-domain') {
       return this.errorObject(true, 'Ocurrió un error, inténtalo de nuevo.', error);
     }
+    
+    /**
+     * Potencial Missing errors in documentation
+     */
+    if (error.code === 'auth/missing-email') {
+      return this.errorObject(true, 'Escribe tu correo en la parte superior y presiona de nuevo \'Recuperar Contraseña.\'', error);
+    }
+    
 
 
     console.log('no entra en ifs? de errores');

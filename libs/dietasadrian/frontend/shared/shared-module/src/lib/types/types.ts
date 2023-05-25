@@ -14,8 +14,12 @@ export type Constructor<TResult, TParams extends any[] = any[]> = new (
   ...params: TParams
 ) => TResult;
 
-export const basicValidator = [
-  Validators.required, // Validators
-  Validators.min(5),
-  Validators.max(30),
+export const validations = ( ...validators: any[]  ) => [
+  '',
+  [
+    Validators.required,
+    Validators.min(5),
+    Validators.max(30),
+    ...validators
+  ],
 ];
