@@ -1,4 +1,11 @@
-import { Component, Injector, OnDestroy } from '@angular/core';
+import {
+  Component,
+  Injector,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { SharedModuleModule } from '@shared-modules';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -17,7 +24,7 @@ import { validations } from '@shared-modules/types/types';
   styleUrls: ['./login.component.scss'],
   imports: [CommonModule, HeaderComponent, SharedModuleModule, RouterModule],
 })
-export class LoginComponent extends Handler implements OnDestroy {
+export class LoginComponent extends Handler implements OnInit, OnDestroy {
   loginInputForm = this.formBuilder.group({
     user: validations(Validators.email),
     pass: validations(),
@@ -27,11 +34,11 @@ export class LoginComponent extends Handler implements OnDestroy {
     super(injector);
   }
 
-  login() {
-    if (this.loginInputForm.invalid) {
-      return;
-    }
+  ngOnInit(): void {
+    if (localStorage.getItem('attemptToLoggedIn') === 'true') this.getSession();
+  }
 
+  login() {
     this.clearVariables();
     this.loading = true;
 
@@ -39,6 +46,10 @@ export class LoginComponent extends Handler implements OnDestroy {
       .auth(this.loginInputForm.value as { user: string; pass: string })
       .pipe(takeUntil(this.destroy))
       .subscribe(this.loginObserver);
+  }
+
+  getSession() {
+    this.authService.getUserSession().subscribe(this.getSessionsObserver);
   }
 
   forgotPassword() {

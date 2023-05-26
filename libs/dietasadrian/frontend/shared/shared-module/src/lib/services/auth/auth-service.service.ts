@@ -27,8 +27,12 @@ export class AuthService {
     );
   }
 
+  getUserSession() {
+    return from(this.firebaseAuth.authState);
+  }
+
   sendEmailVerification(userCredentials: any) {
-    return sendEmailVerification(userCredentials?.user);
+    return sendEmailVerification(userCredentials);
   }
 
   verifyEmail(code: string) {

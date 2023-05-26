@@ -70,15 +70,22 @@
         </div>
       </button>
     </div>
-    <div [routerLink]="'/'">
+    <!-- [routerLink]="'/'"  -->
+    <div class="centered">
       <div
-        class="success-message centered"
+        class="warning-message "
         *ngIf="!loading && successAccountCreation"
       >
-        Revisa tu correo para activar tu cuenta
+        <p>Revisa tu correo para activar tu cuenta</p>
+        <fa-icon
+          [icon]="['fas', 'message-exclamation']"
+          style="--fa-animation-iteration-count: 2"
+          class="icon fa-xl fa-shake"
+          style="--fa-animation-iteration-count: 2"
+        ></fa-icon>
       </div>
       <div
-        class="success-message centered"
+        class="success-message"
         *ngIf="!loading && successAccountCreation"
       >
         <p>Creaste una nueva cuenta.</p>
@@ -89,15 +96,9 @@
           style="--fa-animation-iteration-count: 2"
         ></fa-icon>
       </div>
-      <div
-        class="success-message centered"
-        *ngIf="!loading && successAccountCreation"
-      >
-        Click aca para acceder, o espera 6 segundos
-      </div>
     </div>
 
-    <div class="error-message centered" *ngIf="!loading && error.status">
+    <div class="error-message" *ngIf="!loading && error.status">
       <p>
         {{ error.message }}
       </p>

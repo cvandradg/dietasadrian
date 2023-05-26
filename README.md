@@ -6,6 +6,9 @@ This project was generated using [Nx](https://nx.dev).
 
 🔎 **Smart, Fast and Extensible Build System**
 
+## TODO
+1. enablePersistance to enable offline mode
+
 ## Questions
 1. I'm trying to simplify  components code in ui/components folder. They are all using Service1, Service2 and common variables.
 I Thought into TS mixins to provide them all with SharedModulesModule (which currently, they are all using) but I ran into 2 issues
@@ -19,6 +22,9 @@ the Handler class without the need to redeclare it. Not sure if this approach is
 
 3. I have a bunch of Observers in a Handler helper class to reduce code in components, that doesnt seems to be right but I'm not sure how to reduce
 observers code size
+
+4. Login set a localStorage variable to know if the user already tried to log in to call for the firebase user information, all of firebase authentication calls are taking more than 30 seconds after cache is cleared. I want to avoid using localStorage, how can I do this if fibebase is taking 30secs to 1min to return a call back
+saying if the user is authenticated or not.
 
 ## Quick Start & Documentation
 

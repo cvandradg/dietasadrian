@@ -45,7 +45,11 @@ import {
   faSpinnerThird,
   faUser,
   faCircleNotch,
+  faMessageExclamation
 } from '@fortawesome/pro-solid-svg-icons';
+
+
+
 
 @Directive()
 export class Fontawesome {
@@ -73,6 +77,7 @@ export class Fontawesome {
       faGoogle,
       faTwitter,
       faFacebookF,
+      faMessageExclamation,
       faRightToBracket,
       faSpinnerThird,
       faXmarkSolid,
