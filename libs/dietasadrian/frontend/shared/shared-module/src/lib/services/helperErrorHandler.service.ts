@@ -17,13 +17,6 @@ export class HelperErrorHandlerService {
     if (error.code === 'auth/email-already-in-use') {
       return this.errorObject(true, 'El usuario ya existe.', error);
     }
-    if (error.code === 'auth/invalid-email') {
-      return this.errorObject(
-        true,
-        'Ese correo ya se encuentra en uso.',
-        error
-      );
-    }
     if (error.code === 'auth/operation-not-allowed') {
       return this.errorObject(true, 'Operación no permitida.', error);
     }

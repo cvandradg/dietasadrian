@@ -9,12 +9,7 @@ import { MODULES } from '@shared-modules/exports/export-modules';
   styleUrls: ['./primary-animated-button.component.scss'],
   imports: [CommonModule, MODULES],
 })
-export class PrimaryAnimatedButtonComponent implements OnChanges{
-  
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
-    
-  }
+export class PrimaryAnimatedButtonComponent {
   
   @Output() submitEvent = new EventEmitter<any>();
   @Input() loading = false;

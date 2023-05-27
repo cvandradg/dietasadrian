@@ -96,13 +96,18 @@ button {
   }
 }
 
+.centered {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
 .error-message {
   display: flex;
   flex-direction: row-reverse;
   justify-content: flex-end;
   align-items: center;
-  margin: 0rem 0.5rem;
   gap: 0.5rem;
+  margin: 0rem 0.5rem;
   width: 100%;
   color: rgb(235, 116, 116);
 }
@@ -112,11 +117,21 @@ button {
   flex-direction: row-reverse;
   justify-content: flex-end;
   align-items: center;
-  margin: 0rem 0.5rem;
-  gap: 0.5rem;
+  gap: 0.4rem;
   width: 100%;
   color: rgb(126, 207, 160);
 }
+
+.warning-message {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  color: rgb(207, 199, 126);
+}
+
 
 ::ng-deep {
   .mdc-button__label {

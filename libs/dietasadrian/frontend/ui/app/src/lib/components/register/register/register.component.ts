@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModuleModule } from '@shared-modules';
 import { AuthService } from '@shared-modules/services/auth/auth-service.service';
@@ -14,7 +14,7 @@ import { HelperErrorHandlerService } from '@shared-modules/services/helperErrorH
   styleUrls: ['./register.component.scss'],
   imports: [CommonModule, SharedModuleModule, HeaderComponent, RouterModule],
 })
-export class RegisterComponent implements OnDestroy {
+export class RegisterComponent {
   loading = false;
   error = {
     status: false,
@@ -69,9 +69,7 @@ export class RegisterComponent implements OnDestroy {
         this.loading = false;
         this.successAccountCreation = true;
         this.authService.sendEmailVerification(userCredendial);
-        this.redirectTimeout = setTimeout(() => {
-          this.router.navigate(['/']);
-        }, 6000);
+
       })
       .catch((err: { code: boolean; message: string }) => {
         this.loading = false;
@@ -94,9 +92,5 @@ export class RegisterComponent implements OnDestroy {
     };
     this.buttonEnable = false;
     this.successAccountCreation = false;
-  }
-
-  ngOnDestroy(): void {
-    clearTimeout(this.redirectTimeout);
   }
 }

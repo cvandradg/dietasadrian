@@ -47,7 +47,7 @@ export class StrengthMeterComponent implements OnInit, OnChanges {
     this.passStrengthMeter(changes?.password?.currentValue);
   }
 
-  passStrengthMeter(pass: string): 'debil' | 'media' | 'fuerte' {
+  passStrengthMeter(pass: string): 'vulnerable' | 'debil' | 'semisegura' | 'segura' | 'fuerte' {
     const result = this.validationFlags.filter((regexFlags: any) => {
       if (regexFlags.test(pass)) {
         return true;
@@ -56,17 +56,31 @@ export class StrengthMeterComponent implements OnInit, OnChanges {
       return false;
     });
 
+    if (result.length <= 1) {
+      this.result = 'vulnerable';
+      this.isButtonEnable(false);
+      return 'vulnerable';
+    }
+
     if (result.length <= 2) {
       this.result = 'debil';
-      this.isButtonEnable(false);
+
+      this.isButtonEnable(true);
       return 'debil';
     }
 
-    if (result.length <= 4) {
-      this.result = 'media';
+    if (result.length <= 3) {
+      this.result = 'semisegura';
 
-      this.isButtonEnable(false);
-      return 'media';
+      this.isButtonEnable(true);
+      return 'semisegura';
+    }
+
+    if (result.length <= 4) {
+      this.result = 'segura';
+
+      this.isButtonEnable(true);
+      return 'segura';
     }
 
     this.isButtonEnable(true);

@@ -66,7 +66,38 @@ export class Handler {
       this.clearVariables();
 
       if (!UserCredendial.user._delegate.emailVerified) {
-        this.authService.sendEmailVerification(UserCredendial);
+        this.authService.sendEmailVerification(UserCredendial?.user);
+        this.verificationRequired = true;
+        return;
+      }
+
+      this.router.navigate(['/landing/dietas/crear']);
+      return 'ok';
+    },
+    error: (err: { code: boolean; message: string }) => {
+      this.loading = false;
+
+      this.error = this.errorHelper.handleError(err);
+      return 'err';
+    },
+  };
+
+  getSessionsObserver = {
+    next: (userInfo: any) => {
+      localStorage.setItem('attemptToLoggedIn', 'true');
+
+      this.clearVariables();
+
+      console.log('credentials,', userInfo);
+      console.log('credentials,', userInfo?.multiFactor?.user);
+
+      // if (!userInfo?.multiFactor?.user) throw new Error('User not found.');
+
+      if (
+        userInfo?.multiFactor?.user &&
+        !userInfo?.multiFactor?.user.emailVerified
+      ) {
+        this.authService.sendEmailVerification(userInfo);
         this.verificationRequired = true;
         return;
       }
