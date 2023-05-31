@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Directive, Injector } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@shared-modules/services/auth/auth-service.service';
 import { HelperErrorHandlerService } from '@shared-modules/services/helperErrorHandler.service';
-import { Subject } from 'rxjs';
+import { Subject, finalize } from 'rxjs';
 
 @Directive()
 export class Handler {
@@ -12,22 +12,18 @@ export class Handler {
   };
 
   loading = false;
-  missingMail = false;
   successfulReponse = false;
+  destroy = new Subject();
+
+  missingMail = false;
   verificationRequired = false;
   loadingRecoverPassword = false;
-
-  destroy = new Subject();
 
   basicObserver = {
     next: () => {
       this.successfulReponse = true;
     },
     error: (err: { code: boolean; message: string }) => {
-      const errorCode = err.code;
-      const errorMessage = err.message;
-      console.log(errorCode, errorMessage);
-
       this.error = this.errorHelper.handleError(err);
     },
   };
@@ -37,15 +33,9 @@ export class Handler {
       this.successfulReponse = true;
       this.loadingRecoverPassword = false;
       this.router.navigate(['/landing/dietas/crear']);
-      return 'ok';
     },
     error: (err: { code: boolean; message: string }) => {
       this.error = this.errorHelper.handleError(err);
-
-      return 'err';
-    },
-    complete: () => {
-      return 'complete';
     },
   };
 
@@ -55,7 +45,6 @@ export class Handler {
       this.loadingRecoverPassword = false;
     },
     error: (err: { code: boolean; message: string }) => {
-      this.missingMail = true;
       this.loadingRecoverPassword = false;
       this.error = this.errorHelper.handleError(err);
     },
@@ -72,16 +61,10 @@ export class Handler {
         return;
       }
 
-      console.log('login observer,', UserCredendial);
-
       this.router.navigate(['/landing/dietas/crear']);
-      return 'ok';
     },
     error: (err: { code: boolean; message: string }) => {
-      this.loading = false;
-
       this.error = this.errorHelper.handleError(err);
-      return 'err';
     },
   };
 
@@ -105,14 +88,9 @@ export class Handler {
 
         this.router.navigate(['/landing/dietas/crear']);
       });
-
-      return 'ok';
     },
     error: (err: { code: boolean; message: string }) => {
-      this.loading = false;
-
       this.error = this.errorHelper.handleError(err);
-      return 'err';
     },
   };
 
@@ -138,6 +116,13 @@ export class Handler {
       this.error = this.errorHelper.handleError(err);
     },
   };
+
+  finalize() {
+    return finalize(() => {
+      this.loading = false;
+      this.loadingRecoverPassword = false;
+    });
+  }
 
   clearVariables() {
     this.error = {
