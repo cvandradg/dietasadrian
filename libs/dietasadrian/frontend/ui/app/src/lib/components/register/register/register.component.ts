@@ -68,7 +68,8 @@ export class RegisterComponent {
       .then((userCredendial) => {
         this.loading = false;
         this.successAccountCreation = true;
-        this.authService.sendEmailVerification(userCredendial);
+        
+        this.authService.sendEmailVerification(userCredendial.user);
 
       })
       .catch((err: { code: boolean; message: string }) => {
@@ -90,7 +91,6 @@ export class RegisterComponent {
       message: '',
       error: {},
     };
-    this.buttonEnable = false;
     this.successAccountCreation = false;
   }
 }

@@ -27,6 +27,10 @@ export class AuthService {
     );
   }
 
+  getCurrentUser() {
+    return from(this.firebaseAuth.currentUser);
+  }
+
   getUserSession() {
     return from(this.firebaseAuth.authState);
   }

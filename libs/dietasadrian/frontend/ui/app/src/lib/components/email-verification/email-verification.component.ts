@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SharedModuleModule } from '@shared-modules';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
-import { takeUntil } from 'rxjs';
+import { takeUntil, concatMap } from 'rxjs';
 import { Handler } from '@classes/Handler';
 
 @Component({
@@ -44,8 +44,9 @@ export class EmailVerificationComponent
 
     this.authService
       .verifyEmail(this.firebaseCode)
-      .pipe(takeUntil(this.destroy))
-      .subscribe(this.basicObserver);
+      .pipe(takeUntil(this.destroy),
+      concatMap (res => this.authService.getCurrentUser()))
+      .subscribe(this.getSessionsObserver);
   }
 
   ngOnDestroy() {
