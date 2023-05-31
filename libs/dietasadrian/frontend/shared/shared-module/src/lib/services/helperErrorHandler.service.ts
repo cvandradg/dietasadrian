@@ -179,6 +179,11 @@ export class HelperErrorHandlerService {
     if (error.code === 'auth/missing-email') {
       return this.errorObject(true, 'Escribe tu correo en la parte superior y presiona de nuevo \'Recuperar Contraseña.\'', error);
     }
+
+    
+    if (error.code === 'auth/too-many-requests') {
+      return this.errorObject(true, 'Inténtalo nuevamente.', error);
+    }
     
 
 

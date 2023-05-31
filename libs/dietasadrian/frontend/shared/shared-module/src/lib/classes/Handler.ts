@@ -1,4 +1,4 @@
-import { Directive, Injector } from '@angular/core';
+import { ChangeDetectorRef, Directive, Injector } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@shared-modules/services/auth/auth-service.service';
 import { HelperErrorHandlerService } from '@shared-modules/services/helperErrorHandler.service';
@@ -64,12 +64,15 @@ export class Handler {
   loginObserver = {
     next: (UserCredendial: any) => {
       this.clearVariables();
+      localStorage.setItem('attemptToLoggedIn', 'true');
 
       if (!UserCredendial.user._delegate.emailVerified) {
         this.authService.sendEmailVerification(UserCredendial?.user);
         this.verificationRequired = true;
         return;
       }
+
+      console.log('login observer,', UserCredendial);
 
       this.router.navigate(['/landing/dietas/crear']);
       return 'ok';
@@ -83,26 +86,26 @@ export class Handler {
   };
 
   getSessionsObserver = {
-    next: (userInfo: any) => {
+    next: async (userInfo: any) => {
       localStorage.setItem('attemptToLoggedIn', 'true');
 
       this.clearVariables();
 
-      console.log('credentials,', userInfo);
-      console.log('credentials,', userInfo?.multiFactor?.user);
-
-      // if (!userInfo?.multiFactor?.user) throw new Error('User not found.');
-
-      if (
-        userInfo?.multiFactor?.user &&
-        !userInfo?.multiFactor?.user.emailVerified
-      ) {
-        this.authService.sendEmailVerification(userInfo);
-        this.verificationRequired = true;
-        return;
+      if (!userInfo?.multiFactor?.user) {
+        throw new Error('No user');
       }
 
-      this.router.navigate(['/landing/dietas/crear']);
+      await userInfo?.multiFactor?.user.reload();
+
+      this.authService.getCurrentUser().subscribe((userInfo2: any) => {
+        if (!userInfo2?.emailVerified) {
+          this.verificationRequired = true;
+          return;
+        }
+
+        this.router.navigate(['/landing/dietas/crear']);
+      });
+
       return 'ok';
     },
     error: (err: { code: boolean; message: string }) => {

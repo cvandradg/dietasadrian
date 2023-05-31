@@ -26,6 +26,10 @@ observers code size
 4. Login set a localStorage variable to know if the user already tried to log in to call for the firebase user information, all of firebase authentication calls are taking more than 30 seconds after cache is cleared. I want to avoid using localStorage, how can I do this if fibebase is taking 30secs to 1min to return a call back
 saying if the user is authenticated or not.
 
+5. I have a verify email, and a getSession method, I want to run an Observer for one, and a different observer form another. Basically, 2 subscribtios.
+This, to use the Observer already created and have a clean solution. The reason is beacuse I want to display certain notifications once one finished, and
+different actions once the other finishes, they need to be sequencial. Basically, if the user get verified correctly, I want to notify that, then, I want to get the SSO session and route the user into the application.
+
 ## Quick Start & Documentation
 
 [Nx Documentation](https://nx.dev/angular)

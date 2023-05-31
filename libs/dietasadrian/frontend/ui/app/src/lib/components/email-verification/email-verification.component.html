@@ -2,11 +2,11 @@
 <div class="container">
   <div class="title">Verificacion de cuenta</div>
   <fa-icon
-  *ngIf="!successfulReponse && !error.status"
-  [icon]="['fas', 'spinner-third']"
-  class="icon fa-spin fa-2xl default-color"
-  style="--fa-animation-duration: 1s"
-></fa-icon>
+    *ngIf="!successfulReponse && !error.status"
+    [icon]="['fas', 'spinner-third']"
+    class="icon fa-spin fa-2xl default-color"
+    style="--fa-animation-duration: 1s"
+  ></fa-icon>
   <div class="description">
     <div
       class="success-message centered"
@@ -15,7 +15,7 @@
     >
       <div>
         <p>Verificación completada correctamente.</p>
-        <p>Click aqui para entrar.</p>
+        <p><strong> Click aqui</strong> para entrar.</p>
       </div>
 
       <fa-icon
