@@ -24,9 +24,6 @@
       "@dialogs/*": [
         "libs/dietasadrian/frontend/shared/shared-module/src/lib/dialogs/*"
       ],
-      "@enviroments/*": [
-        "apps/dietasadrian/src/environments/*"
-      ],
       "@dietas-adrian-nx-workspace/dietasadrian/frontend/ui/dietas": [
         "libs/dietasadrian/frontend/ui/dietas/src/index.ts"
       ],
@@ -36,6 +33,7 @@
       "@dietasadrian/frontend/app": [
         "libs/dietasadrian/frontend/ui/app/src/index.ts"
       ],
+      "@enviroments/*": ["apps/dietasadrian/src/environments/*"],
       "@guards/*": [
         "libs/dietasadrian/frontend/shared/shared-module/src/lib/guards/*"
       ],
