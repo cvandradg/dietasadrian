@@ -24,6 +24,9 @@
       "@dialogs/*": [
         "libs/dietasadrian/frontend/shared/shared-module/src/lib/dialogs/*"
       ],
+      "@enviroments/*": [
+        "apps/dietasadrian/src/environments/*"
+      ],
       "@dietas-adrian-nx-workspace/dietasadrian/frontend/ui/dietas": [
         "libs/dietasadrian/frontend/ui/dietas/src/index.ts"
       ],
