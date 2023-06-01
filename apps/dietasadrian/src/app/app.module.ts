@@ -10,8 +10,6 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import * as fromRootStore from './+state/root-store.reducer';
-import { RootStoreEffects } from './+state/root-store.effects';
 
 @NgModule({
   declarations: [AppComponent],
