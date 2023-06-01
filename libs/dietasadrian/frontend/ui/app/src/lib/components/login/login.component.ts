@@ -44,7 +44,7 @@ export class LoginComponent extends Handler implements OnInit, OnDestroy {
 
     this.authService
       .auth(this.loginInputForm.value as { user: string; pass: string })
-      .pipe(takeUntil(this.destroy))
+      .pipe(this.finalize(), takeUntil(this.destroy))
       .subscribe(this.loginObserver);
   }
 
@@ -58,14 +58,14 @@ export class LoginComponent extends Handler implements OnInit, OnDestroy {
 
     this.authService
       .recoverPassword(this.loginInputForm.value.user as string)
-      .pipe(takeUntil(this.destroy))
+      .pipe(this.finalize(), takeUntil(this.destroy))
       .subscribe(this.forgotPasswordObserver);
   }
 
   googleSignin() {
     this.authService
       .googleSignin()
-      .pipe(takeUntil(this.destroy))
+      .pipe(this.finalize(), takeUntil(this.destroy))
       .subscribe(this.brandSigninObserver);
   }
 

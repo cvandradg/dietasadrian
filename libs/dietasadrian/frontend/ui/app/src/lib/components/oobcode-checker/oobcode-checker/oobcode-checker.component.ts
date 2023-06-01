@@ -28,7 +28,7 @@ export class OobcodeCheckerComponent extends Handler implements OnInit, OnDestro
 
     this.authService
       .checkOobCode(this.firebaseCode)
-      .pipe(takeUntil(this.destroy))
+      .pipe(this.finalize(), takeUntil(this.destroy))
       .subscribe(this.codeCheckerObserver);
   }
 

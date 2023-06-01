@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Directive, Injector } from '@angular/core';
+import { Directive, Injector } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@shared-modules/services/auth/auth-service.service';
 import { HelperErrorHandlerService } from '@shared-modules/services/helperErrorHandler.service';
@@ -95,13 +95,12 @@ export class Handler {
   };
 
   codeCheckerObserver = {
-    next: (res: { operation: string }) => {
+    next: (res: any) => {
       switch (res.operation) {
         case 'VERIFY_EMAIL':
           this.router.navigate(['/email-verification'], {
             queryParamsHandling: 'preserve',
           });
-
           break;
         case 'PASSWORD_RESET':
           this.router.navigate(['/passReset'], {

@@ -44,8 +44,8 @@ export class EmailVerificationComponent
 
     this.authService
       .verifyEmail(this.firebaseCode)
-      .pipe(takeUntil(this.destroy),
-      concatMap (res => this.authService.getCurrentUser()))
+      .pipe(this.finalize(), takeUntil(this.destroy),
+      concatMap (() => this.authService.getCurrentUser()))
       .subscribe(this.getSessionsObserver);
   }
 

@@ -1,11 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, ChangeDetectorRef, OnInit, OnDestroy } from '@angular/core';
+import { Component, ChangeDetectorRef, OnInit, OnDestroy, Injector } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, RouterModule } from '@angular/router';
+import { Handler } from '@classes/Handler';
 import { SharedModuleModule } from '@shared-modules';
-import { AuthService } from '@shared-modules/services/auth/auth-service.service';
-import { HelperErrorHandlerService } from '@shared-modules/services/helperErrorHandler.service';
-import { Subject, takeUntil } from 'rxjs';
+import { takeUntil } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -14,22 +13,22 @@ import { Subject, takeUntil } from 'rxjs';
   styleUrls: ['./pass-reset.component.scss'],
   imports: [CommonModule, SharedModuleModule, RouterModule],
 })
-export class PassResetComponent implements OnInit, OnDestroy {
-  loading = false;
-  error = { status: false, message: '' };
+export class PassResetComponent extends Handler implements OnInit, OnDestroy {
+
   buttonEnable = false;
 
   successPassReset = false;
   firebaseCode = '';
-  destroy = new Subject();
+
 
   constructor(
-    private authService: AuthService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private changeDetectorRef: ChangeDetectorRef,
-    private errorHelper: HelperErrorHandlerService
-  ) {}
+    private injector: Injector,
+  ) {
+    super(injector);
+  }
 
   ngOnInit(): void {
     this.firebaseCode = this.route.snapshot.queryParamMap.get('oobCode') || '';
@@ -55,7 +54,7 @@ export class PassResetComponent implements OnInit, OnDestroy {
 
     this.authService
       .resetPass(this.firebaseCode, this.loginInputForm.value.pass as string)
-      .pipe(takeUntil(this.destroy))
+      .pipe(this.finalize(), takeUntil(this.destroy))
       .subscribe({
         next: (res) => {
           this.loading = false;

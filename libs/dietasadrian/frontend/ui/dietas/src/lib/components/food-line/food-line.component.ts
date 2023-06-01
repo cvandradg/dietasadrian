@@ -1,7 +1,6 @@
 import {
   Component,
   Input,
-  NgModule,
   Output,
   EventEmitter,
   OnDestroy,
