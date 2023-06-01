@@ -1,8 +1,11 @@
 import { Directive, Injector } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '@shared-modules/services/auth/auth-service.service';
-import { HelperErrorHandlerService } from '@shared-modules/services/helperErrorHandler.service';
-import { Subject, finalize } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { AuthService } from '../services/auth/auth-service.service';
+import { HelperErrorHandlerService } from '../services/helperErrorHandler.service';
+import { Observable, Subject, finalize } from 'rxjs';
+
+
 
 @Directive()
 export class Handler {
@@ -11,12 +14,13 @@ export class Handler {
     message: '',
   };
 
-  loading = false;
-  successfulReponse = false;
+  loading =  false
+  
   destroy = new Subject();
 
   missingMail = false;
   verificationRequired = false;
+  successfulReponse = false;
   loadingRecoverPassword = false;
 
   basicObserver = {
@@ -129,7 +133,6 @@ export class Handler {
       message: '',
     };
 
-    this.loading = false;
     this.missingMail = false;
     this.successfulReponse = false;
     this.verificationRequired = false;
@@ -140,7 +143,7 @@ export class Handler {
   protected authService!: AuthService;
   protected errorHelper!: HelperErrorHandlerService;
 
-  constructor(injector: Injector) {
+  constructor(injector: Injector, public store?:Store) {
     this.router = injector.get(Router);
     this.authService = injector.get(AuthService);
     this.errorHelper = injector.get(HelperErrorHandlerService);

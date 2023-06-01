@@ -59,21 +59,18 @@ export class RegisterComponent {
 
   async createAccount() {
     this.clearVariables();
-    this.loading = true;
 
     await this.authService
       .createAccount(
         this.loginInputForm.value as { userEmail: string; pass: string }
       )
       .then((userCredendial) => {
-        this.loading = false;
         this.successAccountCreation = true;
         
         this.authService.sendEmailVerification(userCredendial.user);
 
       })
       .catch((err: { code: boolean; message: string }) => {
-        this.loading = false;
         this.error = this.errorHelper.handleError(err);
       });
     // .finally(() => {this.loading = false;}) //It seems that I need a further version of ES, currentl ES02018?
@@ -85,7 +82,6 @@ export class RegisterComponent {
   }
 
   clearVariables() {
-    this.loading = false;
     this.error = {
       status: false,
       message: '',

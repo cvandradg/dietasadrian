@@ -50,7 +50,6 @@ export class PassResetComponent extends Handler implements OnInit, OnDestroy {
   });
 
   resetPassword() {
-    this.loading = true;
 
     if (this.loginInputForm.invalid) {
       return;
@@ -61,7 +60,6 @@ export class PassResetComponent extends Handler implements OnInit, OnDestroy {
       .pipe(this.finalize(), takeUntil(this.destroy))
       .subscribe({
         next: (res) => {
-          this.loading = false;
           this.error.status = false;
           this.successPassReset = true;
 
@@ -69,7 +67,6 @@ export class PassResetComponent extends Handler implements OnInit, OnDestroy {
         },
         error: (err) => {
           console.log('err', err);
-          this.loading = false;
           this.error = this.errorHelper.handleError(err);
           this.successPassReset = false;
 

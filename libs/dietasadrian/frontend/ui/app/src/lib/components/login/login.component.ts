@@ -16,6 +16,8 @@ import { takeUntil } from 'rxjs';
 import { Handler } from '@classes/Handler';
 
 import { validations } from '@shared-modules/types/types';
+import { showLoading } from '../../+state/general-app.actions';
+import { isLoading, selectFeature } from '../../+state/general-app.selectors';
 
 @Component({
   standalone: true,
@@ -36,11 +38,12 @@ export class LoginComponent extends Handler implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     if (localStorage.getItem('attemptToLoggedIn') === 'true') this.getSession();
+
+    this.store?.dispatch(showLoading());
   }
 
   login() {
     this.clearVariables();
-    this.loading = true;
 
     this.authService
       .auth(this.loginInputForm.value as { user: string; pass: string })

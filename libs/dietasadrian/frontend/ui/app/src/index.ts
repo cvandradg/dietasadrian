@@ -1,3 +1,7 @@
+export * from './lib/+state/general-app.models';
+export * from './lib/+state/general-app.selectors';
+export * from './lib/+state/general-app.reducer';
+export * from './lib/+state/general-app.actions';
 export * from './lib/app.module';
 
 export * from './lib/lib.routes';
