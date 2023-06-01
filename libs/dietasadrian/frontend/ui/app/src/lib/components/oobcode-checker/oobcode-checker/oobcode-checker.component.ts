@@ -12,15 +12,14 @@ import { Handler } from '@classes/Handler';
   styleUrls: ['./oobcode-checker.component.scss'],
   imports: [CommonModule, SharedModuleModule, SharedModuleModule],
 })
-export class OobcodeCheckerComponent extends Handler implements OnInit, OnDestroy {
+export class OobcodeCheckerComponent
+  extends Handler
+  implements OnInit, OnDestroy
+{
   firebaseCode = '';
 
-
-  constructor(
-    private route: ActivatedRoute,
-    private injector: Injector,
-  ) {
-    super(injector) 
+  constructor(private route: ActivatedRoute, private injector: Injector) {
+    super(injector);
   }
 
   ngOnInit(): void {

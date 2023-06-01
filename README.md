@@ -7,16 +7,18 @@ This project was generated using [Nx](https://nx.dev).
 🔎 **Smart, Fast and Extensible Build System**
 
 ## TODO
+
 1. enablePersistance to enable offline mode
 2. Escaner de codigos QR para ver si puede comerlo o no
-3. Recordatorio de subir los datos. 
-4. Admin, mandar un correo o mensaje si hace tiempo no entra a la aplicacion. 
+3. Recordatorio de subir los datos.
+4. Admin, mandar un correo o mensaje si hace tiempo no entra a la aplicacion.
 
 ## Questions
-1. I'm trying to simplify  components code in ui/components folder. They are all using Service1, Service2 and common variables.
-I Thought into TS mixins to provide them all with SharedModulesModule (which currently, they are all using) but I ran into 2 issues
-first, I can't import a service within a TS mixin
-second, I don't think they all will always consume SharedModulesModule.
+
+1. I'm trying to simplify components code in ui/components folder. They are all using Service1, Service2 and common variables.
+   I Thought into TS mixins to provide them all with SharedModulesModule (which currently, they are all using) but I ran into 2 issues
+   first, I can't import a service within a TS mixin
+   second, I don't think they all will always consume SharedModulesModule.
 
 So, I created a Handler class with the @Directive decorator, in its constructor I'm providing Injector to provide the service to anyone extending
 the Handler class without the need to redeclare it. Not sure if this approach is good.
@@ -24,14 +26,14 @@ the Handler class without the need to redeclare it. Not sure if this approach is
 2. Observables vs Promises, not sure which one to pick when working with Firebase services.
 
 3. I have a bunch of Observers in a Handler helper class to reduce code in components, that doesnt seems to be right but I'm not sure how to reduce
-observers code size
+   observers code size
 
 4. Login set a localStorage variable to know if the user already tried to log in to call for the firebase user information, all of firebase authentication calls are taking more than 30 seconds after cache is cleared. I want to avoid using localStorage, how can I do this if fibebase is taking 30secs to 1min to return a call back
-saying if the user is authenticated or not.
+   saying if the user is authenticated or not.
 
 5. I have a verify email, and a getSession method, I want to run an Observer for one, and a different observer form another. Basically, 2 subscribtios.
-This, to use the Observer already created and have a clean solution. The reason is beacuse I want to display certain notifications once one finished, and
-different actions once the other finishes, they need to be sequencial. Basically, if the user get verified correctly, I want to notify that, then, I want to get the SSO session and route the user into the application.
+   This, to use the Observer already created and have a clean solution. The reason is beacuse I want to display certain notifications once one finished, and
+   different actions once the other finishes, they need to be sequencial. Basically, if the user get verified correctly, I want to notify that, then, I want to get the SSO session and route the user into the application.
 
 6. Should I use defer to add logic before the subscripcion of a observable?
 

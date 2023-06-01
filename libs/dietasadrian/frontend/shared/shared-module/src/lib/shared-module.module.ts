@@ -7,7 +7,6 @@ import { Fontawesome } from './classes/fontawesome';
 import { SERVICES } from './exports/export-services';
 import { COMPONENTS } from './exports/export-components';
 
-
 @NgModule({
   imports: [CommonModule, MODULES, COMPONENTS],
   exports: [MODULES, COMPONENTS],

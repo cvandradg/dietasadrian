@@ -1,5 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, ChangeDetectorRef, OnInit, OnDestroy, Injector } from '@angular/core';
+import {
+  Component,
+  ChangeDetectorRef,
+  OnInit,
+  OnDestroy,
+  Injector,
+} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Handler } from '@classes/Handler';
@@ -14,18 +20,16 @@ import { takeUntil } from 'rxjs';
   imports: [CommonModule, SharedModuleModule, RouterModule],
 })
 export class PassResetComponent extends Handler implements OnInit, OnDestroy {
-
   buttonEnable = false;
 
   successPassReset = false;
   firebaseCode = '';
 
-
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private changeDetectorRef: ChangeDetectorRef,
-    private injector: Injector,
+    private injector: Injector
   ) {
     super(injector);
   }
