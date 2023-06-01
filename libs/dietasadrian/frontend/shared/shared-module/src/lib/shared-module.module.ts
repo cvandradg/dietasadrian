@@ -6,7 +6,6 @@ import { MODULES } from './exports/export-modules';
 import { Fontawesome } from './classes/fontawesome';
 import { SERVICES } from './exports/export-services';
 import { COMPONENTS } from './exports/export-components';
-import { Handler } from '@classes/Handler';
 
 
 @NgModule({

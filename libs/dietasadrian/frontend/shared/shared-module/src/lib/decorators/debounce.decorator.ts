@@ -1,4 +1,4 @@
-export function debounce(delay: 300): any {
+export function debounce(delay = 300): any {
   return function (target: any, propertyKey: string | symbol, descriptor: any) {
     const timeoutKey = Symbol();
 
