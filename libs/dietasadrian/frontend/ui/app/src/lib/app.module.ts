@@ -5,10 +5,6 @@ import { appRoutes } from './lib.routes';
 import { SharedModuleModule } from '@shared-modules';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
-import * as fromGeneralApp from './+state/general-app.reducer';
-import { GeneralAppEffects } from './+state/general-app.effects';
 
 @NgModule({
   imports: [
@@ -24,12 +20,7 @@ import { GeneralAppEffects } from './+state/general-app.effects';
       messagingSenderId: '706318825388',
       appId: '1:706318825388:web:9fe85e9af68b552359ac09',
     }),
-    AngularFireAuthModule,
-    StoreModule.forFeature(
-      fromGeneralApp.GENERAL_APP_FEATURE_KEY,
-      fromGeneralApp.generalAppReducer
-    ),
-    EffectsModule.forFeature([GeneralAppEffects]),
+    AngularFireAuthModule
   ],
   providers: [provideRouter(appRoutes)],
 })

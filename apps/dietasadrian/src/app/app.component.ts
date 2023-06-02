@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { showLoading } from '@shared-modules';
 
 @Component({
   selector: 'dietas-adrian-nx-workspace-root',

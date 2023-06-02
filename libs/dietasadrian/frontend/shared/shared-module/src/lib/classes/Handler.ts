@@ -59,6 +59,9 @@ export class Handler {
       this.clearVariables();
       localStorage.setItem('attemptToLoggedIn', 'true');
 
+      console.log(UserCredendial);
+      
+
       if (!UserCredendial.user._delegate.emailVerified) {
         this.authService.sendEmailVerification(UserCredendial?.user);
         this.verificationRequired = true;

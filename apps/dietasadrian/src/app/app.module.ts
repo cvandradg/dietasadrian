@@ -29,7 +29,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     ),
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot(),
-    StoreDevtoolsModule.instrument({ logOnly: !isDevMode() }),
+    StoreDevtoolsModule.instrument({ logOnly: !isDevMode(), trace: true}),
   ],
   providers: [
     provideRouter(

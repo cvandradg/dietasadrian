@@ -7,7 +7,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
-import { SharedModuleModule } from '@shared-modules';
+import { SharedModuleModule, SharedStoreFacade } from '@shared-modules';
 import { FormBuilder, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -16,8 +16,7 @@ import { takeUntil } from 'rxjs';
 import { Handler } from '@classes/Handler';
 
 import { validations } from '@shared-modules/types/types';
-import { showLoading } from '../../+state/general-app.actions';
-import { isLoading, selectFeature } from '../../+state/general-app.selectors';
+import { Store } from '@ngrx/store';
 
 @Component({
   standalone: true,
@@ -32,19 +31,18 @@ export class LoginComponent extends Handler implements OnInit, OnDestroy {
     pass: validations(),
   });
 
-  constructor(private formBuilder: FormBuilder, private injector: Injector) {
+  constructor(private formBuilder: FormBuilder, private injector: Injector, private facade: SharedStoreFacade) {
     super(injector);
   }
 
   ngOnInit(): void {
     if (localStorage.getItem('attemptToLoggedIn') === 'true') this.getSession();
 
-    this.store?.dispatch(showLoading());
+    this.facade.showLoader();
   }
 
   login() {
     this.clearVariables();
-
     this.authService
       .auth(this.loginInputForm.value as { user: string; pass: string })
       .pipe(this.finalize(), takeUntil(this.destroy))

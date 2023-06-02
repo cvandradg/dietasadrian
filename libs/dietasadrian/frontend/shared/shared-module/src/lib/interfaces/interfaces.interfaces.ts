@@ -10,3 +10,4 @@ export interface Meal {
   position: number;
   foodLines: any;
 }
+
