@@ -12,15 +12,14 @@ import { Handler } from '@classes/Handler';
   styleUrls: ['./oobcode-checker.component.scss'],
   imports: [CommonModule, SharedModuleModule, SharedModuleModule],
 })
-export class OobcodeCheckerComponent extends Handler implements OnInit, OnDestroy {
+export class OobcodeCheckerComponent
+  extends Handler
+  implements OnInit, OnDestroy
+{
   firebaseCode = '';
 
-
-  constructor(
-    private route: ActivatedRoute,
-    private injector: Injector,
-  ) {
-    super(injector) 
+  constructor(private route: ActivatedRoute, private injector: Injector) {
+    super(injector);
   }
 
   ngOnInit(): void {
@@ -31,6 +30,27 @@ export class OobcodeCheckerComponent extends Handler implements OnInit, OnDestro
       .pipe(takeUntil(this.destroy))
       .subscribe(this.codeCheckerObserver);
   }
+
+  codeCheckerObserver = {
+    next: (res: any) => {
+      switch (res.operation) {
+        case 'VERIFY_EMAIL':
+          this.router.navigate(['/email-verification'], {
+            queryParamsHandling: 'preserve',
+          });
+          break;
+        case 'PASSWORD_RESET':
+          this.router.navigate(['/passReset'], {
+            queryParamsHandling: 'preserve',
+          });
+          break;
+        default:
+          break;
+      }
+    },
+    error: this.observerError,
+    complete: () => undefined,
+  };
 
   ngOnDestroy() {
     this.destroy.next(undefined);

@@ -21,10 +21,7 @@ export class EmailVerificationComponent
 
   requiresVerification = false;
 
-  constructor(
-    private route: ActivatedRoute,
-    injector: Injector
-  ) {
+  constructor(private route: ActivatedRoute, injector: Injector) {
     super(injector);
   }
 
@@ -44,8 +41,10 @@ export class EmailVerificationComponent
 
     this.authService
       .verifyEmail(this.firebaseCode)
-      .pipe(takeUntil(this.destroy),
-      concatMap (res => this.authService.getCurrentUser()))
+      .pipe(
+        takeUntil(this.destroy),
+        concatMap(() => this.authService.getCurrentUser())
+      )
       .subscribe(this.getSessionsObserver);
   }
 

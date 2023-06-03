@@ -1,11 +1,19 @@
 import { CommonModule } from '@angular/common';
-import { Component, ChangeDetectorRef, OnInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  ChangeDetectorRef,
+  OnInit,
+  OnDestroy,
+  Injector,
+} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { SharedModuleModule } from '@shared-modules';
-import { AuthService } from '@shared-modules/services/auth/auth-service.service';
-import { HelperErrorHandlerService } from '@shared-modules/services/helperErrorHandler.service';
-import { Subject, takeUntil } from 'rxjs';
+import { Handler } from '@classes/Handler';
+import { SharedModuleModule, SharedStoreFacade } from '@shared-modules';
+import { ErrorHandlerService } from '@shared-modules/services/error-handler/error-handler.service';
+import { takeUntil } from 'rxjs';
+import { FirebaseError } from 'firebase/app';
+import { validations } from '@shared-modules/types/types';
 
 @Component({
   standalone: true,
@@ -14,41 +22,33 @@ import { Subject, takeUntil } from 'rxjs';
   styleUrls: ['./pass-reset.component.scss'],
   imports: [CommonModule, SharedModuleModule, RouterModule],
 })
-export class PassResetComponent implements OnInit, OnDestroy {
-  loading = false;
-  error = { status: false, message: '' };
+export class PassResetComponent extends Handler implements OnInit, OnDestroy {
+  loading$ = this.facade.loading$;
   buttonEnable = false;
 
   successPassReset = false;
   firebaseCode = '';
-  destroy = new Subject();
 
   constructor(
-    private authService: AuthService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private changeDetectorRef: ChangeDetectorRef,
-    private errorHelper: HelperErrorHandlerService
-  ) {}
+    private errorHelper: ErrorHandlerService,
+    private facade: SharedStoreFacade,
+    private injector: Injector
+  ) {
+    super(injector);
+  }
 
   ngOnInit(): void {
     this.firebaseCode = this.route.snapshot.queryParamMap.get('oobCode') || '';
   }
 
   loginInputForm = this.formBuilder.group({
-    pass: [
-      '',
-      [
-        Validators.required, // Validators
-        Validators.min(5),
-        Validators.max(30),
-      ],
-    ],
+    pass: validations(),
   });
 
   resetPassword() {
-    this.loading = true;
-
     if (this.loginInputForm.invalid) {
       return;
     }
@@ -58,19 +58,13 @@ export class PassResetComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy))
       .subscribe({
         next: (res) => {
-          this.loading = false;
           this.error.status = false;
           this.successPassReset = true;
-
-          return 'ok';
         },
-        error: (err) => {
+        error: (err: FirebaseError) => {
           console.log('err', err);
-          this.loading = false;
-          this.error = this.errorHelper.handleError(err);
+          this.error = this.errorHelper.firebaseErrorHandler(err);
           this.successPassReset = false;
-
-          return 'err';
         },
       });
   }

@@ -6,7 +6,7 @@ import {
   OnDestroy,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Meal } from '@interfaces';
+import { Meal } from '@interfaces/interfaces.interfaces';
 import { SharedModuleModule } from '@shared-modules';
 import { FoodLineComponent } from '../food-line/food-line.component';
 

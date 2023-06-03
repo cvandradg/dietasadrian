@@ -7,12 +7,17 @@ import { v4 as uuidv4 } from 'uuid';
 import { HelperService, debounce } from '@helperFunctionsService';
 import { Overlay } from '@angular/cdk/overlay';
 import { MealComponent } from '../meal/meal.component';
-import { Meal } from '@interfaces';
+import { Meal } from '@interfaces/interfaces.interfaces';
 import { NutritionalCompositionComponent } from '../nutritional-composition/nutritional-composition.component';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, SharedModuleModule, MealComponent, NutritionalCompositionComponent],
+  imports: [
+    CommonModule,
+    SharedModuleModule,
+    MealComponent,
+    NutritionalCompositionComponent,
+  ],
   selector: 'dietas-adrian-nx-workspace-create-diets',
   templateUrl: './create-diets.component.html',
   styleUrls: ['./create-diets.component.scss'],

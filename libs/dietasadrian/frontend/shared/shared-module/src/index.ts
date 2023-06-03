@@ -1,3 +1,8 @@
+export * from './lib/+state/shared-store.facade';
+export * from './lib/+state/shared-store.models';
+export * from './lib/+state/shared-store.selectors';
+export * from './lib/+state/shared-store.reducer';
+export * from './lib/+state/shared-store.actions';
 export * from './lib/shared-module.module';
 
 export * from './lib/components/strength-meter/strength-meter.component';

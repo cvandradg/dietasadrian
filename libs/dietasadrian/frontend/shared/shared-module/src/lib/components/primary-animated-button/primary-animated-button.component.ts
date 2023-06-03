@@ -1,6 +1,14 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MODULES } from '@shared-modules/exports/export-modules';
+import { MODULES } from '../../exports/export-modules';
+import { Observer } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -10,8 +18,7 @@ import { MODULES } from '@shared-modules/exports/export-modules';
   imports: [CommonModule, MODULES],
 })
 export class PrimaryAnimatedButtonComponent {
-  
-  @Output() submitEvent = new EventEmitter<any>();
+  @Output() submitEvent = new EventEmitter<never>();
   @Input() loading = false;
   @Input() enable = false;
   @Input()

@@ -1,11 +1,18 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  Injector,
+  OnDestroy,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SharedModuleModule } from '@shared-modules';
-import { AuthService } from '@shared-modules/services/auth/auth-service.service';
+import { SharedModuleModule, SharedStoreFacade } from '@shared-modules';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { HeaderComponent } from '../../header/header.component';
-import { HelperErrorHandlerService } from '@shared-modules/services/helperErrorHandler.service';
+import { ErrorHandlerService } from '@shared-modules/services/error-handler/error-handler.service';
+import { Handler } from '@classes/Handler';
+import { validations } from '@shared-modules/types/types';
+import { takeUntil } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -14,83 +21,69 @@ import { HelperErrorHandlerService } from '@shared-modules/services/helperErrorH
   styleUrls: ['./register.component.scss'],
   imports: [CommonModule, SharedModuleModule, HeaderComponent, RouterModule],
 })
-export class RegisterComponent {
-  loading = false;
-  error = {
-    status: false,
-    message: '',
-    error: {},
-  };
+export class RegisterComponent extends Handler implements OnDestroy {
+  loading$ = this.facade.loading$;
+
   buttonEnable = false;
   successAccountCreation = false;
   redirectTimeout = 1;
 
   constructor(
-    private authService: AuthService,
     private formBuilder: FormBuilder,
     private changeDetectorRef: ChangeDetectorRef,
-    private errorHelper: HelperErrorHandlerService,
-    private router: Router
-  ) {}
+    private facade: SharedStoreFacade,
+    private injector: Injector
+  ) {
+    super(injector);
+  }
 
   loginInputForm = this.formBuilder.group({
-    userEmail: [
-      '',
-      [
-        Validators.required, // Validators
-        Validators.min(5),
-        Validators.max(30),
-        Validators.email,
-      ],
-    ],
-    pass: [
-      '',
-      [
-        Validators.required, // Validators
-        Validators.min(5),
-        Validators.max(30),
-      ],
-    ],
+    userEmail: validations(Validators.email),
+    pass: validations(),
   });
 
   get isSubmitButtonEnable() {
     return !this.loginInputForm.invalid && this.buttonEnable;
   }
 
-  async createAccount() {
+  createAccount() {
     this.clearVariables();
-    this.loading = true;
+    console.log(this.loginInputForm.value);
 
-    await this.authService
+    this.authService
       .createAccount(
         this.loginInputForm.value as { userEmail: string; pass: string }
       )
-      .then((userCredendial) => {
-        this.loading = false;
-        this.successAccountCreation = true;
-        
-        this.authService.sendEmailVerification(userCredendial.user);
-
-      })
-      .catch((err: { code: boolean; message: string }) => {
-        this.loading = false;
-        this.error = this.errorHelper.handleError(err);
-      });
-    // .finally(() => {this.loading = false;}) //It seems that I need a further version of ES, currentl ES02018?
+      .pipe(takeUntil(this.destroy))
+      .subscribe(this.createAccountObserver);
   }
+
+  createAccountObserver = {
+    next: (userInfo: any) => {
+      this.clearVariables();
+
+      localStorage.setItem('attemptToLoggedIn', 'true');
+
+      if (!userInfo?.user) {
+        return;
+      }
+
+      if (!userInfo.user.emailVerified)
+        this.authService.sendEmailVerification(userInfo.user).then(() => {
+          this.successAccountCreation = true;
+        });
+    },
+    error: this.observerError,
+    complete: () => undefined,
+  };
 
   enableButton(isEnable: boolean) {
     this.buttonEnable = isEnable;
     this.changeDetectorRef.detectChanges();
   }
 
-  clearVariables() {
-    this.loading = false;
-    this.error = {
-      status: false,
-      message: '',
-      error: {},
-    };
-    this.successAccountCreation = false;
+  ngOnDestroy() {
+    this.destroy.next(undefined);
+    this.destroy.complete();
   }
 }

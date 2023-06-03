@@ -2,17 +2,29 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { GoogleAuthProvider } from '@angular/fire/auth';
 
-import { from } from 'rxjs';
+import {
+  from,
+  defer,
+  finalize,
+  tap,
+  take,
+  Observable,
+  ObservableInput,
+} from 'rxjs';
 import { sendEmailVerification } from 'firebase/auth';
+import { SharedStoreFacade } from '@shared-modules/+state/shared-store.facade';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private firebaseAuth: AngularFireAuth) {}
+  constructor(
+    private firebaseAuth: AngularFireAuth,
+    private sharedStoreFacade: SharedStoreFacade
+  ) {}
 
   auth(credentials: { user: string; pass: string }) {
-    return from(
+    return this.defer(
       this.firebaseAuth.signInWithEmailAndPassword(
         credentials.user,
         credentials.pass
@@ -21,18 +33,20 @@ export class AuthService {
   }
 
   createAccount(credentials: { userEmail: string; pass: string }) {
-    return this.firebaseAuth.createUserWithEmailAndPassword(
-      credentials.userEmail,
-      credentials.pass
+    return this.defer(
+      this.firebaseAuth.createUserWithEmailAndPassword(
+        credentials.userEmail,
+        credentials.pass
+      )
     );
   }
 
   getCurrentUser() {
-    return from(this.firebaseAuth.currentUser);
+    return this.defer(this.firebaseAuth.currentUser);
   }
 
   getUserSession() {
-    return from(this.firebaseAuth.authState);
+    return this.defer(this.firebaseAuth.authState);
   }
 
   sendEmailVerification(userCredentials: any) {
@@ -40,27 +54,41 @@ export class AuthService {
   }
 
   verifyEmail(code: string) {
-    return from(this.firebaseAuth.applyActionCode(code));
+    return this.defer(this.firebaseAuth.applyActionCode(code));
   }
 
   checkOobCode(oobCode: string) {
-    return from(this.firebaseAuth.checkActionCode(oobCode));
+    return this.defer(this.firebaseAuth.checkActionCode(oobCode));
+  }
+
+  recoverPassword(email: string) {
+    return this.defer(this.firebaseAuth.sendPasswordResetEmail(email));
+  }
+
+  resetPass(code: string, pass: string) {
+    return this.defer(this.firebaseAuth.confirmPasswordReset(code, pass));
+  }
+
+  googleSignin() {
+    return this.defer(
+      this.firebaseAuth.signInWithPopup(new GoogleAuthProvider())
+    );
   }
 
   signOut() {
     return this.firebaseAuth.signOut();
   }
 
-  recoverPassword(email: string) {
-    return from(this.firebaseAuth.sendPasswordResetEmail(email));
+  defer(firebaseCall: Promise<unknown> | ObservableInput<any>) {
+    return defer(() => {
+      this.sharedStoreFacade.showLoader();
+      return from(firebaseCall).pipe(take(1), this.finalize());
+    });
   }
 
-  resetPass(code: string, pass: string) {
-    return from(this.firebaseAuth.confirmPasswordReset(code, pass));
-  }
-
-  googleSignin() {
-    return from(this.firebaseAuth.signInWithPopup(new GoogleAuthProvider()));
+  finalize() {
+    this.sharedStoreFacade.hideLoader();
+    return finalize(() => undefined);
   }
 
   // facebookSignin() {

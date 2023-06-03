@@ -31,7 +31,7 @@
         <div class="pass-reset-button">
           <p>Cambiar contraseña</p>
           <fa-icon
-            *ngIf="!loading"
+            *ngIf="!(loading$ | async)!"
             [icon]="['fas', 'arrow-right']"
             style="--fa-animation-iteration-count: 2"
             class="icon fa-xl fa-shake"
@@ -39,7 +39,7 @@
           ></fa-icon>
 
           <fa-icon
-            *ngIf="loading"
+            *ngIf="(loading$ | async)!"
             [icon]="['fas', 'spinner-third']"
             class="icon fa-xl fa-spin"
             style="--fa-animation-duration: 1s"
@@ -50,7 +50,7 @@
     <div [routerLink]="'/'">
       <div
         class="success-message centered"
-        *ngIf="!loading && successPassReset"
+        *ngIf="!(loading$ | async)! && successPassReset"
       >
         <p>Creaste una nueva contraseña.</p>
         <fa-icon
@@ -62,13 +62,16 @@
       </div>
       <div
         class="success-message centered"
-        *ngIf="!loading && successPassReset"
+        *ngIf="!(loading$ | async)! && successPassReset"
       >
         Click aca para acceder
       </div>
     </div>
 
-    <div class="error-message centered" *ngIf="!loading && error.status">
+    <div
+      class="error-message centered"
+      *ngIf="!(loading$ | async)! && error.status"
+    >
       <p>
         {{ error.message }}
       </p>
