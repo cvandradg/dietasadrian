@@ -9,8 +9,11 @@ import {
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Handler } from '@classes/Handler';
-import { SharedModuleModule } from '@shared-modules';
+import { SharedModuleModule, SharedStoreFacade } from '@shared-modules';
+import { ErrorHandlerService } from '@shared-modules/services/error-handler/error-handler.service';
 import { takeUntil } from 'rxjs';
+import { FirebaseError } from 'firebase/app';
+import { validations } from '@shared-modules/types/types';
 
 @Component({
   standalone: true,
@@ -20,6 +23,7 @@ import { takeUntil } from 'rxjs';
   imports: [CommonModule, SharedModuleModule, RouterModule],
 })
 export class PassResetComponent extends Handler implements OnInit, OnDestroy {
+  loading$ = this.facade.loading$;
   buttonEnable = false;
 
   successPassReset = false;
@@ -29,6 +33,8 @@ export class PassResetComponent extends Handler implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private changeDetectorRef: ChangeDetectorRef,
+    private errorHelper: ErrorHandlerService,
+    private facade: SharedStoreFacade,
     private injector: Injector
   ) {
     super(injector);
@@ -39,38 +45,26 @@ export class PassResetComponent extends Handler implements OnInit, OnDestroy {
   }
 
   loginInputForm = this.formBuilder.group({
-    pass: [
-      '',
-      [
-        Validators.required, // Validators
-        Validators.min(5),
-        Validators.max(30),
-      ],
-    ],
+    pass: validations(),
   });
 
   resetPassword() {
-
     if (this.loginInputForm.invalid) {
       return;
     }
 
     this.authService
       .resetPass(this.firebaseCode, this.loginInputForm.value.pass as string)
-      .pipe(this.finalize(), takeUntil(this.destroy))
+      .pipe(takeUntil(this.destroy))
       .subscribe({
         next: (res) => {
           this.error.status = false;
           this.successPassReset = true;
-
-          return 'ok';
         },
-        error: (err) => {
+        error: (err: FirebaseError) => {
           console.log('err', err);
-          this.error = this.errorHelper.handleError(err);
+          this.error = this.errorHelper.firebaseErrorHandler(err);
           this.successPassReset = false;
-
-          return 'err';
         },
       });
   }

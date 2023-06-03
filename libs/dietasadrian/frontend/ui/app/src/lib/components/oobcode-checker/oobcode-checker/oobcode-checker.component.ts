@@ -27,9 +27,30 @@ export class OobcodeCheckerComponent
 
     this.authService
       .checkOobCode(this.firebaseCode)
-      .pipe(this.finalize(), takeUntil(this.destroy))
+      .pipe(takeUntil(this.destroy))
       .subscribe(this.codeCheckerObserver);
   }
+
+  codeCheckerObserver = {
+    next: (res: any) => {
+      switch (res.operation) {
+        case 'VERIFY_EMAIL':
+          this.router.navigate(['/email-verification'], {
+            queryParamsHandling: 'preserve',
+          });
+          break;
+        case 'PASSWORD_RESET':
+          this.router.navigate(['/passReset'], {
+            queryParamsHandling: 'preserve',
+          });
+          break;
+        default:
+          break;
+      }
+    },
+    error: this.observerError,
+    complete: () => undefined,
+  };
 
   ngOnDestroy() {
     this.destroy.next(undefined);

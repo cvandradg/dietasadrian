@@ -24,6 +24,9 @@
       "@dialogs/*": [
         "libs/dietasadrian/frontend/shared/shared-module/src/lib/dialogs/*"
       ],
+      "@services/*": [
+        "libs/dietasadrian/frontend/shared/shared-module/src/lib/services/*"
+      ],
       "@dietas-adrian-nx-workspace/dietasadrian/frontend/ui/dietas": [
         "libs/dietasadrian/frontend/ui/dietas/src/index.ts"
       ],
@@ -40,8 +43,8 @@
       "@helperFunctionsService": [
         "libs/dietasadrian/frontend/shared/shared-module/src/lib/services/helperFunctions.service.ts"
       ],
-      "@interfaces": [
-        "libs/dietasadrian/frontend/shared/shared-module/src/lib/interfaces/interfaces.interfaces.ts"
+      "@interfaces/*": [
+        "libs/dietasadrian/frontend/shared/shared-module/src/lib/interfaces/*"
       ],
       "@libs/dietas/dietas.module": [
         "libs/dietasadrian/frontend/ui/dietas/src/lib/dietas.module"

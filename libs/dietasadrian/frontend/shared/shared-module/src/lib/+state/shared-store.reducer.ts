@@ -33,14 +33,10 @@ export const sharedStoreAdapter: EntityAdapter<SharedStoreEntity> =
 
 const reducer = createReducer(
   initialSharedStoreState,
-  on(SharedStoreActions.showLoading, (state) => {
-    console.log('showLoading');
-
-    return {
-      ...state,
-      loading: true,
-    };
-  }),
+  on(SharedStoreActions.showLoading, (state) => ({
+    ...state,
+    loading: true,
+  })),
   on(SharedStoreActions.hideLoading, (state) => ({
     ...state,
     loading: false,

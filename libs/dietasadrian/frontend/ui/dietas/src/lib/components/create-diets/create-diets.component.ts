@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { HelperService, debounce } from '@helperFunctionsService';
 import { Overlay } from '@angular/cdk/overlay';
 import { MealComponent } from '../meal/meal.component';
-import { Meal } from '@interfaces';
+import { Meal } from '@interfaces/interfaces.interfaces';
 import { NutritionalCompositionComponent } from '../nutritional-composition/nutritional-composition.component';
 
 @Component({

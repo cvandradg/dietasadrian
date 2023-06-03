@@ -1,8 +1,7 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MODULES } from '../../exports/export-modules';
-import { Store } from '@ngrx/store';
-import { hideLoading, showLoading } from '../../+state/shared-store.actions';
+import { Observer } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -11,16 +10,10 @@ import { hideLoading, showLoading } from '../../+state/shared-store.actions';
   styleUrls: ['./primary-animated-button.component.scss'],
   imports: [CommonModule, MODULES],
 })
-export class PrimaryAnimatedButtonComponent implements OnInit {
+export class PrimaryAnimatedButtonComponent {
 
-  constructor(private store:Store) { }
-
-  ngOnInit(): void {
-return
-  }
-  
-  @Output() submitEvent = new EventEmitter<any>();
-  @Input() loading = false;
+  @Output() submitEvent = new EventEmitter<never>();
+  @Input() loading=false;
   @Input() enable = false;
   @Input()
   buttonText!: string;

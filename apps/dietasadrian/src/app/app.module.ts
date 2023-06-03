@@ -1,4 +1,4 @@
-import { NgModule, isDevMode } from '@angular/core';
+import { ErrorHandler, NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { provideRouter, RouterModule, withRouterConfig } from '@angular/router';
 
@@ -10,6 +10,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { ErrorHandlerService } from '@shared-modules/services/error-handler/error-handler.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,7 +30,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     ),
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot(),
-    StoreDevtoolsModule.instrument({ logOnly: !isDevMode(), trace: true}),
+    StoreDevtoolsModule.instrument({ logOnly: !isDevMode(), trace: true, }),
   ],
   providers: [
     provideRouter(
@@ -38,6 +39,10 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
         canceledNavigationResolution: 'computed',
       })
     ),
+    {
+      provide: ErrorHandler,
+      useClass: ErrorHandlerService,
+    }
   ],
   bootstrap: [AppComponent],
 })

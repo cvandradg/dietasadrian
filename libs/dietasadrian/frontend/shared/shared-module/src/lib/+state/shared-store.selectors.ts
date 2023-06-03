@@ -8,10 +8,13 @@ export const selectSharedStoreState = createFeatureSelector<SharedStoreState>(
   SHARED_STORE_FEATURE_KEY
 );
 
-export const selectSharedStoreLoaded = createSelector(
+
+export const selectFeature = (state: SharedStoreState) => state.loading;
+export const selectSharedStoreLoading = createSelector(
   selectSharedStoreState,
   (state: SharedStoreState) => state.loading
 );
+
 
 // const { selectAll, selectEntities } = sharedStoreAdapter.getSelectors();
 

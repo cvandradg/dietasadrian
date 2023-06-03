@@ -4611,6 +4611,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@ngrx/component@npm:^16.0.1":
+  version: 16.0.1
+  resolution: "@ngrx/component@npm:16.0.1"
+  dependencies:
+    tslib: "npm:^2.0.0"
+  peerDependencies:
+    "@angular/common": ^16.0.0
+    "@angular/core": ^16.0.0
+    rxjs: ^6.5.3 || ^7.5.0
+  checksum: 91bec30f67f41df9c07c3b6778011d8f30487d88f655710df35448323df917c3dbaf50b18be41dbf00c7410ef6c584a6bcc50508364771680a4771370d1743e4
+  languageName: node
+  linkType: hard
+
 "@ngrx/effects@npm:~15.3.0":
   version: 15.3.0
   resolution: "@ngrx/effects@npm:15.3.0"
@@ -9473,6 +9486,7 @@ __metadata:
     "@fortawesome/pro-solid-svg-icons": "npm:^6.4.0"
     "@fortawesome/pro-thin-svg-icons": "npm:^6.2.0"
     "@fortawesome/sharp-solid-svg-icons": "npm:^6.2.0"
+    "@ngrx/component": "npm:^16.0.1"
     "@ngrx/component-store": "npm:~15.3.0"
     "@ngrx/effects": "npm:~15.3.0"
     "@ngrx/entity": "npm:~15.3.0"

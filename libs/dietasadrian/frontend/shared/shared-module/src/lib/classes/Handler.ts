@@ -1,88 +1,38 @@
 import { Directive, Injector } from '@angular/core';
 import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
 import { AuthService } from '../services/auth/auth-service.service';
-import { HelperErrorHandlerService } from '../services/helperErrorHandler.service';
-import { Observable, Subject, finalize } from 'rxjs';
-
-
+import { Subject } from 'rxjs';
+import { ErrorHandlerService } from '@shared-modules/services/error-handler/error-handler.service';
+import { FirebaseError } from 'firebase/app';
 
 @Directive()
 export class Handler {
+  destroy = new Subject();
+
   error = {
     status: false,
     message: '',
   };
 
-  loading =  false
-  
-  destroy = new Subject();
-
-  missingMail = false;
   verificationRequired = false;
   successfulReponse = false;
-  loadingRecoverPassword = false;
 
   basicObserver = {
     next: () => {
       this.successfulReponse = true;
     },
-    error: (err: { code: boolean; message: string }) => {
-      this.error = this.errorHelper.handleError(err);
-    },
-  };
-
-  brandSigninObserver = {
-    next: () => {
-      this.successfulReponse = true;
-      this.loadingRecoverPassword = false;
-      this.router.navigate(['/landing/dietas/crear']);
-    },
-    error: (err: { code: boolean; message: string }) => {
-      this.error = this.errorHelper.handleError(err);
-    },
-  };
-
-  forgotPasswordObserver = {
-    next: () => {
-      this.successfulReponse = true;
-      this.loadingRecoverPassword = false;
-    },
-    error: (err: { code: boolean; message: string }) => {
-      this.loadingRecoverPassword = false;
-      this.error = this.errorHelper.handleError(err);
-    },
-  };
-
-  loginObserver = {
-    next: (UserCredendial: any) => {
-      this.clearVariables();
-      localStorage.setItem('attemptToLoggedIn', 'true');
-
-      console.log(UserCredendial);
-      
-
-      if (!UserCredendial.user._delegate.emailVerified) {
-        this.authService.sendEmailVerification(UserCredendial?.user);
-        this.verificationRequired = true;
-        return;
-      }
-
-      this.router.navigate(['/landing/dietas/crear']);
-    },
-    error: (err: { code: boolean; message: string }) => {
-      this.error = this.errorHelper.handleError(err);
-    },
+    error: this.observerError,
+    complete: () => undefined,
   };
 
   getSessionsObserver = {
     next: async (userInfo: any) => {
-      localStorage.setItem('attemptToLoggedIn', 'true');
-
       this.clearVariables();
 
+      localStorage.setItem('attemptToLoggedIn', 'true');
+
       if (!userInfo?.multiFactor?.user) {
-        throw new Error('No user');
+        return;
       }
 
       await userInfo?.multiFactor?.user.reload();
@@ -96,38 +46,14 @@ export class Handler {
         this.router.navigate(['/landing/dietas/crear']);
       });
     },
-    error: (err: { code: boolean; message: string }) => {
-      this.error = this.errorHelper.handleError(err);
-    },
+    error: this.observerError,
+    complete: () => undefined,
   };
 
-  codeCheckerObserver = {
-    next: (res: any) => {
-      switch (res.operation) {
-        case 'VERIFY_EMAIL':
-          this.router.navigate(['/email-verification'], {
-            queryParamsHandling: 'preserve',
-          });
-          break;
-        case 'PASSWORD_RESET':
-          this.router.navigate(['/passReset'], {
-            queryParamsHandling: 'preserve',
-          });
-          break;
-        default:
-          break;
-      }
-    },
-    error: (err: { code: boolean; message: string }) => {
-      this.error = this.errorHelper.handleError(err);
-    },
-  };
-
-  finalize() {
-    return finalize(() => {
-      this.loading = false;
-      this.loadingRecoverPassword = false;
-    });
+  get observerError() {
+    return (err: FirebaseError) => {
+      this.error = this.errorHelperService.firebaseErrorHandler(err);
+    };
   }
 
   clearVariables() {
@@ -136,19 +62,17 @@ export class Handler {
       message: '',
     };
 
-    this.missingMail = false;
     this.successfulReponse = false;
     this.verificationRequired = false;
-    this.loadingRecoverPassword = false;
   }
 
   protected router!: Router;
   protected authService!: AuthService;
-  protected errorHelper!: HelperErrorHandlerService;
+  protected errorHelperService!: ErrorHandlerService;
 
-  constructor(injector: Injector, public store?:Store) {
+  constructor(injector: Injector) {
     this.router = injector.get(Router);
     this.authService = injector.get(AuthService);
-    this.errorHelper = injector.get(HelperErrorHandlerService);
+    this.errorHelperService = injector.get(ErrorHandlerService);
   }
 }

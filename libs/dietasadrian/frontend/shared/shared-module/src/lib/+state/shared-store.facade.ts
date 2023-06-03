@@ -11,12 +11,17 @@ import * as SharedStoreSelectors from './shared-store.selectors';
 export class SharedStoreFacade {
   private readonly store = inject(Store);
 
-
   showLoader() {
-    console.log('lo llama?');
-    
-      this.store.dispatch(SharedStoreActions.showLoading());
-    }
+    this.store.dispatch(SharedStoreActions.showLoading());
+  }
+
+  hideLoader() {
+    this.store.dispatch(SharedStoreActions.hideLoading());
+  }
+
+  loading$ = this.store.pipe(
+    select(SharedStoreSelectors.selectSharedStoreLoading)
+  );
 
   /**
    * Combine pieces of state using createSelector,
