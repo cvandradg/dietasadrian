@@ -87,7 +87,10 @@ export class AuthService {
   }
 
   finalize() {
-    this.sharedStoreFacade.hideLoader();
+    setTimeout(() => {
+      return this.sharedStoreFacade.hideLoader();
+    }, 200);
+
     return finalize(() => undefined);
   }
 

@@ -139,7 +139,7 @@ export class ErrorHandlerService implements ErrorHandler {
         );
 
       case 'auth/too-many-requests':
-        return this.errorObject(true, 'Inténtalo nuevamente.', error);
+        return this.errorObject(true, 'Espera unos minutos antes de volverlo a intentar.', error);
       default:
         throw new Error("Error code doesn't exist " + error.code, error);
     }

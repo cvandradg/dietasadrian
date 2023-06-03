@@ -3,6 +3,7 @@ import {
   Component,
   Injector,
   OnDestroy,
+  OnInit,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModuleModule, SharedStoreFacade } from '@shared-modules';
@@ -21,12 +22,17 @@ import { takeUntil } from 'rxjs';
   styleUrls: ['./register.component.scss'],
   imports: [CommonModule, SharedModuleModule, HeaderComponent, RouterModule],
 })
-export class RegisterComponent extends Handler implements OnDestroy {
+export class RegisterComponent extends Handler implements OnInit, OnDestroy {
   loading$ = this.facade.loading$;
-
-  buttonEnable = false;
+  buttonEnable = true;
   successAccountCreation = false;
   redirectTimeout = 1;
+  isPassStrong = false;
+
+  loginInputForm = this.formBuilder.group({
+    userEmail: validations(Validators.email),
+    pass: validations(),
+  });
 
   constructor(
     private formBuilder: FormBuilder,
@@ -37,17 +43,20 @@ export class RegisterComponent extends Handler implements OnDestroy {
     super(injector);
   }
 
-  loginInputForm = this.formBuilder.group({
-    userEmail: validations(Validators.email),
-    pass: validations(),
-  });
-
-  get isSubmitButtonEnable() {
-    return !this.loginInputForm.invalid && this.buttonEnable;
+  ngOnInit(): void {
+    this.loginInputForm.valueChanges.subscribe(() => {
+      this.buttonEnable =
+        !this.loginInputForm.controls['userEmail'].invalid &&
+        !this.successAccountCreation &&
+        this.isPassStrong;
+    });
   }
-
+ 
   createAccount() {
     this.clearVariables();
+    console.log(this.successAccountCreation);
+    this.buttonEnable = false;
+
     console.log(this.loginInputForm.value);
 
     this.authService
@@ -78,7 +87,7 @@ export class RegisterComponent extends Handler implements OnDestroy {
   };
 
   enableButton(isEnable: boolean) {
-    this.buttonEnable = isEnable;
+    this.isPassStrong = isEnable;
     this.changeDetectorRef.detectChanges();
   }
 
