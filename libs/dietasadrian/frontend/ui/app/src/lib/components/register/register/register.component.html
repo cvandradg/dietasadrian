@@ -14,7 +14,7 @@
           required="true"
           [disabled]="successAccountCreation"
           formControlName="userEmail"
-          (keyup.enter)="createAccount()"
+          (keyup.enter)="buttonEnable && createAccount()"
         />
       </mat-form-field>
       <mat-form-field>
@@ -26,7 +26,7 @@
           [disabled]="successAccountCreation"
           required="true"
           formControlName="pass"
-          (keyup.enter)="createAccount()"
+          (keyup.enter)="buttonEnable && createAccount()"
         />
       </mat-form-field>
     </form>
@@ -34,14 +34,14 @@
     <div
       class="horizontal-animation clase"
       [ngClass]="{
-        'enabled-button': isSubmitButtonEnable || successAccountCreation
+        'enabled-button': buttonEnable || successAccountCreation
       }"
     >
       <button
         mat-button
-        [disabled]="successAccountCreation"
-        (click)="isSubmitButtonEnable && createAccount()"
-        (keyup.enter)="isSubmitButtonEnable && createAccount()"
+        [disabled]="!buttonEnable && (loading$ | async)!"
+        (click)="buttonEnable && createAccount()"
+        (keyup.enter)="buttonEnable && createAccount()"
       >
         <div class="register-button">
           <p>Crear Cuenta</p>
