@@ -24,9 +24,6 @@
       "@dialogs/*": [
         "libs/dietasadrian/frontend/shared/shared-module/src/lib/dialogs/*"
       ],
-      "@services/*": [
-        "libs/dietasadrian/frontend/shared/shared-module/src/lib/services/*"
-      ],
       "@dietas-adrian-nx-workspace/dietasadrian/frontend/ui/dietas": [
         "libs/dietasadrian/frontend/ui/dietas/src/index.ts"
       ],
@@ -54,6 +51,9 @@
       ],
       "@materialFunctions": [
         "libs/dietasadrian/frontend/shared/materialFunctions.ts"
+      ],
+      "@services/*": [
+        "libs/dietasadrian/frontend/shared/shared-module/src/lib/services/*"
       ],
       "@shared-modules": [
         "libs/dietasadrian/frontend/shared/shared-module/src/index.ts"

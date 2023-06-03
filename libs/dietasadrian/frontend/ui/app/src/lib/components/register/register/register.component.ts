@@ -61,7 +61,7 @@ export class RegisterComponent extends Handler implements OnDestroy {
   createAccountObserver = {
     next: (userInfo: any) => {
       this.clearVariables();
-      
+
       localStorage.setItem('attemptToLoggedIn', 'true');
 
       if (!userInfo?.user) {

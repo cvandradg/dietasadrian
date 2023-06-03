@@ -40,23 +40,22 @@ the Handler class without the need to redeclare it. Not sure if this approach is
 7. How should a spinner be?
 
 8. The firebase uncaught exception always bubbles up/propagates (what is the right word?) to the angular ErrorHandler.This solution is right?:
-https://stackoverflow.com/questions/69270802/uncaught-in-promise-firebaseerror
+   https://stackoverflow.com/questions/69270802/uncaught-in-promise-firebaseerror
 
 9. I dont fully understand "composition" vs inheritance.
-I had this  { provide: AbstractFirebaseAuthHandler, useClass: HandlerService }
-and "public firebaseAuthHandler: AbstractFirebaseAuthHandler"
-in a component "A".
-I was expecting to inherit HandlerService properties inside the "A" component
-without the need of using the "extend" word. But I was not inheriting the properties.
-To access them I needed de constructor firebaseAuthHandler variable.
+   I had this { provide: AbstractFirebaseAuthHandler, useClass: HandlerService }
+   and "public firebaseAuthHandler: AbstractFirebaseAuthHandler"
+   in a component "A".
+   I was expecting to inherit HandlerService properties inside the "A" component
+   without the need of using the "extend" word. But I was not inheriting the properties.
+   To access them I needed de constructor firebaseAuthHandler variable.
 
 ## Userfull resources:
+
 This is not a complete list, but of the things that I remeber were useful.
+
 1. Composition over Inheritance
-https://www.youtube.com/watch?v=rcDsRyVhcxY&ab_channel=JoshuaMorony
-
-
-
+   https://www.youtube.com/watch?v=rcDsRyVhcxY&ab_channel=JoshuaMorony
 
 ## Quick Start & Documentation
 

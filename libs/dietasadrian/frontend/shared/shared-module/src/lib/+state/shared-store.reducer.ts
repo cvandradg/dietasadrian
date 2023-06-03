@@ -1,8 +1,8 @@
 import { createReducer, on, Action } from '@ngrx/store';
 
 import * as SharedStoreActions from './shared-store.actions';
-import { EntityState, EntityAdapter, createEntityAdapter } from "@ngrx/entity";
-import { SharedStoreEntity } from "../+state/shared-store.models";
+import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
+import { SharedStoreEntity } from '../+state/shared-store.models';
 
 export const SHARED_STORE_FEATURE_KEY = 'sharedStore';
 
@@ -13,23 +13,20 @@ export interface SharedStoreState extends EntityState<SharedStoreEntity> {
   loading: boolean;
 }
 
-
 export const initialSharedStoreState: SharedStoreState = {
   loading: false,
   loaded: false,
   error: null,
   ids: [],
-  entities: {}
+  entities: {},
 };
 
 export interface SharedStorePartialState {
   readonly [SHARED_STORE_FEATURE_KEY]: SharedStoreState;
 }
 
-
 export const sharedStoreAdapter: EntityAdapter<SharedStoreEntity> =
   createEntityAdapter<SharedStoreEntity>();
-
 
 const reducer = createReducer(
   initialSharedStoreState,
@@ -43,10 +40,7 @@ const reducer = createReducer(
   }))
 );
 
-export function sharedStoreReducer(
-  state: SharedStoreState,
-  action: Action
-) {
+export function sharedStoreReducer(state: SharedStoreState, action: Action) {
   return reducer(state, action);
 }
 

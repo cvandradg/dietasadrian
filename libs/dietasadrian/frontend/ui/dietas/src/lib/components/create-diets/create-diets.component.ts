@@ -12,7 +12,12 @@ import { NutritionalCompositionComponent } from '../nutritional-composition/nutr
 
 @Component({
   standalone: true,
-  imports: [CommonModule, SharedModuleModule, MealComponent, NutritionalCompositionComponent],
+  imports: [
+    CommonModule,
+    SharedModuleModule,
+    MealComponent,
+    NutritionalCompositionComponent,
+  ],
   selector: 'dietas-adrian-nx-workspace-create-diets',
   templateUrl: './create-diets.component.html',
   styleUrls: ['./create-diets.component.scss'],

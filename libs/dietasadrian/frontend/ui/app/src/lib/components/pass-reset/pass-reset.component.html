@@ -68,7 +68,10 @@
       </div>
     </div>
 
-    <div class="error-message centered" *ngIf="!(loading$ | async)! && error.status">
+    <div
+      class="error-message centered"
+      *ngIf="!(loading$ | async)! && error.status"
+    >
       <p>
         {{ error.message }}
       </p>

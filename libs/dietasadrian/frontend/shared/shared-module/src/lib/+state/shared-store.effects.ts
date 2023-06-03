@@ -13,17 +13,17 @@ export class SharedStoreEffects {
   //     ofType(SharedStoreActions.init),
   //     switchMap(() =>
 
-  //     { 
+  //     {
   //       console.log('effects');
-        
+
   //       return of(SharedStoreActions.init())
   //     }
-        
+
   //     ),
-      // catchError((error) => {
-      //   console.error('Error', error);
-      //   return of(SharedStoreActions.loadSharedStoreFailure({ error }));
-      // })
+  // catchError((error) => {
+  //   console.error('Error', error);
+  //   return of(SharedStoreActions.loadSharedStoreFailure({ error }));
+  // })
   //   )
   // );
 }

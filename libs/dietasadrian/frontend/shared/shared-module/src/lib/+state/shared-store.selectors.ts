@@ -1,6 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import {
-  SHARED_STORE_FEATURE_KEY, SharedStoreState,
+  SHARED_STORE_FEATURE_KEY,
+  SharedStoreState,
 } from './shared-store.reducer';
 
 // Lookup the 'SharedStore' feature state managed by NgRx
@@ -8,13 +9,11 @@ export const selectSharedStoreState = createFeatureSelector<SharedStoreState>(
   SHARED_STORE_FEATURE_KEY
 );
 
-
 export const selectFeature = (state: SharedStoreState) => state.loading;
 export const selectSharedStoreLoading = createSelector(
   selectSharedStoreState,
   (state: SharedStoreState) => state.loading
 );
-
 
 // const { selectAll, selectEntities } = sharedStoreAdapter.getSelectors();
 

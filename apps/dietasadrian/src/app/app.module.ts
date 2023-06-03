@@ -30,7 +30,7 @@ import { ErrorHandlerService } from '@shared-modules/services/error-handler/erro
     ),
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot(),
-    StoreDevtoolsModule.instrument({ logOnly: !isDevMode(), trace: true, }),
+    StoreDevtoolsModule.instrument({ logOnly: !isDevMode(), trace: true }),
   ],
   providers: [
     provideRouter(
@@ -42,7 +42,7 @@ import { ErrorHandlerService } from '@shared-modules/services/error-handler/erro
     {
       provide: ErrorHandler,
       useClass: ErrorHandlerService,
-    }
+    },
   ],
   bootstrap: [AppComponent],
 })

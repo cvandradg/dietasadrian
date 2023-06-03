@@ -20,7 +20,7 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
       messagingSenderId: '706318825388',
       appId: '1:706318825388:web:9fe85e9af68b552359ac09',
     }),
-    AngularFireAuthModule
+    AngularFireAuthModule,
   ],
   providers: [provideRouter(appRoutes)],
 })

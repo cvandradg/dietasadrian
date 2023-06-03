@@ -3,7 +3,6 @@ import { createAction } from '@ngrx/store';
 export const showLoading = createAction('[SharedStore Page] showLoading');
 export const hideLoading = createAction('[SharedStore Page] hideLoading');
 
-
 // import { SharedStoreEntity } from './general-app.models';
 // import { createAction, props } from '@ngrx/store';
 
