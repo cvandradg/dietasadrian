@@ -41,7 +41,9 @@ export class StrengthMeterComponent implements OnChanges {
     this.passStrengthMeter(changes?.password?.currentValue);
   }
 
-  passStrengthMeter(pass: string): 'vulnerable' | 'debil' | 'semisegura' | 'segura' | 'fuerte' {
+  passStrengthMeter(
+    pass: string
+  ): 'vulnerable' | 'debil' | 'semisegura' | 'segura' | 'fuerte' {
     const result = this.validationFlags.filter((regexFlags: any) => {
       if (regexFlags.test(pass)) {
         return true;

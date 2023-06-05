@@ -15,7 +15,6 @@ https://www.google.com/search?q=how+can+I+make+sure+i%27m+un+subcribing+from+all
 https://www.youtube.com/watch?v=VSiJANdCGsM&t=11s&ab_channel=nivek
 https://www.youtube.com/watch?v=4FkFmn0LmLI&ab_channel=JoshuaMorony
 
-
 ## TODO
 
 1. enablePersistance to enable offline mode
