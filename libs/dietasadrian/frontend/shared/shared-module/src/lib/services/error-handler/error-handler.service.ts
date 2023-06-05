@@ -28,7 +28,7 @@ export class ErrorHandlerService implements ErrorHandler {
 
   firebaseErrorHandler(error: FirebaseError) {
     console.info(error.code);
-    
+
     switch (error.code) {
       case 'auth/email-already-in-use':
         return this.errorObject(true, 'El usuario ya existe.', error);
@@ -141,9 +141,19 @@ export class ErrorHandlerService implements ErrorHandler {
         );
 
       case 'auth/too-many-requests':
-        return this.errorObject(true, 'Espera unos minutos antes de volverlo a intentar.', error);
+        return this.errorObject(
+          true,
+          'Espera unos minutos antes de volverlo a intentar.',
+          error
+        );
       default:
-        throw new Error("Error code doesn't exist " + error.code, error);
+        throw new Error(
+          'Error code not handled. \n' +
+            ' Error code. \n ' +
+            error.code +
+            '\n Error trace. ' +
+            error
+        );
     }
   }
 
