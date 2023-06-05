@@ -38,11 +38,3 @@ name: 'Deploy to Firebase Hosting on merge'
   push:
     branches:
       - main
-'permissions':
-  id-token: write
-  contents: write
-  issues: write
-  pull-requests: write
-  statuses: write
-  checks: write
-
