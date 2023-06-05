@@ -15,7 +15,7 @@ jobs:
       - name: 'Yarn Install'
         uses: borales/actions-yarn@v3.0.0
         with:
-          cmd: install
+          cmd: install --force
 
       - name: 'ls files'
         run: sudo ls /home/runner/work/dietasadrian/dietasadrian
@@ -23,8 +23,8 @@ jobs:
       # - name: 'deleting node modules and lock'
       #   run: sudo rm -rf /home/runner/work/dietasadrian/dietasadrian/node_modules && sudo rm -rf /home/runner/work/dietasadrian/dietasadrian/yarn.lock
 
-      # - name: 'different form to install the modules'
-      #   run: sudo yarn add @nrwl/nx-linux-x64-musl@latest && sudo yarn add @nrwl/nx-linux-x64-gnu@latest
+      - name: 'different form to install the modules'
+        run: sudo yarn add @nrwl/nx-linux-x64-musl@latest && sudo yarn add @nrwl/nx-linux-x64-gnu@latest
 
       - name: 'Yarn Build'
         uses: borales/actions-yarn@v3.0.0
