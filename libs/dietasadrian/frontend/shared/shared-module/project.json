@@ -9,6 +9,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["coverage/libs/dietasadrian/frontend/shared/shared-module"],
       "options": {
+        "tsConfig": "libs/dietasadrian/frontend/shared/shared-module/tsconfig.lib.json",
         "jestConfig": "libs/dietasadrian/frontend/shared/shared-module/jest.config.ts",
         "passWithNoTests": true
       }
@@ -16,6 +17,7 @@
     "lint": {
       "executor": "@nx/linter:eslint",
       "options": {
+        "tsConfig": "libs/dietasadrian/frontend/shared/shared-module/tsconfig.lib.json",
         "lintFilePatterns": [
           "libs/dietasadrian/frontend/shared/shared-module/**/*.ts",
           "libs/dietasadrian/frontend/shared/shared-module/**/*.html"

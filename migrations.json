@@ -1,20 +1,18 @@
 {
   "migrations": [
     {
-      "cli": "nx",
-      "version": "16.2.0-beta.0",
-      "description": "Remove outputPath from run commands",
-      "implementation": "./src/migrations/update-16-2-0/remove-run-commands-output-path",
-      "package": "nx",
-      "name": "16.2.0-remove-output-path-from-run-commands"
+      "version": "16.0.0-0",
+      "description": "Updates the Angular Material to v16",
+      "factory": "./ng-update/index_bundled#updateToV16",
+      "package": "@angular/material",
+      "name": "migration-v16"
     },
     {
-      "cli": "nx",
-      "version": "16.2.0-beta.0",
-      "description": "Normalize tsconfig.cy.json files to be located at '<projectRoot>/cypress/tsconfig.json'",
-      "implementation": "./src/migrations/update-16-2-0/update-cy-tsconfig",
-      "package": "@nx/cypress",
-      "name": "update-16-2-0-normalize-tsconfigs"
+      "version": "16.0.0-0",
+      "description": "Updates the Angular CDK to v16",
+      "factory": "./ng-update/index#updateToV16",
+      "package": "@angular/cdk",
+      "name": "migration-v16"
     }
   ]
 }

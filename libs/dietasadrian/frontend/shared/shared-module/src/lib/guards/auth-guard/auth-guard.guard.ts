@@ -1,10 +1,5 @@
 import { Injectable, Optional } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  CanActivateChild,
-  RouterStateSnapshot,
-  UrlTree,
-} from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { HelperService } from '@helperFunctionsService';
 import { Observable } from 'rxjs';
 import * as _ from 'lodash';
@@ -13,7 +8,7 @@ import { MatDialogState } from '@angular/material/dialog';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanActivateChild {
+export class AuthGuard  {
   constructor(private helper: HelperService) {}
 
   canActivateChild(
