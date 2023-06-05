@@ -3,9 +3,9 @@ import { AuthGuard } from '@guards/auth-guard/auth-guard.guard';
 import { AppComponent } from './components/app/app.component';
 import { LoginComponent } from './components/login/login.component';
 import { PassResetComponent } from './components/pass-reset/pass-reset.component';
-import { RegisterComponent } from './components/register/register/register.component';
+import { RegisterComponent } from './components/register/register.component';
 import { EmailVerificationComponent } from './components/email-verification/email-verification.component';
-import { OobcodeCheckerComponent } from './components/oobcode-checker/oobcode-checker/oobcode-checker.component';
+import { OobcodeCheckerComponent } from './components/oobcode-checker/oobcode-checker.component';
 
 export const appRoutes: Route[] = [
   {
