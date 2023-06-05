@@ -3,6 +3,8 @@ jobs:
   build_and_preview:
     if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
     runs-on: ubuntu-latest
+    env: 
+      NX_NON_NATIVE_HASHER: true
     steps:
       - name: 'Checkout Repo'
         uses: actions/checkout@v3
@@ -11,12 +13,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 17.x
-
-          
-      - name: 'Set env file'
-        uses: borales/actions-yarn@v3.0.0
-        with:
-          env: NX_NON_NATIVE_HASHER=true
 
       - name: 'Yarn Install'
         uses: borales/actions-yarn@v3.0.0
@@ -28,11 +24,6 @@ jobs:
         with:
           cmd: yarn add @nrwl/nx-linux-x64-gnu
 
-      - name: 'Set env file'
-        uses: borales/actions-yarn@v3.0.0
-        with:
-          env: NX_NON_NATIVE_HASHER=true
-          
       - name: 'Yarn Build'
         uses: borales/actions-yarn@v3.0.0
         with:
