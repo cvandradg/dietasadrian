@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Injector } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModuleModule } from '@shared-modules';
 import { ActivatedRoute, RouterModule } from '@angular/router';
@@ -13,27 +13,17 @@ import { Handler } from '@classes/Handler';
   styleUrls: ['./email-verification.component.scss'],
   imports: [CommonModule, SharedModuleModule, HeaderComponent, RouterModule],
 })
-export class EmailVerificationComponent
-  extends Handler
-  implements OnInit, OnDestroy
-{
+export class EmailVerificationComponent extends Handler implements OnInit {
+  route = inject(ActivatedRoute);
+
   firebaseCode = '';
-
   requiresVerification = false;
-
-  constructor(private route: ActivatedRoute, injector: Injector) {
-    super(injector);
-  }
 
   ngOnInit(): void {
     if (this.route.snapshot.queryParamMap.has('oobCode')) {
       this.verifyMail();
       return;
     }
-
-    this.error.status = true;
-    this.error.message =
-      'En tu correo encontrarás un link válido de verificación.';
   }
 
   verifyMail() {
@@ -45,11 +35,30 @@ export class EmailVerificationComponent
         takeUntil(this.destroy),
         concatMap(() => this.authService.getCurrentUser())
       )
-      .subscribe(this.getSessionsObserver);
+      .subscribe({
+        next: (res) => this.onGetSessionsObserver(res),
+        error: this.observerError,
+      });
   }
 
-  ngOnDestroy() {
-    this.destroy.next(undefined);
-    this.destroy.complete();
+  async onGetSessionsObserver(userInfo: any) {
+    this.clearVariables();
+
+    localStorage.setItem('attemptToLoggedIn', 'true');
+
+    if (!userInfo?.multiFactor?.user) {
+      return;
+    }
+
+    await userInfo?.multiFactor?.user.reload();
+
+    this.authService.getCurrentUser().subscribe((userInfo2: any) => {
+      if (!userInfo2?.emailVerified) {
+        this.verificationRequired = true;
+        return;
+      }
+
+      this.router.navigate(['/landing/dietas/crear']);
+    });
   }
 }

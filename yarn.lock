@@ -311,6 +311,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@angular-extensions/lint-rules@npm:^1.2.1":
+  version: 1.2.1
+  resolution: "@angular-extensions/lint-rules@npm:1.2.1"
+  dependencies:
+    "@phenomnomnominal/tsquery": "npm:^4.0.0"
+    tsutils-etc: "npm:^1.1.0"
+  peerDependencies:
+    tslint: 5.* || 6.*
+    typescript: ^3.0.0 || ^4.0.0
+  checksum: 734787f42bf755631f33efc2e19be280b9f54647b4b74d1efb5ed082a3d208e8e577e6c5312275278e6bd650609adeaa7224badc6eb5fb860873a9fbc12c0137
+  languageName: node
+  linkType: hard
+
 "@angular/animations@npm:15.0.0":
   version: 15.0.0
   resolution: "@angular/animations@npm:15.0.0"
@@ -5434,6 +5447,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@phenomnomnominal/tsquery@npm:^4.0.0":
+  version: 4.2.0
+  resolution: "@phenomnomnominal/tsquery@npm:4.2.0"
+  dependencies:
+    esquery: "npm:^1.0.1"
+  peerDependencies:
+    typescript: ^3 || ^4
+  checksum: 60fc07d48feea8a3580581a2de084a779514807fee3079c00ae796881728ffd303612ec2003338fa4a9bbc83a238d854e4f4c5be505885aa19d3da06b7628ff0
+  languageName: node
+  linkType: hard
+
 "@phenomnomnominal/tsquery@npm:~5.0.1":
   version: 5.0.1
   resolution: "@phenomnomnominal/tsquery@npm:5.0.1"
@@ -6138,7 +6162,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/yargs@npm:^17.0.8":
+"@types/yargs@npm:^17.0.0, @types/yargs@npm:^17.0.8":
   version: 17.0.24
   resolution: "@types/yargs@npm:17.0.24"
   dependencies:
@@ -9460,6 +9484,7 @@ __metadata:
     "@angular-eslint/eslint-plugin": "npm:16.0.1"
     "@angular-eslint/eslint-plugin-template": "npm:16.0.1"
     "@angular-eslint/template-parser": "npm:16.0.1"
+    "@angular-extensions/lint-rules": "npm:^1.2.1"
     "@angular/animations": "npm:15.0.0"
     "@angular/cdk": "npm:15.0.0"
     "@angular/cli": "npm:16.0.0"
@@ -10448,7 +10473,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esquery@npm:^1.4.0":
+"esquery@npm:^1.0.1, esquery@npm:^1.4.0":
   version: 1.5.0
   resolution: "esquery@npm:1.5.0"
   dependencies:
@@ -18962,6 +18987,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tsutils-etc@npm:^1.1.0":
+  version: 1.4.2
+  resolution: "tsutils-etc@npm:1.4.2"
+  dependencies:
+    "@types/yargs": "npm:^17.0.0"
+    yargs: "npm:^17.0.0"
+  peerDependencies:
+    tsutils: ^3.0.0
+    typescript: ">=4.0.0"
+  bin:
+    ts-flags: bin/ts-flags
+    ts-kind: bin/ts-kind
+  checksum: 629fa5a46cb7ceccf6931798bbaa95a95f8afc3db8f89800e6164a478fd43964ee61c9b1530536f8deb29d131aa3d5373e433786a868b05efe3af0a05fb9fbb4
+  languageName: node
+  linkType: hard
+
 "tsutils@npm:^3.21.0":
   version: 3.21.0
   resolution: "tsutils@npm:3.21.0"
@@ -20167,7 +20208,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yargs@npm:17.7.2, yargs@npm:^17.2.1, yargs@npm:^17.3.1, yargs@npm:^17.6.2, yargs@npm:^17.7.2":
+"yargs@npm:17.7.2, yargs@npm:^17.0.0, yargs@npm:^17.2.1, yargs@npm:^17.3.1, yargs@npm:^17.6.2, yargs@npm:^17.7.2":
   version: 17.7.2
   resolution: "yargs@npm:17.7.2"
   dependencies:
