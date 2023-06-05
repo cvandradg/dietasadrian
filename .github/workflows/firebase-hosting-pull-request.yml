@@ -17,6 +17,11 @@ jobs:
         with:
           cmd: install
 
+      - name: 'check node modules'
+        uses: borales/actions-yarn@v3.0.0
+        with:
+          cmd: ls /home/runner/work/dietasadrian/dietasadrian/node_modules/nx/src
+
       - name: 'Yarn Build'
         uses: borales/actions-yarn@v3.0.0
         with:
