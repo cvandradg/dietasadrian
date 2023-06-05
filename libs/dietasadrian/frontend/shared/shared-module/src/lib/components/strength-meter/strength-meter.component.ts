@@ -1,10 +1,8 @@
 import {
   Component,
   Input,
-  OnInit,
   Output,
   OnChanges,
-  SimpleChanges,
   EventEmitter,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -16,7 +14,7 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./strength-meter.component.scss'],
   imports: [CommonModule],
 })
-export class StrengthMeterComponent implements OnInit, OnChanges {
+export class StrengthMeterComponent implements OnChanges {
   @Input() password = '';
   @Output() enableButton = new EventEmitter<boolean>();
 
@@ -38,10 +36,6 @@ export class StrengthMeterComponent implements OnInit, OnChanges {
     this.numbers,
     this.passLength,
   ];
-
-  ngOnInit(): void {
-    console.log(this.symbols);
-  }
 
   ngOnChanges(changes: any): void {
     this.passStrengthMeter(changes?.password?.currentValue);

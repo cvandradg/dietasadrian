@@ -63,7 +63,7 @@ export class AuthService {
   }
 
   recoverPassword(email: string) {
-    return this.defer(this.firebaseAuth.sendPasswordResetEmail(email));
+    return from(this.firebaseAuth.sendPasswordResetEmail(email));
   }
 
   resetPass(code: string, pass: string) {
@@ -87,21 +87,12 @@ export class AuthService {
     });
   }
 
+  //Applications is so fast, there is not time to show the spinner, so we add a timeout
   finalize() {
-    setTimeout(() => {
-      return this.sharedStoreFacade.hideLoader();
-    }, 200);
-
-    return finalize(() => undefined);
+    return finalize(() => {
+      setTimeout(() => {
+        return this.sharedStoreFacade.hideLoader();
+      }, 200);
+    });
   }
-
-  // facebookSignin() {
-  //   // return from(this.firebaseAuth.signInWithPopup(new FacebookAuthProvider()));
-  //   return from(this.firebaseAuth.signInWithRedirect(new FacebookAuthProvider()));
-  // }
-
-  // twitterSignin() {
-  //   // return from(this.firebaseAuth.signInWithPopup(new TwitterAuthProvider()));
-  //   return from(this.firebaseAuth.signInWithRedirect(new TwitterAuthProvider()));
-  // }
 }

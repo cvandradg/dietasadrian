@@ -55,7 +55,9 @@ export class LoginComponent extends Handler implements OnInit {
           this.loadingRecoverPassword = false;
         },
         error: () => {
+          this.successfulReponse = true;
           this.loadingRecoverPassword = false;
+
           return this.observerError;
         },
       });
