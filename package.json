@@ -94,16 +94,5 @@
     "uuid": "^9.0.0",
     "webpack-cli": "^4.10.0"
   },
-  "packageManager": "yarn@4.0.0-rc.43",
-  "optionalDependencies": {
-    "@nrwl/nx-linux-x64-musl": "15.9.3"
-  },
-  "peerDependencies": {
-    "@nrwl/nx-linux-x64-musl": "*"
-  },
-  "peerDependenciesMeta": {
-    "@nrwl/nx-linux-x64-musl": {
-      "optional": true
-    }
-  }
+  "packageManager": "yarn@4.0.0-rc.43"
 }

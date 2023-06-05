@@ -5049,13 +5049,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nrwl/nx-linux-x64-musl@npm:15.9.3":
-  version: 15.9.3
-  resolution: "@nrwl/nx-linux-x64-musl@npm:15.9.3"
-  conditions: os=linux & cpu=x64 & libc=musl
-  languageName: node
-  linkType: hard
-
 "@nrwl/nx-win32-arm64-msvc@npm:15.9.0":
   version: 15.9.0
   resolution: "@nrwl/nx-win32-arm64-msvc@npm:15.9.0"
@@ -9358,7 +9351,6 @@ __metadata:
     "@ngrx/store": "npm:~15.3.0"
     "@ngrx/store-devtools": "npm:~15.3.0"
     "@nrwl/cli": "npm:15.9.0"
-    "@nrwl/nx-linux-x64-musl": "npm:15.9.3"
     "@nx/angular": "npm:16.3.2"
     "@nx/cypress": "npm:16.3.2"
     "@nx/eslint-plugin": "npm:16.3.2"
@@ -9397,12 +9389,7 @@ __metadata:
     webpack-visualizer-plugin: "npm:^0.1.11"
     yarn: "npm:^1.22.19"
     zone.js: "npm:~0.11.4"
-  peerDependencies:
-    "@nrwl/nx-linux-x64-musl": "*"
   dependenciesMeta:
-    "@nrwl/nx-linux-x64-musl":
-      optional: true
-  peerDependenciesMeta:
     "@nrwl/nx-linux-x64-musl":
       optional: true
   languageName: unknown
