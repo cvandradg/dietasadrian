@@ -1,4 +1,4 @@
-import { Component, Injector, OnDestroy, OnInit } from '@angular/core';
+import { Component, Injector, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { SharedModuleModule } from '@shared-modules';
@@ -12,15 +12,9 @@ import { Handler } from '@classes/Handler';
   styleUrls: ['./oobcode-checker.component.scss'],
   imports: [CommonModule, SharedModuleModule, SharedModuleModule],
 })
-export class OobcodeCheckerComponent
-  extends Handler
-  implements OnInit, OnDestroy
-{
+export class OobcodeCheckerComponent extends Handler implements OnInit {
+  route = inject(ActivatedRoute);
   firebaseCode = '';
-
-  constructor(private route: ActivatedRoute, private injector: Injector) {
-    super(injector);
-  }
 
   ngOnInit(): void {
     this.firebaseCode = this.route.snapshot.queryParamMap.get('oobCode') || '';
@@ -28,32 +22,26 @@ export class OobcodeCheckerComponent
     this.authService
       .checkOobCode(this.firebaseCode)
       .pipe(takeUntil(this.destroy))
-      .subscribe(this.codeCheckerObserver);
+      .subscribe({
+        next: (res) => this.codeCheckerObserver(res),
+        error: this.observerError,
+      });
   }
 
-  codeCheckerObserver = {
-    next: (res: any) => {
-      switch (res.operation) {
-        case 'VERIFY_EMAIL':
-          this.router.navigate(['/email-verification'], {
-            queryParamsHandling: 'preserve',
-          });
-          break;
-        case 'PASSWORD_RESET':
-          this.router.navigate(['/passReset'], {
-            queryParamsHandling: 'preserve',
-          });
-          break;
-        default:
-          break;
-      }
-    },
-    error: this.observerError,
-    complete: () => undefined,
-  };
-
-  ngOnDestroy() {
-    this.destroy.next(undefined);
-    this.destroy.complete();
+  codeCheckerObserver(res: any) {
+    switch (res.operation) {
+      case 'VERIFY_EMAIL':
+        this.router.navigate(['/email-verification'], {
+          queryParamsHandling: 'preserve',
+        });
+        break;
+      case 'PASSWORD_RESET':
+        this.router.navigate(['/passReset'], {
+          queryParamsHandling: 'preserve',
+        });
+        break;
+      default:
+        break;
+    }
   }
 }

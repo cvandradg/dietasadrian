@@ -10,9 +10,10 @@ import {
   take,
   Observable,
   ObservableInput,
+  first,
 } from 'rxjs';
 import { sendEmailVerification } from 'firebase/auth';
-import { SharedStoreFacade } from '@shared-modules/+state/shared-store.facade';
+import { SharedStoreFacade } from '../../+state/shared-store.facade';
 
 @Injectable({
   providedIn: 'root',
@@ -32,10 +33,10 @@ export class AuthService {
     );
   }
 
-  createAccount(credentials: { userEmail: string; pass: string }) {
+  createAccount(credentials: { user: string; pass: string }) {
     return this.defer(
       this.firebaseAuth.createUserWithEmailAndPassword(
-        credentials.userEmail,
+        credentials.user,
         credentials.pass
       )
     );
@@ -50,7 +51,7 @@ export class AuthService {
   }
 
   sendEmailVerification(userCredentials: any) {
-    return sendEmailVerification(userCredentials);
+    return this.defer(sendEmailVerification(userCredentials));
   }
 
   verifyEmail(code: string) {
@@ -82,7 +83,7 @@ export class AuthService {
   defer(firebaseCall: Promise<unknown> | ObservableInput<any>) {
     return defer(() => {
       this.sharedStoreFacade.showLoader();
-      return from(firebaseCall).pipe(take(1), this.finalize());
+      return from(firebaseCall).pipe(first(), this.finalize());
     });
   }
 

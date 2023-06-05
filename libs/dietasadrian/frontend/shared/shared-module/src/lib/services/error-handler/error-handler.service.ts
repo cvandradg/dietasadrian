@@ -1,5 +1,5 @@
 import { Injectable, ErrorHandler } from '@angular/core';
-import { SharedStoreFacade } from '@shared-modules/+state/shared-store.facade';
+import { SharedStoreFacade } from '../../+state/shared-store.facade';
 import { FirebaseError } from 'firebase/app';
 
 interface AngularFireError extends Error {
@@ -27,6 +27,8 @@ export class ErrorHandlerService implements ErrorHandler {
   }
 
   firebaseErrorHandler(error: FirebaseError) {
+    console.info(error.code);
+    
     switch (error.code) {
       case 'auth/email-already-in-use':
         return this.errorObject(true, 'El usuario ya existe.', error);
@@ -73,7 +75,7 @@ export class ErrorHandlerService implements ErrorHandler {
       case 'auth/invalid-action-code':
         return this.errorObject(
           true,
-          'Ocurrio un error, inténtalo de nuevo o contáctanos.',
+          'En tu correo encontrarás un link válido de verificación, si no, ponte en contacto con nosotros.',
           error
         );
       case 'auth/user-disabled':
