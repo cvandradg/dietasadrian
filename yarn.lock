@@ -5042,14 +5042,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nrwl/nx-linux-x64-gnu@npm:15.9.3":
-  version: 15.9.3
-  resolution: "@nrwl/nx-linux-x64-gnu@npm:15.9.3"
-  checksum: e16f5f24f09598f3abb92ed01c49701fc02532945a4d464ef4d72f28a8b24573e4d02ce460c05a408cb057692bca332fa9ca8a82a6df18ef5921a923e14908b2
-  conditions: os=linux & cpu=x64 & libc=glibc
-  languageName: node
-  linkType: hard
-
 "@nrwl/nx-linux-x64-musl@npm:15.9.0":
   version: 15.9.0
   resolution: "@nrwl/nx-linux-x64-musl@npm:15.9.0"
@@ -5060,7 +5052,6 @@ __metadata:
 "@nrwl/nx-linux-x64-musl@npm:15.9.3":
   version: 15.9.3
   resolution: "@nrwl/nx-linux-x64-musl@npm:15.9.3"
-  checksum: 55f6f1e040c252f7148fd74aea07e7bf4907c0672a7f56e5cbb43624784ec67eb86a33fa7bcfb05a4e76a5c71a3e8b4c682c94b035461d559951b84794820481
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
@@ -9367,7 +9358,6 @@ __metadata:
     "@ngrx/store": "npm:~15.3.0"
     "@ngrx/store-devtools": "npm:~15.3.0"
     "@nrwl/cli": "npm:15.9.0"
-    "@nrwl/nx-linux-x64-gnu": "npm:15.9.3"
     "@nrwl/nx-linux-x64-musl": "npm:15.9.3"
     "@nx/angular": "npm:16.3.2"
     "@nx/cypress": "npm:16.3.2"
@@ -9407,6 +9397,14 @@ __metadata:
     webpack-visualizer-plugin: "npm:^0.1.11"
     yarn: "npm:^1.22.19"
     zone.js: "npm:~0.11.4"
+  peerDependencies:
+    "@nrwl/nx-linux-x64-musl": "*"
+  dependenciesMeta:
+    "@nrwl/nx-linux-x64-musl":
+      optional: true
+  peerDependenciesMeta:
+    "@nrwl/nx-linux-x64-musl":
+      optional: true
   languageName: unknown
   linkType: soft
 

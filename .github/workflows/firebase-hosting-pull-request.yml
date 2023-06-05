@@ -18,7 +18,7 @@ jobs:
       #     cmd: install
 
       - name: 'yarn install v2.0'
-        run: sudo yarn install && sudo yarn add @nrwl/nx-linux-x64-musl@latest --dev -O -P && sudo yarn add @nrwl/nx-linux-x64-gnu@latest --dev -O -P
+        run: sudo yarn install && sudo yarn add @nrwl/nx-linux-x64-musl@latest -O -P && sudo yarn add @nrwl/nx-linux-x64-gnu@latest -O -P
 
       # - name: 'deleting node modules and lock'
       #   run: sudo rm -rf /home/runner/work/dietasadrian/dietasadrian/node_modules && sudo rm -rf /home/runner/work/dietasadrian/dietasadrian/yarn.lock
