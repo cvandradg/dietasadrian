@@ -16,16 +16,6 @@ jobs:
         with:
           cmd: install
 
-      - name: 'Yarn add @nrwl/nx-linux-x64-gnu'
-        uses: borales/actions-yarn@v3.0.0
-        with:
-          cmd: yarn add @nrwl/nx-linux-x64-gnu --dev
-
-      - name: 'Yarn add @nrwl/nx-linux-x64-musl'
-        uses: borales/actions-yarn@v3.0.0
-        with:
-          cmd: yarn add @nrwl/nx-linux-x64-musl --dev
-
       - name: 'Yarn Build'
         uses: borales/actions-yarn@v3.0.0
         with:
