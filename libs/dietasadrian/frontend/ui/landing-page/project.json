@@ -9,6 +9,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["coverage/libs/dietasadrian/frontend/ui/landing-page"],
       "options": {
+        "tsConfig": "libs/dietasadrian/frontend/ui/landing-page/tsconfig.lib.json",
         "jestConfig": "libs/dietasadrian/frontend/ui/landing-page/jest.config.ts",
         "passWithNoTests": true
       }
@@ -16,6 +17,7 @@
     "lint": {
       "executor": "@nx/linter:eslint",
       "options": {
+        "tsConfig": "libs/dietasadrian/frontend/ui/landing-page/tsconfig.lib.json",
         "lintFilePatterns": [
           "libs/dietasadrian/frontend/ui/landing-page/**/*.ts",
           "libs/dietasadrian/frontend/ui/landing-page/**/*.html"

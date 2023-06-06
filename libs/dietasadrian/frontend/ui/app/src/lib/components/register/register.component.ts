@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModuleModule } from '@shared-modules';
 import { RouterModule } from '@angular/router';
-import { HeaderComponent } from '../../header/header.component';
+import { HeaderComponent } from '../header/header.component';
 import { Handler } from '@classes/Handler';
 import { takeUntil } from 'rxjs';
 
