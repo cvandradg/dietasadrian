@@ -5045,6 +5045,7 @@ __metadata:
 "@nrwl/nx-linux-x64-gnu@npm:=15.8.5":
   version: 15.8.5
   resolution: "@nrwl/nx-linux-x64-gnu@npm:15.8.5"
+  checksum: 5fe6565875cf2435d574e32949ab5a851fd2232151fc9317d8f8a5f0d8882a013606c4e192ab1d14249d7162b2c12275cdc5503348b7bfd1dcea5271baf9bb7d
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
@@ -5059,6 +5060,7 @@ __metadata:
 "@nrwl/nx-linux-x64-musl@npm:=15.8.5":
   version: 15.8.5
   resolution: "@nrwl/nx-linux-x64-musl@npm:15.8.5"
+  checksum: d0a2a6690b689f0d1b293806699987f2e4be2e55b644505797f5a6e8738d54f1895a1bb207069ffba18c4c7a04533199aefa16501b001b5cb081735424782978
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
@@ -9405,11 +9407,6 @@ __metadata:
     webpack-visualizer-plugin: "npm:^0.1.11"
     yarn: "npm:^1.22.19"
     zone.js: "npm:~0.11.4"
-  dependenciesMeta:
-    "@nrwl/nx-linux-x64-gnu":
-      optional: true
-    "@nrwl/nx-linux-x64-musl":
-      optional: true
   languageName: unknown
   linkType: soft
 
