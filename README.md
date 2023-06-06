@@ -58,6 +58,8 @@ the Handler class without the need to redeclare it. Not sure if this approach is
    I was expecting to inherit HandlerService properties inside the "A" component
    without the need of using the "extend" word. But I was not inheriting the properties.
    To access them I needed de constructor firebaseAuthHandler variable.
+10. In ErrorHandlerService i'm using injector to avoid circular dependency, not sure why this is. Why I'm I getting circular dependency? why can't I use
+inject instead?
 
 ## Userfull resources:
 

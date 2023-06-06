@@ -12,7 +12,6 @@
           placeholder="AlgunCorreo@dominio.com"
           type="email"
           required="true"
-          [disabled]="successAccountCreation"
           formControlName="user"
           (keyup.enter)="buttonEnable && createAccount()"
         />
@@ -23,7 +22,6 @@
           matInput
           placeholder="EjemploDeClave1!"
           type="password"
-          [disabled]="successAccountCreation"
           required="true"
           formControlName="pass"
           (keyup.enter)="buttonEnable && createAccount()"
