@@ -52,6 +52,8 @@ export class RegisterComponent extends Handler implements OnInit {
     }
 
     this.successAccountCreation = true;
+    this.loginInputForm.controls.pass.disable();
+    this.loginInputForm.controls.user.disable();
 
     if (!userInfo.user.emailVerified)
       this.authService.sendEmailVerification(userInfo.user).subscribe({
