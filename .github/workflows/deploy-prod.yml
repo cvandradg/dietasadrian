@@ -38,4 +38,4 @@ name: 'Deploy to Firebase Hosting on merge'
   push:
     branches:
       - main
-permissions: write-all
+permissions: read-all
