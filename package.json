@@ -42,8 +42,6 @@
     "@ngrx/router-store": "~15.3.0",
     "@ngrx/store": "~15.3.0",
     "@nrwl/cli": "15.9.0",
-    "@nrwl/nx-linux-x64-gnu": "=15.8.5",
-    "@nrwl/nx-linux-x64-musl": "=15.8.5",
     "@nx/angular": "16.3.2",
     "@types/uuid": "^8.3.4",
     "firebase": "^9.22.0",
@@ -95,6 +93,10 @@
     "typescript": "=5.0.4",
     "uuid": "^9.0.0",
     "webpack-cli": "^4.10.0"
+  },
+  "optionalDependencies": {
+    "@nrwl/nx-linux-x64-gnu": "=15.8.5",
+    "@nrwl/nx-linux-x64-musl": "=15.8.5"
   },
   "packageManager": "yarn@4.0.0-rc.43"
 }
