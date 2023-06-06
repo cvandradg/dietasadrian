@@ -44,11 +44,3 @@ name: 'Deploy to Firebase Hosting on merge'
   issues: write
   pull-requests: write
   statuses: write
-  actions: write
-  checks: write
-  deployments: write
-  discussions: write
-  packages: write
-  pages: write
-  repository-projects: write
-  security-events: write
