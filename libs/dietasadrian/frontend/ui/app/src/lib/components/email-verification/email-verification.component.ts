@@ -58,7 +58,7 @@ export class EmailVerificationComponent extends Handler implements OnInit {
         return;
       }
 
-      this.router.navigate(['/landing/dietas/crear']);
+      this.router.navigate(['/landing']);
     });
   }
 }

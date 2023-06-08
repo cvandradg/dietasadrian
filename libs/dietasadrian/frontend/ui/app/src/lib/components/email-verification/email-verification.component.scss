@@ -77,10 +77,13 @@ mat-form-field {
     .mdc-text-field__input::placeholder {
     color: #88898e;
   }
-  .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  
+  .mdc-text-field--filled:not(.mdc-text-field--disabled),
+  .mdc-text-field--disabled.mdc-text-field--filled {
     padding: 0.6rem;
     background-color: #222222 !important;
   }
+  
 
   mat-label {
     color: #88898e !important;

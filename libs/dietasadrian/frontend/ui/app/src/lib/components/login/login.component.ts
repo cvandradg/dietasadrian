@@ -87,7 +87,7 @@ export class LoginComponent extends Handler implements OnInit {
       return;
     }
 
-    this.router.navigate(['/landing/dietas/crear']);
+    this.router.navigate(['/landing']);
   }
 
   async onGetSessionsObserver(userInfo: any) {
@@ -107,12 +107,12 @@ export class LoginComponent extends Handler implements OnInit {
         return;
       }
 
-      this.router.navigate(['/landing/dietas/crear']);
+      this.router.navigate(['/landing']);
     });
   }
 
   onbrandSignin() {
     this.successfulReponse = true;
-    this.router.navigate(['/landing/dietas/crear']);
+    this.router.navigate(['/landing']);
   }
 }

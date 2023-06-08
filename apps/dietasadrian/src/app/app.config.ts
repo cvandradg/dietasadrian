@@ -1,0 +1,48 @@
+import {
+  ApplicationConfig,
+  ErrorHandler,
+  importProvidersFrom,
+  isDevMode,
+} from '@angular/core';
+import {
+  RouterModule,
+  provideRouter,
+  withEnabledBlockingInitialNavigation,
+} from '@angular/router';
+import { routes } from '../routes';
+import { StoreModule } from '@ngrx/store';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+
+import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { ErrorHandlerService } from '@services/error-handler/error-handler.service';
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideRouter(routes, withEnabledBlockingInitialNavigation()),
+    importProvidersFrom(
+      RouterModule,
+      BrowserModule,
+      BrowserAnimationsModule,
+      StoreModule.forRoot(
+        {},
+        {
+          metaReducers: [],
+          runtimeChecks: {
+            strictActionImmutability: true,
+            strictStateImmutability: true,
+          },
+        }
+      ),
+      EffectsModule.forRoot([]),
+      StoreRouterConnectingModule.forRoot()
+    ),
+    provideStoreDevtools({ logOnly: !isDevMode(), trace: true }),
+    {
+      provide: ErrorHandler,
+      useClass: ErrorHandlerService,
+    },
+  ],
+};

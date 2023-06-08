@@ -60,6 +60,9 @@
       ],
       "@shared-modules/*": [
         "libs/dietasadrian/frontend/shared/shared-module/src/lib/*"
+      ],
+      "@shared-modules/store/*": [
+        "libs/dietasadrian/frontend/shared/shared-module/src/lib/+state/*"
       ]
     }
   },
