@@ -16,6 +16,12 @@ This project was generated using [Nx](https://nx.dev).
 6. https://www.youtube.com/watch?v=VSiJANdCGsM&t=11s&ab_channel=nivek
 7. https://www.youtube.com/watch?v=4FkFmn0LmLI&ab_channel=JoshuaMorony
 8. https://www.youtube.com/shorts/5MOTRAfgYTc
+9. https://blog.bitsrc.io/how-i-have-set-up-ngrx-in-angular-16-with-standalone-components-163499804fbb
+10. https://www.telerik.com/blogs/angular-14-introducing-standalone-components
+11. https://netbasal.com/angular-standalone-components-welcome-to-a-world-without-ngmodule-abd3963e89c5
+12. https://www.angulararchitects.io/en/book#getebook
+13. https://www.youtube.com/watch?v=f7BrCyxRxlY&ab_channel=KevinDavila
+14. https://www.youtube.com/watch?v=e03EHZIVJtM&ab_channel=DecodedFrontend
 
 ## TODO
 
