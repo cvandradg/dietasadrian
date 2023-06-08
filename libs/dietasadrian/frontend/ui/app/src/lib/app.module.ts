@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { provideRouter } from '@angular/router';
-import { appRoutes } from './lib.routes';
+import { appRoutes } from './app.routes';
 import { SharedModuleModule } from '@shared-modules';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';

@@ -28,7 +28,7 @@ export interface SharedStorePartialState {
 export const sharedStoreAdapter: EntityAdapter<SharedStoreEntity> =
   createEntityAdapter<SharedStoreEntity>();
 
-const reducer = createReducer(
+export const reducer = createReducer(
   initialSharedStoreState,
   on(SharedStoreActions.showLoading, (state) => ({
     ...state,

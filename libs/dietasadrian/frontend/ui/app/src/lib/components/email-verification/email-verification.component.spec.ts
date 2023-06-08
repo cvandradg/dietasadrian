@@ -1,5 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { EmailVerificationComponent } from './email-verification.component';
+import { RouterModule } from '@angular/router';
+import { HeaderComponent } from '../header/header.component';
+import { SharedModuleModule } from '@shared-modules';
+import { CommonModule } from '@angular/common';
 
 describe('EmailVerificationComponent', () => {
   let component: EmailVerificationComponent;
@@ -7,7 +11,7 @@ describe('EmailVerificationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [EmailVerificationComponent],
+      imports: [CommonModule, HeaderComponent, RouterModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(EmailVerificationComponent);
