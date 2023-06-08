@@ -12,7 +12,7 @@ import { UserInputFormComponent } from './components/user-input-form/user-input-
       { path: 'misdietas', pathMatch: 'full', component: MyDietsComponent },
       { path: 'crear', pathMatch: 'full', component: CreateDietsComponent },
       { path: 'formulario', pathMatch: 'full', component: UserInputFormComponent },
-      { path: '', redirectTo: 'formulario', pathMatch: 'prefix' },
+      { path: '', redirectTo: 'crear', pathMatch: 'prefix' },
     ]),
   ],
 })

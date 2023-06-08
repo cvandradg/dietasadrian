@@ -46,8 +46,8 @@
       "@libs/dietas/dietas.module": [
         "libs/dietasadrian/frontend/ui/dietas/src/lib/dietas.module"
       ],
-      "@libs/dietas/landing-page.module": [
-        "libs/dietasadrian/frontend/ui/landing-page/src/lib/landing-page.module"
+      "@libs/landing-page/*": [
+        "libs/dietasadrian/frontend/ui/landing-page/src/lib/*"
       ],
       "@materialFunctions": [
         "libs/dietasadrian/frontend/shared/materialFunctions.ts"
