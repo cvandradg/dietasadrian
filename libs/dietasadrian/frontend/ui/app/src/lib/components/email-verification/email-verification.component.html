@@ -24,7 +24,7 @@
         style="--fa-animation-iteration-count: 2"
       ></fa-icon>
     </div>
-    
+
     <div class="error-message" *ngIf="!(loading$ | async)! && error.status">
       <p>{{ error.message }}</p>
       <fa-icon

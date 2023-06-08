@@ -40,7 +40,7 @@ export const appConfig: Route[] = [
           import('@libs/dietas/landing-page.module').then(
             (m) => m.LandingPageModule
           ),
-          pathMatch: 'prefix',
+        pathMatch: 'prefix',
       },
       {
         path: '',

@@ -7,6 +7,7 @@ This project was generated using [Nx](https://nx.dev).
 🔎 **Smart, Fast and Extensible Build System**
 
 ##Material to read (of personal interest)
+
 1. https://www.youtube.com/watch?v=dau7kQMdH4A&ab_channel=JoshuaMorony
 2. https://www.angulararchitects.io/aktuelles/angulars-future-without-ngmodules-lightweight-solutions-on-top-of-standalone-components/
 3. https://www.google.com/search?q=nrwl+nx+standalone&oq=nrwl+nx+standalone&aqs=chrome..69i57j33i160l2.3452j0j7&sourceid=chrome&ie=UTF-8#fpstate=ive&vld=cid:3d95c9d5,vid:e-BpE9d3NIw
@@ -60,9 +61,9 @@ the Handler class without the need to redeclare it. Not sure if this approach is
    without the need of using the "extend" word. But I was not inheriting the properties.
    To access them I needed de constructor firebaseAuthHandler variable.
 10. In ErrorHandlerService i'm using injector to avoid circular dependency, not sure why this is. Why I'm I getting circular dependency? why can't I use
-inject instead?
+    inject instead?
 
-11. I can't provide store using  provideStore() in main, not sure why but It says that StoreModule is not provided (angular is not the one failing, it fails in runtime)
+11. I can't provide store using provideStore() in main, not sure why but It says that StoreModule is not provided (angular is not the one failing, it fails in runtime)
 
 ## Userfull resources:
 
