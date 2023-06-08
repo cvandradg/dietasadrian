@@ -30,6 +30,7 @@ export class PassResetComponent extends Handler implements OnInit {
   }
 
   resetPassword() {
+    this.clearVariables();
     if (this.loginInputForm.invalid) {
       return;
     }

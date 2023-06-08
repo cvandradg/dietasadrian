@@ -29,6 +29,7 @@ export class Handler implements OnDestroy {
   error = {
     status: false,
     message: '',
+    error: {}
   };
   verificationRequired = false;
   successfulReponse = false;
@@ -48,6 +49,7 @@ export class Handler implements OnDestroy {
     this.error = {
       status: false,
       message: '',
+      error: {}
     };
 
     this.successfulReponse = false;
