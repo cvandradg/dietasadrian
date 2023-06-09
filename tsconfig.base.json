@@ -43,8 +43,8 @@
       "@interfaces/*": [
         "libs/dietasadrian/frontend/shared/shared-module/src/lib/interfaces/*"
       ],
-      "@libs/dietas/dietas.module": [
-        "libs/dietasadrian/frontend/ui/dietas/src/lib/dietas.module"
+      "@libs/dietas/*": [
+        "libs/dietasadrian/frontend/ui/dietas/src/lib/*"
       ],
       "@libs/landing-page/*": [
         "libs/dietasadrian/frontend/ui/landing-page/src/lib/*"

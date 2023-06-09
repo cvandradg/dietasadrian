@@ -22,6 +22,7 @@ This project was generated using [Nx](https://nx.dev).
 12. https://www.angulararchitects.io/en/book#getebook
 13. https://www.youtube.com/watch?v=f7BrCyxRxlY&ab_channel=KevinDavila
 14. https://www.youtube.com/watch?v=e03EHZIVJtM&ab_channel=DecodedFrontend
+15. https://www.tiktok.com/@midudev/video/7240112102138989851?_r=1&_t=8d1yheXrXxF
 
 ## TODO
 

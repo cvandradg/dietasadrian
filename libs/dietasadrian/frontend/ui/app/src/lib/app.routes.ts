@@ -48,11 +48,6 @@ export const appRoutes: Routes = [
         pathMatch: 'full',
       },
       {
-        path: 'dietas',
-        loadChildren: () =>
-          import('@libs/dietas/dietas.module').then((m) => m.DietasModule),
-      },
-      {
         path: 'register',
         component: RegisterComponent,
         pathMatch: 'full',
