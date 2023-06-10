@@ -24,7 +24,9 @@ This project was generated using [Nx](https://nx.dev).
 14. https://www.youtube.com/watch?v=e03EHZIVJtM&ab_channel=DecodedFrontend
 15. https://www.tiktok.com/@midudev/video/7240112102138989851?_r=1&_t=8d1yheXrXxF
 16. https://dorey.github.io/JavaScript-Equality-Table/
-17. https://www.youtube.com/watch?v=tWy8zaWvkvk&ab_channel=JoshuaMorony                                                                                                   
+17. https://www.youtube.com/watch?v=tWy8zaWvkvk&ab_channel=JoshuaMorony        
+18. https://state-adapt.github.io/angular                                                                                           
+19. https://www.youtube.com/watch?v=EULYt4sHD1k&ab_channel=MikePearson%2FEngineering
 
 ## TODO
 

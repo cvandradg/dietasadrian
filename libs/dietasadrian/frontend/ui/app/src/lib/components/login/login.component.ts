@@ -47,12 +47,6 @@ export class LoginComponent extends Handler implements OnInit {
     this.clearVariables();
     this.loadingRecoverPassword = true;
 
-    // if(this.loginInputForm.controls.pass.invalid){
-    //   this.loadingRecoverPassword = false;
-
-    //   return;
-    // }
-
     this.authService
       .recoverPassword(this.loginInputForm.value.user as string)
       .pipe(takeUntil(this.destroy))
@@ -72,6 +66,7 @@ export class LoginComponent extends Handler implements OnInit {
             this.successfulReponse = true;
             this.error.status = false;
           }
+          this.changeDetectorRef.markForCheck();
         },
       });
   }
