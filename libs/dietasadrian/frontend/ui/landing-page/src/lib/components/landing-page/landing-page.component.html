@@ -1,37 +1,6 @@
-<div class="wrapper">
-  <div class="container">
-    <div id="welcome">
-      <h1>Bienvenido</h1>
-    </div>
-
-    <div class="rounded menu-container">
-      <div class="middle-content center menu">
-        <div class="rounded shadow">
-          <a
-            [routerLink]="'dietas/misdietas'"
-            rel="noreferrer"
-            class="list-item-link"
-          >
-            <fa-icon [icon]="['fad', 'book-open-cover']" class="icon"></fa-icon>
-
-            <span>
-              Consultar Dietas
-              <span> Mis dietas creadas </span>
-            </span>
-            <fa-icon [icon]="['fad', 'caret-right']" class="icon"></fa-icon>
-          </a>
-
-          <a [routerLink]="'dietas'" rel="noreferrer" class="list-item-link">
-            <fa-icon [icon]="['fad', 'file-pen']" class="icon"></fa-icon>
-            <span>
-              Crear dietas
-              <span> Asistente para crear dietas </span>
-            </span>
-            <fa-icon [icon]="['fad', 'caret-right']" class="icon"></fa-icon>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<router-outlet></router-outlet>
+<mat-sidenav-container>
+  <mat-sidenav [opened]="facade.showSidenavbar$ | async" mode="over"> Start </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

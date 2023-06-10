@@ -11,6 +11,8 @@ body {
   min-width: 100%;
   position: absolute;
   color: rgba(55, 65, 81, 1);
+  background-color: #121418 !important;
+  height: 100%;
 }
 
 :host {
@@ -27,10 +29,6 @@ body {
   border: solid 3px yellow; /* for debugging purposes */
 }
 
-html,
-body {
-  height: 100%;
-}
 body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;

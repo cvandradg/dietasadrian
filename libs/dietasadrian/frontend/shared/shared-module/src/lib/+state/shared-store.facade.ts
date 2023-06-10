@@ -23,6 +23,14 @@ export class SharedStoreFacade {
     select(SharedStoreSelectors.selectSharedStoreLoading)
   );
 
+  showSidenavbar$ = this.store.pipe(
+    select(SharedStoreSelectors.toogleSidenavbar)
+  );
+
+  toggleSidenavbar() {
+    this.store.dispatch(SharedStoreActions.toggleSidenavbar());
+  }
+
   /**
    * Combine pieces of state using createSelector,
    * and expose them as observables through the facade.

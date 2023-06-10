@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { HeaderComponent } from '../header/header.component';
 import { SharedModuleModule } from '@shared-modules';
 import { CommonModule } from '@angular/common';
 
 import { RouterModule } from '@angular/router';
 import { takeUntil } from 'rxjs';
 import { Handler } from '@classes/Handler';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   standalone: true,
   selector: 'dietas-adrian-nx-workspace-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  imports: [CommonModule, HeaderComponent, SharedModuleModule, RouterModule],
+  imports: [CommonModule, NavbarComponent, SharedModuleModule, RouterModule],
 })
 export class LoginComponent extends Handler implements OnInit {
   loadingRecoverPassword = false;

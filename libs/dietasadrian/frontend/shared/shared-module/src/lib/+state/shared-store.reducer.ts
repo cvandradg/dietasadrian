@@ -6,19 +6,14 @@ import { SharedStoreEntity } from '../+state/shared-store.models';
 
 export const SHARED_STORE_FEATURE_KEY = 'sharedStore';
 
-export interface SharedStoreState extends EntityState<SharedStoreEntity> {
-  selectedId?: string | number; // which SharedStore record has been selected
-  loaded: boolean; // has the SharedStore list been loaded
-  error?: string | null; // last known error (if any)
+export interface SharedStoreState {
   loading: boolean;
+  toggleSidenavbar: boolean;
 }
 
 export const initialSharedStoreState: SharedStoreState = {
   loading: false,
-  loaded: false,
-  error: null,
-  ids: [],
-  entities: {},
+  toggleSidenavbar: true,
 };
 
 export interface SharedStorePartialState {
@@ -37,7 +32,12 @@ export const reducer = createReducer(
   on(SharedStoreActions.hideLoading, (state) => ({
     ...state,
     loading: false,
+  })),
+  on(SharedStoreActions.toggleSidenavbar, (state) => ({
+    ...state,
+    toggleSidenavbar: !state.toggleSidenavbar,
   }))
+
 );
 
 export function sharedStoreReducer(state: SharedStoreState, action: Action) {

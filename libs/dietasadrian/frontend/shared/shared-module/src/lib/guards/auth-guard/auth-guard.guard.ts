@@ -1,34 +1,36 @@
-import { Injectable, Optional } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  RouterStateSnapshot,
-  UrlTree,
-} from '@angular/router';
+import { inject } from '@angular/core';
 import { HelperService } from '@helperFunctionsService';
-import { Observable } from 'rxjs';
+import { tap } from 'rxjs';
 import * as _ from 'lodash';
 import { MatDialogState } from '@angular/material/dialog';
 
-@Injectable({
-  providedIn: 'root',
-})
-export class AuthGuard {
-  constructor(private helper: HelperService) {}
+export const domainGuard = () => {
+  const helper = inject(HelperService);
+  tap((value: any) => {
+    console.log('value', value);
+    
+    // if (helper.getMatDialog()?.getState() === MatDialogState.OPEN) {
+    //   helper.getMatDialog().close();
 
-  canActivateChild(
-    childRoute: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ):
-    | boolean
-    | UrlTree
-    | Observable<boolean | UrlTree>
-    | Promise<boolean | UrlTree> {
-    if (this.helper.getMatDialog()?.getState() === MatDialogState.OPEN) {
-      this.helper.getMatDialog().close();
+    //   return false;
+    // }
 
-      return false;
-    }
+    // return true;
+  });
+};
 
-    return true;
-  }
-}
+
+
+  // canActivateChild(
+  //   childRoute: ActivatedRouteSnapshot,
+  //   state: RouterStateSnapshot
+  // ):
+  //   | boolean
+  //   | UrlTree
+  //   | Observable<boolean | UrlTree>
+  //   | Promise<boolean | UrlTree> {
+  //      ...guard logic...
+  // }
+
+
+
