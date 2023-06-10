@@ -45,7 +45,8 @@ import {
   faSpinnerThird,
   faUser,
   faCircleNotch,
-  faMessageExclamation
+  faMessageExclamation,
+  faBars,
 } from '@fortawesome/pro-solid-svg-icons';
 
 
@@ -83,7 +84,8 @@ export class Fontawesome {
       faXmarkSolid,
       faUser,
       faCircleNotch,
-      faEnvelopeCircleCheck
+      faEnvelopeCircleCheck,
+      faBars
     );
   }
 }

@@ -131,3 +131,17 @@ i {
     max-width: 90%;
   }
 }
+
+mat-sidenav-container {
+  height: calc(205vh - 115vh);
+}
+
+mat-sidenav {
+  width: 200px;
+  // background: rgba(77, 85, 95, 1);
+  background-color: #eee;
+}
+
+mat-sidenav-content {
+  background-color: #121418;
+}

@@ -2,16 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModuleModule } from '@shared-modules';
 import { RouterModule } from '@angular/router';
-import { HeaderComponent } from '../header/header.component';
 import { Handler } from '@classes/Handler';
 import { takeUntil } from 'rxjs';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   standalone: true,
   selector: 'dietas-adrian-nx-workspace-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
-  imports: [CommonModule, SharedModuleModule, HeaderComponent, RouterModule],
+  imports: [CommonModule, SharedModuleModule, NavbarComponent, RouterModule],
 })
 export class RegisterComponent extends Handler implements OnInit {
   buttonEnable = true;

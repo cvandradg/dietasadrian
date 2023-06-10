@@ -1,12 +1,13 @@
-import { Routes, provideRouter } from '@angular/router';
+import { Routes } from '@angular/router';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
-import { dietasRoutes } from "@libs/dietas/dietas.routes";
+import { domainGuard } from "@guards/auth-guard/auth-guard.guard";
 
 export const landingPageRoutes: Routes = [
   {
     path: '',
     pathMatch: 'prefix',
     component: LandingPageComponent,
+    canActivateChild: [domainGuard],
     children: [
       {
         path: 'dietas',

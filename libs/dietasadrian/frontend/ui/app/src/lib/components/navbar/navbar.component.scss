@@ -3,6 +3,18 @@ mat-toolbar {
   color: #fff;
 }
 
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  fa-icon {
+    position: initial;
+    padding: 0 1rem;
+  }
+}
+
 .trim-dots {
   text-overflow: ellipsis;
   overflow: hidden;

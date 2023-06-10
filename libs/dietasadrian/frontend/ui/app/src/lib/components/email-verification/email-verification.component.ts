@@ -2,16 +2,16 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModuleModule } from '@shared-modules';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { HeaderComponent } from '../header/header.component';
 import { takeUntil, concatMap } from 'rxjs';
 import { Handler } from '@classes/Handler';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   standalone: true,
   selector: 'dietas-adrian-nx-workspace-email-verification',
   templateUrl: './email-verification.component.html',
   styleUrls: ['./email-verification.component.scss'],
-  imports: [CommonModule, SharedModuleModule, HeaderComponent, RouterModule],
+  imports: [CommonModule, SharedModuleModule, NavbarComponent, RouterModule],
 })
 export class EmailVerificationComponent extends Handler implements OnInit {
   route = inject(ActivatedRoute);
