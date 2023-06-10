@@ -4,6 +4,7 @@ import {
   Output,
   EventEmitter,
   OnDestroy,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModuleModule } from '@shared-modules';
@@ -13,10 +14,11 @@ import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, SharedModuleModule],
   selector: 'dietas-adrian-nx-workspace-food-line',
   templateUrl: './food-line.component.html',
   styleUrls: ['./food-line.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [CommonModule, SharedModuleModule],
 })
 export class FoodLineComponent implements OnDestroy {
   @Input()

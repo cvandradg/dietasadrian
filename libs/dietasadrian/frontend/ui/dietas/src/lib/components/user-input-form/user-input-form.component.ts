@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModuleModule } from '@shared-modules';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -9,11 +9,12 @@ import { map } from 'rxjs/operators';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, SharedModuleModule],
-
   selector: 'dietas-adrian-nx-workspace-user-input-form',
   templateUrl: './user-input-form.component.html',
   styleUrls: ['./user-input-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+
+  imports: [CommonModule, SharedModuleModule],
 })
 export class UserInputFormComponent {
   firstFormGroup = this._formBuilder.group({

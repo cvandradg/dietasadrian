@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { SharedModuleModule } from '@shared-modules';
 import { CommonModule } from '@angular/common';
 
@@ -12,6 +12,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
   selector: 'dietas-adrian-nx-workspace-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, NavbarComponent, SharedModuleModule, RouterModule],
 })
 export class LoginComponent extends Handler implements OnInit {

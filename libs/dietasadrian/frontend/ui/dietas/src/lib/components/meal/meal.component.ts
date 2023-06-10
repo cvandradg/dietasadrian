@@ -4,6 +4,7 @@ import {
   Input,
   Output,
   OnDestroy,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Meal } from '@interfaces/interfaces.interfaces';
@@ -17,11 +18,11 @@ import { moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, SharedModuleModule, FoodLineComponent],
-
   selector: 'dietas-adrian-nx-workspace-meal',
   templateUrl: './meal.component.html',
   styleUrls: ['./meal.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [CommonModule, SharedModuleModule, FoodLineComponent],
 })
 export class MealComponent implements OnDestroy {
   @Input()
