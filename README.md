@@ -27,7 +27,8 @@ This project was generated using [Nx](https://nx.dev).
 17. https://www.youtube.com/watch?v=tWy8zaWvkvk&ab_channel=JoshuaMorony        
 18. https://state-adapt.github.io/angular                                                                                           
 19. https://www.youtube.com/watch?v=EULYt4sHD1k&ab_channel=MikePearson%2FEngineering
-
+20. https://www.youtube.com/watch?v=sIeTGWSUK7M&ab_channel=JoshuaMorony
+21. https://www.youtube.com/watch?v=54q7P9PB0WU&ab_channel=JoshuaMorony
 ## TODO
 
 1. enablePersistance to enable offline mode

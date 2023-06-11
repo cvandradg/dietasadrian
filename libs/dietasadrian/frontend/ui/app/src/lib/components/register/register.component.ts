@@ -17,7 +17,6 @@ import { NavbarComponent } from '../navbar/navbar.component';
 export class RegisterComponent extends Handler implements OnInit {
   buttonEnable = true;
   successAccountCreation = false;
-  redirectTimeout = 1;
   isPassStrong = false;
 
   ngOnInit(): void {
@@ -31,7 +30,6 @@ export class RegisterComponent extends Handler implements OnInit {
 
   createAccount() {
     this.clearVariables();
-    this.buttonEnable = false;
 
     this.authService
       .createAccount(
@@ -65,6 +63,6 @@ export class RegisterComponent extends Handler implements OnInit {
 
   enableButton(isEnable: boolean) {
     this.isPassStrong = isEnable;
-    this.changeDetectorRef.detectChanges();
+    this.changeDetectorRef.detectChanges(); // maybe return an observable to avoid this, or handle it wth a subject.next
   }
 }

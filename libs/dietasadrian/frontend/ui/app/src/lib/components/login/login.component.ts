@@ -81,10 +81,6 @@ export class LoginComponent extends Handler implements OnInit {
       });
   }
 
-  createAccountRedirect() {
-    this.router.navigate(['/register']);
-  }
-
   onLogin(UserCredendial: any) {
     this.clearVariables();
     localStorage.setItem('attemptToLoggedIn', 'true');
