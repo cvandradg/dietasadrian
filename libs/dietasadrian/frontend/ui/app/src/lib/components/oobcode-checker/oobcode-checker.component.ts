@@ -1,4 +1,4 @@
-import { Component, Injector, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Injector, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { SharedModuleModule } from '@shared-modules';
@@ -10,6 +10,7 @@ import { Handler } from '@classes/Handler';
   selector: 'dietas-adrian-nx-workspace-oobcode-checker',
   templateUrl: './oobcode-checker.component.html',
   styleUrls: ['./oobcode-checker.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, SharedModuleModule, SharedModuleModule],
 })
 export class OobcodeCheckerComponent extends Handler implements OnInit {

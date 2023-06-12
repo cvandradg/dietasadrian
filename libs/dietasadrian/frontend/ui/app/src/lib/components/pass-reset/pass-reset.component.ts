@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import {
+  ChangeDetectionStrategy,
   Component,
   OnInit,
   inject,
@@ -15,6 +16,7 @@ import { FirebaseError } from 'firebase/app';
   selector: 'dietas-adrian-nx-workspace-pass-reset',
   templateUrl: './pass-reset.component.html',
   styleUrls: ['./pass-reset.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, SharedModuleModule, RouterModule],
 })
 export class PassResetComponent extends Handler implements OnInit {

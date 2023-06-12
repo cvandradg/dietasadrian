@@ -14,7 +14,7 @@ import { StoreModule } from '@ngrx/store';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EffectsModule } from '@ngrx/effects';
-import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { RouterState, StoreRouterConnectingModule } from '@ngrx/router-store';
 
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { ErrorHandlerService } from '@services/error-handler/error-handler.service';
@@ -37,7 +37,7 @@ export const appConfig: ApplicationConfig = {
         }
       ),
       EffectsModule.forRoot([]),
-      StoreRouterConnectingModule.forRoot()
+      StoreRouterConnectingModule.forRoot({ routerState: RouterState.Full })
     ),
     provideStoreDevtools({ logOnly: !isDevMode(), trace: true }),
     {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModuleModule } from '@shared-modules';
 import { RouterModule } from '@angular/router';
@@ -11,12 +11,12 @@ import { NavbarComponent } from '../navbar/navbar.component';
   selector: 'dietas-adrian-nx-workspace-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, SharedModuleModule, NavbarComponent, RouterModule],
 })
 export class RegisterComponent extends Handler implements OnInit {
   buttonEnable = true;
   successAccountCreation = false;
-  redirectTimeout = 1;
   isPassStrong = false;
 
   ngOnInit(): void {
@@ -30,7 +30,6 @@ export class RegisterComponent extends Handler implements OnInit {
 
   createAccount() {
     this.clearVariables();
-    this.buttonEnable = false;
 
     this.authService
       .createAccount(
@@ -64,6 +63,6 @@ export class RegisterComponent extends Handler implements OnInit {
 
   enableButton(isEnable: boolean) {
     this.isPassStrong = isEnable;
-    this.changeDetectorRef.detectChanges();
+    this.changeDetectorRef.detectChanges(); // maybe return an observable to avoid this, or handle it wth a subject.next
   }
 }

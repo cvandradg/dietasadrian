@@ -1,7 +1,7 @@
 import { createReducer, on, Action } from '@ngrx/store';
 
 import * as SharedStoreActions from './shared-store.actions';
-import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
+import { EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import { SharedStoreEntity } from '../+state/shared-store.models';
 
 export const SHARED_STORE_FEATURE_KEY = 'sharedStore';

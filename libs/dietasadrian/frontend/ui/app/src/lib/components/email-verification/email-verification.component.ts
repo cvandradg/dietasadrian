@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModuleModule } from '@shared-modules';
 import { ActivatedRoute, RouterModule } from '@angular/router';
@@ -11,6 +11,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
   selector: 'dietas-adrian-nx-workspace-email-verification',
   templateUrl: './email-verification.component.html',
   styleUrls: ['./email-verification.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, SharedModuleModule, NavbarComponent, RouterModule],
 })
 export class EmailVerificationComponent extends Handler implements OnInit {

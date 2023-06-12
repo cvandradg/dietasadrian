@@ -13,9 +13,10 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatListModule} from '@angular/material/list';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatListModule } from '@angular/material/list';
 
+import { LetDirective, PushPipe } from '@ngrx/component';
 
 export const MODULES = [
   MatFormFieldModule,
@@ -34,5 +35,7 @@ export const MODULES = [
   MatRadioModule,
   MatSidenavModule,
   MatCheckboxModule,
-  MatListModule
+  MatListModule,
+  LetDirective,
+  PushPipe,
 ];

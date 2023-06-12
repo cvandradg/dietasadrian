@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { SharedModuleModule } from '@shared-modules';
 import { CommonModule } from '@angular/common';
 
@@ -12,6 +12,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
   selector: 'dietas-adrian-nx-workspace-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, NavbarComponent, SharedModuleModule, RouterModule],
 })
 export class LoginComponent extends Handler implements OnInit {
@@ -46,12 +47,6 @@ export class LoginComponent extends Handler implements OnInit {
     this.clearVariables();
     this.loadingRecoverPassword = true;
 
-    // if(this.loginInputForm.controls.pass.invalid){
-    //   this.loadingRecoverPassword = false;
-
-    //   return;
-    // }
-
     this.authService
       .recoverPassword(this.loginInputForm.value.user as string)
       .pipe(takeUntil(this.destroy))
@@ -71,6 +66,7 @@ export class LoginComponent extends Handler implements OnInit {
             this.successfulReponse = true;
             this.error.status = false;
           }
+          this.changeDetectorRef.markForCheck();
         },
       });
   }
@@ -83,10 +79,6 @@ export class LoginComponent extends Handler implements OnInit {
         next: () => this.onbrandSignin(),
         error: this.observerError,
       });
-  }
-
-  createAccountRedirect() {
-    this.router.navigate(['/register']);
   }
 
   onLogin(UserCredendial: any) {

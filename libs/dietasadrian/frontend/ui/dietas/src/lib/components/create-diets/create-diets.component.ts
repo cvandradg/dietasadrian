@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, OnInit } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
@@ -12,15 +12,16 @@ import { NutritionalCompositionComponent } from '../nutritional-composition/nutr
 
 @Component({
   standalone: true,
+  selector: 'dietas-adrian-nx-workspace-create-diets',
+  templateUrl: './create-diets.component.html',
+  styleUrls: ['./create-diets.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     CommonModule,
     SharedModuleModule,
     MealComponent,
     NutritionalCompositionComponent,
   ],
-  selector: 'dietas-adrian-nx-workspace-create-diets',
-  templateUrl: './create-diets.component.html',
-  styleUrls: ['./create-diets.component.scss'],
 })
 export class CreateDietsComponent implements OnInit {
   meals: Meal[] = [];
