@@ -36,7 +36,7 @@ export class Handler implements OnDestroy {
 
   get observerError() {
     return (err: FirebaseError) => {
-      this.error = this.errorHelperService.firebaseErrorHandler(err);
+      return this.error = this.errorHelperService.firebaseErrorHandler(err);
     };
   }
 

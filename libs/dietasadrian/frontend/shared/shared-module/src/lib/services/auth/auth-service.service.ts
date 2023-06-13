@@ -11,17 +11,30 @@ import {
   Observable,
   ObservableInput,
   first,
+  throwError,
+  concatMap,
+  of,
+  catchError,
+  NEVER,
+  Subject,
+  BehaviorSubject,
 } from 'rxjs';
 import { sendEmailVerification } from 'firebase/auth';
 import { SharedStoreFacade } from '../../+state/shared-store.facade';
+import { FirebaseError } from 'firebase/app';
+
+import { ErrorHandlerService } from '@services/error-handler/error-handler.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  firebaseError$ = new Subject<any>();
+
   constructor(
     private firebaseAuth: AngularFireAuth,
-    private sharedStoreFacade: SharedStoreFacade
+    private sharedStoreFacade: SharedStoreFacade,
+    private errorHelperService: ErrorHandlerService
   ) {}
 
   auth(credentials: { user: string; pass: string }) {
@@ -83,8 +96,19 @@ export class AuthService {
   defer(firebaseCall: Promise<unknown> | ObservableInput<any>) {
     return defer(() => {
       this.sharedStoreFacade.showLoader();
+
       return from(firebaseCall).pipe(first(), this.finalize());
-    });
+    }).pipe(
+      catchError((err: FirebaseError) => {
+        this.sharedStoreFacade.hideLoader();
+        console.log('err', err);
+
+        this.firebaseError$.next(
+          this.errorHelperService.firebaseErrorHandler(err)
+        );
+        return NEVER;
+      })
+    );
   }
 
   //Applications is so fast, there is not time to show the spinner, so we add a timeout

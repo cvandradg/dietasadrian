@@ -3,9 +3,32 @@ import { SharedModuleModule } from '@shared-modules';
 import { CommonModule } from '@angular/common';
 
 import { RouterModule } from '@angular/router';
-import { takeUntil } from 'rxjs';
+import {
+  catchError,
+  of,
+  takeUntil,
+  tap,
+  ignoreElements,
+  BehaviorSubject,
+  switchMap,
+  map,
+  Subject,
+  concatMapTo,
+  exhaustMap,
+  interval,
+  buffer,
+  concatMap,
+  mergeMap,
+  from,
+  Observable,
+  concat,
+  NEVER,
+  throwError,
+} from 'rxjs';
 import { Handler } from '@classes/Handler';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { FirebaseError } from 'firebase/app';
+import { User, UserCredential } from 'firebase/auth';
 
 @Component({
   standalone: true,
@@ -15,32 +38,48 @@ import { NavbarComponent } from '../navbar/navbar.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, NavbarComponent, SharedModuleModule, RouterModule],
 })
-export class LoginComponent extends Handler implements OnInit {
+export class LoginComponent extends Handler {
+  onLogin$ = new Subject<{ user: string; pass: string }>();
+  error$: Observable<{ status: boolean; message: string; error: any }> =
+    this.authService.firebaseError$;
+
+  user$ = this.onLogin$.pipe(
+    switchMap((res: any) => this.authService.auth(res)),
+    map((res: any) => {
+      if (!res?.user?.emailVerified) {
+        this.authService.sendEmailVerification(res?.user);
+        return res?.user;
+      }
+
+      this.router.navigate(['/landing']);
+    })
+  );
+
   loadingRecoverPassword = false;
 
-  ngOnInit(): void {
-    if (localStorage.getItem('attemptToLoggedIn') === 'true') this.getSession();
-  }
+  getSession$ = this.authService.getUserSession().pipe(
+    map((userInfo: any) => {
+      console.log('userInfo', userInfo);
 
-  login() {
-    this.clearVariables();
-    this.authService
-      .auth(this.loginInputForm.value as { user: string; pass: string })
-      .pipe(takeUntil(this.destroy))
-      .subscribe({
-        next: (res) => this.onLogin(res),
-        error: this.observerError,
-      });
-  }
+      if (!userInfo) {
+        return userInfo;
+      }
 
-  getSession() {
-    this.authService
-      .getUserSession()
-      .pipe(takeUntil(this.destroy))
-      .subscribe({
-        next: (res) => this.onGetSessionsObserver(res),
-        error: this.observerError,
-      });
+      if (userInfo?.emailVerified) {
+        this.router.navigate(['/landing']);
+        return userInfo;
+      }
+
+      this.authService.sendEmailVerification(userInfo?.user as User);
+      this.verificationRequired = true;
+      return userInfo;
+    })
+  );
+
+  onLoginSubmit() {
+    this.onLogin$.next(
+      this.loginInputForm.value as { user: string; pass: string }
+    );
   }
 
   forgotPassword() {
@@ -81,19 +120,6 @@ export class LoginComponent extends Handler implements OnInit {
       });
   }
 
-  onLogin(UserCredendial: any) {
-    this.clearVariables();
-    localStorage.setItem('attemptToLoggedIn', 'true');
-
-    if (!UserCredendial.user._delegate.emailVerified) {
-      this.authService.sendEmailVerification(UserCredendial?.user);
-      this.verificationRequired = true;
-      return;
-    }
-
-    this.router.navigate(['/landing']);
-  }
-
   async onGetSessionsObserver(userInfo: any) {
     this.clearVariables();
 
@@ -120,3 +146,17 @@ export class LoginComponent extends Handler implements OnInit {
     this.router.navigate(['/landing']);
   }
 }
+
+// ngOnInit(): void {
+// if (localStorage.getItem('attemptToLoggedIn') === 'true') this.getSession();
+// }
+
+// getSession() {
+//   this.authService
+//     .getUserSession()
+//     .pipe(takeUntil(this.destroy))
+//     .subscribe({
+//       next: (res) => this.onGetSessionsObserver(res),
+//       error: this.observerError,
+//     });
+// }

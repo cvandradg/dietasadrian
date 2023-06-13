@@ -1,4 +1,4 @@
-<div class="login-container">
+<div class="login-container" *ngrxLet="{session: getSession$ | ngrxPush, error:  error$ | ngrxPush} as vm">
   <div class="container">
     <div class="title">Accede a Tu Cuenta</div>
     <div class="description">
@@ -16,7 +16,7 @@
               placeholder="AlgunCorreo@dominio.com"
               type="email"
               formControlName="user"
-              (keyup.enter)="login()"
+              (keyup.enter)="onLoginSubmit()"
             />
           </mat-form-field>
           <mat-form-field>
@@ -26,37 +26,51 @@
               placeholder="EjemploDeClave1!"
               type="password"
               formControlName="pass"
-              (keyup.enter)="login()"
+              (keyup.enter)="onLoginSubmit()"
             />
           </mat-form-field>
         </form>
 
-        <dietas-adrian-nx-workspace-primary-animated-button
-          (submitEvent)="login()"
-          [enable]="!loginInputForm.invalid"
-          [loading]="!(loading$ | async)!"
-          [buttonText]="'Accede a Tu Cuenta'"
-        ></dietas-adrian-nx-workspace-primary-animated-button>
+        <ng-container #loginComponents *ngrxLet="user$ | ngrxPush as vmUser">
+          <div>{{ vmUser?.emailVerified }}</div>
+          <dietas-adrian-nx-workspace-primary-animated-button
+            #loginButton
+            (submitEvent)="onLoginSubmit()"
+            [enable]="!loginInputForm.invalid"
+            [loading]="!(loading$ | ngrxPush)!"
+            [buttonText]="'Accede a Tu Cuenta'"
+          ></dietas-adrian-nx-workspace-primary-animated-button>
 
-        <div
-          class="warning-message centered"
-          *ngIf="!(loading$ | async)! && verificationRequired"
-        >
-          <fa-icon
-            [icon]="['fal', 'envelope-circle-check']"
-            style="--fa-animation-iteration-count: 2"
-            class="icon fa-xl fa-shake"
-          ></fa-icon>
-          <p>Verifica tu cuenta, te hemos enviado un link al correo.</p>
-        </div>
-        <div class="error-message" *ngIf="!(loading$ | async)! && error.status">
-          <p>{{ error.message }}</p>
-          <fa-icon
-            [icon]="['fas', 'xmark']"
-            style="--fa-animation-iteration-count: 2"
-            class="icon fa-xl fa-shake"
-          ></fa-icon>
-        </div>
+          <div
+            class="warning-message aligment"
+            *ngIf="
+              !(loading$ | ngrxPush)! &&
+              (vmUser || vm.session)?.emailVerified === false &&
+              !vm.error?.status
+            "
+          >
+            <fa-icon
+              [icon]="['fal', 'envelope-circle-check']"
+              style="--fa-animation-iteration-count: 2"
+              class="icon fa-xl fa-shake"
+            ></fa-icon>
+            <p>Verifica tu cuenta, te hemos enviado un link al correo.</p>
+          </div>
+
+            <div
+              class="error-message"
+              *ngIf="vm.error?.status"
+            >
+              <p>{{ vm.error?.message }}</p>
+              <fa-icon
+                [icon]="['fas', 'xmark']"
+                style="--fa-animation-iteration-count: 2"
+                class="icon fa-xl fa-shake"
+              ></fa-icon>
+            </div>
+          
+
+        </ng-container>
       </div>
       <div class="divison">/</div>
       <div class="automatic-signin-tools">
@@ -86,7 +100,7 @@
     </div>
 
     <div
-      class="success-message centered"
+      class="success-message aligment"
       *ngIf="!loadingRecoverPassword && successfulReponse"
     >
       <p>
