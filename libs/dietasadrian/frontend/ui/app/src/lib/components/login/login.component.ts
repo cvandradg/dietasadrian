@@ -24,11 +24,13 @@ import {
   concat,
   NEVER,
   throwError,
+  finalize,
 } from 'rxjs';
 import { Handler } from '@classes/Handler';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FirebaseError } from 'firebase/app';
 import { User, UserCredential } from 'firebase/auth';
+import { generalError } from '@shared-modules/types/types';
 
 @Component({
   standalone: true,
@@ -39,9 +41,11 @@ import { User, UserCredential } from 'firebase/auth';
   imports: [CommonModule, NavbarComponent, SharedModuleModule, RouterModule],
 })
 export class LoginComponent extends Handler {
-  onLogin$ = new Subject<{ user: string; pass: string }>();
-  error$: Observable<{ status: boolean; message: string; error: any }> =
-    this.authService.firebaseError$;
+  passResetLoader$ = new BehaviorSubject<any>(false);
+  onLogin$ = new Subject<any>();
+  onPassReset$ = new Subject<any>();
+
+  error$: Subject<generalError> = this.authService.firebaseError$;
 
   user$ = this.onLogin$.pipe(
     switchMap((res: any) => this.authService.auth(res)),
@@ -55,15 +59,23 @@ export class LoginComponent extends Handler {
     })
   );
 
-  loadingRecoverPassword = false;
+  passReset$ = this.onPassReset$.pipe(
+    tap((res: any) => console.log('getting called,', res)),
+    switchMap((res: any) =>
+      this.authService.recoverPassword(res).pipe(
+        finalize(() => this.passResetLoader$.next(false)),
+      )
+    ),
+    map((res: any) => {
+      console.log('pass reset ress,', res);
+      return res;
+    }),
+    
+  );
 
   getSession$ = this.authService.getUserSession().pipe(
     map((userInfo: any) => {
-      console.log('userInfo', userInfo);
-
-      if (!userInfo) {
-        return userInfo;
-      }
+      if (!userInfo) return;
 
       if (userInfo?.emailVerified) {
         this.router.navigate(['/landing']);
@@ -71,44 +83,38 @@ export class LoginComponent extends Handler {
       }
 
       this.authService.sendEmailVerification(userInfo?.user as User);
-      this.verificationRequired = true;
+
       return userInfo;
     })
   );
 
-  onLoginSubmit() {
-    this.onLogin$.next(
-      this.loginInputForm.value as { user: string; pass: string }
-    );
-  }
+  // forgotPassword() {
+  //   this.clearVariables();
+  //   this.loadingRecoverPassword = true;
 
-  forgotPassword() {
-    this.clearVariables();
-    this.loadingRecoverPassword = true;
+  //   this.authService
+  //     .recoverPassword(this.loginInputForm.value.user as string)
+  //     .pipe(takeUntil(this.destroy))
+  //     .subscribe({
+  //       next: () => {
+  //         this.successfulReponse = true;
+  //         this.loadingRecoverPassword = false;
+  //       },
+  //       error: (err) => {
+  //         this.observerError(err);
+  //         this.loadingRecoverPassword = false;
 
-    this.authService
-      .recoverPassword(this.loginInputForm.value.user as string)
-      .pipe(takeUntil(this.destroy))
-      .subscribe({
-        next: () => {
-          this.successfulReponse = true;
-          this.loadingRecoverPassword = false;
-        },
-        error: (err) => {
-          this.observerError(err);
-          this.loadingRecoverPassword = false;
-
-          if (
-            err.code !== 'auth/missing-email' &&
-            err.code !== 'auth/invalid-email'
-          ) {
-            this.successfulReponse = true;
-            this.error.status = false;
-          }
-          this.changeDetectorRef.markForCheck();
-        },
-      });
-  }
+  //         if (
+  //           err.code !== 'auth/missing-email' &&
+  //           err.code !== 'auth/invalid-email'
+  //         ) {
+  //           this.successfulReponse = true;
+  //           this.error.status = false;
+  //         }
+  //         this.changeDetectorRef.markForCheck();
+  //       },
+  //     });
+  // }
 
   googleSignin() {
     this.authService
@@ -120,43 +126,8 @@ export class LoginComponent extends Handler {
       });
   }
 
-  async onGetSessionsObserver(userInfo: any) {
-    this.clearVariables();
-
-    localStorage.setItem('attemptToLoggedIn', 'true');
-
-    if (!userInfo?.multiFactor?.user) {
-      return;
-    }
-
-    await userInfo?.multiFactor?.user.reload();
-
-    this.authService.getCurrentUser().subscribe((userInfo2: any) => {
-      if (!userInfo2?.emailVerified) {
-        this.verificationRequired = true;
-        return;
-      }
-
-      this.router.navigate(['/landing']);
-    });
-  }
-
   onbrandSignin() {
     this.successfulReponse = true;
     this.router.navigate(['/landing']);
   }
 }
-
-// ngOnInit(): void {
-// if (localStorage.getItem('attemptToLoggedIn') === 'true') this.getSession();
-// }
-
-// getSession() {
-//   this.authService
-//     .getUserSession()
-//     .pipe(takeUntil(this.destroy))
-//     .subscribe({
-//       next: (res) => this.onGetSessionsObserver(res),
-//       error: this.observerError,
-//     });
-// }

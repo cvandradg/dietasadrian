@@ -76,7 +76,23 @@ export class AuthService {
   }
 
   recoverPassword(email: string) {
-    return from(this.firebaseAuth.sendPasswordResetEmail(email));
+    return from(this.firebaseAuth.sendPasswordResetEmail(email)).pipe(
+      catchError((err: any) => {
+        if (
+          err.code !== 'auth/missing-email' &&
+          err.code !== 'auth/invalid-email'
+        ) {
+          console.log('entra al if?');
+          this.firebaseError$.next(null);
+          return of(true);
+        }
+
+        this.firebaseError$.next(
+          this.errorHelperService.firebaseErrorHandler(err)
+        );
+        return of(false);
+      })
+    );
   }
 
   resetPass(code: string, pass: string) {
@@ -96,16 +112,15 @@ export class AuthService {
   defer(firebaseCall: Promise<unknown> | ObservableInput<any>) {
     return defer(() => {
       this.sharedStoreFacade.showLoader();
-
+      this.firebaseError$.next(null);
       return from(firebaseCall).pipe(first(), this.finalize());
     }).pipe(
       catchError((err: FirebaseError) => {
         this.sharedStoreFacade.hideLoader();
-        console.log('err', err);
-
         this.firebaseError$.next(
           this.errorHelperService.firebaseErrorHandler(err)
         );
+
         return NEVER;
       })
     );

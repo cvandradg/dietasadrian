@@ -1,4 +1,7 @@
-<div class="login-container" *ngrxLet="{session: getSession$ | ngrxPush, error:  error$ | ngrxPush} as vm">
+<div
+  class="login-container"
+  *ngrxLet="{ session: getSession$ | ngrxPush, error: error$ | ngrxPush } as vm"
+>
   <div class="container">
     <div class="title">Accede a Tu Cuenta</div>
     <div class="description">
@@ -16,7 +19,7 @@
               placeholder="AlgunCorreo@dominio.com"
               type="email"
               formControlName="user"
-              (keyup.enter)="onLoginSubmit()"
+              (keyup.enter)="onLogin$.next(loginInputForm.value)"
             />
           </mat-form-field>
           <mat-form-field>
@@ -26,16 +29,15 @@
               placeholder="EjemploDeClave1!"
               type="password"
               formControlName="pass"
-              (keyup.enter)="onLoginSubmit()"
+              (keyup.enter)="onLogin$.next(loginInputForm.value)"
             />
           </mat-form-field>
         </form>
 
         <ng-container #loginComponents *ngrxLet="user$ | ngrxPush as vmUser">
-          <div>{{ vmUser?.emailVerified }}</div>
           <dietas-adrian-nx-workspace-primary-animated-button
             #loginButton
-            (submitEvent)="onLoginSubmit()"
+            (submitEvent)="onLogin$.next(loginInputForm.value)"
             [enable]="!loginInputForm.invalid"
             [loading]="!(loading$ | ngrxPush)!"
             [buttonText]="'Accede a Tu Cuenta'"
@@ -57,19 +59,17 @@
             <p>Verifica tu cuenta, te hemos enviado un link al correo.</p>
           </div>
 
-            <div
-              class="error-message"
-              *ngIf="vm.error?.status"
-            >
-              <p>{{ vm.error?.message }}</p>
-              <fa-icon
-                [icon]="['fas', 'xmark']"
-                style="--fa-animation-iteration-count: 2"
-                class="icon fa-xl fa-shake"
-              ></fa-icon>
-            </div>
-          
-
+          <div
+            class="error-message"
+            *ngIf="!(loading$ | ngrxPush)! && vm.error?.status"
+          >
+            <p>{{ vm.error?.message }}</p>
+            <fa-icon
+              [icon]="['fas', 'xmark']"
+              style="--fa-animation-iteration-count: 2"
+              class="icon fa-xl fa-shake"
+            ></fa-icon>
+          </div>
         </ng-container>
       </div>
       <div class="divison">/</div>
@@ -89,20 +89,23 @@
         </dietas-adrian-nx-workspace-secondary-animated-button>
       </div>
     </div>
-    <div class="forgot-password" (click)="forgotPassword()">
+    <div
+      class="forgot-password"
+      (click)="
+        onPassReset$.next(loginInputForm.controls.user.value);
+        passResetLoader$.next(true)
+      "
+    >
       <p>Recuperar Contraseña</p>
       <fa-icon
-        *ngIf="loadingRecoverPassword"
+        *ngIf="(passResetLoader$ | ngrxPush)"
         [icon]="['fas', 'spinner-third']"
         class="icon fa-xl fa-spin"
         style="--fa-animation-duration: 1s"
       ></fa-icon>
     </div>
 
-    <div
-      class="success-message aligment"
-      *ngIf="!loadingRecoverPassword && successfulReponse"
-    >
+    <div class="success-message aligment" *ngIf="(passReset$ | ngrxPush)">
       <p>
         Si el correo es válido te llegará un link para cambiar tu contraseña.
       </p>
