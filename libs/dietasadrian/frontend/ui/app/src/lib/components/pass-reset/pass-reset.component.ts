@@ -1,15 +1,9 @@
 import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnInit,
-  inject,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Handler } from '@classes/Handler';
 import { SharedModuleModule } from '@shared-modules';
-import { takeUntil } from 'rxjs';
-import { FirebaseError } from 'firebase/app';
+import { combineLatest, map, Subject, switchMap } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -19,45 +13,29 @@ import { FirebaseError } from 'firebase/app';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, SharedModuleModule, RouterModule],
 })
-export class PassResetComponent extends Handler implements OnInit {
+export class PassResetComponent extends Handler {
   route = inject(ActivatedRoute);
+  onPassReset$ = new Subject<any>();
 
-  buttonEnable = false;
+  isPassStrong$ = new Subject<boolean>();
 
-  successPassReset = false;
-  firebaseCode = '';
+  isValidPassword$ = this.loginInputForm.valueChanges.pipe(
+    map(() => !this.loginInputForm.controls.pass.invalid)
+  );
 
-  ngOnInit(): void {
-    this.firebaseCode = this.route.snapshot.queryParamMap.get('oobCode') || '';
-  }
+  enableButton$ = combineLatest([
+    this.isValidPassword$,
+    this.isPassStrong$,
+  ]).pipe(
+    map(([isValidPassword, isPassStrong]) => isValidPassword && isPassStrong)
+  );
 
-  resetPassword() {
-    this.clearVariables();
-    if (this.loginInputForm.invalid) {
-      return;
-    }
-
-    this.authService
-      .resetPass(this.firebaseCode, this.loginInputForm.value.pass as string)
-      .pipe(takeUntil(this.destroy))
-      .subscribe({
-        next: () => {
-          this.error.status = false;
-          this.successPassReset = true;
-        },
-        error: (err: FirebaseError) => {
-          this.successPassReset = false;
-          this.observerError(err);
-        },
-      });
-  }
-
-  get isSubmitButtonEnable() {
-    return !this.loginInputForm.invalid && this.buttonEnable;
-  }
-
-  enableButton(isEnable: boolean) {
-    this.buttonEnable = isEnable;
-    this.changeDetectorRef.detectChanges();
-  }
+  passReset$ = this.onPassReset$.pipe(
+    switchMap(() =>
+      this.authService.resetPass(
+        this.route.snapshot.queryParamMap.get('oobCode') || '',
+        this.loginInputForm.value.pass as string
+      )
+    )
+  );
 }

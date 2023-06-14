@@ -1,24 +1,30 @@
-<div class="container">
+<div
+  class="container"
+  *ngrxLet="{
+    error: authService.error$ | ngrxPush,
+    checkOobCode: checkOobCode$ | ngrxPush
+  } as vm"
+>
   <div class="title">Procesando.</div>
   <div class="description">
     <p>No cierres esta ventana.</p>
   </div>
   <fa-icon
-    *ngIf="!error.status"
+    *ngIf="!vm.error?.status"
     [icon]="['fas', 'spinner-third']"
     class="icon fa-spin fa-2xl"
     style="--fa-animation-duration: 1s"
-  ></fa-icon>
+  />
 
-  <div class="error-message centered" *ngIf="error.status">
+  <div class="error-message centered" *ngIf="vm.error?.status">
     <p>
-      {{ error.message }}
+      {{ vm.error?.message }}
     </p>
     <fa-icon
       [icon]="['fas', 'xmark']"
       style="--fa-animation-iteration-count: 2"
       class="icon fa-xl fa-shake"
       style="--fa-animation-iteration-count: 2"
-    ></fa-icon>
+    />
   </div>
 </div>

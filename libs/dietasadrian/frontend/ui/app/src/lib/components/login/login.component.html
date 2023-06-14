@@ -1,6 +1,14 @@
 <div
   class="login-container"
-  *ngrxLet="{ session: getSession$ | ngrxPush, error: error$ | ngrxPush } as vm"
+  *ngrxLet="{
+    user: user$ | ngrxPush,
+    loading: loading$ | ngrxPush,
+    passReset: passReset$ | ngrxPush,
+    session: getSession$ | ngrxPush,
+    error: authService.error$ | ngrxPush,
+    googleSignin: googleSignin$ | ngrxPush,
+    passResetLoader: passResetLoader$ | ngrxPush,
+  } as vm"
 >
   <div class="container">
     <div class="title">Accede a Tu Cuenta</div>
@@ -13,7 +21,6 @@
         <form [formGroup]="loginInputForm" class="form-login-inputs">
           <mat-form-field>
             <mat-label>Correo</mat-label>
-
             <input
               matInput
               placeholder="AlgunCorreo@dominio.com"
@@ -34,20 +41,19 @@
           </mat-form-field>
         </form>
 
-        <ng-container #loginComponents *ngrxLet="user$ | ngrxPush as vmUser">
+        <ng-container #loginComponents *ngrxLet="vm.user">
           <dietas-adrian-nx-workspace-primary-animated-button
             #loginButton
             (submitEvent)="onLogin$.next(loginInputForm.value)"
             [enable]="!loginInputForm.invalid"
-            [loading]="!(loading$ | ngrxPush)!"
+            [loading]="!vm.loading"
             [buttonText]="'Accede a Tu Cuenta'"
-          ></dietas-adrian-nx-workspace-primary-animated-button>
-
+          />
           <div
             class="warning-message aligment"
             *ngIf="
-              !(loading$ | ngrxPush)! &&
-              (vmUser || vm.session)?.emailVerified === false &&
+              !vm.loading &&
+              (vm.user || vm.session)?.emailVerified === false &&
               !vm.error?.status
             "
           >
@@ -55,38 +61,34 @@
               [icon]="['fal', 'envelope-circle-check']"
               style="--fa-animation-iteration-count: 2"
               class="icon fa-xl fa-shake"
-            ></fa-icon>
+            />
             <p>Verifica tu cuenta, te hemos enviado un link al correo.</p>
           </div>
 
-          <div
-            class="error-message"
-            *ngIf="!(loading$ | ngrxPush)! && vm.error?.status"
-          >
+          <div class="error-message" *ngIf="!vm.loading && vm.error?.status">
             <p>{{ vm.error?.message }}</p>
             <fa-icon
               [icon]="['fas', 'xmark']"
               style="--fa-animation-iteration-count: 2"
               class="icon fa-xl fa-shake"
-            ></fa-icon>
+            />
           </div>
         </ng-container>
       </div>
       <div class="divison">/</div>
       <div class="automatic-signin-tools">
         <dietas-adrian-nx-workspace-secondary-animated-button
-          (submitEvent)="googleSignin()"
+          *ngrxLet="vm.googleSignin"
+          (submitEvent)="onGoogleSignin$.next(true)"
           [buttonText]="'Accede con Google'"
           [fontawesomeIcon]="['fab', 'google']"
-        >
-        </dietas-adrian-nx-workspace-secondary-animated-button>
+        />
 
         <dietas-adrian-nx-workspace-secondary-animated-button
           [routerLink]="'/register'"
           [buttonText]="'Crear Cuenta'"
           [fontawesomeIcon]="['fas', 'user']"
-        >
-        </dietas-adrian-nx-workspace-secondary-animated-button>
+        />
       </div>
     </div>
     <div
@@ -98,14 +100,17 @@
     >
       <p>Recuperar Contraseña</p>
       <fa-icon
-        *ngIf="(passResetLoader$ | ngrxPush)"
+        *ngIf="vm.passResetLoader"
         [icon]="['fas', 'spinner-third']"
         class="icon fa-xl fa-spin"
         style="--fa-animation-duration: 1s"
-      ></fa-icon>
+      />
     </div>
 
-    <div class="success-message aligment" *ngIf="(passReset$ | ngrxPush)">
+    <div
+      class="success-message aligment"
+      *ngIf="vm.passReset && !vm.error?.status && !vm.passResetLoader"
+    >
       <p>
         Si el correo es válido te llegará un link para cambiar tu contraseña.
       </p>
@@ -114,7 +119,7 @@
         style="--fa-animation-iteration-count: 2"
         class="icon fa-xl fa-shake"
         style="--fa-animation-iteration-count: 2"
-      ></fa-icon>
+      />
     </div>
   </div>
   <footer class="login-footer">

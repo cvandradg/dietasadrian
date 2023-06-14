@@ -5,7 +5,7 @@
       [icon]="['fas', 'bars']"
       class="fa-stack-2x fa-beat"
       style="--fa-animation-iteration-count: 2"
-    ></fa-icon>
+    />
     <span [routerLink]="'/'" class="trim-dots">
       <p *ngIf="screenWidth <= 600; else elseBlock">AB</p>
       <ng-template #elseBlock>Adrian Badilla</ng-template>

@@ -1,4 +1,11 @@
-<div class="container">
+<div
+  class="container"
+  *ngrxLet="{
+    account: createAccount$ | ngrxPush,
+    enableButton: enableButton$ | ngrxPush,
+    error: authService.error$ | ngrxPush
+  } as vm"
+>
   <div class="title">Crea tu cuenta</div>
   <div class="description">Recuerda crear una contraseña segura.</div>
 
@@ -12,7 +19,7 @@
           type="email"
           required="true"
           formControlName="user"
-          (keyup.enter)="buttonEnable && createAccount()"
+          (keyup.enter)="vm.enableButton && onCreateAccount$.next(true)"
         />
       </mat-form-field>
       <mat-form-field>
@@ -23,7 +30,7 @@
           type="password"
           required="true"
           formControlName="pass"
-          (keyup.enter)="buttonEnable && createAccount()"
+          (keyup.enter)="vm.enableButton && onCreateAccount$.next(true)"
         />
       </mat-form-field>
     </form>
@@ -31,19 +38,19 @@
     <div
       class="horizontal-animation clase"
       [ngClass]="{
-        'enabled-button': buttonEnable || successAccountCreation
+        'enabled-button': vm.enableButton || vm.account
       }"
     >
       <button
         mat-button
-        [disabled]="!buttonEnable && (loading$ | async)!"
-        (click)="buttonEnable && createAccount()"
-        (keyup.enter)="buttonEnable && createAccount()"
+        [disabled]="!vm.enableButton && (loading$ | async)! && vm.account"
+        (click)="vm.enableButton && !vm.account && onCreateAccount$.next(true) "
+        (keyup.enter)="vm.enableButton && !vm.account && onCreateAccount$.next(true)"
       >
         <div class="register-button">
           <p>Crear Cuenta</p>
           <fa-icon
-            *ngIf="!(loading$ | async)! && !successAccountCreation"
+            *ngIf="!(loading$ | async)! && !vm.account"
             [icon]="['fas', 'arrow-right']"
             style="--fa-animation-iteration-count: 2"
             class="icon fa-xl fa-shake"
@@ -58,7 +65,7 @@
           ></fa-icon>
 
           <fa-icon
-            *ngIf="!(loading$ | async)! && successAccountCreation"
+            *ngIf="!(loading$ | async)! && vm.account"
             [icon]="['fas', 'check']"
             style="--fa-animation-iteration-count: 2"
             class="icon fa-xl fa-shake"
@@ -69,10 +76,7 @@
     </div>
     <!-- [routerLink]="'/'"  -->
     <div class="centered">
-      <div
-        class="warning-message"
-        *ngIf="!(loading$ | async)! && successAccountCreation"
-      >
+      <div class="warning-message" *ngIf="!(loading$ | async)! && vm.account">
         <p>Revisa tu correo para activar tu cuenta</p>
         <fa-icon
           [icon]="['fas', 'message-exclamation']"
@@ -81,10 +85,7 @@
           style="--fa-animation-iteration-count: 2"
         ></fa-icon>
       </div>
-      <div
-        class="success-message"
-        *ngIf="!(loading$ | async)! && successAccountCreation"
-      >
+      <div class="success-message" *ngIf="!(loading$ | async)! && vm.account">
         <p>Creaste una nueva cuenta.</p>
         <fa-icon
           [icon]="['fas', 'check']"
@@ -95,9 +96,9 @@
       </div>
     </div>
 
-    <div class="error-message" *ngIf="!(loading$ | async)! && error.status">
+    <div class="error-message" *ngIf="!(loading$ | async)! && vm.error?.status">
       <p>
-        {{ error.message }}
+        {{ vm.error?.message }}
       </p>
       <fa-icon
         [icon]="['fas', 'xmark']"
@@ -108,7 +109,7 @@
     </div>
     <dietas-adrian-nx-workspace-strength-meter
       [password]="loginInputForm.get('pass')?.value || ''"
-      (enableButton)="enableButton($event)"
+      (enableButton)="isPassStrong$.next($event)"
     ></dietas-adrian-nx-workspace-strength-meter>
   </div>
 </div>

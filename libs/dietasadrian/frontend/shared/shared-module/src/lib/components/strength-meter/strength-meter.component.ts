@@ -6,6 +6,7 @@ import {
   EventEmitter,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -16,7 +17,7 @@ import { CommonModule } from '@angular/common';
 })
 export class StrengthMeterComponent implements OnChanges {
   @Input() password = '';
-  @Output() enableButton = new EventEmitter<boolean>();
+  @Output() enableButton = new EventEmitter<boolean>(false);
 
   result = '';
   symbols = /[$-/:-?{-~!"^_@`[\]]+/;
@@ -85,6 +86,7 @@ export class StrengthMeterComponent implements OnChanges {
   }
 
   isButtonEnable(isEnable: boolean): void {
+    console.log('valor emitido');
     this.enableButton.emit(isEnable);
   }
 }

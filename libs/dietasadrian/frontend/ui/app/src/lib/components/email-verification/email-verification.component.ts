@@ -1,8 +1,12 @@
-import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModuleModule } from '@shared-modules';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { takeUntil, concatMap } from 'rxjs';
+import { map, switchMap } from 'rxjs';
 import { Handler } from '@classes/Handler';
 import { NavbarComponent } from '../navbar/navbar.component';
 
@@ -14,52 +18,23 @@ import { NavbarComponent } from '../navbar/navbar.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, SharedModuleModule, NavbarComponent, RouterModule],
 })
-export class EmailVerificationComponent extends Handler implements OnInit {
+export class EmailVerificationComponent extends Handler {
   route = inject(ActivatedRoute);
 
-  firebaseCode = '';
-  requiresVerification = false;
+  verifyMail$ = this.authService
+    .verifyEmail(this.route.snapshot.queryParamMap.get('oobCode') || '')
+    .pipe(
+      switchMap(() => this.authService.getCurrentUser()),
+      map(async (userInfo: any) => {
+        await userInfo?.multiFactor?.user.reload();
 
-  ngOnInit(): void {
-    if (this.route.snapshot.queryParamMap.has('oobCode')) {
-      this.verifyMail();
-      return;
-    }
-  }
-
-  verifyMail() {
-    this.firebaseCode = this.route.snapshot.queryParamMap.get('oobCode') || '';
-
-    this.authService
-      .verifyEmail(this.firebaseCode)
-      .pipe(
-        takeUntil(this.destroy),
-        concatMap(() => this.authService.getCurrentUser())
-      )
-      .subscribe({
-        next: (res) => this.onGetSessionsObserver(res),
-        error: this.observerError,
-      });
-  }
-
-  async onGetSessionsObserver(userInfo: any) {
-    this.clearVariables();
-
-    localStorage.setItem('attemptToLoggedIn', 'true');
-
-    if (!userInfo?.multiFactor?.user) {
-      return;
-    }
-
-    await userInfo?.multiFactor?.user.reload();
-
-    this.authService.getCurrentUser().subscribe((userInfo2: any) => {
-      if (!userInfo2?.emailVerified) {
-        this.verificationRequired = true;
-        return;
-      }
-
-      this.router.navigate(['/landing']);
-    });
-  }
+        if (!userInfo?.emailVerified)
+          return this.authService.error$.next({
+            status: true,
+            message: 'El correo no ha sido verificado, inténtalo de nuevo o ponte en contacto con nosotros.',
+            error: undefined,
+          });
+        return '';
+      })
+    );
 }

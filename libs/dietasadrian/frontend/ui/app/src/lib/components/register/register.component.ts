@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SharedModuleModule } from '@shared-modules';
 import { RouterModule } from '@angular/router';
 import { Handler } from '@classes/Handler';
-import { takeUntil } from 'rxjs';
+import { Subject, map, switchMap, combineLatest } from 'rxjs';
 import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
@@ -14,55 +14,30 @@ import { NavbarComponent } from '../navbar/navbar.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, SharedModuleModule, NavbarComponent, RouterModule],
 })
-export class RegisterComponent extends Handler implements OnInit {
-  buttonEnable = true;
-  successAccountCreation = false;
-  isPassStrong = false;
+export class RegisterComponent extends Handler {
+  onCreateAccount$ = new Subject<any>();
+  isPassStrong$ = new Subject<boolean>();
 
-  ngOnInit(): void {
-    this.loginInputForm.valueChanges.subscribe(() => {
-      this.buttonEnable =
-        !this.loginInputForm.controls['user'].invalid &&
-        !this.successAccountCreation &&
-        this.isPassStrong;
-    });
-  }
+  isValidUser$ = this.loginInputForm.valueChanges.pipe(
+    map(() => !this.loginInputForm.controls.user.invalid)
+  );
 
-  createAccount() {
-    this.clearVariables();
+  enableButton$ = combineLatest([this.isValidUser$, this.isPassStrong$]).pipe(
+    map(([isValidUser, isPassStrong]) => isValidUser && isPassStrong)
+  );
 
-    this.authService
-      .createAccount(
+  createAccount$ = this.onCreateAccount$.pipe(
+    switchMap(() =>
+      this.authService.createAccount(
         this.loginInputForm.value as { user: string; pass: string }
       )
-      .pipe(takeUntil(this.destroy))
-      .subscribe({
-        next: (userInfo) => this.createAccountObserver(userInfo),
-        error: this.observerError,
-      });
-  }
+    ),
+    map((res: any) => {
+      this.loginInputForm.controls.pass.disable();
+      this.loginInputForm.controls.user.disable();
 
-  createAccountObserver(userInfo: any) {
-    this.clearVariables();
-    localStorage.setItem('attemptToLoggedIn', 'true');
-
-    if (!userInfo?.user) {
-      return;
-    }
-
-    this.successAccountCreation = true;
-    this.loginInputForm.controls.pass.disable();
-    this.loginInputForm.controls.user.disable();
-
-    if (!userInfo.user.emailVerified)
-      this.authService.sendEmailVerification(userInfo.user).subscribe({
-        next: () => undefined,
-        error: this.observerError,
-      });
-  }
-
-  enableButton(isEnable: boolean) {
-    this.isPassStrong = isEnable;
-    this.changeDetectorRef.detectChanges(); // maybe return an observable to avoid this, or handle it wth a subject.next
-  }
+      this.authService.sendEmailVerification(res?.user);
+      return true;
+    })
+  );
 }

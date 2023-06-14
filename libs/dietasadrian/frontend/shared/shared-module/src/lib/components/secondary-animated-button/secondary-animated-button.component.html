@@ -1,8 +1,13 @@
 <div class="signup-animation">
-    <button mat-button disableRipple="true">
-      <div class="signup-button">
-        <fa-icon [icon]="fontawesomeIcon"></fa-icon>
-        <p>{{ buttonText }}</p>
-      </div>
-    </button>
-  </div>
+  <button
+    mat-button
+    disableRipple="true"
+    (click)="onSubmit()"
+    (keyup.enter)="onSubmit()"
+  >
+    <div class="signup-button">
+      <fa-icon [icon]="fontawesomeIcon"></fa-icon>
+      <p>{{ buttonText }}</p>
+    </div>
+  </button>
+</div>

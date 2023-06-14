@@ -49,9 +49,6 @@ import {
   faBars,
 } from '@fortawesome/pro-solid-svg-icons';
 
-
-
-
 @Directive()
 export class Fontawesome {
   constructor(private library: FaIconLibrary) {

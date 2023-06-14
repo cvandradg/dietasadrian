@@ -1,41 +1,80 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { GoogleAuthProvider } from '@angular/fire/auth';
+import { GoogleAuthProvider, User } from '@angular/fire/auth';
 
 import {
   from,
   defer,
   finalize,
-  tap,
-  take,
-  Observable,
   ObservableInput,
   first,
-  throwError,
-  concatMap,
   of,
   catchError,
   NEVER,
   Subject,
-  BehaviorSubject,
+  filter,
+  map,
 } from 'rxjs';
 import { sendEmailVerification } from 'firebase/auth';
 import { SharedStoreFacade } from '../../+state/shared-store.facade';
 import { FirebaseError } from 'firebase/app';
 
-import { ErrorHandlerService } from '@services/error-handler/error-handler.service';
+import { ErrorHandlerService } from '../../services/error-handler/error-handler.service';
+import { generalError } from '../../types/types';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  firebaseError$ = new Subject<any>();
+  error$ = new Subject<generalError>();
+  firebaseAuth = inject(AngularFireAuth);
+  sharedStoreFacade = inject(SharedStoreFacade);
+  errorHelperService = inject(ErrorHandlerService);
 
-  constructor(
-    private firebaseAuth: AngularFireAuth,
-    private sharedStoreFacade: SharedStoreFacade,
-    private errorHelperService: ErrorHandlerService
-  ) {}
+  error = { status: false, message: '', error: undefined };
+
+  getCurrentUser() {
+    return this.defer(this.firebaseAuth.currentUser);
+  }
+
+  sendEmailVerification(userCredentials: User) {
+    return this.defer(sendEmailVerification(userCredentials));
+  }
+
+  verifyEmail(code: string) {
+    return this.defer(this.firebaseAuth.applyActionCode(code));
+  }
+
+  checkOobCode(oobCode: string) {
+    return this.defer(this.firebaseAuth.checkActionCode(oobCode));
+  }
+
+  googleSignin() {
+    return this.defer(
+      this.firebaseAuth.signInWithPopup(new GoogleAuthProvider())
+    );
+  }
+
+  signOut() {
+    return this.firebaseAuth.signOut();
+  }
+
+  resetPass(code: string, pass: string) {
+    return this.defer(this.firebaseAuth.confirmPasswordReset(code, pass)).pipe(
+      map(() => true)
+    );
+  }
+
+  getUserSession() {
+    if (localStorage.getItem('attemptToLoggedIn') !== 'true') {
+      return NEVER;
+    }
+
+    localStorage.setItem('attemptToLoggedIn', 'true');
+    return this.defer(this.firebaseAuth.authState).pipe(
+      filter((emition) => emition !== null)
+    );
+  }
 
   auth(credentials: { user: string; pass: string }) {
     return this.defer(
@@ -55,71 +94,33 @@ export class AuthService {
     );
   }
 
-  getCurrentUser() {
-    return this.defer(this.firebaseAuth.currentUser);
-  }
-
-  getUserSession() {
-    return this.defer(this.firebaseAuth.authState);
-  }
-
-  sendEmailVerification(userCredentials: any) {
-    return this.defer(sendEmailVerification(userCredentials));
-  }
-
-  verifyEmail(code: string) {
-    return this.defer(this.firebaseAuth.applyActionCode(code));
-  }
-
-  checkOobCode(oobCode: string) {
-    return this.defer(this.firebaseAuth.checkActionCode(oobCode));
-  }
-
   recoverPassword(email: string) {
     return from(this.firebaseAuth.sendPasswordResetEmail(email)).pipe(
+      map(() => true),
       catchError((err: any) => {
         if (
           err.code !== 'auth/missing-email' &&
           err.code !== 'auth/invalid-email'
         ) {
-          console.log('entra al if?');
-          this.firebaseError$.next(null);
+          this.error$.next(this.error);
           return of(true);
         }
 
-        this.firebaseError$.next(
-          this.errorHelperService.firebaseErrorHandler(err)
-        );
+        this.error$.next(this.errorHelperService.firebaseErrorHandler(err));
         return of(false);
       })
     );
   }
 
-  resetPass(code: string, pass: string) {
-    return this.defer(this.firebaseAuth.confirmPasswordReset(code, pass));
-  }
-
-  googleSignin() {
-    return this.defer(
-      this.firebaseAuth.signInWithPopup(new GoogleAuthProvider())
-    );
-  }
-
-  signOut() {
-    return this.firebaseAuth.signOut();
-  }
-
   defer(firebaseCall: Promise<unknown> | ObservableInput<any>) {
     return defer(() => {
       this.sharedStoreFacade.showLoader();
-      this.firebaseError$.next(null);
+      this.error$.next(this.error);
       return from(firebaseCall).pipe(first(), this.finalize());
     }).pipe(
       catchError((err: FirebaseError) => {
         this.sharedStoreFacade.hideLoader();
-        this.firebaseError$.next(
-          this.errorHelperService.firebaseErrorHandler(err)
-        );
+        this.error$.next(this.errorHelperService.firebaseErrorHandler(err));
 
         return NEVER;
       })
