@@ -1,8 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModuleModule } from '@shared-modules';
 import { ActivatedRoute, RouterModule } from '@angular/router';
@@ -31,7 +27,8 @@ export class EmailVerificationComponent extends Handler {
         if (!userInfo?.emailVerified)
           return this.authService.error$.next({
             status: true,
-            message: 'El correo no ha sido verificado, inténtalo de nuevo o ponte en contacto con nosotros.',
+            message:
+              'El correo no ha sido verificado, inténtalo de nuevo o ponte en contacto con nosotros.',
             error: undefined,
           });
         return '';

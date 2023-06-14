@@ -44,8 +44,10 @@
       <button
         mat-button
         [disabled]="!vm.enableButton && (loading$ | async)! && vm.account"
-        (click)="vm.enableButton && !vm.account && onCreateAccount$.next(true) "
-        (keyup.enter)="vm.enableButton && !vm.account && onCreateAccount$.next(true)"
+        (click)="vm.enableButton && !vm.account && onCreateAccount$.next(true)"
+        (keyup.enter)="
+          vm.enableButton && !vm.account && onCreateAccount$.next(true)
+        "
       >
         <div class="register-button">
           <p>Crear Cuenta</p>

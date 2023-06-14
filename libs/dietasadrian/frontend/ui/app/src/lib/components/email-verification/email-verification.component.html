@@ -1,9 +1,11 @@
-<div class="container"
-*ngrxLet="{
-  verifyMail: verifyMail$ | ngrxPush,
-  error: authService.error$ | ngrxPush,
-  loading: (loading$ | ngrxPush)!
-} as vm">
+<div
+  class="container"
+  *ngrxLet="{
+    verifyMail: verifyMail$ | ngrxPush,
+    error: authService.error$ | ngrxPush,
+    loading: (loading$ | ngrxPush)!
+  } as vm"
+>
   <div class="title">Verificacion de cuenta</div>
   <fa-icon
     *ngIf="!vm.verifyMail && !vm.error?.status"
@@ -30,7 +32,10 @@
       />
     </div>
 
-    <div class="error-message" *ngIf="!(loading$ | ngrxPush)! && vm.error?.status">
+    <div
+      class="error-message"
+      *ngIf="!(loading$ | ngrxPush)! && vm.error?.status"
+    >
       <p>{{ vm.error?.message }}</p>
       <fa-icon
         [icon]="['fas', 'xmark']"
