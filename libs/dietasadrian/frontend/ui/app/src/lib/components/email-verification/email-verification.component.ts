@@ -31,6 +31,8 @@ export class EmailVerificationComponent extends Handler {
               'El correo no ha sido verificado, inténtalo de nuevo o ponte en contacto con nosotros.',
             error: undefined,
           });
+
+        this.router.navigate(['/landing']);
         return '';
       })
     );
