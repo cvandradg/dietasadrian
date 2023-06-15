@@ -3,9 +3,10 @@ import { SharedModuleModule } from '@shared-modules';
 import { CommonModule } from '@angular/common';
 
 import { RouterModule } from '@angular/router';
-import { takeUntil } from 'rxjs';
+import { BehaviorSubject, switchMap, map, Subject, finalize, tap } from 'rxjs';
 import { Handler } from '@classes/Handler';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { User } from 'firebase/auth';
 
 @Component({
   standalone: true,
@@ -15,108 +16,45 @@ import { NavbarComponent } from '../navbar/navbar.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, NavbarComponent, SharedModuleModule, RouterModule],
 })
-export class LoginComponent extends Handler implements OnInit {
-  loadingRecoverPassword = false;
+export class LoginComponent extends Handler {
+  onLogin$ = new Subject<any>();
+  onPassReset$ = new Subject<any>();
+  onGoogleSignin$ = new Subject<any>();
+  passResetLoader$ = new BehaviorSubject<any>(false);
 
-  ngOnInit(): void {
-    if (localStorage.getItem('attemptToLoggedIn') === 'true') this.getSession();
-  }
-
-  login() {
-    this.clearVariables();
-    this.authService
-      .auth(this.loginInputForm.value as { user: string; pass: string })
-      .pipe(takeUntil(this.destroy))
-      .subscribe({
-        next: (res) => this.onLogin(res),
-        error: this.observerError,
-      });
-  }
-
-  getSession() {
-    this.authService
-      .getUserSession()
-      .pipe(takeUntil(this.destroy))
-      .subscribe({
-        next: (res) => this.onGetSessionsObserver(res),
-        error: this.observerError,
-      });
-  }
-
-  forgotPassword() {
-    this.clearVariables();
-    this.loadingRecoverPassword = true;
-
-    this.authService
-      .recoverPassword(this.loginInputForm.value.user as string)
-      .pipe(takeUntil(this.destroy))
-      .subscribe({
-        next: () => {
-          this.successfulReponse = true;
-          this.loadingRecoverPassword = false;
-        },
-        error: (err) => {
-          this.observerError(err);
-          this.loadingRecoverPassword = false;
-
-          if (
-            err.code !== 'auth/missing-email' &&
-            err.code !== 'auth/invalid-email'
-          ) {
-            this.successfulReponse = true;
-            this.error.status = false;
-          }
-          this.changeDetectorRef.markForCheck();
-        },
-      });
-  }
-
-  googleSignin() {
-    this.authService
-      .googleSignin()
-      .pipe(takeUntil(this.destroy))
-      .subscribe({
-        next: () => this.onbrandSignin(),
-        error: this.observerError,
-      });
-  }
-
-  onLogin(UserCredendial: any) {
-    this.clearVariables();
-    localStorage.setItem('attemptToLoggedIn', 'true');
-
-    if (!UserCredendial.user._delegate.emailVerified) {
-      this.authService.sendEmailVerification(UserCredendial?.user);
-      this.verificationRequired = true;
-      return;
-    }
-
-    this.router.navigate(['/landing']);
-  }
-
-  async onGetSessionsObserver(userInfo: any) {
-    this.clearVariables();
-
-    localStorage.setItem('attemptToLoggedIn', 'true');
-
-    if (!userInfo?.multiFactor?.user) {
-      return;
-    }
-
-    await userInfo?.multiFactor?.user.reload();
-
-    this.authService.getCurrentUser().subscribe((userInfo2: any) => {
-      if (!userInfo2?.emailVerified) {
-        this.verificationRequired = true;
-        return;
+  user$ = this.onLogin$.pipe(
+    switchMap((res: any) => this.authService.auth(res)),
+    map((res: any) => {
+      if (res?.user?.emailVerified) {
+        this.router.navigate(['/landing']);
       }
 
-      this.router.navigate(['/landing']);
-    });
-  }
+      this.authService.sendEmailVerification(res?.user);
+      return res?.user;
+    })
+  );
 
-  onbrandSignin() {
-    this.successfulReponse = true;
-    this.router.navigate(['/landing']);
-  }
+  getSession$ = this.authService.getUserSession().pipe(
+    map((userInfo: any) => {
+      if (userInfo?.emailVerified) {
+        this.router.navigate(['/landing']);
+      }
+
+      this.authService.sendEmailVerification(userInfo as User);
+      return userInfo;
+    })
+  );
+
+  passReset$ = this.onPassReset$.pipe(
+    switchMap((res: any) =>
+      this.authService
+        .recoverPassword(res)
+        .pipe(finalize(() => this.passResetLoader$.next(false)))
+    )
+  );
+
+  googleSignin$ = this.onGoogleSignin$.pipe(
+    switchMap(() => this.authService.googleSignin()),
+    map(() => this.router.navigate(['/landing']))
+  );
 }

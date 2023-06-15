@@ -11,6 +11,12 @@ import { IconProp } from '@fortawesome/fontawesome-svg-core';
   imports: [CommonModule, MODULES],
 })
 export class SecondaryAnimatedButtonComponent {
+  @Output() submitEvent = new EventEmitter<never>();
+
   @Input() buttonText = 'Some Text';
   @Input() fontawesomeIcon: IconProp = ['fas', 'user'];
+
+  onSubmit() {
+    this.submitEvent.emit();
+  }
 }

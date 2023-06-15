@@ -9,7 +9,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { validations } from '../types/types';
 
 @Directive()
-export class Handler implements OnDestroy {
+export class Handler {
   router = inject(Router);
   authService = inject(AuthService);
   formBuilder = inject(FormBuilder);
@@ -17,9 +17,7 @@ export class Handler implements OnDestroy {
   errorHelperService = inject(ErrorHandlerService);
   changeDetectorRef = inject(ChangeDetectorRef);
 
-
   loading$ = this.facade.loading$;
-  destroy = new Subject();
 
   loginInputForm = this.formBuilder.group({
     user: validations(Validators.email),
@@ -29,30 +27,6 @@ export class Handler implements OnDestroy {
   error = {
     status: false,
     message: '',
-    error: {}
+    error: {},
   };
-  verificationRequired = false;
-  successfulReponse = false;
-
-  get observerError() {
-    return (err: FirebaseError) => {
-      this.error = this.errorHelperService.firebaseErrorHandler(err);
-    };
-  }
-
-  ngOnDestroy() {
-    this.destroy.next(undefined);
-    this.destroy.complete();
-  }
-
-  clearVariables() {
-    this.error = {
-      status: false,
-      message: '',
-      error: {}
-    };
-
-    this.successfulReponse = false;
-    this.verificationRequired = false;
-  }
 }

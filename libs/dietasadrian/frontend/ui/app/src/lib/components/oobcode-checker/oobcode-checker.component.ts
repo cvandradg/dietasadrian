@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, Injector, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { SharedModuleModule } from '@shared-modules';
-import { takeUntil } from 'rxjs';
+import { map } from 'rxjs';
 import { Handler } from '@classes/Handler';
 
 @Component({
@@ -13,36 +13,26 @@ import { Handler } from '@classes/Handler';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, SharedModuleModule, SharedModuleModule],
 })
-export class OobcodeCheckerComponent extends Handler implements OnInit {
+export class OobcodeCheckerComponent extends Handler {
   route = inject(ActivatedRoute);
-  firebaseCode = '';
 
-  ngOnInit(): void {
-    this.firebaseCode = this.route.snapshot.queryParamMap.get('oobCode') || '';
+  checkOobCode$ = this.authService
+    .checkOobCode(this.route.snapshot.queryParamMap.get('oobCode') || '')
+    .pipe(
+      map((res: any) => {
+        switch (res.operation) {
+          case 'VERIFY_EMAIL':
+            this.router.navigate(['/email-verification'], {
+              queryParamsHandling: 'preserve',
+            });
+            break;
 
-    this.authService
-      .checkOobCode(this.firebaseCode)
-      .pipe(takeUntil(this.destroy))
-      .subscribe({
-        next: (res) => this.codeCheckerObserver(res),
-        error: this.observerError,
-      });
-  }
-
-  codeCheckerObserver(res: any) {
-    switch (res.operation) {
-      case 'VERIFY_EMAIL':
-        this.router.navigate(['/email-verification'], {
-          queryParamsHandling: 'preserve',
-        });
-        break;
-      case 'PASSWORD_RESET':
-        this.router.navigate(['/passReset'], {
-          queryParamsHandling: 'preserve',
-        });
-        break;
-      default:
-        break;
-    }
-  }
+          case 'PASSWORD_RESET':
+            this.router.navigate(['/passReset'], {
+              queryParamsHandling: 'preserve',
+            });
+            break;
+        }
+      })
+    );
 }

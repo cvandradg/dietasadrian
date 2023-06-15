@@ -39,6 +39,8 @@ export class ErrorHandlerService implements ErrorHandler {
       case 'auth/email-already-in-use':
         return this.errorObject(true, 'El usuario ya existe.', error);
       case 'auth/operation-not-allowed':
+      case 'auth/auth-domain-config-required':
+      case 'auth/unauthorized-domain':
         return this.errorObject(
           true,
           'Ocurrió un error, inténtalo de nuevo.',
@@ -103,13 +105,8 @@ export class ErrorHandlerService implements ErrorHandler {
           'Ese correo ya se encuentra en uso.',
           error
         );
-      case 'auth/auth-domain-config-required':
-        return this.errorObject(
-          true,
-          'Ocurrió un error, inténtalo de nuevo.',
-          error
-        );
       case 'auth/cancelled-popup-request':
+      case 'auth/popup-closed-by-user':
         return this.errorObject(
           true,
           'Se cerró la ventana, intentalo de nuevo.',
@@ -127,18 +124,7 @@ export class ErrorHandlerService implements ErrorHandler {
           'Tu buscador no permite abrir ventanas emergentes.',
           error
         );
-      case 'auth/popup-closed-by-user':
-        return this.errorObject(
-          true,
-          'Se cerró la ventana, intentalo de nuevo.',
-          error
-        );
-      case 'auth/unauthorized-domain':
-        return this.errorObject(
-          true,
-          'Ocurrió un error, inténtalo de nuevo.',
-          error
-        );
+
       case 'auth/missing-email':
         return this.errorObject(
           true,
