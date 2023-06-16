@@ -3,12 +3,13 @@
   *ngrxLet="{
     verifyMail: verifyMail$ | ngrxPush,
     error: authService.error$ | ngrxPush,
-    loading: (loading$ | ngrxPush)!
+    loading: (loading$ | ngrxPush),
+    emailVerified: (verifyMail$ | ngrxPush) && !(authService.error$ | ngrxPush)?.status,
   } as vm"
 >
   <div class="title">Verificacion de cuenta</div>
   <fa-icon
-    *ngIf="!vm.verifyMail && !vm.error?.status"
+    *ngIf="!vm.emailVerified"
     [icon]="['fas', 'spinner-third']"
     class="icon fa-spin fa-2xl default-color"
     style="--fa-animation-duration: 1s"
@@ -16,7 +17,7 @@
   <div class="description">
     <div
       class="success-message centered"
-      *ngIf="vm.verifyMail && !vm.error?.status && !(loading$ | ngrxPush)!"
+      *ngIf="vm.emailVerified && !vm.loading"
       [routerLink]="'/'"
     >
       <div>
@@ -34,7 +35,7 @@
 
     <div
       class="error-message"
-      *ngIf="!(loading$ | ngrxPush)! && vm.error?.status"
+      *ngIf="!vm.loading && vm.error?.status"
     >
       <p>{{ vm.error?.message }}</p>
       <fa-icon

@@ -1,5 +1,5 @@
 <mat-sidenav-container>
-  <mat-sidenav [opened]="facade.showSidenavbar$ | async" mode="over"> Start </mat-sidenav>
+  <mat-sidenav [opened]="facade.showSidenavbar$ | ngrxPush" mode="over"> Start </mat-sidenav>
   <mat-sidenav-content>
     <router-outlet></router-outlet>
   </mat-sidenav-content>

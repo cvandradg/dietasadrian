@@ -119,40 +119,6 @@ button {
     width: 100%;
   }
 }
-mat-form-field {
-  height: 100%;
-}
-
-::ng-deep {
-  .mdc-text-field:not(.mdc-text-field--disabled)
-    .mdc-text-field__input::placeholder {
-    color: #88898e;
-  }
-  .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-    padding: 0.6rem;
-    background-color: #222222 !important;
-  }
-
-  mat-label {
-    color: #88898e !important;
-    text-align: center !important;
-  }
-
-  input {
-    color: #fff !important;
-  }
-}
-
-::ng-deep .mdc-button,
-.mdc-text-field--filled {
-  background-color: #222222 !important;
-  color: #fff !important;
-}
-
-::ng-deep .mat-mdc-form-field-subscript-wrapper,
-.mat-mdc-form-field-bottom-align {
-  display: none;
-}
 
 @media screen and (min-width: 0px) and (max-width: 600px) {
   .container {

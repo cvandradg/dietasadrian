@@ -1,9 +1,10 @@
 <div
   class="container"
   *ngrxLet="{
+    loading: loading$ | ngrxPush,
     account: createAccount$ | ngrxPush,
+    error: authService.error$ | ngrxPush,
     enableButton: enableButton$ | ngrxPush,
-    error: authService.error$ | ngrxPush
   } as vm"
 >
   <div class="title">Crea tu cuenta</div>
@@ -43,7 +44,7 @@
     >
       <button
         mat-button
-        [disabled]="!vm.enableButton && (loading$ | async)! && vm.account"
+        [disabled]="!vm.enableButton && vm.loading && vm.account"
         (click)="vm.enableButton && !vm.account && onCreateAccount$.next(true)"
         (keyup.enter)="
           vm.enableButton && !vm.account && onCreateAccount$.next(true)
@@ -52,7 +53,7 @@
         <div class="register-button">
           <p>Crear Cuenta</p>
           <fa-icon
-            *ngIf="!(loading$ | async)! && !vm.account"
+            *ngIf="!vm.loading && !vm.account"
             [icon]="['fas', 'arrow-right']"
             style="--fa-animation-iteration-count: 2"
             class="icon fa-xl fa-shake"
@@ -60,14 +61,14 @@
           ></fa-icon>
 
           <fa-icon
-            *ngIf="(loading$ | async)!"
+            *ngIf="vm.loading"
             [icon]="['fas', 'spinner-third']"
             class="icon fa-xl fa-spin"
             style="--fa-animation-duration: 1s"
           ></fa-icon>
 
           <fa-icon
-            *ngIf="!(loading$ | async)! && vm.account"
+            *ngIf="!vm.loading && vm.account"
             [icon]="['fas', 'check']"
             style="--fa-animation-iteration-count: 2"
             class="icon fa-xl fa-shake"
@@ -78,7 +79,7 @@
     </div>
     <!-- [routerLink]="'/'"  -->
     <div class="centered">
-      <div class="warning-message" *ngIf="!(loading$ | async)! && vm.account">
+      <div class="warning-message" *ngIf="!vm.loading && vm.account">
         <p>Revisa tu correo para activar tu cuenta</p>
         <fa-icon
           [icon]="['fas', 'message-exclamation']"
@@ -87,7 +88,7 @@
           style="--fa-animation-iteration-count: 2"
         ></fa-icon>
       </div>
-      <div class="success-message" *ngIf="!(loading$ | async)! && vm.account">
+      <div class="success-message" *ngIf="!vm.loading && vm.account">
         <p>Creaste una nueva cuenta.</p>
         <fa-icon
           [icon]="['fas', 'check']"
@@ -98,7 +99,7 @@
       </div>
     </div>
 
-    <div class="error-message" *ngIf="!(loading$ | async)! && vm.error?.status">
+    <div class="error-message" *ngIf="!vm.loading && vm.error?.status">
       <p>
         {{ vm.error?.message }}
       </p>

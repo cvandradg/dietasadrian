@@ -26,7 +26,7 @@ import { generalError } from '../../types/types';
   providedIn: 'root',
 })
 export class AuthService {
-  error$ = new Subject<generalError>();
+  readonly error$ = new Subject<generalError>();
   firebaseAuth = inject(AngularFireAuth);
   sharedStoreFacade = inject(SharedStoreFacade);
   errorHelperService = inject(ErrorHandlerService);
