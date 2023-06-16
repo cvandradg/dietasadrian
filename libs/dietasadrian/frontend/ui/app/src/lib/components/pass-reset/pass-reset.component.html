@@ -3,7 +3,8 @@
   *ngrxLet="{
     passReset: passReset$ | ngrxPush,
     isButtonEnable: enableButton$ | ngrxPush,
-    error: authService.error$ | ngrxPush
+    error: authService.error$ | ngrxPush,
+    loading: loading$ | ngrxPush
   } as vm"
 >
   <div class="title">Cambiar contraseña</div>
@@ -38,7 +39,7 @@
         <div class="pass-reset-button">
           <p>Cambiar contraseña</p>
           <fa-icon
-            *ngIf="!(loading$ | async)!"
+            *ngIf="!vm.loading"
             [icon]="['fas', 'arrow-right']"
             style="--fa-animation-iteration-count: 2"
             class="icon fa-xl fa-shake"
@@ -46,7 +47,7 @@
           />
 
           <fa-icon
-            *ngIf="(loading$ | async)!"
+            *ngIf="vm.loading"
             [icon]="['fas', 'spinner-third']"
             class="icon fa-xl fa-spin"
             style="--fa-animation-duration: 1s"
@@ -57,7 +58,7 @@
     <div [routerLink]="'/'">
       <div
         class="success-message centered"
-        *ngIf="!(loading$ | async)! && vm.passReset"
+        *ngIf="!vm.loading && vm.passReset"
       >
         <p>Creaste una nueva contraseña.</p>
         <fa-icon
@@ -69,7 +70,7 @@
       </div>
       <div
         class="success-message centered"
-        *ngIf="!(loading$ | async)! && vm.passReset"
+        *ngIf="!vm.loading && vm.passReset"
       >
         Click aca para acceder
       </div>
@@ -77,10 +78,10 @@
 
     <div
       class="error-message centered"
-      *ngIf="!(loading$ | async)! && error.status"
+      *ngIf="!vm.loading && vm.error?.status"
     >
       <p>
-        {{ error.message }}
+        {{ vm.error?.message }}
       </p>
       <fa-icon
         [icon]="['fas', 'xmark']"

@@ -8,6 +8,7 @@
     error: authService.error$ | ngrxPush,
     googleSignin: googleSignin$ | ngrxPush,
     passResetLoader: passResetLoader$ | ngrxPush,
+    passResetRequested: (passReset$ | ngrxPush) && !(authService.error$ | ngrxPush)?.status
   } as vm"
 >
   <div class="container">
@@ -109,7 +110,7 @@
 
     <div
       class="success-message aligment"
-      *ngIf="vm.passReset && !vm.error?.status && !vm.passResetLoader"
+      *ngIf="vm.passResetRequested && !vm.passResetLoader"
     >
       <p>
         Si el correo es válido te llegará un link para cambiar tu contraseña.
