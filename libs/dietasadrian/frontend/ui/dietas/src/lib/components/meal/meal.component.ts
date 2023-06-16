@@ -5,6 +5,7 @@ import {
   Output,
   OnDestroy,
   ChangeDetectionStrategy,
+  inject
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Meal } from '@interfaces/interfaces.interfaces';
@@ -25,6 +26,8 @@ import { moveItemInArray } from '@angular/cdk/drag-drop';
   imports: [CommonModule, SharedModuleModule, FoodLineComponent],
 })
 export class MealComponent implements OnDestroy {
+  helper = inject(HelperService)
+
   @Input()
   meal!: Meal;
 
@@ -38,8 +41,6 @@ export class MealComponent implements OnDestroy {
   screenSize!: number;
 
   destroy = new Subject();
-
-  constructor(private helper: HelperService) {}
 
   onDeleteFoodLine($event: any) {
     this.helper
