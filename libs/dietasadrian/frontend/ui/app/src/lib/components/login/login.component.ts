@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 
 import { RouterModule } from '@angular/router';
 import { BehaviorSubject, switchMap, map, Subject, finalize, tap } from 'rxjs';
-import { Handler } from '@classes/Handler';
+import { firebaseAuthHelper } from '@classes/firebaseAuthHelper';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { User } from 'firebase/auth';
 
@@ -16,7 +16,10 @@ import { User } from 'firebase/auth';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, NavbarComponent, SharedModuleModule, RouterModule],
 })
-export class LoginComponent extends Handler {
+export class LoginComponent extends firebaseAuthHelper implements OnInit{
+  ngOnInit(): void {
+    this.getSession$.subscribe();
+  }
   onLogin$ = new Subject<any>();
   onPassReset$ = new Subject<any>();
   onGoogleSignin$ = new Subject<any>();
@@ -36,6 +39,8 @@ export class LoginComponent extends Handler {
 
   getSession$ = this.authService.getUserSession().pipe(
     map((userInfo: any) => {
+      console.log('userInfo', userInfo);
+      
       if (userInfo?.emailVerified) {
         this.router.navigate(['/landing']);
       }

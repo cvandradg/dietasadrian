@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModuleModule } from '@shared-modules';
 import { RouterModule } from '@angular/router';
-import { Handler } from '@classes/Handler';
+import { firebaseAuthHelper } from '@classes/firebaseAuthHelper';
 
 @Component({
   standalone: true,
@@ -12,7 +12,7 @@ import { Handler } from '@classes/Handler';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, SharedModuleModule, RouterModule],
 })
-export class NavbarComponent extends Handler implements OnInit {
+export class NavbarComponent extends firebaseAuthHelper implements OnInit {
   screenWidth = 0;
 
   ngOnInit(): void {

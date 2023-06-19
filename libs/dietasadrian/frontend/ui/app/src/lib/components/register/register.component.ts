@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModuleModule } from '@shared-modules';
 import { RouterModule } from '@angular/router';
-import { Handler } from '@classes/Handler';
+import { firebaseAuthHelper } from '@classes/firebaseAuthHelper';
 import { Subject, map, switchMap, combineLatest } from 'rxjs';
 import { NavbarComponent } from '../navbar/navbar.component';
 
@@ -14,7 +14,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, SharedModuleModule, NavbarComponent, RouterModule],
 })
-export class RegisterComponent extends Handler {
+export class RegisterComponent extends firebaseAuthHelper {
   onCreateAccount$ = new Subject<any>();
   isPassStrong$ = new Subject<boolean>();
 

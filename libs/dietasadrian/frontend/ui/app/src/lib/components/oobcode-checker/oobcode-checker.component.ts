@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { SharedModuleModule } from '@shared-modules';
 import { map } from 'rxjs';
-import { Handler } from '@classes/Handler';
+import { firebaseAuthHelper } from '@classes/firebaseAuthHelper';
 
 @Component({
   standalone: true,
@@ -13,7 +13,7 @@ import { Handler } from '@classes/Handler';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, SharedModuleModule, SharedModuleModule],
 })
-export class OobcodeCheckerComponent extends Handler {
+export class OobcodeCheckerComponent extends firebaseAuthHelper {
   route = inject(ActivatedRoute);
 
   checkOobCode$ = this.authService

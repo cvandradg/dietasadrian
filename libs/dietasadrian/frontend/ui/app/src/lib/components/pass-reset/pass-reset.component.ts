@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { Handler } from '@classes/Handler';
+import { firebaseAuthHelper } from '@classes/firebaseAuthHelper';
 import { SharedModuleModule } from '@shared-modules';
 import { combineLatest, map, Subject, switchMap } from 'rxjs';
 
@@ -13,7 +13,7 @@ import { combineLatest, map, Subject, switchMap } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, SharedModuleModule, RouterModule],
 })
-export class PassResetComponent extends Handler {
+export class PassResetComponent extends firebaseAuthHelper {
   route = inject(ActivatedRoute);
   onPassReset$ = new Subject<any>();
 

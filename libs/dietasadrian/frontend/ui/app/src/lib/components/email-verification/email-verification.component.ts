@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SharedModuleModule } from '@shared-modules';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { map, switchMap } from 'rxjs';
-import { Handler } from '@classes/Handler';
+import { firebaseAuthHelper } from '@classes/firebaseAuthHelper';
 import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
@@ -14,7 +14,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, SharedModuleModule, NavbarComponent, RouterModule],
 })
-export class EmailVerificationComponent extends Handler {
+export class EmailVerificationComponent extends firebaseAuthHelper {
   route = inject(ActivatedRoute);
 
   verifyMail$ = this.authService

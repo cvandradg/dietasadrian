@@ -66,17 +66,18 @@ export class AuthService {
   }
 
   getUserSession() {
-    if (localStorage.getItem('attemptToLoggedIn') !== 'true') {
+    if (localStorage.getItem('attemptedToLoggedIn') !== 'true') {
       return NEVER;
     }
 
-    localStorage.setItem('attemptToLoggedIn', 'true');
+    localStorage.setItem('attemptedToLoggedIn', 'true'); 
     return this.defer(this.firebaseAuth.authState).pipe(
       filter((emition) => emition !== null)
     );
   }
 
   auth(credentials: { user: string; pass: string }) {
+    localStorage.setItem('attemptedToLoggedIn', 'true'); 
     return this.defer(
       this.firebaseAuth.signInWithEmailAndPassword(
         credentials.user,
