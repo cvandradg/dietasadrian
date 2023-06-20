@@ -1,5 +1,5 @@
 import { inject } from '@angular/core';
-import { HelperService } from '@helperFunctionsService';
+import { HelperService } from '../../services/helperFunctions.service';
 import { tap } from 'rxjs';
 import * as _ from 'lodash';
 import { MatDialogState } from '@angular/material/dialog';
