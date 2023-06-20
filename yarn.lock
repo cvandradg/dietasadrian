@@ -270,7 +270,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@angular-extensions/lint-rules@npm:^1.2.1":
+"@angular-extensions/lint-rules@npm:~1.2.1":
   version: 1.2.1
   resolution: "@angular-extensions/lint-rules@npm:1.2.1"
   dependencies:
@@ -3431,6 +3431,15 @@ __metadata:
   dependencies:
     "@fortawesome/fontawesome-common-types": "npm:6.4.0"
   checksum: 76579babfaf46eee5aa6cf796b8f90a0ebbdebc34f74318bc8b29b33d1a211fe3d3777046d5fcd08b24372eaf891c2fbda7bdf55d7414ebb0e00978a3d12755a
+  languageName: node
+  linkType: hard
+
+"@fortawesome/pro-regular-svg-icons@npm:^6.4.0":
+  version: 6.4.0
+  resolution: "@fortawesome/pro-regular-svg-icons@npm:6.4.0::__archiveUrl=https%3A%2F%2Fnpm.fontawesome.com%2F%40fortawesome%2Fpro-regular-svg-icons%2F-%2F6.4.0%2Fpro-regular-svg-icons-6.4.0.tgz"
+  dependencies:
+    "@fortawesome/fontawesome-common-types": "npm:6.4.0"
+  checksum: a404462aa99c846ce7a2817c9b2bfc568a1596c637e64fb55bfba5400236aa115f6ffe77d246fa8e3b2f95a4a42653e5fd52feb2933daa5c9ccd6286b31f75bb
   languageName: node
   linkType: hard
 
@@ -9412,7 +9421,7 @@ __metadata:
     "@angular-eslint/eslint-plugin": "npm:16.0.1"
     "@angular-eslint/eslint-plugin-template": "npm:16.0.1"
     "@angular-eslint/template-parser": "npm:16.0.1"
-    "@angular-extensions/lint-rules": "npm:^1.2.1"
+    "@angular-extensions/lint-rules": "npm:~1.2.1"
     "@angular/animations": "npm:16.0.4"
     "@angular/cdk": "npm:16.0.3"
     "@angular/cli": "npm:16.0.4"
@@ -9436,6 +9445,7 @@ __metadata:
     "@fortawesome/free-solid-svg-icons": "npm:^6.4.0"
     "@fortawesome/pro-duotone-svg-icons": "npm:^6.2.0"
     "@fortawesome/pro-light-svg-icons": "npm:^6.2.0"
+    "@fortawesome/pro-regular-svg-icons": "npm:^6.4.0"
     "@fortawesome/pro-solid-svg-icons": "npm:^6.4.0"
     "@fortawesome/pro-thin-svg-icons": "npm:^6.2.0"
     "@fortawesome/sharp-solid-svg-icons": "npm:^6.2.0"

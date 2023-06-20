@@ -47,8 +47,9 @@ import {
   faCircleNotch,
   faMessageExclamation,
   faBars,
+  faRotateBack,
 } from '@fortawesome/pro-solid-svg-icons';
-
+import { faHouseTree } from "@fortawesome/pro-regular-svg-icons";
 @Directive()
 export class Fontawesome {
   constructor(private library: FaIconLibrary) {
@@ -82,7 +83,9 @@ export class Fontawesome {
       faUser,
       faCircleNotch,
       faEnvelopeCircleCheck,
-      faBars
+      faBars,
+      faRotateBack,
+      faHouseTree
     );
   }
 }

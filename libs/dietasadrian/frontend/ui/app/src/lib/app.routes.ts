@@ -9,6 +9,7 @@ import { AppComponent } from './components/app/app.component';
 import { EmailVerificationComponent } from './components/email-verification/email-verification.component';
 import { PassResetComponent } from './components/pass-reset/pass-reset.component';
 import { OobcodeCheckerComponent } from './components/oobcode-checker/oobcode-checker.component';
+import { ErrorComponent } from './components/error/error.component';
 
 export const appRoutes: Routes = [
   {
@@ -65,6 +66,11 @@ export const appRoutes: Routes = [
       {
         path: 'code',
         component: OobcodeCheckerComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: '**',
+        component: ErrorComponent,
         pathMatch: 'full',
       },
     ],
