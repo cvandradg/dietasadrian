@@ -30,6 +30,7 @@ This project was generated using [Nx](https://nx.dev).
 20. https://www.youtube.com/watch?v=sIeTGWSUK7M&ab_channel=JoshuaMorony
 21. https://www.youtube.com/watch?v=54q7P9PB0WU&ab_channel=JoshuaMorony
 22. https://www.youtube.com/watch?v=WvMxnGfqEis&ab_channel=JoshuaMorony
+23. https://www.youtube.com/watch?v=xPmtsD5LRqQ&ab_channel=NG-DEConference
 
 ## TODO
 
