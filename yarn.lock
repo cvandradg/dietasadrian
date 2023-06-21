@@ -4949,44 +4949,44 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ngrx/effects@npm:~15.3.0":
-  version: 15.3.0
-  resolution: "@ngrx/effects@npm:15.3.0"
+"@ngrx/effects@npm:^15.3.0":
+  version: 15.4.0
+  resolution: "@ngrx/effects@npm:15.4.0"
   dependencies:
     tslib: "npm:^2.0.0"
   peerDependencies:
     "@angular/core": ^15.0.0
-    "@ngrx/store": 15.3.0
+    "@ngrx/store": 15.4.0
     rxjs: ^6.5.3 || ^7.5.0
-  checksum: d8821c3e7f4ecbbaec1e214df70143936c9b6bbce8197720d0a07d40d55715c6b314f168538214922a97f8f84f3c3082c76e99dea060fb32dd7f2c3b6644b709
+  checksum: ccabce820cf12f3b07a6792283b3d5069ab04816875d2269e6cbbdd3068c8f5bf8624b59ff49289d7995247d3c934106deaeaabf9362f01a217286fb4c106d68
   languageName: node
   linkType: hard
 
-"@ngrx/entity@npm:~15.3.0":
-  version: 15.3.0
-  resolution: "@ngrx/entity@npm:15.3.0"
+"@ngrx/entity@npm:^15.3.0":
+  version: 15.4.0
+  resolution: "@ngrx/entity@npm:15.4.0"
   dependencies:
     tslib: "npm:^2.0.0"
   peerDependencies:
     "@angular/core": ^15.0.0
-    "@ngrx/store": 15.3.0
+    "@ngrx/store": 15.4.0
     rxjs: ^6.5.3 || ^7.5.0
-  checksum: 3608306e1f8e61df7bf9cd77992bad011664b3a33a6008705ce5279c5f737c6e0f3ee2c6aed3f5f63a5e039c3630875abb1d5c2415bf4acda116fee881b1ddbc
+  checksum: eb9f3fa7c4ff04ad16d4baf2f6d07cd360db4c20186e73ab0ae37cbe67e23e15fc86a71f3e47746478e17840b2e57c44da44e5839465d36c656a63c127e848e0
   languageName: node
   linkType: hard
 
-"@ngrx/router-store@npm:~15.3.0":
-  version: 15.3.0
-  resolution: "@ngrx/router-store@npm:15.3.0"
+"@ngrx/router-store@npm:^15.3.0":
+  version: 15.4.0
+  resolution: "@ngrx/router-store@npm:15.4.0"
   dependencies:
     tslib: "npm:^2.0.0"
   peerDependencies:
     "@angular/common": ^15.0.0
     "@angular/core": ^15.0.0
     "@angular/router": ^15.0.0
-    "@ngrx/store": 15.3.0
+    "@ngrx/store": 15.4.0
     rxjs: ^6.5.3 || ^7.5.0
-  checksum: 373ff811c1915aed193d356fa7d16f2140ab14ac805766991786fa24c0d2e6183f4fdc30359c7197e01e6d69e16b01e7196a09f139ed2080210550dd785cc52e
+  checksum: f976fbdf4198878706f6a2c9b65c68b65151455c93519ae23805c1a961e12952031048cf3040602fc5500b48ad82b8b01198735bce74fe2e31e5bf6a7045c5c2
   languageName: node
   linkType: hard
 
@@ -5009,15 +5009,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ngrx/store@npm:~15.3.0":
-  version: 15.3.0
-  resolution: "@ngrx/store@npm:15.3.0"
+"@ngrx/store@npm:^16.0.1":
+  version: 16.0.1
+  resolution: "@ngrx/store@npm:16.0.1"
   dependencies:
     tslib: "npm:^2.0.0"
   peerDependencies:
-    "@angular/core": ^15.0.0
+    "@angular/core": ^16.0.0
     rxjs: ^6.5.3 || ^7.5.0
-  checksum: abaebdd0eff2642b86d22988cb15a99b241686fa82635d0e706c5696aa5bb9e6c709dc4df3f4fc688f932ec3517afa1da9f78df5101e833821ca5fa82368cfff
+  checksum: a03395c57088fbff7e23c9b793fa2867f662eef42af228d1e33d618f319b9d3879e463882304a507d65d44a8fc891299c741d66c750f19e54f7c71bbf4f6d934
   languageName: node
   linkType: hard
 
@@ -9586,11 +9586,11 @@ __metadata:
     "@fortawesome/sharp-solid-svg-icons": "npm:^6.2.0"
     "@ngrx/component": "npm:^16.0.1"
     "@ngrx/component-store": "npm:~15.3.0"
-    "@ngrx/effects": "npm:~15.3.0"
-    "@ngrx/entity": "npm:~15.3.0"
-    "@ngrx/router-store": "npm:~15.3.0"
+    "@ngrx/effects": "npm:^15.3.0"
+    "@ngrx/entity": "npm:^15.3.0"
+    "@ngrx/router-store": "npm:^15.3.0"
     "@ngrx/schematics": "npm:~15.3.0"
-    "@ngrx/store": "npm:~15.3.0"
+    "@ngrx/store": "npm:^16.0.1"
     "@ngrx/store-devtools": "npm:~15.3.0"
     "@nrwl/cli": "npm:15.9.0"
     "@nrwl/nx-linux-x64-gnu": "npm:=15.8.5"
