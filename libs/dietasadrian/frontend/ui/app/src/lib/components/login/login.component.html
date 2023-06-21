@@ -1,14 +1,15 @@
 <div
   class="login-container"
   *ngrxLet="{
-    user: user$ | ngrxPush,
+    user: facade.userInfo$ | ngrxPush,
     loading: loading$ | ngrxPush,
     passReset: passReset$ | ngrxPush,
     session: getSession$ | ngrxPush,
-    error: authService.error$ | ngrxPush,
+    error: facade.error$ | ngrxPush,
     googleSignin: googleSignin$ | ngrxPush,
     passResetLoader: passResetLoader$ | ngrxPush,
-    passResetRequested: (passReset$ | ngrxPush) && !(authService.error$ | ngrxPush)?.status
+    passResetRequested:
+      (passReset$ | ngrxPush) && !(authService.error$ | ngrxPush)?.status
   } as vm"
 >
   <div class="container">
@@ -27,7 +28,7 @@
               placeholder="AlgunCorreo@dominio.com"
               type="email"
               formControlName="user"
-              (keyup.enter)="onLogin$.next(loginInputForm.value)"
+              (keyup.enter)="facade.accessAccount(loginInputForm.value)"
             />
           </mat-form-field>
           <mat-form-field>
@@ -37,7 +38,7 @@
               placeholder="EjemploDeClave1!"
               type="password"
               formControlName="pass"
-              (keyup.enter)="onLogin$.next(loginInputForm.value)"
+              (keyup.enter)="facade.accessAccount(loginInputForm.value)"
             />
           </mat-form-field>
         </form>
@@ -45,7 +46,7 @@
         <ng-container #loginComponents *ngrxLet="vm.user">
           <dietas-adrian-nx-workspace-primary-animated-button
             #loginButton
-            (submitEvent)="onLogin$.next(loginInputForm.value)"
+            (submitEvent)="facade.accessAccount(loginInputForm.value)"
             [enable]="!loginInputForm.invalid"
             [loading]="!vm.loading"
             [buttonText]="'Accede a Tu Cuenta'"

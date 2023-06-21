@@ -20,6 +20,16 @@ export const toogleSidenavbar = createSelector(
   (state: SharedStoreState) => state.toggleSidenavbar
 );
 
+export const selectSharedStoreError = createSelector(
+  selectSharedStoreState,
+  (state: SharedStoreState) => state.error
+);
+
+export const userInfo = createSelector(
+  selectSharedStoreState,
+  (state: SharedStoreState) => state.userInfo
+);
+
 // const { selectAll, selectEntities } = sharedStoreAdapter.getSelectors();
 
 // export const selectSharedStoreLoaded = createSelector(

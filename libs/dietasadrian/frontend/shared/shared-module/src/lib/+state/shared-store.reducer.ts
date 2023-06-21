@@ -3,17 +3,22 @@ import { createReducer, on, Action } from '@ngrx/store';
 import * as SharedStoreActions from './shared-store.actions';
 import { EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import { SharedStoreEntity } from '../+state/shared-store.models';
+import { FirebaseError } from 'firebase/app';
 
 export const SHARED_STORE_FEATURE_KEY = 'sharedStore';
 
 export interface SharedStoreState {
   loading: boolean;
   toggleSidenavbar: boolean;
+  userInfo: any;
+  error: { status: boolean; message: string; error: any };
 }
 
 export const initialSharedStoreState: SharedStoreState = {
   loading: false,
   toggleSidenavbar: true,
+  userInfo: {},
+  error: { status: false, message: '', error: {} },
 };
 
 export interface SharedStorePartialState {
@@ -36,8 +41,38 @@ export const reducer = createReducer(
   on(SharedStoreActions.toggleSidenavbar, (state) => ({
     ...state,
     toggleSidenavbar: !state.toggleSidenavbar,
-  }))
+  })),
+  on(SharedStoreActions.getSessionSuccess, (state, { userInfo }) => ({
+    ...state,
+    loading: false,
+    userInfo: userInfo,
+  })),
+  on(SharedStoreActions.getSessionFailure, (state, { error }) => ({
+    ...state,
+    loading: false,
+    error: error,
+  })),
+  on(SharedStoreActions.accessAccount, (state, { user, pass }) => ({
+    ...state,
+    loading: true,
+  })),
+  on(SharedStoreActions.getAccessSuccess, (state, { userInfo }) => ({
+    ...state,
+    loading: false,
+    userInfo: userInfo,
+  })),
+  on(
+    SharedStoreActions.getAccessFailure,
+    (state, { error, message, status }) => {
+      console.log('entra al reducer?', error);
 
+      return {
+        ...state,
+        loading: false,
+        error: { error, message, status },
+      };
+    }
+  )
 );
 
 export function sharedStoreReducer(state: SharedStoreState, action: Action) {

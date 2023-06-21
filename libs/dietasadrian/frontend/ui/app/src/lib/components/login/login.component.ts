@@ -16,33 +16,37 @@ import { User } from 'firebase/auth';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, NavbarComponent, SharedModuleModule, RouterModule],
 })
-export class LoginComponent extends firebaseAuthHelper implements OnInit{
+export class LoginComponent extends firebaseAuthHelper implements OnInit {
   ngOnInit(): void {
     this.getSession$.subscribe();
   }
-  onLogin$ = new Subject<any>();
+  // onLogin$ = new Subject<any>();
   onPassReset$ = new Subject<any>();
   onGoogleSignin$ = new Subject<any>();
   passResetLoader$ = new BehaviorSubject<any>(false);
 
-  user$ = this.onLogin$.pipe(
-    switchMap((res: any) => this.authService.auth(res)),
-    map((res: any) => {
-      if (res?.user?.emailVerified) {
-        this.router.navigate(['/landing']);
-      }
+  // user$ = this.onLogin$.pipe(
+  //   tap((res) => {
+  //     this.facade.accessAccount(res);
+  //   }),
+  //   switchMap((res: any) => this.authService.auth(res)),
 
-      this.authService.sendEmailVerification(res?.user);
-      return res?.user;
-    })
-  );
+  //   map((res: any) => {
+  //     if (res?.user?.emailVerified) {
+  //       // this.router.navigate(['/landing']);
+  //     }
+
+  //     this.authService.sendEmailVerification(res?.user);
+  //     return res?.user;
+  //   })
+  // );
 
   getSession$ = this.authService.getUserSession().pipe(
     map((userInfo: any) => {
       console.log('userInfo', userInfo);
-      
+
       if (userInfo?.emailVerified) {
-        this.router.navigate(['/landing']);
+        // this.router.navigate(['/landing']);
       }
 
       this.authService.sendEmailVerification(userInfo as User);
