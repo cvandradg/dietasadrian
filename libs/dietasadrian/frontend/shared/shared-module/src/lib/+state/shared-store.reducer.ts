@@ -17,7 +17,7 @@ export interface SharedStoreState {
 export const initialSharedStoreState: SharedStoreState = {
   loading: false,
   toggleSidenavbar: true,
-  userInfo: {},
+  userInfo: null,
   error: { status: false, message: '', error: {} },
 };
 
@@ -45,7 +45,7 @@ export const reducer = createReducer(
   on(SharedStoreActions.getSessionSuccess, (state, { userInfo }) => ({
     ...state,
     loading: false,
-    userInfo: userInfo,
+    userInfo: userInfo || null,
   })),
   on(SharedStoreActions.getSessionFailure, (state, { error }) => ({
     ...state,

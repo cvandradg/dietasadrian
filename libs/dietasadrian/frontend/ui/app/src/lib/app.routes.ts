@@ -17,6 +17,9 @@ export const appRoutes: Routes = [
     component: AppComponent,
     pathMatch: 'prefix',
     providers: [
+      SharedModuleModule,
+      CommonModule,
+      AngularFireAuthModule,
       {
         provide: FIREBASE_OPTIONS,
         useValue: {
@@ -30,10 +33,8 @@ export const appRoutes: Routes = [
           appId: '1:706318825388:web:9fe85e9af68b552359ac09',
         },
       },
-      SharedModuleModule,
-      CommonModule,
-      AngularFireAuthModule,
     ],
+
     children: [
       {
         path: 'landing',

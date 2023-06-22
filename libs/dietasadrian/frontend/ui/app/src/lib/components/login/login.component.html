@@ -1,11 +1,13 @@
+<!-- <ng-container
+  *ngrxLet="(facade.userInfo$ | ngrxPush) && router.navigate(['/landing'])"
+> -->
 <div
   class="login-container"
   *ngrxLet="{
-    user: facade.userInfo$ | ngrxPush,
     loading: loading$ | ngrxPush,
-    passReset: passReset$ | ngrxPush,
-    session: getSession$ | ngrxPush,
     error: facade.error$ | ngrxPush,
+    passReset: passReset$ | ngrxPush,
+    user: facade.userInfo$ | ngrxPush,
     googleSignin: googleSignin$ | ngrxPush,
     passResetLoader: passResetLoader$ | ngrxPush,
     passResetRequested:
@@ -55,7 +57,7 @@
             class="warning-message aligment"
             *ngIf="
               !vm.loading &&
-              (vm.user || vm.session)?.emailVerified === false &&
+              vm.user?.emailVerified === false &&
               !vm.error?.status
             "
           >

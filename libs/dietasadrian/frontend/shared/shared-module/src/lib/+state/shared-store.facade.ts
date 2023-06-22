@@ -33,7 +33,7 @@ export class SharedStoreFacade {
   }
 
   getSession() {
-    of(this.store.dispatch(SharedStoreActions.getSession()));
+    this.store.dispatch(SharedStoreActions.getSession());
   }
 
   accessAccount(credentials: any) {

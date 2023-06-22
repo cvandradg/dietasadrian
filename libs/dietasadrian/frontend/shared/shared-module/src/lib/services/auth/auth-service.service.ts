@@ -65,34 +65,22 @@ export class AuthService {
     );
   }
 
+  // getUserSession() {
+  //   return this.firebaseAuth.authState
+  // }
+
   getUserSession() {
-    if (localStorage.getItem('attemptedToLoggedIn') !== 'true') {
-      return NEVER;
-    }
-
-    localStorage.setItem('attemptedToLoggedIn', 'true');
-    return this.defer(this.firebaseAuth.authState).pipe(
-      filter((emition) => emition !== null)
-    );
-  }
-
-  authPromise(credentials: { user: string; pass: string }) {
-    localStorage.setItem('attemptedToLoggedIn', 'true');
-    return this.firebaseAuth.signInWithEmailAndPassword(
-      credentials.user,
-      credentials.pass
-    );
+    return this.firebaseAuth.authState
   }
 
   auth(credentials: { user: string; pass: string }) {
     localStorage.setItem('attemptedToLoggedIn', 'true');
-    return this.defer(
-      this.firebaseAuth.signInWithEmailAndPassword(
-        credentials.user,
-        credentials.pass
-      )
-    );
+    return from(this.firebaseAuth.signInWithEmailAndPassword(
+      credentials.user,
+      credentials.pass
+    ));
   }
+
 
   createAccount(credentials: { user: string; pass: string }) {
     return this.defer(

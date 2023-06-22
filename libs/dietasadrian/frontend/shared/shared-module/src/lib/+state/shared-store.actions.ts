@@ -19,7 +19,7 @@ export const getAccessSuccess = createAction(
 );
 export const getAccessFailure = createAction(
   '[SharedStore Page] Get Access Failure',
-  props<{ status: boolean, message: string, error: any  }>()
+  props<{ status: boolean; message: string; error: any }>()
 );
 
 export const getSession = createAction('[SharedStore Page] Get Session');
@@ -29,7 +29,7 @@ export const getSessionSuccess = createAction(
 );
 export const getSessionFailure = createAction(
   '[SharedStore Page] Get Session Failure',
-  props<{ error: { status: boolean; message: string; error: any } }>()
+  props<{ status: boolean; message: string; error: any }>()
 );
 
 // import { SharedStoreEntity } from './general-app.models';

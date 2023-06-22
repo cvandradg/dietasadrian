@@ -1,61 +1,60 @@
 import { Injectable, inject } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
-import { switchMap, catchError, of, map, tap, from } from 'rxjs';
-import * as SharedStoreActions from './shared-store.actions';
+import { switchMap, catchError, map, Observable, startWith } from 'rxjs';
+import * as actions from './shared-store.actions';
 import { AuthService } from '@services/auth/auth-service.service';
 import { ErrorHandlerService } from '@services/error-handler/error-handler.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class SharedStoreEffects {
+  private router = inject(Router);
   private actions$ = inject(Actions);
   private authService = inject(AuthService);
   private errorHelperService = inject(ErrorHandlerService);
 
   getSession$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(SharedStoreActions.getSession),
+      ofType(actions.getSession),
       switchMap(() => this.authService.getUserSession()),
-      tap((res) => console.log('content getsessions:,', res)),
-      map((userInfo) => {
-        return SharedStoreActions.getSessionSuccess({ userInfo });
+      map((userInfo:any) => {
+        userInfo && this.router.navigate(['/landing']);
+        return actions.getSessionSuccess({ userInfo: userInfo?.multiFactor.user  });
       }),
-      catchError((error) => {
-        return of(
-          SharedStoreActions.getSessionFailure({
-            error: this.errorHelperService.firebaseErrorHandler(error),
-          })
-        );
-      })
+      catchSwitchMapError((error) =>
+        actions.getSessionFailure(
+          this.errorHelperService.firebaseErrorHandler(error)
+        )
+      )
     )
   );
 
-  ///EL CODIGIO DE ABAJO PARECE TOTALMENTE FUNCIONAL/////
-  ///CLAUDIO del dia revisar si efectivamente esta funcional login, loginComponent deberia de estar usandolo full////
   accessAccount$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(SharedStoreActions.accessAccount),
+      ofType(actions.accessAccount),
       switchMap((action) =>
-        from(
-          this.authService.authPromise({ user: action.user, pass: action.pass })
-        ).pipe(
-          map((userInfo: any) => {
-            console.log('userInfo', userInfo);
-            
-            return SharedStoreActions.getAccessSuccess({
-              userInfo: userInfo.user,
-            });
-          }),
-          catchError((error: any, caught) => {
-            console.log('error', error);
-
-            return of(
-              SharedStoreActions.getAccessFailure(
-                this.errorHelperService.firebaseErrorHandler(error)
-              )
-            );
-          })
+        this.authService.auth({ user: action.user, pass: action.pass })
+      ),
+      map((userInfo: any) => {
+        this.router.navigate(['/landing']);
+        return actions.getAccessSuccess({
+          userInfo: userInfo.user,
+        });
+      }),
+      catchSwitchMapError((error) =>
+        actions.getAccessFailure(
+          this.errorHelperService.firebaseErrorHandler(error)
         )
       )
     )
   );
 }
+
+export const catchSwitchMapError =
+  (errorAction: (error: any) => any) =>
+  <T>(source: Observable<T>) =>
+    source.pipe(
+      catchError((error, innerSource) =>
+        innerSource.pipe(startWith(errorAction(error)))
+      )
+    );
