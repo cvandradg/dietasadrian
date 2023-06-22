@@ -33,11 +33,17 @@ export class SharedStoreFacade {
   }
 
   getSession() {
+    console.log('getSession facade');
+    
     this.store.dispatch(SharedStoreActions.getSession());
   }
 
   accessAccount(credentials: any) {
     this.store.dispatch(SharedStoreActions.accessAccount(credentials));
+  }
+
+  googleSignin() {
+    this.store.dispatch(SharedStoreActions.googleSignin());
   }
 
   error$ = this.store.pipe(select(SharedStoreSelectors.selectSharedStoreError));

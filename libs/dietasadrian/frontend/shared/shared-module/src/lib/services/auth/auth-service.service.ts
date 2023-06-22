@@ -55,6 +55,10 @@ export class AuthService {
     );
   }
 
+  googleSigninPromise() {
+    return this.firebaseAuth.signInWithPopup(new GoogleAuthProvider());
+  }
+
   signOut() {
     return this.firebaseAuth.signOut();
   }
@@ -70,17 +74,18 @@ export class AuthService {
   // }
 
   getUserSession() {
-    return this.firebaseAuth.authState
+    return this.firebaseAuth.authState;
   }
 
   auth(credentials: { user: string; pass: string }) {
     localStorage.setItem('attemptedToLoggedIn', 'true');
-    return from(this.firebaseAuth.signInWithEmailAndPassword(
-      credentials.user,
-      credentials.pass
-    ));
+    return from(
+      this.firebaseAuth.signInWithEmailAndPassword(
+        credentials.user,
+        credentials.pass
+      )
+    );
   }
-
 
   createAccount(credentials: { user: string; pass: string }) {
     return this.defer(

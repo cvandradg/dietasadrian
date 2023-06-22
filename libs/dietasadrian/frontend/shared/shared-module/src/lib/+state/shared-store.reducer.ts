@@ -47,11 +47,7 @@ export const reducer = createReducer(
     loading: false,
     userInfo: userInfo || null,
   })),
-  on(SharedStoreActions.getSessionFailure, (state, { error }) => ({
-    ...state,
-    loading: false,
-    error: error,
-  })),
+
   on(SharedStoreActions.accessAccount, (state, { user, pass }) => ({
     ...state,
     loading: true,
@@ -61,17 +57,30 @@ export const reducer = createReducer(
     loading: false,
     userInfo: userInfo,
   })),
+  on(SharedStoreActions.googleSignin, (state) => ({
+    ...state,
+    loading: true,
+  })),
+  on(SharedStoreActions.googleSigninSuccess, (state, { userInfo }) => ({
+    ...state,
+    loading: false,
+    userInfo: userInfo,
+  })),
   on(
     SharedStoreActions.getAccessFailure,
-    (state, { error, message, status }) => {
-      console.log('entra al reducer?', error);
-
-      return {
-        ...state,
-        loading: false,
-        error: { error, message, status },
-      };
-    }
+    (state, { error, message, status }) => ({
+      ...state,
+      loading: false,
+      error: { error, message, status },
+    })
+  ),
+  on(
+    SharedStoreActions.getSessionFailure,
+    (state, { error, message, status }) => ({
+      ...state,
+      loading: false,
+      error: { error, message, status },
+    })
   )
 );
 

@@ -16,15 +16,12 @@ import { User } from 'firebase/auth';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, NavbarComponent, SharedModuleModule, RouterModule],
 })
-export class LoginComponent extends firebaseAuthHelper implements OnInit {
+export class LoginComponent extends firebaseAuthHelper{
   onPassReset$ = new Subject<any>();
   onGoogleSignin$ = new Subject<any>();
   passResetLoader$ = new BehaviorSubject<any>(false);
 
-  ngOnInit(): void {
-    this.facade.getSession();
-    return;
-  }
+
 
   passReset$ = this.onPassReset$.pipe(
     switchMap((res: any) =>

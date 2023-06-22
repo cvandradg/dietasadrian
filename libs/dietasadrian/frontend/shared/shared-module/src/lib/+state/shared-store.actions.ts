@@ -32,6 +32,16 @@ export const getSessionFailure = createAction(
   props<{ status: boolean; message: string; error: any }>()
 );
 
+export const googleSignin = createAction('[SharedStore Page] Google Signin');
+export const googleSigninSuccess = createAction(
+  '[SharedStore Page] Google Signin Success',
+  props<{ userInfo: any }>()
+);
+export const googleSigninFailure = createAction(
+  '[SharedStore Page] Google Signin Failure',
+  props<{ status: boolean; message: string; error: any }>()
+);
+
 // import { SharedStoreEntity } from './general-app.models';
 // import { createAction, props } from '@ngrx/store';
 

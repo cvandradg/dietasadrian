@@ -1,10 +1,11 @@
 import { Injectable, inject } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
-import { switchMap, catchError, map, Observable, startWith } from 'rxjs';
+import { switchMap, catchError, map, Observable, startWith, mergeMap} from 'rxjs';
 import * as actions from './shared-store.actions';
 import { AuthService } from '@services/auth/auth-service.service';
 import { ErrorHandlerService } from '@services/error-handler/error-handler.service';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 
 @Injectable()
 export class SharedStoreEffects {
@@ -12,14 +13,19 @@ export class SharedStoreEffects {
   private actions$ = inject(Actions);
   private authService = inject(AuthService);
   private errorHelperService = inject(ErrorHandlerService);
+  private store = inject(Store);
 
   getSession$ = createEffect(() =>
     this.actions$.pipe(
       ofType(actions.getSession),
       switchMap(() => this.authService.getUserSession()),
-      map((userInfo:any) => {
+      map((userInfo: any) => {
+        console.log('llamandose el get session');
+        
         userInfo && this.router.navigate(['/landing']);
-        return actions.getSessionSuccess({ userInfo: userInfo?.multiFactor.user  });
+        return actions.getSessionSuccess({
+          userInfo: userInfo?.multiFactor.user,
+        });
       }),
       catchSwitchMapError((error) =>
         actions.getSessionFailure(
@@ -43,6 +49,26 @@ export class SharedStoreEffects {
       }),
       catchSwitchMapError((error) =>
         actions.getAccessFailure(
+          this.errorHelperService.firebaseErrorHandler(error)
+        )
+      )
+    )
+  );
+
+  googleSignin$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(actions.googleSignin),
+      switchMap(() => this.authService.googleSigninPromise()),
+      map((userInfo: any) => {
+        console.log('userInfo google', userInfo);
+
+        this.router.navigate(['/landing']);
+        return actions.googleSigninSuccess({
+          userInfo: userInfo.user.multiFactor.user,
+        });
+      }),
+      catchSwitchMapError((error) =>
+        actions.googleSigninFailure(
           this.errorHelperService.firebaseErrorHandler(error)
         )
       )
