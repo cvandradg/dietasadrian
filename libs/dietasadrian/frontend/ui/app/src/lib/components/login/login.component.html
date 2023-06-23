@@ -1,17 +1,11 @@
-<!-- <ng-container
-  *ngrxLet="(facade.userInfo$ | ngrxPush) && router.navigate(['/landing'])"
-> -->
 <div
   class="login-container"
   *ngrxLet="{
     loading: loading$ | ngrxPush,
-    error: facade.error$ | ngrxPush,
-    passReset: passReset$ | ngrxPush,
     user: facade.userInfo$ | ngrxPush,
-    googleSignin: googleSignin$ | ngrxPush,
-    passResetLoader: passResetLoader$ | ngrxPush,
-    passResetRequested:
-      (passReset$ | ngrxPush) && !(authService.error$ | ngrxPush)?.status
+    error: loginStore.error$ | ngrxPush,
+    passResetLoader: loginStore.passResetSpinner$ | ngrxPush,
+    passResetRequested: (loginStore.passResetRequested$ | ngrxPush)
   } as vm"
 >
   <div class="container">
@@ -82,8 +76,7 @@
       <div class="divison">/</div>
       <div class="automatic-signin-tools">
         <dietas-adrian-nx-workspace-secondary-animated-button
-          *ngrxLet="vm.googleSignin"
-          (submitEvent)="onGoogleSignin$.next(true)"
+          (submitEvent)="facade.googleSignin()"
           [buttonText]="'Accede con Google'"
           [fontawesomeIcon]="['fab', 'google']"
         />
@@ -97,10 +90,7 @@
     </div>
     <div
       class="forgot-password"
-      (click)="
-        onPassReset$.next(loginInputForm.controls.user.value);
-        passResetLoader$.next(true)
-      "
+      (click)="loginStore.passReset(loginInputForm.controls.user.value || '')"
     >
       <p>Recuperar Contraseña</p>
       <fa-icon
@@ -113,7 +103,7 @@
 
     <div
       class="success-message aligment"
-      *ngIf="vm.passResetRequested && !vm.passResetLoader"
+      *ngIf="vm.passResetRequested && !vm.passResetLoader && !vm.error?.status"
     >
       <p>
         Si el correo es válido te llegará un link para cambiar tu contraseña.

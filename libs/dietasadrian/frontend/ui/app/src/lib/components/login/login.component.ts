@@ -1,38 +1,25 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+} from '@angular/core';
 import { SharedModuleModule } from '@shared-modules';
 import { CommonModule } from '@angular/common';
 
 import { RouterModule } from '@angular/router';
-import { BehaviorSubject, switchMap, map, Subject, finalize, tap } from 'rxjs';
 import { firebaseAuthHelper } from '@classes/firebaseAuthHelper';
 import { NavbarComponent } from '../navbar/navbar.component';
-import { User } from 'firebase/auth';
+import { LoginStore } from './login.store';
 
 @Component({
   standalone: true,
-  selector: 'dietas-adrian-nx-workspace-login',
   templateUrl: './login.component.html',
+  selector: 'dietas-adrian-nx-workspace-login',
   styleUrls: ['./login.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, NavbarComponent, SharedModuleModule, RouterModule],
+  providers: [LoginStore],
 })
-export class LoginComponent extends firebaseAuthHelper{
-  onPassReset$ = new Subject<any>();
-  onGoogleSignin$ = new Subject<any>();
-  passResetLoader$ = new BehaviorSubject<any>(false);
-
-
-
-  passReset$ = this.onPassReset$.pipe(
-    switchMap((res: any) =>
-      this.authService
-        .recoverPassword(res)
-        .pipe(finalize(() => this.passResetLoader$.next(false)))
-    )
-  );
-
-  googleSignin$ = this.onGoogleSignin$.pipe(
-    switchMap(() => this.authService.googleSignin()),
-    map(() => this.router.navigate(['/landing']))
-  );
+export class LoginComponent extends firebaseAuthHelper {
+  readonly loginStore = inject(LoginStore);
 }

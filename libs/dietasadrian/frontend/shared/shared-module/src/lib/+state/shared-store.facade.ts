@@ -20,10 +20,6 @@ export class SharedStoreFacade {
     this.store.dispatch(SharedStoreActions.hideLoading());
   }
 
-  loading$ = this.store.pipe(
-    select(SharedStoreSelectors.selectSharedStoreLoading)
-  );
-
   showSidenavbar$ = this.store.pipe(
     select(SharedStoreSelectors.toogleSidenavbar)
   );
@@ -33,8 +29,6 @@ export class SharedStoreFacade {
   }
 
   getSession() {
-    console.log('getSession facade');
-    
     this.store.dispatch(SharedStoreActions.getSession());
   }
 
@@ -46,8 +40,15 @@ export class SharedStoreFacade {
     this.store.dispatch(SharedStoreActions.googleSignin());
   }
 
+  requestPassReset(email: string) {
+    this.store.dispatch(SharedStoreActions.requestPassReset({ email }));
+  }
+
   error$ = this.store.pipe(select(SharedStoreSelectors.selectSharedStoreError));
   userInfo$ = this.store.pipe(select(SharedStoreSelectors.userInfo));
+  loading$ = this.store.pipe(
+    select(SharedStoreSelectors.selectSharedStoreLoading)
+  );
 
   /**
    * Combine pieces of state using createSelector,

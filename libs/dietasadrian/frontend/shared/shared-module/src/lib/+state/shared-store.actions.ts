@@ -42,6 +42,11 @@ export const googleSigninFailure = createAction(
   props<{ status: boolean; message: string; error: any }>()
 );
 
+export const requestPassReset = createAction(
+  '[SharedStore Page] Request Pass Reset',
+  props<{ email: string }>()
+);
+
 // import { SharedStoreEntity } from './general-app.models';
 // import { createAction, props } from '@ngrx/store';
 

@@ -49,14 +49,14 @@ export class AuthService {
     return this.defer(this.firebaseAuth.checkActionCode(oobCode));
   }
 
-  googleSignin() {
-    return this.defer(
-      this.firebaseAuth.signInWithPopup(new GoogleAuthProvider())
-    );
-  }
+  // googleSignin() {
+  //   return this.defer(
+  //     this.firebaseAuth.signInWithPopup(new GoogleAuthProvider())
+  //   );
+  // }
 
-  googleSigninPromise() {
-    return this.firebaseAuth.signInWithPopup(new GoogleAuthProvider());
+  googleSignin() {
+    return from(this.firebaseAuth.signInWithPopup(new GoogleAuthProvider()));
   }
 
   signOut() {
@@ -74,11 +74,12 @@ export class AuthService {
   // }
 
   getUserSession() {
+    if (localStorage.getItem('attemptedToLoggedIn') !== 'true') return of(null);
+
     return this.firebaseAuth.authState;
   }
 
   auth(credentials: { user: string; pass: string }) {
-    localStorage.setItem('attemptedToLoggedIn', 'true');
     return from(
       this.firebaseAuth.signInWithEmailAndPassword(
         credentials.user,
@@ -98,19 +99,7 @@ export class AuthService {
 
   recoverPassword(email: string) {
     return from(this.firebaseAuth.sendPasswordResetEmail(email)).pipe(
-      map(() => true),
-      catchError((err: any) => {
-        if (
-          err.code !== 'auth/missing-email' &&
-          err.code !== 'auth/invalid-email'
-        ) {
-          this.error$.next(this.error);
-          return of(true);
-        }
-
-        this.error$.next(this.errorHelperService.firebaseErrorHandler(err));
-        return of(false);
-      })
+      map(() => true)
     );
   }
 

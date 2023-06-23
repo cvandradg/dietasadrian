@@ -16,7 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EffectsModule } from '@ngrx/effects';
 import { RouterState, StoreRouterConnectingModule } from '@ngrx/router-store';
 
-import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { StoreDevtoolsModule, provideStoreDevtools } from '@ngrx/store-devtools';
 import { ErrorHandlerService } from '@services/error-handler/error-handler.service';
 
 export const appConfig: ApplicationConfig = {
@@ -39,7 +39,7 @@ export const appConfig: ApplicationConfig = {
       EffectsModule.forRoot([]),
       StoreRouterConnectingModule.forRoot({ routerState: RouterState.Full })
     ),
-    provideStoreDevtools({ logOnly: !isDevMode(), trace: true }),
+    provideStoreDevtools({ logOnly: !isDevMode(), trace: true, traceLimit: 70 }),
     {
       provide: ErrorHandler,
       useClass: ErrorHandlerService,
