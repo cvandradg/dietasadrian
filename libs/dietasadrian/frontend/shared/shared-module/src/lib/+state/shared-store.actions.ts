@@ -47,6 +47,16 @@ export const requestPassReset = createAction(
   props<{ email: string }>()
 );
 
+export const actionFailure = createAction(
+  '[SharedStore Page] On Action Failure',
+  props<{ status: boolean; message: string; error: any }>()
+);
+
+export const storeUserInfo = createAction(
+  '[SharedStore Page] Store User Info',
+  props<{ userInfo: any }>()
+);
+
 // import { SharedStoreEntity } from './general-app.models';
 // import { createAction, props } from '@ngrx/store';
 

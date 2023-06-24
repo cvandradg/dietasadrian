@@ -20,7 +20,6 @@ import { SharedStoreFacade } from '@shared-modules';
 export class AppComponent implements OnInit {
   facade = inject(SharedStoreFacade);
   ngOnInit(): void {
-    console.log('se crea 2 veces el componente appComponent?');
     
     this.facade.getSession();
     return;

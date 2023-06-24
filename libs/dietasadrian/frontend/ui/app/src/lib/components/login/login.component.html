@@ -3,7 +3,7 @@
   *ngrxLet="{
     loading: loading$ | ngrxPush,
     user: facade.userInfo$ | ngrxPush,
-    error: loginStore.error$ | ngrxPush,
+    error: facade.error$ | ngrxPush,
     passResetLoader: loginStore.passResetSpinner$ | ngrxPush,
     passResetRequested: (loginStore.passResetRequested$ | ngrxPush)
   } as vm"
@@ -88,33 +88,9 @@
         />
       </div>
     </div>
-    <div
-      class="forgot-password"
-      (click)="loginStore.passReset(loginInputForm.controls.user.value || '')"
-    >
-      <p>Recuperar Contraseña</p>
-      <fa-icon
-        *ngIf="vm.passResetLoader"
-        [icon]="['fas', 'spinner-third']"
-        class="icon fa-xl fa-spin"
-        style="--fa-animation-duration: 1s"
-      />
-    </div>
 
-    <div
-      class="success-message aligment"
-      *ngIf="vm.passResetRequested && !vm.passResetLoader && !vm.error?.status"
-    >
-      <p>
-        Si el correo es válido te llegará un link para cambiar tu contraseña.
-      </p>
-      <fa-icon
-        [icon]="['fas', 'check']"
-        style="--fa-animation-iteration-count: 2"
-        class="icon fa-xl fa-shake"
-        style="--fa-animation-iteration-count: 2"
-      />
-    </div>
+    <dietas-adrian-nx-workspace-pass-reset></dietas-adrian-nx-workspace-pass-reset>
+
   </div>
   <footer class="login-footer">
     <p>Privacy Policy</p>

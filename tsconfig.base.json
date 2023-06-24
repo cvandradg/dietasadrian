@@ -17,11 +17,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@appStore/*": ["libs/dietasadrian/frontend/ui/app/src/lib/+state/*"],
       "@authHelper": [
         "libs/dietasadrian/frontend/ui/app/src/lib/classes/firebaseAuthHelper.ts"
-      ],
-      "@types": [
-        "libs/dietasadrian/frontend/shared/shared-module/src/lib/types/general-types.ts"
       ],
       "@classes/*": [
         "libs/dietasadrian/frontend/shared/shared-module/src/lib/classes/*"
@@ -67,7 +65,9 @@
       "@shared-modules/*": [
         "libs/dietasadrian/frontend/shared/shared-module/src/lib/*"
       ],
-      "@appStore/*": ["libs/dietasadrian/frontend/ui/app/src/lib/+state/*"]
+      "@types": [
+        "libs/dietasadrian/frontend/shared/shared-module/src/lib/types/general-types.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

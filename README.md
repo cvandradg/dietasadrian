@@ -33,6 +33,7 @@ This project was generated using [Nx](https://nx.dev).
 23. https://www.youtube.com/watch?v=xPmtsD5LRqQ&ab_channel=NG-DEConference
 24. https://jcs.wtf/catch-switchmap-error-rxjs-operator/
 25. https://www.ngxs.io/v/v3.5/ngxs-labs/dispatch-decorator
+26. https://github.com/ngrx/platform/issues/3384
 
 ## TODO
 

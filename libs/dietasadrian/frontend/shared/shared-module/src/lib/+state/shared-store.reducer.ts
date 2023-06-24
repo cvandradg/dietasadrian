@@ -44,44 +44,52 @@ export const reducer = createReducer(
   })),
   on(SharedStoreActions.getSessionSuccess, (state, { userInfo }) => ({
     ...state,
-    loading: false,
     userInfo: userInfo || null,
   })),
 
-  on(SharedStoreActions.accessAccount, (state, { user, pass }) => ({
+  // on(SharedStoreActions.accessAccount, (state, { user, pass }) => ({
+  //   ...state,
+  //   loading: true,
+  // })),
+  // on(SharedStoreActions.getAccessSuccess, (state, { userInfo }) => ({
+  //   ...state,
+  //   loading: false,
+  //   userInfo: userInfo,
+  // })),
+  // on(SharedStoreActions.googleSignin, (state) => ({
+  //   ...state,
+  //   loading: true,
+  // })),
+  // on(SharedStoreActions.googleSigninSuccess, (state, { userInfo }) => ({
+  //   ...state,
+  //   loading: false,
+  //   userInfo: userInfo,
+  // })),
+  on(SharedStoreActions.storeUserInfo, (state, { userInfo }) => ({
     ...state,
-    loading: true,
+    userInfo,
   })),
-  on(SharedStoreActions.getAccessSuccess, (state, { userInfo }) => ({
+  on(SharedStoreActions.actionFailure, (state, { error, message, status }) => ({
     ...state,
     loading: false,
-    userInfo: userInfo,
+    error: { error, message, status },
   })),
-  on(SharedStoreActions.googleSignin, (state) => ({
-    ...state,
-    loading: true,
-  })),
-  on(SharedStoreActions.googleSigninSuccess, (state, { userInfo }) => ({
-    ...state,
-    loading: false,
-    userInfo: userInfo,
-  })),
-  on(
-    SharedStoreActions.getAccessFailure,
-    (state, { error, message, status }) => ({
-      ...state,
-      loading: false,
-      error: { error, message, status },
-    })
-  ),
-  on(
-    SharedStoreActions.getSessionFailure,
-    (state, { error, message, status }) => ({
-      ...state,
-      loading: false,
-      error: { error, message, status },
-    })
-  )
+  // on(
+  //   SharedStoreActions.getAccessFailure,
+  //   (state, { error, message, status }) => ({
+  //     ...state,
+  //     loading: false,
+  //     error: { error, message, status },
+  //   })
+  // ),
+  // on(
+  //   SharedStoreActions.getSessionFailure,
+  //   (state, { error, message, status }) => ({
+  //     ...state,
+  //     loading: false,
+  //     error: { error, message, status },
+  //   })
+  // )
 );
 
 export function sharedStoreReducer(state: SharedStoreState, action: Action) {
