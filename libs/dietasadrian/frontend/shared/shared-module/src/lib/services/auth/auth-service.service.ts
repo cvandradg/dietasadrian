@@ -20,7 +20,7 @@ import { SharedStoreFacade } from '../../+state/shared-store.facade';
 import { FirebaseError } from 'firebase/app';
 
 import { ErrorHandlerService } from '../../services/error-handler/error-handler.service';
-import { generalError } from '../../types/types';
+import { Credentials, generalError } from '../../types/types';
 
 @Injectable({
   providedIn: 'root',
@@ -56,7 +56,7 @@ export class AuthService {
   // }
 
   googleSignin() {
-    return from(this.firebaseAuth.signInWithPopup(new GoogleAuthProvider()));
+    return this.firebaseAuth.signInWithPopup(new GoogleAuthProvider());
   }
 
   signOut() {
@@ -88,7 +88,7 @@ export class AuthService {
     );
   }
 
-  createAccount(credentials: { user: string; pass: string }) {
+  createAccount(credentials: Credentials) {
     return this.defer(
       this.firebaseAuth.createUserWithEmailAndPassword(
         credentials.user,

@@ -20,3 +20,17 @@ export const validations = (...validators: any[]) => [
 ];
 
 export type generalError = { status: boolean; message: string; error: any };
+
+
+export const deepCopy = <T>(obj: T): T => JSON.parse(JSON.stringify(obj || ''));
+
+export type Credentials  = {
+  user: string;
+  pass: string;
+}
+
+export type AppError = {
+  status: boolean;
+  message: string;
+  error: any;
+}

@@ -65,8 +65,8 @@
       "@shared-modules/*": [
         "libs/dietasadrian/frontend/shared/shared-module/src/lib/*"
       ],
-      "@types": [
-        "libs/dietasadrian/frontend/shared/shared-module/src/lib/types/general-types.ts"
+      "types": [
+        "libs/dietasadrian/frontend/shared/shared-module/src/lib/types/types.ts"
       ]
     }
   },

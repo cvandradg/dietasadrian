@@ -3,9 +3,7 @@
   *ngrxLet="{
     loading: loading$ | ngrxPush,
     user: facade.userInfo$ | ngrxPush,
-    error: facade.error$ | ngrxPush,
-    passResetLoader: loginStore.passResetSpinner$ | ngrxPush,
-    passResetRequested: (loginStore.passResetRequested$ | ngrxPush)
+    error: loginStore.error$ | ngrxPush,
   } as vm"
 >
   <div class="container">
@@ -24,7 +22,7 @@
               placeholder="AlgunCorreo@dominio.com"
               type="email"
               formControlName="user"
-              (keyup.enter)="facade.accessAccount(loginInputForm.value)"
+              (keyup.enter)="loginStore.accessAccount$(credentials)"
             />
           </mat-form-field>
           <mat-form-field>
@@ -34,7 +32,7 @@
               placeholder="EjemploDeClave1!"
               type="password"
               formControlName="pass"
-              (keyup.enter)="facade.accessAccount(loginInputForm.value)"
+              (keyup.enter)="loginStore.accessAccount$(credentials)"
             />
           </mat-form-field>
         </form>
@@ -42,7 +40,7 @@
         <ng-container #loginComponents *ngrxLet="vm.user">
           <dietas-adrian-nx-workspace-primary-animated-button
             #loginButton
-            (submitEvent)="facade.accessAccount(loginInputForm.value)"
+            (submitEvent)="loginStore.accessAccount$(credentials)"
             [enable]="!loginInputForm.invalid"
             [loading]="!vm.loading"
             [buttonText]="'Accede a Tu Cuenta'"
@@ -76,7 +74,7 @@
       <div class="divison">/</div>
       <div class="automatic-signin-tools">
         <dietas-adrian-nx-workspace-secondary-animated-button
-          (submitEvent)="facade.googleSignin()"
+          (submitEvent)="loginStore.googleSignin$()"
           [buttonText]="'Accede con Google'"
           [fontawesomeIcon]="['fab', 'google']"
         />
@@ -89,8 +87,9 @@
       </div>
     </div>
 
-    <dietas-adrian-nx-workspace-pass-reset></dietas-adrian-nx-workspace-pass-reset>
-
+    <dietas-adrian-nx-workspace-pass-reset 
+      [user]="credentials.user"
+    />
   </div>
   <footer class="login-footer">
     <p>Privacy Policy</p>

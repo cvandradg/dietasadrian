@@ -36,12 +36,12 @@ export class SharedStoreFacade {
     this.store.dispatch(SharedStoreActions.accessAccount(credentials));
   }
 
-  googleSignin() {
-    this.store.dispatch(SharedStoreActions.googleSignin());
-  }
-
   requestPassReset(email: string) {
     this.store.dispatch(SharedStoreActions.requestPassReset({ email }));
+  }
+
+  storeUserInfo(userInfo: any) {
+    this.store.dispatch(SharedStoreActions.storeUserInfo({ userInfo }));
   }
 
   error$ = this.store.pipe(select(SharedStoreSelectors.selectSharedStoreError));
