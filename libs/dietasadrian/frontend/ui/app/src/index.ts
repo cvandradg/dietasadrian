@@ -15,3 +15,5 @@ export * from './lib/components/oobcode-checker/oobcode-checker.component';
 export * from './lib/components/error/error.component';
 
 export * from './lib/components/pass-reset/pass-reset.component';
+
+export * from './lib/components/request-pass-reset/request-pass-reset.component';

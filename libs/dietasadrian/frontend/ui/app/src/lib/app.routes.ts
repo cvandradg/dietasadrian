@@ -10,6 +10,7 @@ import { EmailVerificationComponent } from './components/email-verification/emai
 import { PassResetComponent } from './components/pass-reset/pass-reset.component';
 import { OobcodeCheckerComponent } from './components/oobcode-checker/oobcode-checker.component';
 import { ErrorComponent } from './components/error/error.component';
+import { RequestPassResetComponent } from './components/request-pass-reset/request-pass-reset.component';
 
 export const appRoutes: Routes = [
   {
@@ -61,7 +62,7 @@ export const appRoutes: Routes = [
       },
       {
         path: 'passReset',
-        component: PassResetComponent,
+        component: RequestPassResetComponent,
         pathMatch: 'full',
       },
       {
