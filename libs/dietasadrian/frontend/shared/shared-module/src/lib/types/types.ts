@@ -34,3 +34,8 @@ export type AppError = {
   message: string;
   error: any;
 }
+
+export interface BaseComponentState extends Object {
+  error: AppError | null;
+  loading: boolean;
+}

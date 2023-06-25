@@ -1,44 +1,36 @@
 import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { ComponentStoreMixinHelper } from '@classes/component-store-helper';
 import { ComponentStore, tapResponse } from '@ngrx/component-store';
 import { AuthService } from '@services/auth/auth-service.service';
 import { ErrorHandlerService } from '@services/error-handler/error-handler.service';
 import { SharedStoreFacade } from '@shared-modules';
-import { deepCopy, Credentials, AppError } from '@shared-modules/types/types';
+import {
+  deepCopy,
+  Credentials,
+  AppError,
+  BaseComponentState,
+} from '@shared-modules/types/types';
 import { FirebaseError } from 'firebase/app';
-import { Observable, switchMap, pipe, from } from 'rxjs';
-
-export interface LoginState {
-  error: any;
-  loading: boolean;
-}
+import { Observable, switchMap, pipe, from, tap, of } from 'rxjs';
 
 @Injectable()
-export class LoginStore extends ComponentStore<LoginState> {
+export class LoginStore extends ComponentStoreMixinHelper<object> {
   router = inject(Router);
   facade = inject(SharedStoreFacade);
   authService = inject(AuthService);
   errorHelperService = inject(ErrorHandlerService);
 
   constructor() {
-    super({ error: null, loading: false });
+    super();
   }
-
-  readonly error$ = this.select((state) => state.error);
-  readonly loading$ = this.select((state) => state.loading);
-
-  readonly setError = this.updater((state, error: AppError | null) => ({
-    ...state,
-    error,
-  }));
-
-  readonly setLoading = this.updater((state, loading: boolean) => ({
-    ...state,
-    loading,
-  }));
 
   readonly googleSignin$ = this.effect<void>(
     pipe(
+      tap(() => {
+        this.setError(null);
+        this.setLoading(true);
+      }),
       switchMap(() =>
         from(this.authService.googleSignin()).pipe(
           tapResponse(
@@ -66,17 +58,24 @@ export class LoginStore extends ComponentStore<LoginState> {
   readonly accessAccount$ = this.effect(
     (credentials$: Observable<Credentials>) => {
       return credentials$.pipe(
+        tap(() => {
+          this.setError(null);
+          this.setLoading(true);
+        }),
         switchMap((credentials) =>
           this.authService.auth(credentials).pipe(
             tapResponse(
               ({ user }) => {
                 localStorage.setItem('attemptedToLoggedIn', 'true');
                 this.router.navigate(['/landing']);
-                return this.facade.storeUserInfo({
+                this.facade.storeUserInfo({
                   userInfo: user,
                 });
+                this.setError(null);
+                this.setLoading(false);
               },
               (error: FirebaseError) => {
+                this.setLoading(false);
                 this.setError(
                   this.errorHelperService.firebaseErrorHandler(error)
                 );

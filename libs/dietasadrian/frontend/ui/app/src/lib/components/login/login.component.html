@@ -1,13 +1,15 @@
 <div
   class="login-container"
   *ngrxLet="{
-    loading: loading$ | ngrxPush,
+    loading: loginStore.loading$ | ngrxPush,
     user: facade.userInfo$ | ngrxPush,
     error: loginStore.error$ | ngrxPush,
   } as vm"
 >
   <div class="container">
-    <div class="title">Accede a Tu Cuenta</div>
+    <div class="title" *ngrxLet="loginStore.loading$ | ngrxPush as a">
+      Accede a Tu Cuenta {{ '' + a }}
+    </div>
     <div class="description">
       Cambia Tu vida con la guía de Adrian Badilla y su repertorio de dietas y
       rutinas que decenas de personas por dia estan adquiriendo.
@@ -87,9 +89,7 @@
       </div>
     </div>
 
-    <dietas-adrian-nx-workspace-pass-reset 
-      [user]="credentials.user"
-    />
+    <dietas-adrian-nx-workspace-pass-reset [user]="credentials.user" />
   </div>
   <footer class="login-footer">
     <p>Privacy Policy</p>
