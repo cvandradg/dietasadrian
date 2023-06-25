@@ -17,6 +17,7 @@ import { PassResetComponent } from '../pass-reset/pass-reset.component';
   templateUrl: './login.component.html',
   selector: 'dietas-adrian-nx-workspace-login',
   styleUrls: ['./login.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, NavbarComponent, SharedModuleModule, RouterModule, PassResetComponent],
   providers: [LoginStore],
 })

@@ -1,8 +1,7 @@
 <div
   class="container"
   *ngrxLet="{
-    error: authService.error$ | ngrxPush,
-    checkOobCode: checkOobCode$ | ngrxPush
+    error: oobCodeCheckerStore.error$ | ngrxPush,
   } as vm"
 >
   <div class="title">Procesando.</div>

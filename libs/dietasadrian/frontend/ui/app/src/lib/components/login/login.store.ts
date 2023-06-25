@@ -1,28 +1,14 @@
-import { Injectable, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Injectable } from '@angular/core';
 import { ComponentStoreMixinHelper } from '@classes/component-store-helper';
-import { ComponentStore, tapResponse } from '@ngrx/component-store';
-import { AuthService } from '@services/auth/auth-service.service';
-import { ErrorHandlerService } from '@services/error-handler/error-handler.service';
-import { SharedStoreFacade } from '@shared-modules';
-import {
-  deepCopy,
-  Credentials,
-  AppError,
-  BaseComponentState,
-} from '@shared-modules/types/types';
+import { tapResponse } from '@ngrx/component-store';
+import { deepCopy, Credentials } from '@shared-modules/types/types';
 import { FirebaseError } from 'firebase/app';
-import { Observable, switchMap, pipe, from, tap, of } from 'rxjs';
+import { Observable, switchMap, pipe, from, tap } from 'rxjs';
 
 @Injectable()
 export class LoginStore extends ComponentStoreMixinHelper<object> {
-  router = inject(Router);
-  facade = inject(SharedStoreFacade);
-  authService = inject(AuthService);
-  errorHelperService = inject(ErrorHandlerService);
-
   constructor() {
-    super();
+    super({});
   }
 
   readonly googleSignin$ = this.effect<void>(
@@ -41,7 +27,7 @@ export class LoginStore extends ComponentStoreMixinHelper<object> {
               const userInfo = deepCopy(fireUserResponse.user.multiFactor.user);
 
               this.facade.storeUserInfo(userInfo);
-              this.router.navigate(['/landing']);
+              userInfo.user.emailVerified && this.router.navigate(['/landing']);
             },
             (error: FirebaseError) => {
               console.log('error en google singin,', error);
@@ -65,12 +51,16 @@ export class LoginStore extends ComponentStoreMixinHelper<object> {
         switchMap((credentials) =>
           this.authService.auth(credentials).pipe(
             tapResponse(
-              ({ user }) => {
+              (firebaseResponse: any) => {
                 localStorage.setItem('attemptedToLoggedIn', 'true');
-                this.router.navigate(['/landing']);
+                const userInfo = deepCopy(firebaseResponse.user);
+                console.log('userInfo', userInfo);
+
                 this.facade.storeUserInfo({
-                  userInfo: user,
+                  userInfo
                 });
+
+                // user?.emailVerified && this.router.navigate(['/landing']);
                 this.setError(null);
                 this.setLoading(false);
               },

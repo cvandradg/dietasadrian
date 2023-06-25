@@ -35,6 +35,9 @@ This project was generated using [Nx](https://nx.dev).
 25. https://www.ngxs.io/v/v3.5/ngxs-labs/dispatch-decorator
 26. https://github.com/ngrx/platform/issues/3384
 
+importat
+27. https://dev.to/this-is-angular/removing-boilerplate-code-in-ngrx-component-store-1f83
+
 ## TODO
 
 1. enablePersistance to enable offline mode

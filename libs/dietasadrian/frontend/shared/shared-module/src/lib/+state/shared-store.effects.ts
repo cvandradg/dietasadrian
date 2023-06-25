@@ -24,7 +24,6 @@ export class SharedStoreEffects {
   private actions$ = inject(Actions);
   private authService = inject(AuthService);
   private errorHelperService = inject(ErrorHandlerService);
-  private store = inject(Store);
 
   getSession$ = createEffect(() =>
     this.actions$.pipe(
@@ -32,10 +31,8 @@ export class SharedStoreEffects {
 
       switchMap(() => this.authService.getUserSession()),
       map((fireUserResponse: any) => {
-        fireUserResponse && this.router.navigate(['/landing']);
-
         const userInfo = deepCopy(fireUserResponse?.multiFactor.user);
-
+        userInfo?.emailVerified && this.router.navigate(['/landing']);
         return actions.storeUserInfo({
           userInfo,
         });

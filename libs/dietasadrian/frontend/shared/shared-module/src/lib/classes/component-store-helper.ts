@@ -1,7 +1,11 @@
-import { Directive } from '@angular/core';
+import { Directive, inject } from '@angular/core';
 import { AppError } from '../types/types';
-import { ComponentStore, tapResponse } from '@ngrx/component-store';
-import { Observable, Subscription, defer, finalize, tap } from 'rxjs';
+import { ComponentStore } from '@ngrx/component-store';
+import { Observable, tap } from 'rxjs';
+import { Router } from '@angular/router';
+import { SharedStoreFacade } from '../+state/shared-store.facade';
+import { AuthService } from '../services/auth/auth-service.service';
+import { ErrorHandlerService } from '../services/error-handler/error-handler.service';
 
 export interface BaseComponentState extends Object {
   error: AppError | null;
@@ -33,6 +37,11 @@ export interface test extends Object {
 export class ComponentStoreMixinHelper<
   T extends test
 > extends ComponentStore<T> {
+  router = inject(Router);
+  facade = inject(SharedStoreFacade);
+  authService = inject(AuthService);
+  errorHelperService = inject(ErrorHandlerService);
+
   readonly error$ = this.select((state) => state.error);
   readonly loading$ = this.select((state) => state.loading);
 
@@ -47,11 +56,5 @@ export class ComponentStoreMixinHelper<
     loading: loading,
   }));
 
-  readonly isLoading = <T>(property: Observable<T>) =>
-    property.pipe(
-      tap(() => {
-        this.setError(null);
-        this.setLoading(true);
-      })
-    );
+
 }

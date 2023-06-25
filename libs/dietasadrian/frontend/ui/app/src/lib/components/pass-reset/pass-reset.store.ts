@@ -1,19 +1,11 @@
-import { Injectable, inject } from '@angular/core';
-import { ComponentStore, tapResponse } from '@ngrx/component-store';
-import { AuthService } from '@services/auth/auth-service.service';
-import { ErrorHandlerService } from '@services/error-handler/error-handler.service';
-import { SharedStoreFacade } from '@shared-modules';
-import { AppError, BaseComponentState } from '@shared-modules/types/types';
+import { Injectable } from '@angular/core';
+import { tapResponse } from '@ngrx/component-store';
 import { FirebaseError } from 'firebase/app';
 import { Observable, map, switchMap, tap } from 'rxjs';
 import { ComponentStoreMixinHelper } from '@classes/component-store-helper';
 
 @Injectable()
 export class passResetStore extends ComponentStoreMixinHelper<PassResetState> {
-  facade = inject(SharedStoreFacade);
-  authService = inject(AuthService);
-  errorHelperService = inject(ErrorHandlerService);
-
   constructor() {
     super({ requested: false });
   }
@@ -28,9 +20,9 @@ export class passResetStore extends ComponentStoreMixinHelper<PassResetState> {
   }));
 
   readonly passReset = this.effect((email$: Observable<string>) =>
-    this.isLoading(email$)?.pipe(
+    email$.pipe(
       tap(() => {
-        this.setRequested(false);
+        this.setLoading(true);
       }),
       switchMap((email) =>
         this.authService.recoverPassword(email).pipe(
@@ -46,8 +38,7 @@ export class passResetStore extends ComponentStoreMixinHelper<PassResetState> {
             }
           )
         )
-      ),
-      map(() => 'response')
+      )
     )
   );
 }

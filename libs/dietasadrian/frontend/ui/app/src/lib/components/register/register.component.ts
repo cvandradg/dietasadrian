@@ -1,10 +1,15 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModuleModule } from '@shared-modules';
 import { RouterModule } from '@angular/router';
 import { firebaseAuthHelper } from '@classes/firebaseAuthHelper';
-import { Subject, map, switchMap, combineLatest } from 'rxjs';
+import { Subject, map, combineLatest } from 'rxjs';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { RegisterStore } from './register.store';
 
 @Component({
   standalone: true,
@@ -13,9 +18,10 @@ import { NavbarComponent } from '../navbar/navbar.component';
   styleUrls: ['./register.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, SharedModuleModule, NavbarComponent, RouterModule],
+  providers: [RegisterStore],
 })
 export class RegisterComponent extends firebaseAuthHelper {
-  onCreateAccount$ = new Subject<any>();
+  readonly registerStore = inject(RegisterStore);
   isPassStrong$ = new Subject<boolean>();
 
   isValidUser$ = this.loginInputForm.valueChanges.pipe(
@@ -26,18 +32,18 @@ export class RegisterComponent extends firebaseAuthHelper {
     map(([isValidUser, isPassStrong]) => isValidUser && isPassStrong)
   );
 
-  createAccount$ = this.onCreateAccount$.pipe(
-    switchMap(() =>
-      this.authService.createAccount(
-        this.loginInputForm.value as { user: string; pass: string }
-      )
-    ),
-    map((res: any) => {
-      this.loginInputForm.controls.pass.disable();
-      this.loginInputForm.controls.user.disable();
+  // createAccount$ = this.onCreateAccount$.pipe(
+  //   switchMap(() =>
+  //     this.authService.createAccount(
+  //       this.loginInputForm.value as Credentials
+  //     )
+  //   ),
+  //   map((res: any) => {
+  //     this.loginInputForm.controls.pass.disable();
+  //     this.loginInputForm.controls.user.disable();
 
-      this.authService.sendEmailVerification(res?.user);
-      return true;
-    })
-  );
+  //     this.authService.sendEmailVerification(res?.user);
+  //     return true;
+  //   })
+  // );
 }

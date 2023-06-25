@@ -41,7 +41,7 @@ export class SharedStoreFacade {
   }
 
   storeUserInfo(userInfo: any) {
-    this.store.dispatch(SharedStoreActions.storeUserInfo({ userInfo }));
+    this.store.dispatch(SharedStoreActions.storeUserInfo({ userInfo: userInfo.userInfo }));
   }
 
   error$ = this.store.pipe(select(SharedStoreSelectors.selectSharedStoreError));

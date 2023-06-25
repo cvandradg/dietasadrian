@@ -46,7 +46,7 @@ export class AuthService {
   }
 
   checkOobCode(oobCode: string) {
-    return this.defer(this.firebaseAuth.checkActionCode(oobCode));
+    return this.firebaseAuth.checkActionCode(oobCode);
   }
 
   // googleSignin() {
@@ -89,11 +89,9 @@ export class AuthService {
   }
 
   createAccount(credentials: Credentials) {
-    return this.defer(
-      this.firebaseAuth.createUserWithEmailAndPassword(
-        credentials.user,
-        credentials.pass
-      )
+    return this.firebaseAuth.createUserWithEmailAndPassword(
+      credentials.user,
+      credentials.pass
     );
   }
 
