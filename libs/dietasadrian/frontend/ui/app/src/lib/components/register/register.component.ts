@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  OnInit,
   inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -20,7 +21,7 @@ import { RegisterStore } from './register.store';
   imports: [CommonModule, SharedModuleModule, NavbarComponent, RouterModule],
   providers: [RegisterStore],
 })
-export class RegisterComponent extends firebaseAuthHelper {
+export class RegisterComponent extends firebaseAuthHelper implements OnInit {
   readonly registerStore = inject(RegisterStore);
   isPassStrong$ = new Subject<boolean>();
 
@@ -32,18 +33,7 @@ export class RegisterComponent extends firebaseAuthHelper {
     map(([isValidUser, isPassStrong]) => isValidUser && isPassStrong)
   );
 
-  // createAccount$ = this.onCreateAccount$.pipe(
-  //   switchMap(() =>
-  //     this.authService.createAccount(
-  //       this.loginInputForm.value as Credentials
-  //     )
-  //   ),
-  //   map((res: any) => {
-  //     this.loginInputForm.controls.pass.disable();
-  //     this.loginInputForm.controls.user.disable();
-
-  //     this.authService.sendEmailVerification(res?.user);
-  //     return true;
-  //   })
-  // );
+  ngOnInit(): void {
+    this.registerStore.resetVariables$();
+  }
 }

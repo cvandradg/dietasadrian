@@ -5,13 +5,21 @@ import { tapResponse } from '@ngrx/component-store';
 import { Credentials, deepCopy } from '@shared-modules/types/types';
 import { FirebaseError } from 'firebase/app';
 import { User } from 'firebase/auth';
-import { Observable, switchMap, from, tap } from 'rxjs';
+import { Observable, switchMap, from, tap, pipe, NEVER } from 'rxjs';
 
 @Injectable()
-export class RegisterStore extends ComponentStoreMixinHelper<object> {
+export class RegisterStore extends ComponentStoreMixinHelper<{ user: any }> {
   constructor() {
-    super({});
+    super({ user: null });
   }
+
+  readonly user$ = this.select((state) => state.user);
+
+  readonly setUser = this.updater((state, user: any) => ({
+    ...state,
+    loading: false,
+    user,
+  }));
 
   readonly createAccount$ = this.effect((formGroup$: Observable<FormGroup>) => {
     return formGroup$.pipe(
@@ -28,9 +36,8 @@ export class RegisterStore extends ComponentStoreMixinHelper<object> {
               this.setLoading(false);
               const userInfo = deepCopy(fireUserResponse.user.multiFactor.user);
 
-              console.log('respuesta', userInfo);
-
               this.facade.storeUserInfo(userInfo);
+              this.setUser(userInfo);
               this.authService.sendEmailVerification(
                 fireUserResponse.user as User
               );
@@ -38,7 +45,6 @@ export class RegisterStore extends ComponentStoreMixinHelper<object> {
               formGroup.controls['user'].disable();
             },
             (error: FirebaseError) => {
-              console.log('error en google singin,', error);
               return this.setError(
                 this.errorHelperService.firebaseErrorHandler(error)
               );
@@ -48,4 +54,17 @@ export class RegisterStore extends ComponentStoreMixinHelper<object> {
       )
     );
   });
+
+  readonly resetVariables$ = this.effect<void>(
+    pipe(
+      tap({
+        next: () => {
+          this.setUser(null);
+          this.setError(null);
+          this.setLoading(false);
+        },
+        error: () => NEVER,
+      })
+    )
+  );
 }
