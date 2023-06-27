@@ -5,6 +5,7 @@ import * as SharedStoreActions from './shared-store.actions';
 import * as SharedStoreFeature from './shared-store.reducer';
 import * as SharedStoreSelectors from './shared-store.selectors';
 import { of } from 'rxjs';
+import { User } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -41,7 +42,7 @@ export class SharedStoreFacade {
   }
 
   storeUserInfo(userInfo: any) {
-    this.store.dispatch(SharedStoreActions.storeUserInfo({ userInfo: userInfo.userInfo }));
+    this.store.dispatch(SharedStoreActions.storeUserInfo({ userInfo }));
   }
 
   error$ = this.store.pipe(select(SharedStoreSelectors.selectSharedStoreError));

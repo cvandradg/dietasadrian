@@ -34,15 +34,15 @@ export class AuthService {
   error = { status: false, message: '', error: undefined };
 
   getCurrentUser() {
-    return this.defer(this.firebaseAuth.currentUser);
+    return this.firebaseAuth.currentUser;
   }
 
-  sendEmailVerification(userCredentials: User) {
-    return this.defer(sendEmailVerification(userCredentials));
+  sendEmailVerification(userInfo: User) {
+    return this.defer(sendEmailVerification(userInfo as User));
   }
 
   verifyEmail(code: string) {
-    return this.defer(this.firebaseAuth.applyActionCode(code));
+    return this.firebaseAuth.applyActionCode(code);
   }
 
   checkOobCode(oobCode: string) {

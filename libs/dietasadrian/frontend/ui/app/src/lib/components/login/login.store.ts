@@ -3,7 +3,9 @@ import { ComponentStoreMixinHelper } from '@classes/component-store-helper';
 import { tapResponse } from '@ngrx/component-store';
 import { deepCopy, Credentials } from '@shared-modules/types/types';
 import { FirebaseError } from 'firebase/app';
+import { User } from 'firebase/auth';
 import { Observable, switchMap, pipe, from, tap } from 'rxjs';
+import * as _ from 'lodash';
 
 @Injectable()
 export class LoginStore extends ComponentStoreMixinHelper<object> {
@@ -54,13 +56,14 @@ export class LoginStore extends ComponentStoreMixinHelper<object> {
               (firebaseResponse: any) => {
                 localStorage.setItem('attemptedToLoggedIn', 'true');
                 const userInfo = deepCopy(firebaseResponse.user);
-                console.log('userInfo', userInfo);
 
-                this.facade.storeUserInfo({
-                  userInfo
-                });
+                this.facade.storeUserInfo(userInfo);
+                this.authService.sendEmailVerification(
+                  firebaseResponse.user as User
+                );
 
-                // user?.emailVerified && this.router.navigate(['/landing']);
+                userInfo?.emailVerified && this.router.navigate(['/landing']);
+
                 this.setError(null);
                 this.setLoading(false);
               },

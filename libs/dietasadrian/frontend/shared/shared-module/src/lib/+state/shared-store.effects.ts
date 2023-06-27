@@ -6,17 +6,13 @@ import {
   map,
   Observable,
   startWith,
-  mergeMap,
-  concatMap,
-  tap,
   filter,
+  from,
 } from 'rxjs';
 import * as actions from './shared-store.actions';
 import { AuthService } from '../services/auth/auth-service.service';
 import { ErrorHandlerService } from '../services/error-handler/error-handler.service';
 import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
-import * as _ from 'lodash';
 
 @Injectable()
 export class SharedStoreEffects {
@@ -44,50 +40,7 @@ export class SharedStoreEffects {
       )
     )
   );
-
-  // accessAccount$ = createEffect(() =>
-  //   this.actions$.pipe(
-  //     ofType(actions.accessAccount),
-  //     switchMap((action) =>
-  //       this.authService.auth({ user: action.user, pass: action.pass })
-  //     ),
-  //     map((userInfo: any) => {
-  //       localStorage.setItem('attemptedToLoggedIn', 'true');
-  //       this.router.navigate(['/landing']);
-  //       return actions.storeUserInfo({
-  //         userInfo: userInfo.user,
-  //       });
-  //     }),
-  //     catchSwitchMapError((error) =>
-  //       actions.actionFailure(
-  //         this.errorHelperService.firebaseErrorHandler(error)
-  //       )
-  //     )
-  //   )
-  // );
-
-  // googleSignin$ = createEffect(() =>
-  //   this.actions$.pipe(
-  //     ofType(actions.googleSignin),
-  //     switchMap(() => this.authService.googleSignin()),
-  //     map((fireUserResponse: any) => {
-  //       localStorage.setItem('attemptedToLoggedIn', 'true');
-
-  //       const userInfo = deepCopy(fireUserResponse.user.multiFactor.user);
-
-  //       this.router.navigate(['/landing']);
-  //       return actions.storeUserInfo({
-  //         userInfo,
-  //       });
-  //     }),
-  //     catchSwitchMapError((error) =>
-  //       actions.actionFailure(
-  //         this.errorHelperService.firebaseErrorHandler(error)
-  //       )
-  //     )
-  //   )
-  // );
-
+  
   passReset$ = createEffect(() =>
     this.actions$.pipe(
       ofType(actions.requestPassReset),

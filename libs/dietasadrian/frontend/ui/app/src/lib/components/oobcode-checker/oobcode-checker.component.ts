@@ -28,6 +28,8 @@ export class OobcodeCheckerComponent
   oobCodeCheckerStore = inject(OobcodeCheckerStore);
 
   ngOnInit(): void {
+    console.log('hola', this.route.snapshot.queryParamMap.get('oobCode') || '');
+    
     this.oobCodeCheckerStore.checkCode$(
       this.route.snapshot.queryParamMap.get('oobCode') || ''
     );

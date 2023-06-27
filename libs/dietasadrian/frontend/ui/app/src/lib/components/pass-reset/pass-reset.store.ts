@@ -12,7 +12,7 @@ export class passResetStore extends ComponentStoreMixinHelper<PassResetState> {
 
   readonly requested$ = this.select((state) => state.requested);
 
-  readonly setRequested = this.updater((state: any, requested: boolean) => ({
+  readonly setRequested = this.updater((state, requested: boolean) => ({
     ...state,
     requested: requested,
     error: null,

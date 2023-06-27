@@ -1,10 +1,15 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModuleModule } from '@shared-modules';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { map, switchMap } from 'rxjs';
 import { firebaseAuthHelper } from '@classes/firebaseAuthHelper';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { EmailVerificationStore } from './email-verification.store';
 
 @Component({
   standalone: true,
@@ -13,27 +18,22 @@ import { NavbarComponent } from '../navbar/navbar.component';
   styleUrls: ['./email-verification.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, SharedModuleModule, NavbarComponent, RouterModule],
+  providers: [EmailVerificationStore],
 })
-export class EmailVerificationComponent extends firebaseAuthHelper {
+export class EmailVerificationComponent
+  extends firebaseAuthHelper
+  implements OnInit
+{
   route = inject(ActivatedRoute);
+  emailVerificationStore = inject(EmailVerificationStore);
 
-  verifyMail$ = this.authService
-    .verifyEmail(this.route.snapshot.queryParamMap.get('oobCode') || '')
-    .pipe(
-      switchMap(() => this.authService.getCurrentUser()),
-      map(async (userInfo: any) => {
-        await userInfo?.multiFactor?.user.reload();
-
-        if (!userInfo?.emailVerified)
-          return this.authService.error$.next({
-            status: true,
-            message:
-              'El correo no ha sido verificado, inténtalo de nuevo o ponte en contacto con nosotros.',
-            error: undefined,
-          });
-
-        this.router.navigate(['/landing']);
-        return '';
-      })
+  ngOnInit(): void {
+    console.log('hola');
+    
+    console.log(this.route.snapshot.queryParamMap.get('oobCode') || '');
+    
+    this.emailVerificationStore.verifyEmail$(
+      this.route.snapshot.queryParamMap.get('oobCode') || ''
     );
+  }
 }

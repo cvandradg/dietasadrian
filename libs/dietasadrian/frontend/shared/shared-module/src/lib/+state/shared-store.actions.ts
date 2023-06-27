@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { User } from 'firebase/auth';
 
 export const showLoading = createAction('[SharedStore Page] showLoading');
 export const hideLoading = createAction('[SharedStore Page] hideLoading');
@@ -54,6 +55,10 @@ export const actionFailure = createAction(
 
 export const storeUserInfo = createAction(
   '[SharedStore Page] Store User Info',
+  props<{ userInfo: any }>()
+);
+export const sendEmailVerification = createAction(
+  '[SharedStore Page] Send Email Verification',
   props<{ userInfo: any }>()
 );
 

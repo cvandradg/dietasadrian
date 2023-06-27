@@ -86,7 +86,6 @@ export class StrengthMeterComponent implements OnChanges {
   }
 
   isButtonEnable(isEnable: boolean): void {
-    console.log('valor emitido');
     this.enableButton.emit(isEnable);
   }
 }

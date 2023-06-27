@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
   facade = inject(SharedStoreFacade);
   ngOnInit(): void {
     
-    // this.facade.getSession();
+    this.facade.getSession();
     return;
   }
 }
