@@ -24,17 +24,13 @@ export class RegisterStore extends ComponentStoreMixinHelper<{ user: any }> {
     return formGroup$.pipe(
       this.responseHandler(
         switchMap((formGroup) =>
-          from(
-            this.authService.createAccount(formGroup.value as Credentials)
-          ).pipe(
-            tapResponse((fireUserResponse: any) => {
-              const userInfo = deepCopy(fireUserResponse.user.multiFactor.user);
+          this.authService.createAccount(formGroup.value as Credentials).pipe(
+            tapResponse((user: User) => {
+              const userInfo = deepCopy(user);
 
-              this.facade.storeUserInfo(userInfo);
               this.setUser(userInfo);
-              this.authService.sendEmailVerification(
-                fireUserResponse.user as User
-              );
+              this.facade.storeUserInfo(userInfo);
+              this.authService.sendEmailVerification(user);
               formGroup.controls['pass'].disable();
               formGroup.controls['user'].disable();
             }, this.handleError)

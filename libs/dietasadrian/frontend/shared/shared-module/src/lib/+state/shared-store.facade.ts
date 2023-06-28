@@ -1,11 +1,9 @@
 import { Injectable, inject } from '@angular/core';
-import { select, Store, Action } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 
-import * as SharedStoreActions from './shared-store.actions';
-import * as SharedStoreFeature from './shared-store.reducer';
-import * as SharedStoreSelectors from './shared-store.selectors';
-import { of } from 'rxjs';
-import { User } from 'firebase/auth';
+import * as actions from './shared-store.actions';
+import * as selectors from './shared-store.selectors';
+import { generalError } from '@shared-modules/types/types';
 
 @Injectable({
   providedIn: 'root',
@@ -14,62 +12,39 @@ export class SharedStoreFacade {
   private readonly store = inject(Store);
 
   showLoader() {
-    this.store.dispatch(SharedStoreActions.showLoading());
+    this.store.dispatch(actions.showLoading());
   }
 
   hideLoader() {
-    this.store.dispatch(SharedStoreActions.hideLoading());
+    this.store.dispatch(actions.hideLoading());
   }
 
-  showSidenavbar$ = this.store.pipe(
-    select(SharedStoreSelectors.toogleSidenavbar)
-  );
-
   toggleSidenavbar() {
-    this.store.dispatch(SharedStoreActions.toggleSidenavbar());
+    this.store.dispatch(actions.toggleSidenavbar());
   }
 
   getSession() {
-    this.store.dispatch(SharedStoreActions.getSession());
+    this.store.dispatch(actions.getSession());
   }
 
   accessAccount(credentials: any) {
-    this.store.dispatch(SharedStoreActions.accessAccount(credentials));
+    this.store.dispatch(actions.accessAccount(credentials));
   }
 
   requestPassReset(email: string) {
-    this.store.dispatch(SharedStoreActions.requestPassReset({ email }));
+    this.store.dispatch(actions.requestPassReset({ email }));
   }
 
   storeUserInfo(userInfo: any) {
-    this.store.dispatch(SharedStoreActions.storeUserInfo({ userInfo }));
+    this.store.dispatch(actions.storeUserInfo({ userInfo }));
   }
 
-  error$ = this.store.pipe(select(SharedStoreSelectors.selectSharedStoreError));
-  userInfo$ = this.store.pipe(select(SharedStoreSelectors.userInfo));
-  loading$ = this.store.pipe(
-    select(SharedStoreSelectors.selectSharedStoreLoading)
-  );
+  setError({ status, message, error }: generalError) {
+    this.store.dispatch(actions.actionFailure({ status, message, error }));
+  }
 
-  /**
-   * Combine pieces of state using createSelector,
-   * and expose them as observables through the facade.
-   */
-  // loaded$ = this.store.pipe(
-  //   select(SharedStoreSelectors.selectSharedStoreLoaded)
-  // );
-  // allSharedStore$ = this.store.pipe(
-  //   select(SharedStoreSelectors.selectAllSharedStore)
-  // );
-  // selectedSharedStore$ = this.store.pipe(
-  //   select(SharedStoreSelectors.selectEntity)
-  // );
-
-  /**
-   * Use the initialization action to perform one
-   * or more tasks in your Effects.
-   */
-  // init() {
-  //   this.store.dispatch(SharedStoreActions.initSharedStore());
-  // }
+  error$ = this.store.pipe(select(selectors.error));
+  loading$ = this.store.pipe(select(selectors.loading));
+  userInfo$ = this.store.pipe(select(selectors.userInfo));
+  showSidenavbar$ = this.store.pipe(select(selectors.toogleSidenavbar));
 }

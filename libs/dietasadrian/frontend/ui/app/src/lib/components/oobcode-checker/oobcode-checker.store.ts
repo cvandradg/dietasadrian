@@ -13,27 +13,31 @@ export class OobcodeCheckerStore extends ComponentStoreMixinHelper<object> {
       this.responseHandler(
         switchMap((oobCode) =>
           from(this.authService.checkOobCode(oobCode)).pipe(
-            tap({
-              next: (res: any) => {
-                switch (res.operation) {
-                  case 'VERIFY_EMAIL':
-                    this.router.navigate(['/email-verification'], {
-                      queryParamsHandling: 'preserve',
-                    });
-                    break;
-
-                  case 'PASSWORD_RESET':
-                    this.router.navigate(['/passReset'], {
-                      queryParamsHandling: 'preserve',
-                    });
-                    break;
-                }
-              },
-              error: this.handleError,
-            })
+            tap(this.oobCodeCheck)
           )
         )
       )
     );
   });
+
+  get oobCodeCheck() {
+    return {
+      next: (res: any) => {
+        switch (res.operation) {
+          case 'VERIFY_EMAIL':
+            this.router.navigate(['/email-verification'], {
+              queryParamsHandling: 'preserve',
+            });
+            break;
+
+          case 'PASSWORD_RESET':
+            this.router.navigate(['/passReset'], {
+              queryParamsHandling: 'preserve',
+            });
+            break;
+        }
+      },
+      error: this.handleError,
+    };
+  }
 }

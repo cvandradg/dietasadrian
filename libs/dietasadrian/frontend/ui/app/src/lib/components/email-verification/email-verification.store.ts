@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ComponentStoreMixinHelper } from '@classes/component-store-helper';
-import { switchMap, from, tap, Observable, Observer } from 'rxjs';
+import { switchMap, from, tap, Observable } from 'rxjs';
 
 @Injectable()
 export class EmailVerificationStore extends ComponentStoreMixinHelper<object> {

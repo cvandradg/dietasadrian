@@ -1,7 +1,7 @@
 <div
   class="container"
   *ngrxLet="{
-    userInfo: facade.userInfo$ | ngrxPush,
+    userInfo: registerStore.user$ | ngrxPush,
     error: registerStore.error$ | ngrxPush,
     enableButton: enableButton$ | ngrxPush,
     loading: registerStore.loading$ | ngrxPush,

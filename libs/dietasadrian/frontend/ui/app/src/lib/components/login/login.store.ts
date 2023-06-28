@@ -3,8 +3,7 @@ import { ComponentStoreMixinHelper } from '@classes/component-store-helper';
 import { tapResponse } from '@ngrx/component-store';
 import { deepCopy, Credentials } from '@shared-modules/types/types';
 import { User } from 'firebase/auth';
-import { Observable, switchMap, pipe, from, tap } from 'rxjs';
-import * as _ from 'lodash';
+import { Observable, switchMap, pipe } from 'rxjs';
 
 @Injectable()
 export class LoginStore extends ComponentStoreMixinHelper<object> {
@@ -16,9 +15,9 @@ export class LoginStore extends ComponentStoreMixinHelper<object> {
     pipe(
       this.responseHandler(
         switchMap(() =>
-          from(this.authService.googleSignin()).pipe(
-            tapResponse((fireUserResponse: any) => {
-              const userInfo = deepCopy(fireUserResponse.user.multiFactor.user);
+          this.authService.googleSignin().pipe(
+            tapResponse((response: any) => {
+              const userInfo = deepCopy(response);
 
               this.facade.storeUserInfo(userInfo);
               userInfo.emailVerified && this.router.navigate(['/landing']);
@@ -35,13 +34,11 @@ export class LoginStore extends ComponentStoreMixinHelper<object> {
         this.responseHandler(
           switchMap((credentials) =>
             this.authService.auth(credentials).pipe(
-              tapResponse((firebaseResponse: any) => {
-                const userInfo = deepCopy(firebaseResponse.user);
+              tapResponse((user: User) => {
+                const userInfo = deepCopy(user);
 
                 this.facade.storeUserInfo(userInfo);
-                this.authService.sendEmailVerification(
-                  firebaseResponse.user as User
-                );
+                this.authService.sendEmailVerification(user);
 
                 userInfo?.emailVerified && this.router.navigate(['/landing']);
               }, this.handleError)

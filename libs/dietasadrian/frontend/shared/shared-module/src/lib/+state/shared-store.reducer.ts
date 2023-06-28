@@ -1,9 +1,7 @@
 import { createReducer, on, Action } from '@ngrx/store';
-
-import * as SharedStoreActions from './shared-store.actions';
 import { EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import { SharedStoreEntity } from '../+state/shared-store.models';
-import { FirebaseError } from 'firebase/app';
+import * as SharedStoreActions from './shared-store.actions';
 
 export const SHARED_STORE_FEATURE_KEY = 'sharedStore';
 
@@ -46,25 +44,6 @@ export const reducer = createReducer(
     ...state,
     userInfo: userInfo || null,
   })),
-
-  // on(SharedStoreActions.accessAccount, (state, { user, pass }) => ({
-  //   ...state,
-  //   loading: true,
-  // })),
-  // on(SharedStoreActions.getAccessSuccess, (state, { userInfo }) => ({
-  //   ...state,
-  //   loading: false,
-  //   userInfo: userInfo,
-  // })),
-  // on(SharedStoreActions.googleSignin, (state) => ({
-  //   ...state,
-  //   loading: true,
-  // })),
-  // on(SharedStoreActions.googleSigninSuccess, (state, { userInfo }) => ({
-  //   ...state,
-  //   loading: false,
-  //   userInfo: userInfo,
-  // })),
   on(SharedStoreActions.storeUserInfo, (state, { userInfo }) => ({
     ...state,
     userInfo,
@@ -73,41 +52,9 @@ export const reducer = createReducer(
     ...state,
     loading: false,
     error: { error, message, status },
-  })),
-  // on(
-  //   SharedStoreActions.getAccessFailure,
-  //   (state, { error, message, status }) => ({
-  //     ...state,
-  //     loading: false,
-  //     error: { error, message, status },
-  //   })
-  // ),
-  // on(
-  //   SharedStoreActions.getSessionFailure,
-  //   (state, { error, message, status }) => ({
-  //     ...state,
-  //     loading: false,
-  //     error: { error, message, status },
-  //   })
-  // )
+  }))
 );
 
 export function sharedStoreReducer(state: SharedStoreState, action: Action) {
   return reducer(state, action);
 }
-
-// import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-// import { SharedStoreEntity } from './shared-store.models';
-
-// export interface SharedStoreState extends EntityState<SharedStoreEntity> {
-//   selectedId?: string | number; // which SharedStore record has been selected
-//   loaded: boolean; // has the SharedStore list been loaded
-//   error?: string | null; // last known error (if any)
-// }
-
-// export interface SharedStorePartialState {
-//   readonly [SHARED_STORE_FEATURE_KEY]: SharedStoreState;
-// }
-
-// export const sharedStoreAdapter: EntityAdapter<SharedStoreEntity> =
-//   createEntityAdapter<SharedStoreEntity>();
