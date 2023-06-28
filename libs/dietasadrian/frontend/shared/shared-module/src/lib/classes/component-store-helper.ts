@@ -1,11 +1,12 @@
 import { Directive, inject } from '@angular/core';
 import { AppError } from '../types/types';
-import { ComponentStore } from '@ngrx/component-store';
-import { Observable, tap } from 'rxjs';
+import { ComponentStore, tapResponse } from '@ngrx/component-store';
+import { Observable, OperatorFunction, pipe, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { SharedStoreFacade } from '../+state/shared-store.facade';
 import { AuthService } from '../services/auth/auth-service.service';
 import { ErrorHandlerService } from '../services/error-handler/error-handler.service';
+import { FirebaseError } from 'firebase/app';
 
 export interface BaseComponentState extends Object {
   error: AppError | null;
@@ -26,20 +27,21 @@ export interface BaseComponentState extends Object {
  * Tomar encuenta que componentStore me pide que el generic
  * que recibe extienda de object.
  */
-export interface test extends Object {
+export interface GenericState extends Object {
   error?: AppError | null;
   loading?: boolean;
 }
 
-@Directive({
-  providers: [],
-})
+@Directive()
 export class ComponentStoreMixinHelper<
-  T extends test
+  T extends GenericState
+  /*Hay que agregar el error y loading keys,
+   para poderlos inicializar aca en el helper 
+   sin tenerlos que inicializar en los component stores*/
 > extends ComponentStore<T> {
   router = inject(Router);
-  facade = inject(SharedStoreFacade);
   authService = inject(AuthService);
+  facade = inject(SharedStoreFacade);
   errorHelperService = inject(ErrorHandlerService);
 
   readonly error$ = this.select((state) => state.error);
@@ -53,8 +55,30 @@ export class ComponentStoreMixinHelper<
 
   readonly setLoading = this.updater((state, loading: boolean) => ({
     ...state,
-    loading: loading,
+    loading,
   }));
 
+  get handleError() {
+    return (error: FirebaseError) => {
+      return this.setError(this.errorHelperService.firebaseErrorHandler(error));
+    };
+  }
 
+  responseHandler(operator: OperatorFunction<any, any>) {
+    return pipe(this.onRequest, operator, this.onResponse);
+  }
+
+  get onResponse() {
+    return tap<any>(() => {
+      this.setError(null);
+      this.setLoading(false);
+    });
+  }
+
+  get onRequest() {
+    return tap<any>(() => {
+      this.setError(null);
+      this.setLoading(true);
+    });
+  }
 }

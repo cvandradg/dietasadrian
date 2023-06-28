@@ -1,8 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { SharedModuleModule } from '@shared-modules';
 import { CommonModule } from '@angular/common';
 
@@ -18,7 +14,13 @@ import { PassResetComponent } from '../pass-reset/pass-reset.component';
   selector: 'dietas-adrian-nx-workspace-login',
   styleUrls: ['./login.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, NavbarComponent, SharedModuleModule, RouterModule, PassResetComponent],
+  imports: [
+    CommonModule,
+    NavbarComponent,
+    SharedModuleModule,
+    RouterModule,
+    PassResetComponent,
+  ],
   providers: [LoginStore],
 })
 export class LoginComponent extends firebaseAuthHelper {

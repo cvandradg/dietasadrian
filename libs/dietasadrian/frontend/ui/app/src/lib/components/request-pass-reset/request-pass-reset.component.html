@@ -1,11 +1,10 @@
-<!-- (click)="loginStore.passReset(loginInputForm.controls.user.value || '')" -->
 <div
   class="container"
   *ngrxLet="{
-    passReset: passReset$ | ngrxPush,
-    isButtonEnable: enableButton$ | ngrxPush,
-    error: authService.error$ | ngrxPush,
-    loading: loading$ | ngrxPush
+    error: compStore.error$ | ngrxPush,
+    loading: compStore.loading$ | ngrxPush,
+    reseted: compStore.reseted$ | ngrxPush,
+    isButtonEnable: enableButton$ | ngrxPush
   } as vm"
 >
   <div class="title">Cambiar contraseña</div>
@@ -22,20 +21,37 @@
           placeholder="EjemploDeClave1!"
           type="password"
           formControlName="pass"
-          (keyup.enter)="onPassReset$.next(true)"
+          (keyup.enter)="
+            compStore.passReset$({
+              pass: loginInputForm.controls.pass.value || '',
+              oobCode: code
+            })
+          "
         />
       </mat-form-field>
     </form>
 
     <div
       class="horizontal-animation clase"
-      [ngClass]="{ 'enabled-button': vm.isButtonEnable || vm.passReset }"
+      [ngClass]="{ 'enabled-button': vm.isButtonEnable || vm.reseted }"
     >
       <button
         mat-button
-        [disabled]="vm.passReset"
-        (click)="vm.isButtonEnable && onPassReset$.next(true)"
-        (keyup.enter)="vm.isButtonEnable && onPassReset$.next(true)"
+        [disabled]="vm.reseted"
+        (click)="
+          vm.isButtonEnable &&
+            compStore.passReset$({
+              pass: loginInputForm.controls.pass.value || '',
+              oobCode: code
+            })
+        "
+        (keyup.enter)="
+          vm.isButtonEnable &&
+            compStore.passReset$({
+              pass: loginInputForm.controls.pass.value || '',
+              oobCode: code
+            })
+        "
       >
         <div class="pass-reset-button">
           <p>Cambiar contraseña</p>
@@ -57,7 +73,7 @@
       </button>
     </div>
     <div [routerLink]="'/'">
-      <div class="success-message centered" *ngIf="!vm.loading && vm.passReset">
+      <div class="success-message centered" *ngIf="!vm.loading && vm.reseted">
         <p>Creaste una nueva contraseña.</p>
         <fa-icon
           [icon]="['fas', 'check']"
@@ -66,7 +82,7 @@
           style="--fa-animation-iteration-count: 2"
         />
       </div>
-      <div class="success-message centered" *ngIf="!vm.loading && vm.passReset">
+      <div class="success-message centered" *ngIf="!vm.loading && vm.reseted">
         Click aca para acceder
       </div>
     </div>

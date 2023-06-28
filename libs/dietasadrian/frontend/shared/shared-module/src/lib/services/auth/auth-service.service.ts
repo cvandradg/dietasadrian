@@ -64,9 +64,7 @@ export class AuthService {
   }
 
   resetPass(code: string, pass: string) {
-    return this.defer(this.firebaseAuth.confirmPasswordReset(code, pass)).pipe(
-      map(() => true)
-    );
+    return this.firebaseAuth.confirmPasswordReset(code, pass);
   }
 
   // getUserSession() {

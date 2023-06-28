@@ -1,9 +1,9 @@
 <div
   class="container"
   *ngrxLet="{
+    userInfo: facade.userInfo$ | ngrxPush,
     error: registerStore.error$ | ngrxPush,
     enableButton: enableButton$ | ngrxPush,
-    userInfo: registerStore.user$ | ngrxPush,
     loading: registerStore.loading$ | ngrxPush,
   } as vm"
 >

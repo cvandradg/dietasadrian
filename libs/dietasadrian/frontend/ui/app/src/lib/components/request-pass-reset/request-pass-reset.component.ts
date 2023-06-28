@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { firebaseAuthHelper } from '@classes/firebaseAuthHelper';
 import { SharedModuleModule } from '@shared-modules';
 import { combineLatest, map, Subject, switchMap } from 'rxjs';
+import { RequestPassResetStore } from './request-pass-reset.store';
 
 @Component({
   standalone: true,
@@ -12,10 +13,17 @@ import { combineLatest, map, Subject, switchMap } from 'rxjs';
   styleUrls: ['./request-pass-reset.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, SharedModuleModule, RouterModule],
+  providers: [RequestPassResetStore],
 })
-export class RequestPassResetComponent extends firebaseAuthHelper {
+export class RequestPassResetComponent extends firebaseAuthHelper implements OnInit {
+  code = ''
+  ngOnInit(): void {
+    this.code = this.route.snapshot.queryParamMap.get('oobCode') || ''
+  }
   route = inject(ActivatedRoute);
-  onPassReset$ = new Subject<any>();
+  compStore = inject(RequestPassResetStore)
+  
+  // onPassReset$ = new Subject<any>();
 
   isPassStrong$ = new Subject<boolean>();
 
@@ -30,12 +38,12 @@ export class RequestPassResetComponent extends firebaseAuthHelper {
     map(([isValidPassword, isPassStrong]) => isValidPassword && isPassStrong)
   );
 
-  passReset$ = this.onPassReset$.pipe(
-    switchMap(() =>
-      this.authService.resetPass(
-        this.route.snapshot.queryParamMap.get('oobCode') || '',
-        this.loginInputForm.value.pass as string
-      )
-    )
-  );
+  // passReset$ = this.onPassReset$.pipe(
+  //   switchMap(() =>
+  //     this.authService.resetPass(
+  //       this.route.snapshot.queryParamMap.get('oobCode') || '',
+  //       this.loginInputForm.value.pass as string
+  //     )
+  //   )
+  // );
 }

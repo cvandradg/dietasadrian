@@ -21,7 +21,7 @@ import { RegisterStore } from './register.store';
   imports: [CommonModule, SharedModuleModule, NavbarComponent, RouterModule],
   providers: [RegisterStore],
 })
-export class RegisterComponent extends firebaseAuthHelper implements OnInit {
+export class RegisterComponent extends firebaseAuthHelper {
   readonly registerStore = inject(RegisterStore);
   isPassStrong$ = new Subject<boolean>();
 
@@ -32,8 +32,4 @@ export class RegisterComponent extends firebaseAuthHelper implements OnInit {
   enableButton$ = combineLatest([this.isValidUser$, this.isPassStrong$]).pipe(
     map(([isValidUser, isPassStrong]) => isValidUser && isPassStrong)
   );
-
-  ngOnInit(): void {
-    this.registerStore.resetVariables$();
-  }
 }

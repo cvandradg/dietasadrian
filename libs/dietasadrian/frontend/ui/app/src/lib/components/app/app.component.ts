@@ -19,8 +19,8 @@ import { SharedStoreFacade } from '@shared-modules';
 })
 export class AppComponent implements OnInit {
   facade = inject(SharedStoreFacade);
+
   ngOnInit(): void {
-    
     this.facade.getSession();
     return;
   }

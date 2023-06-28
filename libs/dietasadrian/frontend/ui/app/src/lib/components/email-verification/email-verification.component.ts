@@ -28,10 +28,6 @@ export class EmailVerificationComponent
   emailVerificationStore = inject(EmailVerificationStore);
 
   ngOnInit(): void {
-    console.log('hola');
-    
-    console.log(this.route.snapshot.queryParamMap.get('oobCode') || '');
-    
     this.emailVerificationStore.verifyEmail$(
       this.route.snapshot.queryParamMap.get('oobCode') || ''
     );
