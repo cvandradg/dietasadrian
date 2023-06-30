@@ -1,34 +1,63 @@
 // import { inject } from '@angular/core';
-// import { HelperService } from '../../services/helperFunctions.service';
-// import { tap, filter, mergeMap, map, first } from 'rxjs';
-// import { MatDialogState } from '@angular/material/dialog';
-// import { AuthService } from '@services/auth/auth-service.service';
-// import { SharedStoreFacade } from '@shared-modules/+state/shared-store.facade';
-// import { Router } from '@angular/router';
+// import { map, UnaryFunction, Observable, take } from 'rxjs';
+// import { AuthService } from '../../services/auth/auth-service.service';
+// // import { SharedStoreFacade } from '@shared-modules/+state/shared-store.facade';
+// import {
+//   ActivatedRouteSnapshot,
+//   Router,
+//   RouterStateSnapshot,
+// } from '@angular/router';
+// import { User } from 'firebase/auth';
+// import { Auth, user } from '@angular/fire/auth';
+
+// export type AuthPipeGenerator = (
+//   next: ActivatedRouteSnapshot,
+//   state: RouterStateSnapshot
+// ) => AuthPipe;
+// export type AuthPipe = UnaryFunction<
+//   Observable<User | null>,
+//   Observable<boolean | string | any[]>
+// >;
+
+// export const loggedIn: AuthPipe = map((user) => !!user);
 
 // export const domainGuard = () => {
-//   const authService = inject(AuthService);
+//   const auth = inject(Auth);
 //   const router = inject(Router);
+//   const state = inject(RouterStateSnapshot);
+//   const next = inject(ActivatedRouteSnapshot);
+//   //   const authService = inject(AuthService);
 
+//   const authPipeFactory =
+//     (next.data['authGuardPipe'] as AuthPipeGenerator) || (() => loggedIn);
 
-//   authService.getUserSession().subscribe((user) => {
-//     console.log('valor en guard', !!user);
-//   });
-
-//   return true 
-
-//   // return authService.getUserSession().pipe(
-//   //   map((user) => {
-//   //     console.log('dentro del map', user);
-      
-//   //     // router.navigateByUrl('/notauthorized');
-
-//   //     if (!user) return router.parseUrl('/login');
-
-//   //     return !!user;
-//   //   })
-//   // );
+//   return user(auth).pipe(
+//     take(1),
+//     authPipeFactory(next, state),
+//     map((can) => {
+//       if (typeof can === 'boolean') {
+//         return can;
+//       } else if (Array.isArray(can)) {
+//         return router.createUrlTree(can);
+//       } else {
+//         // TODO(EdricChan03): Add tests
+//         return router.parseUrl(can);
+//       }
+//     })
+//   );
 // };
+
+// // return authService.getUserSession().pipe(
+// //   map((user) => {
+// //     console.log('dentro del map', user);
+
+// //     // router.navigateByUrl('/notauthorized');
+
+// //     if (!user) return router.parseUrl('/login');
+
+// //     return !!user;
+// //   })
+// // );
 
 // // canActivateChild(
 // //   childRoute: ActivatedRouteSnapshot,

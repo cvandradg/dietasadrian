@@ -39,7 +39,9 @@
       "@dietasadrian/frontend/app": [
         "libs/dietasadrian/frontend/ui/app/src/index.ts"
       ],
-      "@enviroments/*": ["apps/dietasadrian/src/environments/*"],
+      "@enviroments/*": [
+        "libs/dietasadrian/frontend/shared/shared-module/src/lib/environments/*"
+      ],
       "@guards/*": [
         "libs/dietasadrian/frontend/shared/shared-module/src/lib/guards/*"
       ],
@@ -50,9 +52,13 @@
         "libs/dietasadrian/frontend/shared/shared-module/src/lib/interfaces/*"
       ],
       "@libs/dietas/*": ["libs/dietasadrian/frontend/ui/dietas/src/lib/*"],
+      "@libs/landing-page": [
+        "libs/dietasadrian/frontend/ui/landing-page/src/lib/routes.ts"
+      ],
       "@libs/landing-page/*": [
         "libs/dietasadrian/frontend/ui/landing-page/src/lib/*"
       ],
+
       "@materialFunctions": [
         "libs/dietasadrian/frontend/shared/materialFunctions.ts"
       ],

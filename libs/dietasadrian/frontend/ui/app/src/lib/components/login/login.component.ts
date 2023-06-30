@@ -1,12 +1,11 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { SharedModuleModule } from '@shared-modules';
-import { CommonModule } from '@angular/common';
-
-import { RouterModule } from '@angular/router';
-import { firebaseAuthHelper } from '@classes/firebaseAuthHelper';
-import { NavbarComponent } from '../navbar/navbar.component';
 import { LoginStore } from './login.store';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { SharedModuleModule } from '@shared-modules';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { firebaseAuthHelper } from '@classes/firebaseAuthHelper';
 import { PassResetComponent } from '../pass-reset/pass-reset.component';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
 @Component({
   standalone: true,

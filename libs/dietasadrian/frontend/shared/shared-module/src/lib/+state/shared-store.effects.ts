@@ -1,10 +1,17 @@
 import { Injectable, inject } from '@angular/core';
-import { createEffect, Actions, ofType } from '@ngrx/effects';
+import {
+  createEffect,
+  Actions,
+  ofType,
+  ROOT_EFFECTS_INIT,
+  OnInitEffects,
+} from '@ngrx/effects';
 import {
   switchMap,
   catchError,
   map,
   Observable,
+  tap,
   startWith,
   filter,
   from,
@@ -15,16 +22,19 @@ import { ErrorHandlerService } from '../services/error-handler/error-handler.ser
 import { Router } from '@angular/router';
 
 @Injectable()
-export class SharedStoreEffects {
+export class SharedStoreEffects implements OnInitEffects {
   private router = inject(Router);
   private actions$ = inject(Actions);
   private authService = inject(AuthService);
   private errorHelperService = inject(ErrorHandlerService);
 
+  ngrxOnInitEffects() {
+    return actions.getSession();
+  }
+
   getSession$ = createEffect(() =>
     this.actions$.pipe(
       ofType(actions.getSession),
-
       switchMap(() => this.authService.getUserSession()),
       map((fireUserResponse: any) => {
         const userInfo = deepCopy(fireUserResponse?.multiFactor.user);

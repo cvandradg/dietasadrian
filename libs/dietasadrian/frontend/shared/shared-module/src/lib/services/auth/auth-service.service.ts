@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { GoogleAuthProvider, User } from '@angular/fire/auth';
+import { Auth, GoogleAuthProvider, User } from '@angular/fire/auth';
 
 import { from, of, catchError, NEVER, map } from 'rxjs';
 import { sendEmailVerification } from 'firebase/auth';
@@ -14,9 +14,10 @@ import { Credentials } from '../../types/types';
   providedIn: 'root',
 })
 export class AuthService {
-  firebaseAuth = inject(AngularFireAuth);
   facade = inject(SharedStoreFacade);
+  firebaseAuth = inject(AngularFireAuth);
   errorHelperService = inject(ErrorHandlerService);
+  authService = inject(Auth);
 
   getCurrentUser() {
     return this.firebaseAuth.currentUser;

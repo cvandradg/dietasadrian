@@ -35,8 +35,9 @@ This project was generated using [Nx](https://nx.dev).
 25. https://www.ngxs.io/v/v3.5/ngxs-labs/dispatch-decorator
 26. https://github.com/ngrx/platform/issues/3384
 
-importat
-27. https://dev.to/this-is-angular/removing-boilerplate-code-in-ngrx-component-store-1f83
+important 27. https://dev.to/this-is-angular/removing-boilerplate-code-in-ngrx-component-store-1f83
+
+important 28. https://dev.to/jonrimmer/where-to-initiate-data-load-in-ngrx-358l
 
 ## TODO
 
