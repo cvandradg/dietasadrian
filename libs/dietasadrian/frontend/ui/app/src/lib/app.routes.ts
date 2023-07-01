@@ -16,16 +16,27 @@ import {
   canActivate,
   redirectLoggedInTo,
   redirectUnauthorizedTo,
+  emailVerified,
 } from '@angular/fire/auth-guard';
 import { provideFirebaseApp } from '@angular/fire/app';
 import { initializeApp } from 'firebase/app';
 import { provideAuth } from '@angular/fire/auth';
 import { getAuth } from 'firebase/auth';
 
+import { pipe, map, tap} from 'rxjs';
+
 import { environment } from '@enviroments/environment.prod';
 
 const redirectLoggedIn = () => redirectLoggedInTo(['landing']);
-const redirectUnauthorized = () => redirectUnauthorizedTo(['login']);
+const redirectUnverifiedTo = (redirect: any[]) =>
+  pipe(
+    tap(() => console.log('holaaa')), //NO ESTAMOS ENCICLANDO FEEEEEEEEEEEEEEEEEEEEO  
+    emailVerified,
+    map((emailVerified) => emailVerified || redirect)
+  );
+const redirectUnauthorized = () => redirectUnverifiedTo(['login']);
+// const redirectUnauthorized = () => redirectUnauthorizedTo(['login']);
+// const redirectUnauthorizedToLogin = () => redirectUnverifiedTo(['login']);
 
 export const appRoutes: Routes = [
   {
@@ -41,9 +52,17 @@ export const appRoutes: Routes = [
           ///////////////////////////////////////////////////////////////////
           /*
           NOT WORKING, IF THE USER IS NOT EMAIL VERIFIED IT WILL CONTINUE TO
-          THE LANDING PAGE
+          THE LANDING PAGE,
+
+          TAKE IN CONSIDERATION THE FACT THAT GETSESSION EFFECT IS BEEN CALLED
+          ON LOAD, WE NEED TO THINK IF WE WANT TO HAVE BOTH TIMES EMAIL VERIFIED
+          REVIED, OR JUST IN HERE OR JUST IN THERE.
+
+          I WOULD REALLY REALLY WANT TO KEEP THE GUARD, I THINK IT MAKES SENSE
+          BUT A MORE OBJECTIVE APPROACH NEEDS TO BE DONE.
+
           */
-         //////////////////////////////////////////////////////////////////
+          //////////////////////////////////////////////////////////////////
         }),
         provideFirebaseApp(() => initializeApp(environment.firebase))
       ),
