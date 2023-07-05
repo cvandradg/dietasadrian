@@ -24,7 +24,6 @@
           (keyup.enter)="
             compStore.passReset$({
               pass: loginInputForm.controls.pass.value || '',
-              oobCode: code
             })
           "
         />
@@ -42,14 +41,12 @@
           vm.isButtonEnable &&
             compStore.passReset$({
               pass: loginInputForm.controls.pass.value || '',
-              oobCode: code
             })
         "
         (keyup.enter)="
           vm.isButtonEnable &&
             compStore.passReset$({
               pass: loginInputForm.controls.pass.value || '',
-              oobCode: code
             })
         "
       >

@@ -46,6 +46,18 @@ export const appRoutes: Routes = [
         redirectTo: 'landing',
       },
       {
+        path: 'login',
+        pathMatch: 'full',
+        component: LoginComponent,
+        ...canActivate(redirectLoggedIn),
+      },
+      {
+        path: 'landing',
+        pathMatch: 'prefix',
+        ...canActivate(redirectUnauthorized),
+        loadChildren: () => import('@libs/landing-page').then((r) => r.routes),
+      },
+      {
         path: 'register',
         component: RegisterComponent,
         pathMatch: 'full',
@@ -69,18 +81,6 @@ export const appRoutes: Routes = [
         path: '**',
         component: ErrorComponent,
         pathMatch: 'full',
-      },
-      {
-        path: 'login',
-        pathMatch: 'full',
-        component: LoginComponent,
-        ...canActivate(redirectLoggedIn),
-      },
-      {
-        path: 'landing',
-        pathMatch: 'prefix',
-        ...canActivate(redirectUnauthorized),
-        loadChildren: () => import('@libs/landing-page').then((r) => r.routes),
       },
     ],
   },
