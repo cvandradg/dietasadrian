@@ -8,7 +8,7 @@ import { SharedModuleModule } from '@shared-modules';
 import { canActivate } from '@angular/fire/auth-guard';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { provideFirebaseApp } from '@angular/fire/app';
-import { environment } from '@enviroments/environment.prod';
+import { environment } from '@enviroments/environment';
 import { AppComponent } from './components/app/app.component';
 import { LoginComponent } from './components/login/login.component';
 import { ErrorComponent } from './components/error/error.component';
