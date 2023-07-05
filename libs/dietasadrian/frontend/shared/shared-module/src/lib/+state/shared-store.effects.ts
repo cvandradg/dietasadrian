@@ -1,31 +1,23 @@
 import { Injectable, inject } from '@angular/core';
-import {
-  createEffect,
-  Actions,
-  ofType,
-  ROOT_EFFECTS_INIT,
-  OnInitEffects,
-} from '@ngrx/effects';
+import { createEffect, Actions, ofType, OnInitEffects } from '@ngrx/effects';
 import {
   switchMap,
   catchError,
   map,
   Observable,
-  tap,
   startWith,
   filter,
-  from,
 } from 'rxjs';
 import * as actions from './shared-store.actions';
 import { AuthService } from '../services/auth/auth-service.service';
 import { ErrorHandlerService } from '../services/error-handler/error-handler.service';
-import { Router } from '@angular/router';
+import { User } from 'firebase/auth';
+import { deepCopy } from '../types/types';
 
 @Injectable()
 export class SharedStoreEffects implements OnInitEffects {
-  private router = inject(Router);
+  private auth = inject(AuthService);
   private actions$ = inject(Actions);
-  private authService = inject(AuthService);
   private errorHelperService = inject(ErrorHandlerService);
 
   ngrxOnInitEffects() {
@@ -35,13 +27,15 @@ export class SharedStoreEffects implements OnInitEffects {
   getSession$ = createEffect(() =>
     this.actions$.pipe(
       ofType(actions.getSession),
-      switchMap(() => this.authService.getUserSession()),
-      map((fireUserResponse: any) => {
-        const userInfo = deepCopy(fireUserResponse?.multiFactor.user);
-        userInfo?.emailVerified && this.router.navigate(['/landing']);
-        return actions.storeUserInfo({
-          userInfo,
-        });
+      switchMap(() => this.auth.getUserSession()),
+      map((response: any) => {
+        const userInfo = deepCopy(response?.multiFactor.user);
+
+        if (userInfo)
+          !userInfo?.emailVerified &&
+            this.auth.sendEmailVerification(response as User);
+
+        return actions.storeUserInfo({ userInfo });
       }),
       catchSwitchMapError((error) =>
         actions.actionFailure(
@@ -54,7 +48,7 @@ export class SharedStoreEffects implements OnInitEffects {
   passReset$ = createEffect(() =>
     this.actions$.pipe(
       ofType(actions.requestPassReset),
-      switchMap((action) => this.authService.recoverPassword(action.email)),
+      switchMap((action) => this.auth.recoverPassword(action.email)),
       catchSwitchMapError((error) => {
         if (
           error.code !== 'auth/missing-email' &&
@@ -93,6 +87,19 @@ export class SharedStoreEffects implements OnInitEffects {
       })
     )
   );
+
+  signOut$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(actions.signOut),
+      switchMap(() => this.auth.signOut()),
+      map(() => actions.storeUserInfo({ userInfo: null })),
+      catchSwitchMapError((error) =>
+        actions.actionFailure(
+          this.errorHelperService.firebaseErrorHandler(error)
+        )
+      )
+    )
+  );
 }
 
 export const catchSwitchMapError =
@@ -103,5 +110,3 @@ export const catchSwitchMapError =
         innerSource.pipe(startWith(errorAction(error)))
       )
     );
-
-export const deepCopy = <T>(obj: T): T => JSON.parse(JSON.stringify(obj || ''));

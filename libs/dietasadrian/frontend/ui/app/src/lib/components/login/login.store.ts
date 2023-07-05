@@ -1,8 +1,8 @@
+import { User } from 'firebase/auth';
 import { Injectable } from '@angular/core';
-import { ComponentStoreMixinHelper } from '@classes/component-store-helper';
 import { tapResponse } from '@ngrx/component-store';
 import { deepCopy, Credentials } from '@shared-modules/types/types';
-import { User } from 'firebase/auth';
+import { ComponentStoreMixinHelper } from '@classes/component-store-helper';
 import { Observable, switchMap, pipe } from 'rxjs';
 
 @Injectable()
@@ -29,13 +29,13 @@ export class LoginStore extends ComponentStoreMixinHelper<object> {
   );
 
   readonly accessAccount$ = this.effect(
-    (credentials$: Observable<Credentials>) => {
-      return credentials$.pipe(
+    (credentials$: Observable<Credentials>) =>
+      credentials$.pipe(
         this.responseHandler(
           switchMap((credentials) =>
             this.authService.auth(credentials).pipe(
               tapResponse((user: User) => {
-                const userInfo = deepCopy(user);
+                const userInfo = (user);
 
                 this.facade.storeUserInfo(userInfo);
                 this.authService.sendEmailVerification(user);
@@ -45,7 +45,6 @@ export class LoginStore extends ComponentStoreMixinHelper<object> {
             )
           )
         )
-      );
-    }
+      )
   );
 }

@@ -24,7 +24,10 @@ export class RequestPassResetStore extends ComponentStoreMixinHelper<{
         this.responseHandler(
           switchMap(({ pass, oobCode }) =>
             from(this.authService.resetPass(oobCode, pass)).pipe(
-              tapResponse(() => this.setReseted(true), this.handleError)
+              tapResponse(() => {
+                this.setReseted(true);
+                this.facade.signOut();
+              }, this.handleError)
             )
           )
         )

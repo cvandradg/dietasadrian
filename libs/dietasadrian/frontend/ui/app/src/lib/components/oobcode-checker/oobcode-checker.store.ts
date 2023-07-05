@@ -1,11 +1,22 @@
-import { Injectable } from '@angular/core';
+import { OnStoreInit } from '@ngrx/component-store';
+import { ActivatedRoute } from '@angular/router';
+import { Injectable, inject } from '@angular/core';
 import { ComponentStoreMixinHelper } from '@classes/component-store-helper';
 import { switchMap, from, tap, Observable } from 'rxjs';
 
 @Injectable()
-export class OobcodeCheckerStore extends ComponentStoreMixinHelper<object> {
+export class OobcodeCheckerStore
+  extends ComponentStoreMixinHelper<object>
+  implements OnStoreInit
+{
+  route = inject(ActivatedRoute);
+
   constructor() {
     super({});
+  }
+
+  ngrxOnStoreInit() {
+    this.checkCode$(this.route.snapshot.queryParamMap.get('oobCode') || '');
   }
 
   readonly checkCode$ = this.effect((oobCode$: Observable<string>) => {

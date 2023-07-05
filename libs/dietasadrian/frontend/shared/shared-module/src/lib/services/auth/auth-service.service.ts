@@ -15,16 +15,12 @@ import { Credentials } from '../../types/types';
 })
 export class AuthService {
   facade = inject(SharedStoreFacade);
+  authService = inject(Auth);
   firebaseAuth = inject(AngularFireAuth);
   errorHelperService = inject(ErrorHandlerService);
-  authService = inject(Auth);
-
-  getCurrentUser() {
-    return this.firebaseAuth.currentUser;
-  }
 
   verifyEmail(code: string) {
-    return this.firebaseAuth.applyActionCode(code);
+    return from(this.firebaseAuth.applyActionCode(code));
   }
 
   checkOobCode(oobCode: string) {
@@ -43,25 +39,35 @@ export class AuthService {
     return from(this.firebaseAuth.sendPasswordResetEmail(email));
   }
 
+  getCurrentUser() {
+    localStorage.setItem('attemptedToLoggedIn', 'true');
+    return this.firebaseAuth.currentUser;
+  }
+
+  
   getUserSession() {
     if (localStorage.getItem('attemptedToLoggedIn') !== 'true') return of(null);
 
+    localStorage.setItem('attemptedToLoggedIn', 'true');
     return this.firebaseAuth.authState;
   }
 
   createAccount({ user, pass }: Credentials) {
+    localStorage.setItem('attemptedToLoggedIn', 'true');
     return from(
       this.firebaseAuth.createUserWithEmailAndPassword(user, pass)
     ).pipe(this.getUser);
   }
 
   googleSignin() {
+    localStorage.setItem('attemptedToLoggedIn', 'true');
     return from(
       this.firebaseAuth.signInWithPopup(new GoogleAuthProvider())
     ).pipe(this.getUser);
   }
 
   auth({ user, pass }: Credentials) {
+    localStorage.setItem('attemptedToLoggedIn', 'true');
     return from(this.firebaseAuth.signInWithEmailAndPassword(user, pass)).pipe(
       this.getUser
     );

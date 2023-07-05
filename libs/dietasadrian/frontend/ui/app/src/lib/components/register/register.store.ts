@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { ComponentStoreMixinHelper } from '@classes/component-store-helper';
-import { tapResponse } from '@ngrx/component-store';
-import { Credentials, deepCopy } from '@shared-modules/types/types';
 import { User } from 'firebase/auth';
-import { Observable, switchMap, from } from 'rxjs';
+import { FormGroup } from '@angular/forms';
+import { Injectable } from '@angular/core';
+import { tapResponse } from '@ngrx/component-store';
+import { Credentials } from '@shared-modules/types/types';
+import { Observable, switchMap } from 'rxjs';
+import { ComponentStoreMixinHelper } from '@classes/component-store-helper';
 
 @Injectable()
 export class RegisterStore extends ComponentStoreMixinHelper<{ user: any }> {
@@ -25,14 +25,12 @@ export class RegisterStore extends ComponentStoreMixinHelper<{ user: any }> {
       this.responseHandler(
         switchMap((formGroup) =>
           this.authService.createAccount(formGroup.value as Credentials).pipe(
-            tapResponse((user: User) => {
-              const userInfo = deepCopy(user);
-
-              this.setUser(userInfo);
-              this.facade.storeUserInfo(userInfo);
-              this.authService.sendEmailVerification(user);
+            tapResponse((userInfo: User) => {
               formGroup.controls['pass'].disable();
               formGroup.controls['user'].disable();
+              this.setUser(userInfo);
+              this.facade.storeUserInfo(userInfo);
+              this.authService.sendEmailVerification(userInfo);
             }, this.handleError)
           )
         )

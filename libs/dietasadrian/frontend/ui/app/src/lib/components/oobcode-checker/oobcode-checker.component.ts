@@ -1,15 +1,9 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnInit,
-  computed,
-  inject,
-} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
 import { SharedModuleModule } from '@shared-modules';
 import { firebaseAuthHelper } from '@classes/firebaseAuthHelper';
 import { OobcodeCheckerStore } from './oobcode-checker.store';
+import { provideComponentStore } from '@ngrx/component-store';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
 @Component({
   standalone: true,
@@ -18,18 +12,8 @@ import { OobcodeCheckerStore } from './oobcode-checker.store';
   styleUrls: ['./oobcode-checker.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, SharedModuleModule, SharedModuleModule],
-  providers: [OobcodeCheckerStore],
+  providers: [provideComponentStore(OobcodeCheckerStore)],
 })
-export class OobcodeCheckerComponent
-  extends firebaseAuthHelper
-  implements OnInit
-{
-  route = inject(ActivatedRoute);
+export class OobcodeCheckerComponent extends firebaseAuthHelper {
   oobCodeCheckerStore = inject(OobcodeCheckerStore);
-
-  ngOnInit(): void {
-    this.oobCodeCheckerStore.checkCode$(
-      this.route.snapshot.queryParamMap.get('oobCode') || ''
-    );
-  }
 }

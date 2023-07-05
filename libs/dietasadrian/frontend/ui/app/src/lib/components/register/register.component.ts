@@ -1,16 +1,11 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnInit,
-  inject,
-} from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { SharedModuleModule } from '@shared-modules';
 import { RouterModule } from '@angular/router';
-import { firebaseAuthHelper } from '@classes/firebaseAuthHelper';
-import { Subject, map, combineLatest } from 'rxjs';
-import { NavbarComponent } from '../navbar/navbar.component';
+import { CommonModule } from '@angular/common';
 import { RegisterStore } from './register.store';
+import { Subject, map, combineLatest } from 'rxjs';
+import { SharedModuleModule } from '@shared-modules';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { firebaseAuthHelper } from '@classes/firebaseAuthHelper';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
 @Component({
   standalone: true,
@@ -23,6 +18,7 @@ import { RegisterStore } from './register.store';
 })
 export class RegisterComponent extends firebaseAuthHelper {
   readonly registerStore = inject(RegisterStore);
+
   isPassStrong$ = new Subject<boolean>();
 
   isValidUser$ = this.loginInputForm.valueChanges.pipe(

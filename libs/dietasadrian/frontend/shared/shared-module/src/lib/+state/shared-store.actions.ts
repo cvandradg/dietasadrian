@@ -1,8 +1,8 @@
 import { createAction, props } from '@ngrx/store';
-import { User } from 'firebase/auth';
 
 export const showLoading = createAction('[SharedStore Page] showLoading');
 export const hideLoading = createAction('[SharedStore Page] hideLoading');
+export const signOut = createAction('[SharedStore Page] Sign Out');
 
 export const toggleSidenavbar = createAction(
   '[SharedStore Page] Toggle Sidenavbar'
@@ -61,6 +61,7 @@ export const sendEmailVerification = createAction(
   '[SharedStore Page] Send Email Verification',
   props<{ userInfo: any }>()
 );
+
 
 // import { SharedStoreEntity } from './general-app.models';
 // import { createAction, props } from '@ngrx/store';

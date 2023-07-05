@@ -1,13 +1,8 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnInit,
-  inject,
-} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { SharedStoreFacade } from '@shared-modules';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
 @Component({
   standalone: true,
@@ -17,11 +12,6 @@ import { SharedStoreFacade } from '@shared-modules';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, NavbarComponent, RouterModule],
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   facade = inject(SharedStoreFacade);
-
-  ngOnInit(): void {
-    // this.facade.getSession();
-    return;
-  }
 }

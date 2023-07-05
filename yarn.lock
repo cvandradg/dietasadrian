@@ -6195,7 +6195,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash@npm:^4.14.188":
+"@types/lodash-es@npm:^4.17.7":
+  version: 4.17.7
+  resolution: "@types/lodash-es@npm:4.17.7"
+  dependencies:
+    "@types/lodash": "npm:*"
+  checksum: 4dfde517db4cfc7b25b5a20a0851244c0ca4aebbdae272eebe77a3f3388eae6a4f47d7850cca712e0256c033a30bfebd366948b4286743e20e2c862c7c3830ad
+  languageName: node
+  linkType: hard
+
+"@types/lodash@npm:*, @types/lodash@npm:^4.14.188":
   version: 4.14.195
   resolution: "@types/lodash@npm:4.14.195"
   checksum: a503fc2cef87abc17ec6f388009a787e609b799b8fcb69c47f9b91d5a47e564b5c00fd121f691acf2b2bb43b788e28ca22781de1ac561b2c35bea380c6446f79
@@ -9605,6 +9614,7 @@ __metadata:
     "@types/angularfire": "npm:^0.8.35"
     "@types/jest": "npm:29.4.4"
     "@types/lodash": "npm:^4.14.188"
+    "@types/lodash-es": "npm:^4.17.7"
     "@types/node": "npm:16.11.7"
     "@types/uuid": "npm:^8.3.4"
     "@typescript-eslint/eslint-plugin": "npm:5.58.0"
@@ -9620,6 +9630,7 @@ __metadata:
     jest-environment-jsdom: "npm:29.4.3"
     jest-preset-angular: "npm:13.1.0"
     lodash: "npm:^4.17.21"
+    lodash-es: "npm:^4.17.21"
     material-icons-font: "npm:^2.1.0"
     nx: "npm:16.3.2"
     nx-cloud: "npm:16.0.5"
@@ -14173,6 +14184,13 @@ __metadata:
   dependencies:
     p-locate: "npm:^4.1.0"
   checksum: 990eddf17c761030216219e58575787fc0ba8050058eaddc04fd419473524840349c3be6dde342f93007cacc00d6d950f906c44b72a58f68c347c1da8c0dd3a1
+  languageName: node
+  linkType: hard
+
+"lodash-es@npm:^4.17.21":
+  version: 4.17.21
+  resolution: "lodash-es@npm:4.17.21"
+  checksum: d1c3ee94118daeeee47c630ab5f91e94cc4e41ebe2452d837edbe599e853eb2d4be7edf82b4fe62f9fc74f27a8ed7f82fdbd9d301d0acef88f00941db64c4843
   languageName: node
   linkType: hard
 
