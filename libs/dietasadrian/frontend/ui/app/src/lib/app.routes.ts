@@ -1,51 +1,61 @@
+import { getAuth } from 'firebase/auth';
 import { Routes } from '@angular/router';
-import { SharedModuleModule } from '@shared-modules';
+import { initializeApp } from 'firebase/app';
 import { CommonModule } from '@angular/common';
+import { provideAuth } from '@angular/fire/auth';
+import { importProvidersFrom } from '@angular/core';
+import { SharedModuleModule } from '@shared-modules';
+import { canActivate } from '@angular/fire/auth-guard';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
-import { AngularFireAuthModule } from '@angular/fire/compat/auth';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
+import { provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '@enviroments/environment';
 import { AppComponent } from './components/app/app.component';
-import { EmailVerificationComponent } from './components/email-verification/email-verification.component';
-import { PassResetComponent } from './components/pass-reset/pass-reset.component';
+import { LoginComponent } from './components/login/login.component';
+import { ErrorComponent } from './components/error/error.component';
+import { unverifiedTo, verifiedTo } from '@helperFunctionsService';
+import { RegisterComponent } from './components/register/register.component';
 import { OobcodeCheckerComponent } from './components/oobcode-checker/oobcode-checker.component';
+import { RequestPassResetComponent } from './components/request-pass-reset/request-pass-reset.component';
+import { EmailVerificationComponent } from './components/email-verification/email-verification.component';
+
+const redirectLoggedIn = () => verifiedTo(['landing']);
+const redirectUnauthorized = () => unverifiedTo(['login']);
 
 export const appRoutes: Routes = [
   {
     path: '',
-    component: AppComponent,
     pathMatch: 'prefix',
+    component: AppComponent,
     providers: [
+      CommonModule,
+      SharedModuleModule,
+      importProvidersFrom(
+        provideAuth(() => getAuth()),
+        provideFirebaseApp(() => initializeApp(environment.firebase))
+      ),
       {
         provide: FIREBASE_OPTIONS,
-        useValue: {
-          apiKey: 'AIzaSyAnZfF6TYw1ubCSkV8RhClrm8RjVLqqGlE',
-          authDomain: 'dietasadrianbadillafirebase.firebaseapp.com',
-          databaseURL:
-            'https://dietasadrianbadillafirebase-default-rtdb.firebaseio.com',
-          projectId: 'dietasadrianbadillafirebase',
-          storageBucket: 'dietasadrianbadillafirebase.appspot.com',
-          messagingSenderId: '706318825388',
-          appId: '1:706318825388:web:9fe85e9af68b552359ac09',
-        },
+        useValue: environment.firebase,
       },
-      SharedModuleModule,
-      CommonModule,
-      AngularFireAuthModule,
     ],
+
     children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'landing',
+      },
+      {
+        path: 'login',
+        pathMatch: 'full',
+        component: LoginComponent,
+        ...canActivate(redirectLoggedIn),
+      },
       {
         path: 'landing',
         pathMatch: 'prefix',
-        loadChildren: () =>
-          import('@libs/landing-page/landing-page.routes').then(
-            (routes) => routes.landingPageRoutes
-          ),
-      },
-      {
-        path: '',
-        component: LoginComponent,
-        pathMatch: 'full',
+        ...canActivate(redirectUnauthorized),
+        loadChildren: () => import('@libs/landing-page').then((r) => r.routes),
       },
       {
         path: 'register',
@@ -53,18 +63,23 @@ export const appRoutes: Routes = [
         pathMatch: 'full',
       },
       {
-        path: 'email-verification',
-        component: EmailVerificationComponent,
         pathMatch: 'full',
+        component: EmailVerificationComponent,
+        path: 'email-verification',
       },
       {
         path: 'passReset',
-        component: PassResetComponent,
+        component: RequestPassResetComponent,
         pathMatch: 'full',
       },
       {
         path: 'code',
         component: OobcodeCheckerComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: '**',
+        component: ErrorComponent,
         pathMatch: 'full',
       },
     ],

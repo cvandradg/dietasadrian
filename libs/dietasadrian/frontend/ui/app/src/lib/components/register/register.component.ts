@@ -1,10 +1,11 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { SharedModuleModule } from '@shared-modules';
 import { RouterModule } from '@angular/router';
-import { Handler } from '@classes/Handler';
-import { Subject, map, switchMap, combineLatest } from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { RegisterStore } from './register.store';
+import { Subject, map, combineLatest } from 'rxjs';
+import { SharedModuleModule } from '@shared-modules';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { firebaseAuthHelper } from '@classes/firebaseAuthHelper';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
 @Component({
   standalone: true,
@@ -13,9 +14,11 @@ import { NavbarComponent } from '../navbar/navbar.component';
   styleUrls: ['./register.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, SharedModuleModule, NavbarComponent, RouterModule],
+  providers: [RegisterStore],
 })
-export class RegisterComponent extends Handler {
-  onCreateAccount$ = new Subject<any>();
+export class RegisterComponent extends firebaseAuthHelper {
+  readonly registerStore = inject(RegisterStore);
+
   isPassStrong$ = new Subject<boolean>();
 
   isValidUser$ = this.loginInputForm.valueChanges.pipe(
@@ -24,20 +27,5 @@ export class RegisterComponent extends Handler {
 
   enableButton$ = combineLatest([this.isValidUser$, this.isPassStrong$]).pipe(
     map(([isValidUser, isPassStrong]) => isValidUser && isPassStrong)
-  );
-
-  createAccount$ = this.onCreateAccount$.pipe(
-    switchMap(() =>
-      this.authService.createAccount(
-        this.loginInputForm.value as { user: string; pass: string }
-      )
-    ),
-    map((res: any) => {
-      this.loginInputForm.controls.pass.disable();
-      this.loginInputForm.controls.user.disable();
-
-      this.authService.sendEmailVerification(res?.user);
-      return true;
-    })
   );
 }

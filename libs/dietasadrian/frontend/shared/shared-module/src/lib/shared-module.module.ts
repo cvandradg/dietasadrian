@@ -14,14 +14,14 @@ import { SharedStoreFacade } from './+state/shared-store.facade';
 
 @NgModule({
   imports: [
-    CommonModule,
     MODULES,
     COMPONENTS,
+    CommonModule,
+    EffectsModule.forFeature([SharedStoreEffects]),
     StoreModule.forFeature(
       fromSharedStore.SHARED_STORE_FEATURE_KEY,
       fromSharedStore.sharedStoreReducer
     ),
-    EffectsModule.forFeature([SharedStoreEffects]),
   ],
   exports: [MODULES, COMPONENTS],
   providers: [SERVICES, SharedStoreFacade],

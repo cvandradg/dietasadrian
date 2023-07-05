@@ -17,6 +17,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@appStore/*": ["libs/dietasadrian/frontend/ui/app/src/lib/+state/*"],
+      "@authHelper": [
+        "libs/dietasadrian/frontend/ui/app/src/lib/classes/firebaseAuthHelper.ts"
+      ],
       "@classes/*": [
         "libs/dietasadrian/frontend/shared/shared-module/src/lib/classes/*"
       ],
@@ -35,7 +39,9 @@
       "@dietasadrian/frontend/app": [
         "libs/dietasadrian/frontend/ui/app/src/index.ts"
       ],
-      "@enviroments/*": ["apps/dietasadrian/src/environments/*"],
+      "@enviroments/*": [
+        "libs/dietasadrian/frontend/shared/shared-module/src/lib/environments/*"
+      ],
       "@guards/*": [
         "libs/dietasadrian/frontend/shared/shared-module/src/lib/guards/*"
       ],
@@ -46,9 +52,13 @@
         "libs/dietasadrian/frontend/shared/shared-module/src/lib/interfaces/*"
       ],
       "@libs/dietas/*": ["libs/dietasadrian/frontend/ui/dietas/src/lib/*"],
+      "@libs/landing-page": [
+        "libs/dietasadrian/frontend/ui/landing-page/src/lib/routes.ts"
+      ],
       "@libs/landing-page/*": [
         "libs/dietasadrian/frontend/ui/landing-page/src/lib/*"
       ],
+
       "@materialFunctions": [
         "libs/dietasadrian/frontend/shared/materialFunctions.ts"
       ],
@@ -61,8 +71,8 @@
       "@shared-modules/*": [
         "libs/dietasadrian/frontend/shared/shared-module/src/lib/*"
       ],
-      "@shared-modules/store/*": [
-        "libs/dietasadrian/frontend/shared/shared-module/src/lib/+state/*"
+      "types": [
+        "libs/dietasadrian/frontend/shared/shared-module/src/lib/types/types.ts"
       ]
     }
   },

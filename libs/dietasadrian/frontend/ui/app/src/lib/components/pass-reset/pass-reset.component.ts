@@ -1,41 +1,21 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { ActivatedRoute, RouterModule } from '@angular/router';
-import { Handler } from '@classes/Handler';
+import { Component, inject, Input } from '@angular/core';
+import { passResetStore } from './pass-reset.store';
 import { SharedModuleModule } from '@shared-modules';
-import { combineLatest, map, Subject, switchMap } from 'rxjs';
+import { firebaseAuthHelper } from '@classes/firebaseAuthHelper';
 
 @Component({
   standalone: true,
   selector: 'dietas-adrian-nx-workspace-pass-reset',
   templateUrl: './pass-reset.component.html',
   styleUrls: ['./pass-reset.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, SharedModuleModule, RouterModule],
+  imports: [CommonModule, SharedModuleModule],
+  providers: [passResetStore],
 })
-export class PassResetComponent extends Handler {
-  route = inject(ActivatedRoute);
-  onPassReset$ = new Subject<any>();
+export class PassResetComponent extends firebaseAuthHelper {
 
-  isPassStrong$ = new Subject<boolean>();
+  @Input()
+  public user!: string;
 
-  isValidPassword$ = this.loginInputForm.valueChanges.pipe(
-    map(() => !this.loginInputForm.controls.pass.invalid)
-  );
-
-  enableButton$ = combineLatest([
-    this.isValidPassword$,
-    this.isPassStrong$,
-  ]).pipe(
-    map(([isValidPassword, isPassStrong]) => isValidPassword && isPassStrong)
-  );
-
-  passReset$ = this.onPassReset$.pipe(
-    switchMap(() =>
-      this.authService.resetPass(
-        this.route.snapshot.queryParamMap.get('oobCode') || '',
-        this.loginInputForm.value.pass as string
-      )
-    )
-  );
+  passResetStore = inject(passResetStore);
 }

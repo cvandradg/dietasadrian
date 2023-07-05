@@ -1,10 +1,11 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SharedModuleModule } from '@shared-modules';
-import { ActivatedRoute, RouterModule } from '@angular/router';
-import { map, switchMap } from 'rxjs';
-import { Handler } from '@classes/Handler';
+import { RouterModule } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { SharedModuleModule } from '@shared-modules';
+import { firebaseAuthHelper } from '@classes/firebaseAuthHelper';
+import { provideComponentStore } from '@ngrx/component-store';
+import { EmailVerificationStore } from './email-verification.store';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
 @Component({
   standalone: true,
@@ -13,27 +14,8 @@ import { NavbarComponent } from '../navbar/navbar.component';
   styleUrls: ['./email-verification.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, SharedModuleModule, NavbarComponent, RouterModule],
+  providers: [provideComponentStore(EmailVerificationStore)],
 })
-export class EmailVerificationComponent extends Handler {
-  route = inject(ActivatedRoute);
-
-  verifyMail$ = this.authService
-    .verifyEmail(this.route.snapshot.queryParamMap.get('oobCode') || '')
-    .pipe(
-      switchMap(() => this.authService.getCurrentUser()),
-      map(async (userInfo: any) => {
-        await userInfo?.multiFactor?.user.reload();
-
-        if (!userInfo?.emailVerified)
-          return this.authService.error$.next({
-            status: true,
-            message:
-              'El correo no ha sido verificado, inténtalo de nuevo o ponte en contacto con nosotros.',
-            error: undefined,
-          });
-
-        this.router.navigate(['/landing']);
-        return '';
-      })
-    );
+export class EmailVerificationComponent extends firebaseAuthHelper {
+  emailVerificationStore = inject(EmailVerificationStore);
 }

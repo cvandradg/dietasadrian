@@ -1,9 +1,10 @@
 import { Injectable, inject } from '@angular/core';
-import { select, Store, Action } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 
-import * as SharedStoreActions from './shared-store.actions';
-import * as SharedStoreFeature from './shared-store.reducer';
-import * as SharedStoreSelectors from './shared-store.selectors';
+import * as actions from './shared-store.actions';
+import * as selectors from './shared-store.selectors';
+import { generalError } from '../types/types';
+import { cloneDeep } from 'lodash-es';
 
 @Injectable({
   providedIn: 'root',
@@ -12,44 +13,44 @@ export class SharedStoreFacade {
   private readonly store = inject(Store);
 
   showLoader() {
-    this.store.dispatch(SharedStoreActions.showLoading());
+    this.store.dispatch(actions.showLoading());
   }
 
   hideLoader() {
-    this.store.dispatch(SharedStoreActions.hideLoading());
+    this.store.dispatch(actions.hideLoading());
   }
-
-  loading$ = this.store.pipe(
-    select(SharedStoreSelectors.selectSharedStoreLoading)
-  );
-
-  showSidenavbar$ = this.store.pipe(
-    select(SharedStoreSelectors.toogleSidenavbar)
-  );
 
   toggleSidenavbar() {
-    this.store.dispatch(SharedStoreActions.toggleSidenavbar());
+    this.store.dispatch(actions.toggleSidenavbar());
   }
 
-  /**
-   * Combine pieces of state using createSelector,
-   * and expose them as observables through the facade.
-   */
-  // loaded$ = this.store.pipe(
-  //   select(SharedStoreSelectors.selectSharedStoreLoaded)
-  // );
-  // allSharedStore$ = this.store.pipe(
-  //   select(SharedStoreSelectors.selectAllSharedStore)
-  // );
-  // selectedSharedStore$ = this.store.pipe(
-  //   select(SharedStoreSelectors.selectEntity)
-  // );
+  getSession() {
+    this.store.dispatch(actions.getSession());
+  }
 
-  /**
-   * Use the initialization action to perform one
-   * or more tasks in your Effects.
-   */
-  // init() {
-  //   this.store.dispatch(SharedStoreActions.initSharedStore());
-  // }
+  accessAccount(credentials: any) {
+    this.store.dispatch(actions.accessAccount(credentials));
+  }
+
+  requestPassReset(email: string) {
+    this.store.dispatch(actions.requestPassReset({ email }));
+  }
+
+  storeUserInfo(userInfo: any) {
+    userInfo = cloneDeep(userInfo);
+    this.store.dispatch(actions.storeUserInfo({ userInfo }));
+  }
+
+  setError({ status, message, error }: generalError) {
+    this.store.dispatch(actions.actionFailure({ status, message, error }));
+  }
+
+  signOut() {
+    this.store.dispatch(actions.signOut());
+  }
+
+  error$ = this.store.pipe(select(selectors.error));
+  loading$ = this.store.pipe(select(selectors.loading));
+  userInfo$ = this.store.pipe(select(selectors.userInfo));
+  showSidenavbar$ = this.store.pipe(select(selectors.toogleSidenavbar));
 }

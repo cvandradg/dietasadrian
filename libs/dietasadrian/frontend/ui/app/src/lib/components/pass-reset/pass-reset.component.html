@@ -1,98 +1,38 @@
-<div
-  class="container"
+<ng-container
   *ngrxLet="{
-    passReset: passReset$ | ngrxPush,
-    isButtonEnable: enableButton$ | ngrxPush,
-    error: authService.error$ | ngrxPush,
-    loading: loading$ | ngrxPush
+    error: passResetStore.error$ | ngrxPush,
+    loading: passResetStore.loading$ | ngrxPush,
+    requested: passResetStore.requested$ | ngrxPush
   } as vm"
 >
-  <div class="title">Cambiar contraseña</div>
-  <div class="description">
-    Si no deseas cambiar la contraseña cierra esta ventana.
-  </div>
-
-  <div class="reset-pass-input">
-    <form [formGroup]="loginInputForm" class="form-pass-reset-inputs">
-      <mat-form-field>
-        <mat-label>Contraseña</mat-label>
-        <input
-          matInput
-          placeholder="EjemploDeClave1!"
-          type="password"
-          formControlName="pass"
-          (keyup.enter)="onPassReset$.next(true)"
-        />
-      </mat-form-field>
-    </form>
-
-    <div
-      class="horizontal-animation clase"
-      [ngClass]="{ 'enabled-button': vm.isButtonEnable || vm.passReset }"
-    >
-      <button
-        mat-button
-        [disabled]="vm.passReset"
-        (click)="vm.isButtonEnable && onPassReset$.next(true)"
-        (keyup.enter)="vm.isButtonEnable && onPassReset$.next(true)"
-      >
-        <div class="pass-reset-button">
-          <p>Cambiar contraseña</p>
-          <fa-icon
-            *ngIf="!vm.loading"
-            [icon]="['fas', 'arrow-right']"
-            style="--fa-animation-iteration-count: 2"
-            class="icon fa-xl fa-shake"
-            style="--fa-animation-iteration-count: 2"
-          />
-
-          <fa-icon
-            *ngIf="vm.loading"
-            [icon]="['fas', 'spinner-third']"
-            class="icon fa-xl fa-spin"
-            style="--fa-animation-duration: 1s"
-          />
-        </div>
-      </button>
-    </div>
-    <div [routerLink]="'/'">
-      <div
-        class="success-message centered"
-        *ngIf="!vm.loading && vm.passReset"
-      >
-        <p>Creaste una nueva contraseña.</p>
-        <fa-icon
-          [icon]="['fas', 'check']"
-          style="--fa-animation-iteration-count: 2"
-          class="icon fa-xl fa-shake"
-          style="--fa-animation-iteration-count: 2"
-        />
-      </div>
-      <div
-        class="success-message centered"
-        *ngIf="!vm.loading && vm.passReset"
-      >
-        Click aca para acceder
-      </div>
-    </div>
-
-    <div
-      class="error-message centered"
-      *ngIf="!vm.loading && vm.error?.status"
-    >
-      <p>
-        {{ vm.error?.message }}
-      </p>
-      <fa-icon
-        [icon]="['fas', 'xmark']"
-        style="--fa-animation-iteration-count: 2"
-        class="icon fa-xl fa-shake"
-        style="--fa-animation-iteration-count: 2"
-      />
-    </div>
-    <dietas-adrian-nx-workspace-strength-meter
-      [password]="loginInputForm.get('pass')?.value || ''"
-      (enableButton)="isPassStrong$.next($event)"
+  <div class="forgot-password" (click)="passResetStore.passReset(user)">
+    <p>Recuperar Contraseña</p>
+    <fa-icon
+      *ngIf="vm.loading"
+      [icon]="['fas', 'spinner-third']"
+      class="icon fa-xl fa-spin"
+      style="--fa-animation-duration: 1s"
     />
   </div>
-</div>
+
+  <div
+    class="success-message aligment"
+    *ngIf="vm.requested && !vm.loading && !vm.error?.status"
+  >
+    <p>Si el correo es válido te llegará un link para cambiar tu contraseña.</p>
+    <fa-icon
+      [icon]="['fas', 'check']"
+      style="--fa-animation-iteration-count: 2"
+      class="icon fa-xl fa-shake"
+      style="--fa-animation-iteration-count: 2"
+    />
+  </div>
+  <div class="error-message" *ngIf="!vm.loading && vm.error?.status">
+    <p>{{ vm.error?.message }}</p>
+    <fa-icon
+      [icon]="['fas', 'xmark']"
+      style="--fa-animation-iteration-count: 2"
+      class="icon fa-xl fa-shake"
+    />
+  </div>
+</ng-container>

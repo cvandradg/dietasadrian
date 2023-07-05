@@ -1,14 +1,9 @@
 <div
   class="login-container"
   *ngrxLet="{
-    user: user$ | ngrxPush,
-    loading: loading$ | ngrxPush,
-    passReset: passReset$ | ngrxPush,
-    session: getSession$ | ngrxPush,
-    error: authService.error$ | ngrxPush,
-    googleSignin: googleSignin$ | ngrxPush,
-    passResetLoader: passResetLoader$ | ngrxPush,
-    passResetRequested: (passReset$ | ngrxPush) && !(authService.error$ | ngrxPush)?.status
+    loading: loginStore.loading$ | ngrxPush,
+    user: facade.userInfo$ | ngrxPush,
+    error: loginStore.error$ | ngrxPush,
   } as vm"
 >
   <div class="container">
@@ -27,7 +22,7 @@
               placeholder="AlgunCorreo@dominio.com"
               type="email"
               formControlName="user"
-              (keyup.enter)="onLogin$.next(loginInputForm.value)"
+              (keyup.enter)="loginStore.accessAccount$(credentials)"
             />
           </mat-form-field>
           <mat-form-field>
@@ -37,7 +32,7 @@
               placeholder="EjemploDeClave1!"
               type="password"
               formControlName="pass"
-              (keyup.enter)="onLogin$.next(loginInputForm.value)"
+              (keyup.enter)="loginStore.accessAccount$(credentials)"
             />
           </mat-form-field>
         </form>
@@ -45,7 +40,7 @@
         <ng-container #loginComponents *ngrxLet="vm.user">
           <dietas-adrian-nx-workspace-primary-animated-button
             #loginButton
-            (submitEvent)="onLogin$.next(loginInputForm.value)"
+            (submitEvent)="loginStore.accessAccount$(credentials)"
             [enable]="!loginInputForm.invalid"
             [loading]="!vm.loading"
             [buttonText]="'Accede a Tu Cuenta'"
@@ -54,7 +49,7 @@
             class="warning-message aligment"
             *ngIf="
               !vm.loading &&
-              (vm.user || vm.session)?.emailVerified === false &&
+              vm.user?.emailVerified === false &&
               !vm.error?.status
             "
           >
@@ -79,8 +74,7 @@
       <div class="divison">/</div>
       <div class="automatic-signin-tools">
         <dietas-adrian-nx-workspace-secondary-animated-button
-          *ngrxLet="vm.googleSignin"
-          (submitEvent)="onGoogleSignin$.next(true)"
+          (submitEvent)="loginStore.googleSignin$()"
           [buttonText]="'Accede con Google'"
           [fontawesomeIcon]="['fab', 'google']"
         />
@@ -92,36 +86,8 @@
         />
       </div>
     </div>
-    <div
-      class="forgot-password"
-      (click)="
-        onPassReset$.next(loginInputForm.controls.user.value);
-        passResetLoader$.next(true)
-      "
-    >
-      <p>Recuperar Contraseña</p>
-      <fa-icon
-        *ngIf="vm.passResetLoader"
-        [icon]="['fas', 'spinner-third']"
-        class="icon fa-xl fa-spin"
-        style="--fa-animation-duration: 1s"
-      />
-    </div>
 
-    <div
-      class="success-message aligment"
-      *ngIf="vm.passResetRequested && !vm.passResetLoader"
-    >
-      <p>
-        Si el correo es válido te llegará un link para cambiar tu contraseña.
-      </p>
-      <fa-icon
-        [icon]="['fas', 'check']"
-        style="--fa-animation-iteration-count: 2"
-        class="icon fa-xl fa-shake"
-        style="--fa-animation-iteration-count: 2"
-      />
-    </div>
+    <dietas-adrian-nx-workspace-pass-reset [user]="credentials.user" />
   </div>
   <footer class="login-footer">
     <p>Privacy Policy</p>

@@ -11,13 +11,12 @@ import {
 } from '@angular/router';
 import { routes } from '../routes';
 import { StoreModule } from '@ngrx/store';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EffectsModule } from '@ngrx/effects';
-import { RouterState, StoreRouterConnectingModule } from '@ngrx/router-store';
-
+import { BrowserModule } from '@angular/platform-browser';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ErrorHandlerService } from '@services/error-handler/error-handler.service';
+import { RouterState, StoreRouterConnectingModule } from '@ngrx/router-store';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -26,6 +25,8 @@ export const appConfig: ApplicationConfig = {
       RouterModule,
       BrowserModule,
       BrowserAnimationsModule,
+      EffectsModule.forRoot([]),
+      StoreRouterConnectingModule.forRoot({ routerState: RouterState.Full }),
       StoreModule.forRoot(
         {},
         {
@@ -35,14 +36,16 @@ export const appConfig: ApplicationConfig = {
             strictStateImmutability: true,
           },
         }
-      ),
-      EffectsModule.forRoot([]),
-      StoreRouterConnectingModule.forRoot({ routerState: RouterState.Full })
+      )
     ),
-    provideStoreDevtools({ logOnly: !isDevMode(), trace: true }),
     {
       provide: ErrorHandler,
       useClass: ErrorHandlerService,
     },
+    provideStoreDevtools({
+      logOnly: !isDevMode(),
+      trace: true,
+      traceLimit: 70,
+    }),
   ],
 };

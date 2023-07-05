@@ -1,10 +1,10 @@
 <div
   class="container"
   *ngrxLet="{
-    loading: loading$ | ngrxPush,
-    account: createAccount$ | ngrxPush,
-    error: authService.error$ | ngrxPush,
+    userInfo: registerStore.user$ | ngrxPush,
+    error: registerStore.error$ | ngrxPush,
     enableButton: enableButton$ | ngrxPush,
+    loading: registerStore.loading$ | ngrxPush,
   } as vm"
 >
   <div class="title">Crea tu cuenta</div>
@@ -20,7 +20,9 @@
           type="email"
           required="true"
           formControlName="user"
-          (keyup.enter)="vm.enableButton && onCreateAccount$.next(true)"
+          (keyup.enter)="
+            vm.enableButton && registerStore.createAccount$(loginInputForm)
+          "
         />
       </mat-form-field>
       <mat-form-field>
@@ -31,7 +33,9 @@
           type="password"
           required="true"
           formControlName="pass"
-          (keyup.enter)="vm.enableButton && onCreateAccount$.next(true)"
+          (keyup.enter)="
+            vm.enableButton && registerStore.createAccount$(loginInputForm)
+          "
         />
       </mat-form-field>
     </form>
@@ -39,21 +43,27 @@
     <div
       class="horizontal-animation clase"
       [ngClass]="{
-        'enabled-button': vm.enableButton || vm.account
+        'enabled-button': vm.enableButton || vm.userInfo
       }"
     >
       <button
         mat-button
-        [disabled]="!vm.enableButton && vm.loading && vm.account"
-        (click)="vm.enableButton && !vm.account && onCreateAccount$.next(true)"
+        [disabled]="!vm.enableButton && vm.loading && vm.userInfo"
+        (click)="
+          vm.enableButton &&
+            !vm.userInfo &&
+            registerStore.createAccount$(loginInputForm)
+        "
         (keyup.enter)="
-          vm.enableButton && !vm.account && onCreateAccount$.next(true)
+          vm.enableButton &&
+            !vm.userInfo &&
+            registerStore.createAccount$(loginInputForm)
         "
       >
         <div class="register-button">
           <p>Crear Cuenta</p>
           <fa-icon
-            *ngIf="!vm.loading && !vm.account"
+            *ngIf="!vm.loading && !vm.userInfo"
             [icon]="['fas', 'arrow-right']"
             style="--fa-animation-iteration-count: 2"
             class="icon fa-xl fa-shake"
@@ -68,7 +78,7 @@
           ></fa-icon>
 
           <fa-icon
-            *ngIf="!vm.loading && vm.account"
+            *ngIf="!vm.loading && vm.userInfo"
             [icon]="['fas', 'check']"
             style="--fa-animation-iteration-count: 2"
             class="icon fa-xl fa-shake"
@@ -79,7 +89,7 @@
     </div>
     <!-- [routerLink]="'/'"  -->
     <div class="centered">
-      <div class="warning-message" *ngIf="!vm.loading && vm.account">
+      <div class="warning-message" *ngIf="!vm.loading && vm.userInfo">
         <p>Revisa tu correo para activar tu cuenta</p>
         <fa-icon
           [icon]="['fas', 'message-exclamation']"
@@ -88,7 +98,7 @@
           style="--fa-animation-iteration-count: 2"
         ></fa-icon>
       </div>
-      <div class="success-message" *ngIf="!vm.loading && vm.account">
+      <div class="success-message" *ngIf="!vm.loading && vm.userInfo">
         <p>Creaste una nueva cuenta.</p>
         <fa-icon
           [icon]="['fas', 'check']"

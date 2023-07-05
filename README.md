@@ -29,6 +29,15 @@ This project was generated using [Nx](https://nx.dev).
 19. https://www.youtube.com/watch?v=EULYt4sHD1k&ab_channel=MikePearson%2FEngineering
 20. https://www.youtube.com/watch?v=sIeTGWSUK7M&ab_channel=JoshuaMorony
 21. https://www.youtube.com/watch?v=54q7P9PB0WU&ab_channel=JoshuaMorony
+22. https://www.youtube.com/watch?v=WvMxnGfqEis&ab_channel=JoshuaMorony
+23. https://www.youtube.com/watch?v=xPmtsD5LRqQ&ab_channel=NG-DEConference
+24. https://jcs.wtf/catch-switchmap-error-rxjs-operator/
+25. https://www.ngxs.io/v/v3.5/ngxs-labs/dispatch-decorator
+26. https://github.com/ngrx/platform/issues/3384
+
+important 27. https://dev.to/this-is-angular/removing-boilerplate-code-in-ngrx-component-store-1f83
+
+important 28. https://dev.to/jonrimmer/where-to-initiate-data-load-in-ngrx-358l
 
 ## TODO
 

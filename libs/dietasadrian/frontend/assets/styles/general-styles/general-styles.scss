@@ -17,7 +17,8 @@
   color: #f44336;
 }
 
-.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+.mdc-text-field--filled:not(.mdc-text-field--disabled),
+.mdc-text-field--disabled.mdc-text-field--filled {
   padding: 0.6rem;
   background-color: #222222 !important;
 }

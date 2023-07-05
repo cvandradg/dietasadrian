@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { RouterModule } from '@angular/router';
-import { Handler } from '@classes/Handler';
+import { firebaseAuthHelper } from '@classes/firebaseAuthHelper';
 import { SharedModuleModule } from '@shared-modules';
 
 @Component({
@@ -13,5 +13,5 @@ import { SharedModuleModule } from '@shared-modules';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, RouterModule, SharedModuleModule],
 })
-export class LandingPageComponent extends Handler {
+export class LandingPageComponent extends firebaseAuthHelper {
 }

@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, HostListener, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostListener,
+  OnInit,
+  inject,
+} from '@angular/core';
 
 import { CommonModule } from '@angular/common';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
@@ -24,11 +30,12 @@ import { NutritionalCompositionComponent } from '../nutritional-composition/nutr
   ],
 })
 export class CreateDietsComponent implements OnInit {
+  overlay = inject(Overlay);
+  helper = inject(HelperService);
+
   meals: Meal[] = [];
 
   screenSize = 0;
-
-  constructor(public overlay: Overlay, private helper: HelperService) {}
 
   ngOnInit(): void {
     window.dispatchEvent(new Event('resize'));

@@ -4,13 +4,12 @@ import {
   SharedStoreState,
 } from './shared-store.reducer';
 
-// Lookup the 'SharedStore' feature state managed by NgRx
 export const selectSharedStoreState = createFeatureSelector<SharedStoreState>(
   SHARED_STORE_FEATURE_KEY
 );
 
 export const selectFeature = (state: SharedStoreState) => state.loading;
-export const selectSharedStoreLoading = createSelector(
+export const loading = createSelector(
   selectSharedStoreState,
   (state: SharedStoreState) => state.loading
 );
@@ -20,35 +19,12 @@ export const toogleSidenavbar = createSelector(
   (state: SharedStoreState) => state.toggleSidenavbar
 );
 
-// const { selectAll, selectEntities } = sharedStoreAdapter.getSelectors();
+export const error = createSelector(
+  selectSharedStoreState,
+  (state: SharedStoreState) => state.error
+);
 
-// export const selectSharedStoreLoaded = createSelector(
-//   selectSharedStoreState,
-//   (state: SharedStoreState) => state.loaded
-// );
-
-// export const selectSharedStoreError = createSelector(
-//   selectSharedStoreState,
-//   (state: SharedStoreState) => state.error
-// );
-
-// export const selectAllSharedStore = createSelector(
-//   selectSharedStoreState,
-//   (state: SharedStoreState) => selectAll(state)
-// );
-
-// export const selectSharedStoreEntities = createSelector(
-//   selectSharedStoreState,
-//   (state: SharedStoreState) => selectEntities(state)
-// );
-
-// export const selectSelectedId = createSelector(
-//   selectSharedStoreState,
-//   (state: SharedStoreState) => state.selectedId
-// );
-
-// export const selectEntity = createSelector(
-//   selectSharedStoreEntities,
-//   selectSelectedId,
-//   (entities, selectedId) => (selectedId ? entities[selectedId] : undefined)
-// );
+export const userInfo = createSelector(
+  selectSharedStoreState,
+  (state: SharedStoreState) => state.userInfo
+);

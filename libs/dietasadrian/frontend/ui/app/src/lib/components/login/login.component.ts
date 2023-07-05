@@ -1,60 +1,27 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { SharedModuleModule } from '@shared-modules';
+import { LoginStore } from './login.store';
 import { CommonModule } from '@angular/common';
-
 import { RouterModule } from '@angular/router';
-import { BehaviorSubject, switchMap, map, Subject, finalize, tap } from 'rxjs';
-import { Handler } from '@classes/Handler';
+import { SharedModuleModule } from '@shared-modules';
 import { NavbarComponent } from '../navbar/navbar.component';
-import { User } from 'firebase/auth';
+import { firebaseAuthHelper } from '@classes/firebaseAuthHelper';
+import { PassResetComponent } from '../pass-reset/pass-reset.component';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
 @Component({
   standalone: true,
-  selector: 'dietas-adrian-nx-workspace-login',
   templateUrl: './login.component.html',
+  selector: 'dietas-adrian-nx-workspace-login',
   styleUrls: ['./login.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, NavbarComponent, SharedModuleModule, RouterModule],
+  imports: [
+    CommonModule,
+    NavbarComponent,
+    SharedModuleModule,
+    RouterModule,
+    PassResetComponent,
+  ],
+  providers: [LoginStore],
 })
-export class LoginComponent extends Handler {
-  onLogin$ = new Subject<any>();
-  onPassReset$ = new Subject<any>();
-  onGoogleSignin$ = new Subject<any>();
-  passResetLoader$ = new BehaviorSubject<any>(false);
-
-  user$ = this.onLogin$.pipe(
-    switchMap((res: any) => this.authService.auth(res)),
-    map((res: any) => {
-      if (res?.user?.emailVerified) {
-        this.router.navigate(['/landing']);
-      }
-
-      this.authService.sendEmailVerification(res?.user);
-      return res?.user;
-    })
-  );
-
-  getSession$ = this.authService.getUserSession().pipe(
-    map((userInfo: any) => {
-      if (userInfo?.emailVerified) {
-        this.router.navigate(['/landing']);
-      }
-
-      this.authService.sendEmailVerification(userInfo as User);
-      return userInfo;
-    })
-  );
-
-  passReset$ = this.onPassReset$.pipe(
-    switchMap((res: any) =>
-      this.authService
-        .recoverPassword(res)
-        .pipe(finalize(() => this.passResetLoader$.next(false)))
-    )
-  );
-
-  googleSignin$ = this.onGoogleSignin$.pipe(
-    switchMap(() => this.authService.googleSignin()),
-    map(() => this.router.navigate(['/landing']))
-  );
+export class LoginComponent extends firebaseAuthHelper {
+  readonly loginStore = inject(LoginStore);
 }
