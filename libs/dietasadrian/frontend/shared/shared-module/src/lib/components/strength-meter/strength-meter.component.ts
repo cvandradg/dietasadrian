@@ -6,7 +6,6 @@ import {
   EventEmitter,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 @Component({
   standalone: true,
