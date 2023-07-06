@@ -1,21 +1,18 @@
-import { Injectable, inject } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Auth, GoogleAuthProvider, User } from '@angular/fire/auth';
-
-import { from, of, catchError, NEVER, map } from 'rxjs';
-import { sendEmailVerification } from 'firebase/auth';
-import { SharedStoreFacade } from '../../+state/shared-store.facade';
 import { FirebaseError } from 'firebase/app';
-
-import { ErrorHandlerService } from '../../services/error-handler/error-handler.service';
 import { Credentials } from '../../types/types';
+import { Injectable, inject } from '@angular/core';
+import { sendEmailVerification } from 'firebase/auth';
+import { from, of, catchError, NEVER, map } from 'rxjs';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { GoogleAuthProvider, User } from '@angular/fire/auth';
+import { SharedStoreFacade } from '../../+state/shared-store.facade';
+import { ErrorHandlerService } from '../../services/error-handler/error-handler.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   facade = inject(SharedStoreFacade);
-  authService = inject(Auth);
   firebaseAuth = inject(AngularFireAuth);
   errorHelperService = inject(ErrorHandlerService);
 
@@ -44,7 +41,6 @@ export class AuthService {
     return this.firebaseAuth.currentUser;
   }
 
-  
   getUserSession() {
     if (localStorage.getItem('attemptedToLoggedIn') !== 'true') return of(null);
 

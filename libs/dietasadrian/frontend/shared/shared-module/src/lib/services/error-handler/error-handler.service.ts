@@ -1,10 +1,4 @@
-import {
-  Injectable,
-  ErrorHandler,
-  inject,
-  Injector,
-  assertInInjectionContext,
-} from '@angular/core';
+import { Injectable, ErrorHandler, Injector } from '@angular/core';
 import { SharedStoreFacade } from '../../+state/shared-store.facade';
 import { FirebaseError } from 'firebase/app';
 

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MODULES } from '@shared-modules/exports/export-modules';
+import { MODULES } from '../../exports/export-modules';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 @Component({
