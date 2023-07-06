@@ -2,7 +2,7 @@ import { OnStoreInit } from '@ngrx/component-store';
 import { ActivatedRoute } from '@angular/router';
 import { Injectable, inject } from '@angular/core';
 import { ComponentStoreMixinHelper } from '@classes/component-store-helper';
-import { switchMap, from, tap, Observable } from 'rxjs';
+import { switchMap, tap, Observable } from 'rxjs';
 
 @Injectable()
 export class OobcodeCheckerStore
@@ -23,9 +23,7 @@ export class OobcodeCheckerStore
     return oobCode$.pipe(
       this.responseHandler(
         switchMap((oobCode) =>
-          from(this.authService.checkOobCode(oobCode)).pipe(
-            tap(this.oobCodeCheck)
-          )
+          this.authService.checkOobCode(oobCode).pipe(tap(this.oobCodeCheck))
         )
       )
     );

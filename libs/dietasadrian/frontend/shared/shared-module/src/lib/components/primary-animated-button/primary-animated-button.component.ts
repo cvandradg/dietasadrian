@@ -10,11 +10,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   imports: [CommonModule, MODULES],
 })
 export class PrimaryAnimatedButtonComponent {
-  @Output() submitEvent = new EventEmitter<never>();
-  @Input() loading = false;
   @Input() enable = false;
-  @Input()
-  buttonText!: string;
+  @Input() loading = false;
+  @Input() buttonText!: string;
+  @Output() submitEvent = new EventEmitter<never>();
 
   onSubmit() {
     this.submitEvent.emit();

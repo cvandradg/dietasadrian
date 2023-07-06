@@ -2,20 +2,21 @@ import { createReducer, on, Action } from '@ngrx/store';
 import { EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import { SharedStoreEntity } from '../+state/shared-store.models';
 import * as SharedStoreActions from './shared-store.actions';
+import { AppError } from '@shared-modules/types/types';
 
 export const SHARED_STORE_FEATURE_KEY = 'sharedStore';
 
 export interface SharedStoreState {
+  userInfo: any;
+  error: AppError;
   loading: boolean;
   toggleSidenavbar: boolean;
-  userInfo: any;
-  error: { status: boolean; message: string; error: any };
 }
 
 export const initialSharedStoreState: SharedStoreState = {
   loading: false,
-  toggleSidenavbar: true,
   userInfo: null,
+  toggleSidenavbar: true,
   error: { status: false, message: '', error: {} },
 };
 
@@ -40,13 +41,13 @@ export const reducer = createReducer(
     ...state,
     toggleSidenavbar: !state.toggleSidenavbar,
   })),
-  on(SharedStoreActions.getSessionSuccess, (state, { userInfo }) => ({
-    ...state,
-    userInfo: userInfo || null,
-  })),
   on(SharedStoreActions.storeUserInfo, (state, { userInfo }) => ({
     ...state,
     userInfo,
+  })),
+  on(SharedStoreActions.getSessionSuccess, (state, { userInfo }) => ({
+    ...state,
+    userInfo: userInfo || null,
   })),
   on(SharedStoreActions.actionFailure, (state, { error, message, status }) => ({
     ...state,
