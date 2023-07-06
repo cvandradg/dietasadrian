@@ -3,8 +3,7 @@ import { select, Store } from '@ngrx/store';
 
 import * as actions from './shared-store.actions';
 import * as selectors from './shared-store.selectors';
-import { generalError } from '../types/types';
-import { cloneDeep } from 'lodash-es';
+import { deepCopy, generalError } from '../types/types';
 
 @Injectable({
   providedIn: 'root',
@@ -37,7 +36,7 @@ export class SharedStoreFacade {
   }
 
   storeUserInfo(userInfo: any) {
-    userInfo = cloneDeep(userInfo);
+    userInfo = deepCopy(userInfo);
     this.store.dispatch(actions.storeUserInfo({ userInfo }));
   }
 

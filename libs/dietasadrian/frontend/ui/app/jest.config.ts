@@ -3,7 +3,8 @@ export default {
   displayName: 'dietasadrian-frontend-ui-app',
   preset: '../../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  globals: {},
+
+  globals: { globalSetup: 'jest-preset-angular/global-setup' },
   coverageDirectory:
     '../../../../../coverage/libs/dietasadrian/frontend/ui/app',
   transform: {

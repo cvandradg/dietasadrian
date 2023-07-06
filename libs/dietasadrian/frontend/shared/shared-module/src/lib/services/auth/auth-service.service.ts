@@ -15,7 +15,6 @@ import { Credentials } from '../../types/types';
 })
 export class AuthService {
   facade = inject(SharedStoreFacade);
-  authService = inject(Auth);
   firebaseAuth = inject(AngularFireAuth);
   errorHelperService = inject(ErrorHandlerService);
 
