@@ -35,12 +35,10 @@ export class LoginStore extends ComponentStoreMixinHelper<object> {
           switchMap((credentials) =>
             this.authService.auth(credentials).pipe(
               tapResponse((user: User) => {
-                const userInfo = (user);
+                const userInfo = user;
 
                 this.facade.storeUserInfo(userInfo);
                 this.authService.sendEmailVerification(user);
-
-                userInfo?.emailVerified && this.router.navigate(['/landing']);
               }, this.handleError)
             )
           )

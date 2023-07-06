@@ -16,8 +16,6 @@ export class firebaseAuthHelper {
   facade = inject(SharedStoreFacade);
   errorHelperService = inject(ErrorHandlerService);
 
-  loading$ = this.facade.loading$;
-
   loginInputForm = this.formBuilder.group({
     user: validations(Validators.email),
     pass: validations(),
