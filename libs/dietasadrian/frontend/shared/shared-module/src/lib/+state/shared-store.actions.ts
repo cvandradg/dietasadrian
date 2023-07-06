@@ -61,19 +61,3 @@ export const sendEmailVerification = createAction(
   '[SharedStore Page] Send Email Verification',
   props<{ userInfo: any }>()
 );
-
-
-// import { SharedStoreEntity } from './general-app.models';
-// import { createAction, props } from '@ngrx/store';
-
-// export const initSharedStore = createAction('[SharedStore Page] Init');
-
-// export const loadSharedStoreSuccess = createAction(
-//   '[SharedStore/API] Load SharedStore Success',
-//   props<{ SharedStore: SharedStoreEntity[] }>()
-// );
-
-// export const loadSharedStoreFailure = createAction(
-//   '[SharedStore/API] Load SharedStore Failure',
-//   props<{ error: any }>()
-// );

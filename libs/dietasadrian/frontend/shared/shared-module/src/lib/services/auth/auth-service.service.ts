@@ -16,6 +16,10 @@ export class AuthService {
   firebaseAuth = inject(AngularFireAuth);
   errorHelperService = inject(ErrorHandlerService);
 
+  signOut() {
+    return from(this.firebaseAuth.signOut());
+  }
+
   verifyEmail(code: string) {
     return from(this.firebaseAuth.applyActionCode(code));
   }
@@ -24,28 +28,17 @@ export class AuthService {
     return from(this.firebaseAuth.checkActionCode(oobCode));
   }
 
-  signOut() {
-    return from(this.firebaseAuth.signOut());
+  recoverPassword(email: string) {
+    return from(this.firebaseAuth.sendPasswordResetEmail(email));
   }
 
   resetPass(code: string, pass: string) {
     return from(this.firebaseAuth.confirmPasswordReset(code, pass));
   }
 
-  recoverPassword(email: string) {
-    return from(this.firebaseAuth.sendPasswordResetEmail(email));
-  }
-
   getCurrentUser() {
     localStorage.setItem('attemptedToLoggedIn', 'true');
     return from(this.firebaseAuth.currentUser);
-  }
-
-  getUserSession() {
-    if (localStorage.getItem('attemptedToLoggedIn') !== 'true') return of(null);
-
-    localStorage.setItem('attemptedToLoggedIn', 'true');
-    return this.firebaseAuth.authState;
   }
 
   createAccount({ user, pass }: Credentials) {
@@ -67,6 +60,13 @@ export class AuthService {
     return from(this.firebaseAuth.signInWithEmailAndPassword(user, pass)).pipe(
       this.getUser
     );
+  }
+
+  getUserSession() {
+    if (localStorage.getItem('attemptedToLoggedIn') !== 'true') return of(null);
+
+    localStorage.setItem('attemptedToLoggedIn', 'true');
+    return this.firebaseAuth.authState;
   }
 
   sendEmailVerification(userInfo: User) {

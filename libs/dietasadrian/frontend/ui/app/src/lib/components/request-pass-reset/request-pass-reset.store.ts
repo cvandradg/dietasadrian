@@ -2,7 +2,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Injectable, inject } from '@angular/core';
 import { OnStoreInit, tapResponse } from '@ngrx/component-store';
 import { ComponentStoreMixinHelper } from '@classes/component-store-helper';
-import { Observable, from, switchMap, withLatestFrom } from 'rxjs';
+import { Observable, switchMap, withLatestFrom } from 'rxjs';
 
 @Injectable()
 export class RequestPassResetStore
