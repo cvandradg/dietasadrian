@@ -21,15 +21,15 @@ export class AuthService {
   }
 
   checkOobCode(oobCode: string) {
-    return this.firebaseAuth.checkActionCode(oobCode);
+    return from(this.firebaseAuth.checkActionCode(oobCode));
   }
 
   signOut() {
-    return this.firebaseAuth.signOut();
+    return from(this.firebaseAuth.signOut());
   }
 
   resetPass(code: string, pass: string) {
-    return this.firebaseAuth.confirmPasswordReset(code, pass);
+    return from(this.firebaseAuth.confirmPasswordReset(code, pass));
   }
 
   recoverPassword(email: string) {
@@ -38,7 +38,7 @@ export class AuthService {
 
   getCurrentUser() {
     localStorage.setItem('attemptedToLoggedIn', 'true');
-    return this.firebaseAuth.currentUser;
+    return from(this.firebaseAuth.currentUser);
   }
 
   getUserSession() {

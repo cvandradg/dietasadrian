@@ -40,7 +40,7 @@ export class RequestPassResetStore
       withLatestFrom(this.code$),
       this.responseHandler(
         switchMap(([{ pass }, oobCode]) =>
-          from(this.authService.resetPass(oobCode, pass)).pipe(
+          this.authService.resetPass(oobCode, pass).pipe(
             tapResponse(() => {
               this.setReseted(true);
               this.facade.signOut();
