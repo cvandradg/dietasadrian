@@ -112,7 +112,7 @@ export class ErrorHandlerService implements ErrorHandler {
       case 'auth/invalid-action-code':
         return this.errorObject(
           true,
-          'En tu correo encontrarás un link válido de verificación, si no, ponte en contacto con nosotros.',
+          'Este link ya no es válido, ponte en contacto con nosotros si crees que es un error.',
           error
         );
 
