@@ -101,7 +101,6 @@
   "optionalDependencies": {
     "@nrwl/nx-linux-x64-gnu": "15.8.5",
     "@nrwl/nx-linux-x64-musl": "15.8.5"
-
   },
   "packageManager": "yarn@4.0.0-rc.43"
 }
