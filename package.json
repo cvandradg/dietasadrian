@@ -100,10 +100,10 @@
   },
   "optionalDependencies": {
     "@nrwl/nx-linux-x64-musl": "15.9.5",
-    "@nx/nx-darwin-arm64": "16.5.1",
-    "@nx/nx-darwin-x64": "16.5.1",
-    "@nx/nx-linux-x64-gnu": "16.5.1",
-    "@nx/nx-win32-x64-msvc": "16.5.1"
+    "@nx/nx-darwin-arm64": "16.5.3",
+    "@nx/nx-darwin-x64": "16.5.3",
+    "@nx/nx-linux-x64-gnu": "16.5.3",
+    "@nx/nx-win32-x64-msvc": "16.5.3"
   },
   "packageManager": "yarn@4.0.0-rc.43"
 }

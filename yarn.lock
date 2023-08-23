@@ -5635,9 +5635,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nx/nx-darwin-arm64@npm:16.5.1":
-  version: 16.5.1
-  resolution: "@nx/nx-darwin-arm64@npm:16.5.1"
+"@nx/nx-darwin-arm64@npm:16.5.3":
+  version: 16.5.3
+  resolution: "@nx/nx-darwin-arm64@npm:16.5.3"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
@@ -5649,9 +5649,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nx/nx-darwin-x64@npm:16.5.1":
-  version: 16.5.1
-  resolution: "@nx/nx-darwin-x64@npm:16.5.1"
+"@nx/nx-darwin-x64@npm:16.5.3":
+  version: 16.5.3
+  resolution: "@nx/nx-darwin-x64@npm:16.5.3"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
@@ -5691,9 +5691,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nx/nx-linux-x64-gnu@npm:16.5.1":
-  version: 16.5.1
-  resolution: "@nx/nx-linux-x64-gnu@npm:16.5.1"
+"@nx/nx-linux-x64-gnu@npm:16.5.3":
+  version: 16.5.3
+  resolution: "@nx/nx-linux-x64-gnu@npm:16.5.3"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
@@ -5719,9 +5719,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nx/nx-win32-x64-msvc@npm:16.5.1":
-  version: 16.5.1
-  resolution: "@nx/nx-win32-x64-msvc@npm:16.5.1"
+"@nx/nx-win32-x64-msvc@npm:16.5.3":
+  version: 16.5.3
+  resolution: "@nx/nx-win32-x64-msvc@npm:16.5.3"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -9826,10 +9826,10 @@ __metadata:
     "@nx/eslint-plugin": "npm:16.7.3"
     "@nx/jest": "npm:16.7.3"
     "@nx/linter": "npm:16.7.3"
-    "@nx/nx-darwin-arm64": "npm:16.5.1"
-    "@nx/nx-darwin-x64": "npm:16.5.1"
-    "@nx/nx-linux-x64-gnu": "npm:16.5.1"
-    "@nx/nx-win32-x64-msvc": "npm:16.5.1"
+    "@nx/nx-darwin-arm64": "npm:16.5.3"
+    "@nx/nx-darwin-x64": "npm:16.5.3"
+    "@nx/nx-linux-x64-gnu": "npm:16.5.3"
+    "@nx/nx-win32-x64-msvc": "npm:16.5.3"
     "@nx/workspace": "npm:16.7.3"
     "@schematics/angular": "npm:16.2.0"
     "@types/angularfire": "npm:^0.8.35"
