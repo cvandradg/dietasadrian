@@ -9792,16 +9792,16 @@ __metadata:
     "@ngrx/store": "npm:^16.0.1"
     "@ngrx/store-devtools": "npm:~16.0.0"
     "@nrwl/cli": "npm:15.9.0"
+    "@nrwl/nx-darwin-arm64": "npm:15.9.0"
+    "@nrwl/nx-darwin-x64": "npm:15.9.0"
+    "@nrwl/nx-linux-x64-gnu": "npm:15.9.0"
     "@nrwl/nx-linux-x64-musl": "npm:15.9.5"
+    "@nrwl/nx-win32-x64-msvc": "npm:15.9.0"
     "@nx/angular": "npm:16.7.3"
     "@nx/cypress": "npm:16.7.3"
     "@nx/eslint-plugin": "npm:16.7.3"
     "@nx/jest": "npm:16.7.3"
     "@nx/linter": "npm:16.7.3"
-    "@nx/nx-darwin-arm64": "npm:16.7.3"
-    "@nx/nx-darwin-x64": "npm:16.7.3"
-    "@nx/nx-linux-x64-gnu": "npm:16.7.3"
-    "@nx/nx-win32-x64-msvc": "npm:16.7.3"
     "@nx/workspace": "npm:16.7.3"
     "@schematics/angular": "npm:16.2.0"
     "@types/angularfire": "npm:^0.8.35"
@@ -9839,15 +9839,15 @@ __metadata:
     yarn: "npm:^1.22.19"
     zone.js: "npm:~0.11.4"
   dependenciesMeta:
+    "@nrwl/nx-darwin-arm64":
+      optional: true
+    "@nrwl/nx-darwin-x64":
+      optional: true
+    "@nrwl/nx-linux-x64-gnu":
+      optional: true
     "@nrwl/nx-linux-x64-musl":
       optional: true
-    "@nx/nx-darwin-arm64":
-      optional: true
-    "@nx/nx-darwin-x64":
-      optional: true
-    "@nx/nx-linux-x64-gnu":
-      optional: true
-    "@nx/nx-win32-x64-msvc":
+    "@nrwl/nx-win32-x64-msvc":
       optional: true
   languageName: unknown
   linkType: soft
