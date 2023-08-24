@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModuleModule } from '@shared-modules';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -17,6 +17,8 @@ import { map } from 'rxjs/operators';
   imports: [CommonModule, SharedModuleModule],
 })
 export class UserInputFormComponent {
+  _formBuilder = inject(FormBuilder)
+
   firstFormGroup = this._formBuilder.group({
     firstCtrl: [''],
   });
@@ -29,7 +31,6 @@ export class UserInputFormComponent {
   stepperOrientation: Observable<StepperOrientation>;
 
   constructor(
-    private _formBuilder: FormBuilder,
     breakpointObserver: BreakpointObserver
   ) {
     this.stepperOrientation = breakpointObserver
