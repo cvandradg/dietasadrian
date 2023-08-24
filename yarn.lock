@@ -5630,6 +5630,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@nx/nx-darwin-arm64@npm:16.5.0":
+  version: 16.5.0
+  resolution: "@nx/nx-darwin-arm64@npm:16.5.0"
+  conditions: os=darwin & cpu=arm64
+  languageName: node
+  linkType: hard
+
 "@nx/nx-darwin-arm64@npm:16.7.4":
   version: 16.7.4
   resolution: "@nx/nx-darwin-arm64@npm:16.7.4"
@@ -5665,6 +5672,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@nx/nx-linux-arm64-musl@npm:16.5.0":
+  version: 16.5.0
+  resolution: "@nx/nx-linux-arm64-musl@npm:16.5.0"
+  conditions: os=linux & cpu=arm64 & libc=musl
+  languageName: node
+  linkType: hard
+
 "@nx/nx-linux-arm64-musl@npm:16.7.4":
   version: 16.7.4
   resolution: "@nx/nx-linux-arm64-musl@npm:16.7.4"
@@ -5672,30 +5686,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nx/nx-linux-x64-gnu@npm:16.7.4":
+"@nx/nx-linux-x64-gnu@npm:16.7.4, @nx/nx-linux-x64-gnu@npm:^16.7.4":
   version: 16.7.4
   resolution: "@nx/nx-linux-x64-gnu@npm:16.7.4"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@nx/nx-linux-x64-gnu@npm:=16.5.1":
-  version: 16.5.1
-  resolution: "@nx/nx-linux-x64-gnu@npm:16.5.1"
-  conditions: os=linux & cpu=x64 & libc=glibc
-  languageName: node
-  linkType: hard
-
-"@nx/nx-linux-x64-musl@npm:16.7.4":
+"@nx/nx-linux-x64-musl@npm:16.7.4, @nx/nx-linux-x64-musl@npm:^16.7.4":
   version: 16.7.4
   resolution: "@nx/nx-linux-x64-musl@npm:16.7.4"
-  conditions: os=linux & cpu=x64 & libc=musl
-  languageName: node
-  linkType: hard
-
-"@nx/nx-linux-x64-musl@npm:=16.5.1":
-  version: 16.5.1
-  resolution: "@nx/nx-linux-x64-musl@npm:16.5.1"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
@@ -9806,8 +9806,10 @@ __metadata:
     "@nx/eslint-plugin": "npm:16.7.4"
     "@nx/jest": "npm:16.7.4"
     "@nx/linter": "npm:16.7.4"
-    "@nx/nx-linux-x64-gnu": "npm:=16.5.1"
-    "@nx/nx-linux-x64-musl": "npm:=16.5.1"
+    "@nx/nx-darwin-arm64": "npm:16.5.0"
+    "@nx/nx-linux-arm64-musl": "npm:16.5.0"
+    "@nx/nx-linux-x64-gnu": "npm:^16.7.4"
+    "@nx/nx-linux-x64-musl": "npm:^16.7.4"
     "@nx/workspace": "npm:16.7.4"
     "@schematics/angular": "npm:16.2.0"
     "@types/angularfire": "npm:^0.8.35"
@@ -9845,9 +9847,9 @@ __metadata:
     yarn: "npm:^1.22.19"
     zone.js: "npm:~0.11.4"
   dependenciesMeta:
-    "@nx/nx-linux-x64-gnu":
+    "@nx/nx-darwin-arm64":
       optional: true
-    "@nx/nx-linux-x64-musl":
+    "@nx/nx-linux-arm64-musl":
       optional: true
   languageName: unknown
   linkType: soft
