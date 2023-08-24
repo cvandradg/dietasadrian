@@ -31,10 +31,6 @@ export class SharedStoreEffects implements OnInitEffects {
       map((response: any) => {
         const userInfo = deepCopy(response?.multiFactor.user);
 
-        if (userInfo)
-          !userInfo?.emailVerified &&
-            this.auth.sendEmailVerification(response as User);
-
         return actions.storeUserInfo({ userInfo });
       }),
       catchSwitchMapError((error) =>

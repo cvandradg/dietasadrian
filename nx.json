@@ -4,6 +4,11 @@
   "affected": {
     "defaultBase": "main"
   },
+  "pluginsConfig": {
+    "@nx/js": {
+      "analyzeSourceFiles": true
+    }
+  },
   "tasksRunnerOptions": {
     "default": {
       "runner": "nx-cloud",

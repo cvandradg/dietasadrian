@@ -3,7 +3,7 @@ jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     env:
-       NX_NON_NATIVE_HASHER: true
+      NX_NON_NATIVE_HASHER: true
     steps:
       - name: 'Checkout Repo'
         uses: actions/checkout@v3
@@ -12,9 +12,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18.x
-
-      - name: 'Install Nx globally'
-        run: sudo yarn add nx@latest
 
       - name: 'Yarn Install'
         uses: borales/actions-yarn@v3.0.0

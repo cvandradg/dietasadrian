@@ -4,10 +4,20 @@
     error: oobCodeCheckerStore.error$ | ngrxPush,
   } as vm"
 >
-  <div class="title">Procesando.</div>
-  <div class="description">
+  <!-- <span [routerLink]="'/'" class="trim-dots">
+  <p *ngIf="screenWidth <= 600; else elseBlock">AB</p>
+  <ng-template #elseBlock>Adrian Badilla</ng-template>
+</span> -->
+  <ng-container *ngIf="!vm.error?.status; else elseBlock" #name>
+    <div class="title">Procesando</div>
     <p>No cierres esta ventana.</p>
-  </div>
+  </ng-container>
+
+  <ng-template #elseBlock>
+    <div class="title">Error</div>
+    <div class="description"></div>
+  </ng-template>
+
   <fa-icon
     *ngIf="!vm.error?.status"
     [icon]="['fas', 'spinner-third']"

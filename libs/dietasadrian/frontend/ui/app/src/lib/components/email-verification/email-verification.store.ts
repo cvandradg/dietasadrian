@@ -39,7 +39,7 @@ export class EmailVerificationStore
     pipe(
       this.responseHandler(
         switchMap(() =>
-          this.authService.getCurrentUser().pipe(tap(this.verifyEmail))
+          this.authService.getUserSession().pipe(tap(this.verifyEmail))
         )
       )
     )

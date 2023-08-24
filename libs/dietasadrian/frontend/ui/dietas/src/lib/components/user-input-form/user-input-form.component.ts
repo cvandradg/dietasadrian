@@ -17,7 +17,7 @@ import { map } from 'rxjs/operators';
   imports: [CommonModule, SharedModuleModule],
 })
 export class UserInputFormComponent {
-  _formBuilder = inject(FormBuilder)
+  _formBuilder = inject(FormBuilder);
 
   firstFormGroup = this._formBuilder.group({
     firstCtrl: [''],
@@ -30,9 +30,7 @@ export class UserInputFormComponent {
   });
   stepperOrientation: Observable<StepperOrientation>;
 
-  constructor(
-    breakpointObserver: BreakpointObserver
-  ) {
+  constructor(breakpointObserver: BreakpointObserver) {
     this.stepperOrientation = breakpointObserver
       .observe('(min-width: 800px)')
       .pipe(map(({ matches }) => (matches ? 'horizontal' : 'vertical')));
