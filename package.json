@@ -44,6 +44,8 @@
     "@ngrx/store": "^16.0.1",
     "@nrwl/cli": "15.9.0",
     "@nx/angular": "16.7.4",
+    "@nx/nx-darwin-arm64": "16.5.0",
+    "@nx/nx-linux-arm64-musl": "16.5.0",
     "@nx/nx-linux-x64-gnu": "^16.7.4",
     "@nx/nx-linux-x64-musl": "^16.7.4",
     "@types/angularfire": "^0.8.35",
@@ -99,10 +101,6 @@
     "typescript": "5.1.6",
     "uuid": "^9.0.0",
     "webpack-cli": "^4.10.0"
-  },
-  "optionalDependencies": {
-    "@nx/nx-darwin-arm64": "16.5.0",
-    "@nx/nx-linux-arm64-musl": "16.5.0"
   },
   "packageManager": "yarn@4.0.0-rc.43"
 }

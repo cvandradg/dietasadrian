@@ -5633,6 +5633,7 @@ __metadata:
 "@nx/nx-darwin-arm64@npm:16.5.0":
   version: 16.5.0
   resolution: "@nx/nx-darwin-arm64@npm:16.5.0"
+  checksum: e6ba13e9a596515a7c356975b7b0d17442a62979a5af74ba5d5a8aadebe3a95dd89bced538a5ee9d974699ad086afa5ab80bdd193ab6a7543f662ec7876aac83
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
@@ -5675,6 +5676,7 @@ __metadata:
 "@nx/nx-linux-arm64-musl@npm:16.5.0":
   version: 16.5.0
   resolution: "@nx/nx-linux-arm64-musl@npm:16.5.0"
+  checksum: c4491c8a199ca25e968db3d14866adfcff5e0ed23e5315b341fb3eb3a8ae33d3576bbbb3b05856868a402dcf01a42c48d5eb96800d258f36aa41b5ce0b97e5f8
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
@@ -9846,11 +9848,6 @@ __metadata:
     webpack-visualizer-plugin: "npm:^0.1.11"
     yarn: "npm:^1.22.19"
     zone.js: "npm:~0.11.4"
-  dependenciesMeta:
-    "@nx/nx-darwin-arm64":
-      optional: true
-    "@nx/nx-linux-arm64-musl":
-      optional: true
   languageName: unknown
   linkType: soft
 
