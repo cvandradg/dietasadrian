@@ -5249,23 +5249,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nrwl/nx-linux-x64-gnu@npm:=15.8.5":
-  version: 15.8.5
-  resolution: "@nrwl/nx-linux-x64-gnu@npm:15.8.5"
-  conditions: os=linux & cpu=x64 & libc=glibc
-  languageName: node
-  linkType: hard
-
 "@nrwl/nx-linux-x64-musl@npm:15.9.0":
   version: 15.9.0
   resolution: "@nrwl/nx-linux-x64-musl@npm:15.9.0"
-  conditions: os=linux & cpu=x64 & libc=musl
-  languageName: node
-  linkType: hard
-
-"@nrwl/nx-linux-x64-musl@npm:=15.8.5":
-  version: 15.8.5
-  resolution: "@nrwl/nx-linux-x64-musl@npm:15.8.5"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
@@ -5508,9 +5494,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@nx/nx-darwin-arm64@npm:16.5.1":
+  version: 16.5.1
+  resolution: "@nx/nx-darwin-arm64@npm:16.5.1"
+  conditions: os=darwin & cpu=arm64
+  languageName: node
+  linkType: hard
+
 "@nx/nx-darwin-x64@npm:16.3.2":
   version: 16.3.2
   resolution: "@nx/nx-darwin-x64@npm:16.3.2"
+  conditions: os=darwin & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@nx/nx-darwin-x64@npm:16.5.1":
+  version: 16.5.1
+  resolution: "@nx/nx-darwin-x64@npm:16.5.1"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
@@ -5550,9 +5550,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@nx/nx-linux-x64-gnu@npm:16.5.1":
+  version: 16.5.1
+  resolution: "@nx/nx-linux-x64-gnu@npm:16.5.1"
+  conditions: os=linux & cpu=x64 & libc=glibc
+  languageName: node
+  linkType: hard
+
 "@nx/nx-linux-x64-musl@npm:16.3.2":
   version: 16.3.2
   resolution: "@nx/nx-linux-x64-musl@npm:16.3.2"
+  conditions: os=linux & cpu=x64 & libc=musl
+  languageName: node
+  linkType: hard
+
+"@nx/nx-linux-x64-musl@npm:16.5.1":
+  version: 16.5.1
+  resolution: "@nx/nx-linux-x64-musl@npm:16.5.1"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
@@ -5567,6 +5581,13 @@ __metadata:
 "@nx/nx-win32-x64-msvc@npm:16.3.2":
   version: 16.3.2
   resolution: "@nx/nx-win32-x64-msvc@npm:16.3.2"
+  conditions: os=win32 & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@nx/nx-win32-x64-msvc@npm:16.5.1":
+  version: 16.5.1
+  resolution: "@nx/nx-win32-x64-msvc@npm:16.5.1"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -9602,13 +9623,16 @@ __metadata:
     "@ngrx/store": "npm:^16.0.1"
     "@ngrx/store-devtools": "npm:~16.0.0"
     "@nrwl/cli": "npm:15.9.0"
-    "@nrwl/nx-linux-x64-gnu": "npm:=15.8.5"
-    "@nrwl/nx-linux-x64-musl": "npm:=15.8.5"
     "@nx/angular": "npm:16.3.2"
     "@nx/cypress": "npm:16.3.2"
     "@nx/eslint-plugin": "npm:16.3.2"
     "@nx/jest": "npm:16.3.2"
     "@nx/linter": "npm:16.3.2"
+    "@nx/nx-darwin-arm64": "npm:16.5.1"
+    "@nx/nx-darwin-x64": "npm:16.5.1"
+    "@nx/nx-linux-x64-gnu": "npm:16.5.1"
+    "@nx/nx-linux-x64-musl": "npm:16.5.1"
+    "@nx/nx-win32-x64-msvc": "npm:16.5.1"
     "@nx/workspace": "npm:16.3.2"
     "@schematics/angular": "npm:~15.0.0"
     "@types/angularfire": "npm:^0.8.35"
@@ -9646,9 +9670,15 @@ __metadata:
     yarn: "npm:^1.22.19"
     zone.js: "npm:~0.11.4"
   dependenciesMeta:
-    "@nrwl/nx-linux-x64-gnu":
+    "@nx/nx-darwin-arm64":
       optional: true
-    "@nrwl/nx-linux-x64-musl":
+    "@nx/nx-darwin-x64":
+      optional: true
+    "@nx/nx-linux-x64-gnu":
+      optional: true
+    "@nx/nx-linux-x64-musl":
+      optional: true
+    "@nx/nx-win32-x64-msvc":
       optional: true
   languageName: unknown
   linkType: soft

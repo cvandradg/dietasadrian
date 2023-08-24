@@ -99,8 +99,11 @@
     "webpack-cli": "^4.10.0"
   },
   "optionalDependencies": {
-    "@nrwl/nx-linux-x64-gnu": "=15.8.5",
-    "@nrwl/nx-linux-x64-musl": "=15.8.5"
+    "@nx/nx-darwin-arm64": "16.5.1",
+    "@nx/nx-darwin-x64": "16.5.1",
+    "@nx/nx-linux-x64-gnu": "16.5.1",
+    "@nx/nx-linux-x64-musl": "16.5.1",
+    "@nx/nx-win32-x64-msvc": "16.5.1"
   },
   "packageManager": "yarn@4.0.0-rc.43"
 }
