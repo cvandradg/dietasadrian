@@ -1,6 +1,5 @@
 {
   "hosting": {
-    "predeploy": "yarn build",
     "public": "dist/apps/dietasadrian",
     "ignore": [
       "firebase.json",
