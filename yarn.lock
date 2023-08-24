@@ -5349,9 +5349,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@nrwl/nx-darwin-arm64@npm:15.9.5":
+  version: 15.9.5
+  resolution: "@nrwl/nx-darwin-arm64@npm:15.9.5"
+  conditions: os=darwin & cpu=arm64
+  languageName: node
+  linkType: hard
+
 "@nrwl/nx-darwin-x64@npm:15.9.0":
   version: 15.9.0
   resolution: "@nrwl/nx-darwin-x64@npm:15.9.0"
+  conditions: os=darwin & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@nrwl/nx-darwin-x64@npm:15.9.5":
+  version: 15.9.5
+  resolution: "@nrwl/nx-darwin-x64@npm:15.9.5"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
@@ -5380,6 +5394,13 @@ __metadata:
 "@nrwl/nx-linux-x64-gnu@npm:15.9.0":
   version: 15.9.0
   resolution: "@nrwl/nx-linux-x64-gnu@npm:15.9.0"
+  conditions: os=linux & cpu=x64 & libc=glibc
+  languageName: node
+  linkType: hard
+
+"@nrwl/nx-linux-x64-gnu@npm:15.9.5":
+  version: 15.9.5
+  resolution: "@nrwl/nx-linux-x64-gnu@npm:15.9.5"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
@@ -9792,9 +9813,9 @@ __metadata:
     "@ngrx/store": "npm:^16.0.1"
     "@ngrx/store-devtools": "npm:~16.0.0"
     "@nrwl/cli": "npm:15.9.0"
-    "@nrwl/nx-darwin-arm64": "npm:15.9.0"
-    "@nrwl/nx-darwin-x64": "npm:15.9.0"
-    "@nrwl/nx-linux-x64-gnu": "npm:15.9.0"
+    "@nrwl/nx-darwin-arm64": "npm:15.9.5"
+    "@nrwl/nx-darwin-x64": "npm:15.9.5"
+    "@nrwl/nx-linux-x64-gnu": "npm:15.9.5"
     "@nrwl/nx-linux-x64-musl": "npm:15.9.5"
     "@nrwl/nx-win32-x64-msvc": "npm:15.9.0"
     "@nx/angular": "npm:16.7.3"
