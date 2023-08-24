@@ -11,7 +11,10 @@ jobs:
       - name: 'Install Node'
         uses: actions/setup-node@v3
         with:
-          node-version: 17.x
+          node-version: 18.x
+
+      - name: 'Install Nx globally'
+        run: sudo yarn add nx@latest
 
       - name: 'Yarn Install'
         uses: borales/actions-yarn@v3.0.0

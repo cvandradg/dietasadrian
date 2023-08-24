@@ -12,9 +12,9 @@ function errorIsAngularFireError(err: any): err is AngularFireError {
 
 @Injectable()
 export class ErrorHandlerService implements ErrorHandler {
+  constructor(private injector: Injector) {}
   private facade: SharedStoreFacade = this.injector?.get(SharedStoreFacade);
 
-  constructor(private injector: Injector) {}
 
   handleError(error: any): void {
     this.facade?.hideLoader();
