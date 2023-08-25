@@ -134,14 +134,25 @@ i {
 
 mat-sidenav-container {
   height: calc(205vh - 115vh);
+  height: 15vh;
+  background-color: transparent;
 }
 
 mat-sidenav {
   width: 200px;
   // background: rgba(77, 85, 95, 1);
-  background-color: #eee;
+  background-color: #eeeeeecc;
+}
+
+.mat-drawer-container {
+  background-color: transparent;
+}
+
+.test {
+  background: transparent;
+  height: 100%;
 }
 
 mat-sidenav-content {
-  background-color: #121418;
+  background-color: transparent;
 }

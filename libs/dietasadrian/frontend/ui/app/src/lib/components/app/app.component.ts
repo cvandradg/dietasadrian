@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { NavbarComponent } from '../navbar/navbar.component';
-import { SharedStoreFacade } from '@shared-modules';
+import { SharedModuleModule, SharedStoreFacade } from '@shared-modules';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { NavbarComponent } from "@shared-modules/components/navbar/navbar.component";
 
 @Component({
   standalone: true,
@@ -10,7 +10,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, NavbarComponent, RouterModule],
+  imports: [CommonModule, NavbarComponent, RouterModule, SharedModuleModule],
 })
 export class AppComponent {
   facade = inject(SharedStoreFacade);

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RegisterStore } from './register.store';
 import { Subject, map, combineLatest } from 'rxjs';
 import { SharedModuleModule } from '@shared-modules';
-import { NavbarComponent } from '../navbar/navbar.component';
+import { NavbarComponent } from '@shared-modules/components/navbar/navbar.component';
 import { firebaseAuthHelper } from '@classes/firebaseAuthHelper';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
