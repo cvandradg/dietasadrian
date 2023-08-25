@@ -21,6 +21,7 @@ export class LoginStore extends ComponentStoreMixinHelper<object> {
 
               this.facade.storeUserInfo(userInfo);
               userInfo.emailVerified && this.router.navigate(['/landing']);
+              
             }, this.handleError)
           )
         )
@@ -38,6 +39,12 @@ export class LoginStore extends ComponentStoreMixinHelper<object> {
                 const userInfo = user;
 
                 this.facade.storeUserInfo(userInfo);
+
+                if(userInfo.emailVerified){
+                  this.router.navigate(['/landing']);
+                  return
+                }
+
                 this.authService.sendEmailVerification(user);
               }, this.handleError)
             )
