@@ -1,20 +1,5 @@
-// import { Route } from '@angular/router';
-// import { LoginComponent } from './login/login.component';
-
-// export const routes: Route[] = [{ path: '', component: LoginComponent }];
-
-/////
-import { getAuth } from 'firebase/auth';
 import { Routes } from '@angular/router';
-import { initializeApp } from 'firebase/app';
-import { CommonModule } from '@angular/common';
-import { provideAuth } from '@angular/fire/auth';
-import { importProvidersFrom } from '@angular/core';
-import { SharedModuleModule } from '@shared-modules';
 import { canActivate } from '@angular/fire/auth-guard';
-import { FIREBASE_OPTIONS } from '@angular/fire/compat';
-import { provideFirebaseApp } from '@angular/fire/app';
-import { environment } from '@enviroments/environment';
 import { LoginComponent } from './components/login/login.component';
 import { unverifiedTo, verifiedTo } from '@helperFunctionsService';
 import { RegisterComponent } from './components/register/register.component';
