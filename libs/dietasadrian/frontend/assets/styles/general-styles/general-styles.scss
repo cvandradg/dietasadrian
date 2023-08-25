@@ -1,20 +1,27 @@
 .mdc-text-field:not(.mdc-text-field--disabled) {
   .mdc-text-field__input::placeholder {
-    color: #88898e;
+    color: #88898e !important;
   }
 
   .mdc-floating-label {
-    color: #88898e;
+    color: #88898e !important;
     text-align: center !important;
   }
 }
 
-.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label {
-  color: #8291eb;
+.mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-floating-label,
+.mdc-text-field--filled:not(.mdc-text-field--disabled)
+  .mdc-floating-label--float-above {
+  color: #88898e !important;
+}
+
+.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label,
+.mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::after {
+  color: #9da8eb !important;
 }
 
 .mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-floating-label {
-  color: #f44336;
+  color: #f44336 !important;
 }
 
 .mdc-text-field--filled:not(.mdc-text-field--disabled),
