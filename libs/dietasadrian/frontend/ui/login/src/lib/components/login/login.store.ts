@@ -33,7 +33,7 @@ export class LoginStore extends ComponentStoreMixinHelper<object> {
     (credentials$: Observable<Credentials>) =>
       credentials$.pipe(
         this.responseHandler(
-          switchMap((credentials) =>
+          switchMap((credentials:Credentials) =>
             this.authService.auth(credentials).pipe(
               tapResponse((user: User) => {
                 const userInfo = user;
