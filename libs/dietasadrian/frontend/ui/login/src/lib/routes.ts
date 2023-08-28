@@ -34,9 +34,9 @@ export const routes: Routes = [
         pathMatch: 'full',
     },
     {
+        path: 'code',
+        component: OobcodeCheckerComponent,
         pathMatch: 'full',
-        component: EmailVerificationComponent,
-        path: 'email-verification',
     },
     {
         path: 'passReset',
@@ -44,8 +44,8 @@ export const routes: Routes = [
         pathMatch: 'full',
     },
     {
-        path: 'code',
-        component: OobcodeCheckerComponent,
         pathMatch: 'full',
+        component: EmailVerificationComponent,
+        path: 'email-verification',
     },
 ];
