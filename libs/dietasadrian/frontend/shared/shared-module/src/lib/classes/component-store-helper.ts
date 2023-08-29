@@ -8,25 +8,7 @@ import { SharedStoreFacade } from '../+state/shared-store.facade';
 import { AuthService } from '../services/auth/auth-service.service';
 import { ErrorHandlerService } from '../services/error-handler/error-handler.service';
 
-export interface BaseComponentState extends Object {
-  error: AppError | null;
-  loading: boolean;
-}
 
-/**
- * En algun component store estoy recibiendo el state
- * ese state, sea lo que sea, quiero agregarle los
- * keys de error y loading. No logre agregarlos a lo que
- * sea que me este dando el state, asi que lo que hice
- * temporalmente es esperarlos de ese state, o sea, creer
- * que vienen pero ponerlos opcionales. No se porque funciona,
- * la cosa es que no tienen que ser opcionales del state que
- * vienen si no que tengo que agregarlos a la fuerza a lo que
- * sea que traiga el state.
- *
- * Tomar encuenta que componentStore me pide que el generic
- * que recibe extienda de object.
- */
 export interface GenericState extends Object {
   error?: AppError | null;
   loading?: boolean;
@@ -34,11 +16,9 @@ export interface GenericState extends Object {
 
 @Directive()
 export class ComponentStoreMixinHelper<
-  T extends GenericState
-  /*Hay que agregar el error y loading keys,
-   para poderlos inicializar aca en el helper 
-   sin tenerlos que inicializar en los component stores*/
-> extends ComponentStore<T> {
+  T extends GenericState>
+  extends ComponentStore<T> {
+
   router = inject(Router);
   authService = inject(AuthService);
   facade = inject(SharedStoreFacade);
