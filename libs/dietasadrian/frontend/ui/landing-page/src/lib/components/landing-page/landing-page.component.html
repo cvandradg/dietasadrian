@@ -1,14 +1,52 @@
 <mat-sidenav-container>
-  <mat-sidenav [opened]="facade.showSidenavbar$ | ngrxPush" mode="over"> 
-    
-    <div class="opciones">hola</div>
-    <div class="opciones">hola</div>
-    <div class="opciones">hola</div>
-    <div class="opciones">hola</div>
-  
+  <mat-sidenav
+    [opened]="facade.showSidenavbar$ | ngrxPush"
+    [disableClose]="true"
+    mode="push"
+  >
+    <div class="options-container">
+      <dietas-adrian-nx-workspace-secondary-animated-button
+        [small]="true"
+        buttonText="Perfil"
+      />
+      <dietas-adrian-nx-workspace-secondary-animated-button
+        [small]="true"
+        buttonText="Dietas"
+        [fontawesomeIcon]="['fas', 'salad']"
+      />
+      <dietas-adrian-nx-workspace-secondary-animated-button
+        [small]="true"
+        buttonText="Rutinas"
+        [fontawesomeIcon]="['fas', 'dumbbell']"
+      />
+      <dietas-adrian-nx-workspace-secondary-animated-button
+        [small]="true"
+        buttonText="Utilidades"
+        [fontawesomeIcon]="['fas', 'telescope']"
+      />
+      <dietas-adrian-nx-workspace-secondary-animated-button
+        [small]="true"
+        buttonText="Suplementos"
+        [fontawesomeIcon]="['fad', 'jar']"
+      />
+      <dietas-adrian-nx-workspace-secondary-animated-button
+        [small]="true"
+        buttonText="Vestimenta"
+        [fontawesomeIcon]="['fas', 'shirt']"
+      />
+      <dietas-adrian-nx-workspace-secondary-animated-button
+        [small]="true"
+        buttonText="Comida"
+        [fontawesomeIcon]="['fas', 'pot-food']"
+      />
+      <dietas-adrian-nx-workspace-secondary-animated-button
+        [small]="true"
+        buttonText="Contáctanos"
+        [fontawesomeIcon]="['fas', 'comments-question-check']"
+      />
+    </div>
   </mat-sidenav>
   <mat-sidenav-content>
-    
     <div class="test">hola</div>
     <router-outlet></router-outlet>
   </mat-sidenav-content>

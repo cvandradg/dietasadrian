@@ -134,14 +134,20 @@ i {
 
 mat-sidenav-container {
   height: calc(205vh - 115vh);
-  height: 75vh;
   background-color: transparent;
 }
 
 mat-sidenav {
   width: 200px;
-  // background: rgba(77, 85, 95, 1);
-  background-color: #eeeeeecc;
+  background-color: transparent;
+  height: fit-content;
+  padding: 0.5rem;
+
+  .options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 }
 
 .mat-drawer-container {
@@ -155,4 +161,11 @@ mat-sidenav {
 
 mat-sidenav-content {
   background-color: transparent;
+}
+
+::ng-deep .mat-drawer-inner-container {
+  overflow: hidden !important;
+}
+::ng-deep .mat-drawer-backdrop.mat-drawer-shown {
+  background-color: transparent !important;
 }

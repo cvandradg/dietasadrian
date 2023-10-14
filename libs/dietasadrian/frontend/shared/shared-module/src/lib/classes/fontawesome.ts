@@ -12,6 +12,7 @@ import {
   faXmark,
   faPersonDress,
   faPerson,
+  faJar
 } from '@fortawesome/pro-duotone-svg-icons';
 
 import {
@@ -48,6 +49,12 @@ import {
   faMessageExclamation,
   faBars,
   faRotateBack,
+  faPotFood,
+  faSalad,
+  faDumbbell,
+  faCommentsQuestionCheck,
+  faShirt,
+  faTelescope
 } from '@fortawesome/pro-solid-svg-icons';
 import { faHouseTree } from '@fortawesome/pro-regular-svg-icons';
 
@@ -55,23 +62,29 @@ import { faHouseTree } from '@fortawesome/pro-regular-svg-icons';
 export class Fontawesome {
   constructor(private library: FaIconLibrary) {
     library?.addIcons(
+      faJar,
       faBolt,
       faPlus,
       faUser,
       faBars,
       faXmark,
+      faSalad,
       faCheck,
+      faShirt,
       faPerson,
       faGoogle,
       faTurkey,
       faFilePen,
       faPeanuts,
+      faPotFood,
       faTwitter,
+      faDumbbell,
       faTrashCan,
       faBowlRice,
       faGripLines,
       faDrumstick,
       faLayerPlus,
+      faTelescope,
       faFacebookF,
       faHouseTree,
       faCaretRight,
@@ -86,7 +99,8 @@ export class Fontawesome {
       faRightToBracket,
       faClipboardQuestion,
       faMessageExclamation,
-      faEnvelopeCircleCheck
+      faEnvelopeCircleCheck,
+      faCommentsQuestionCheck
     );
   }
 }

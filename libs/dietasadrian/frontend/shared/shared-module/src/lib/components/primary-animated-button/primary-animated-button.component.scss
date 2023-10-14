@@ -35,7 +35,7 @@ button {
   background-position: 100%;
 }
 
-::ng-deep {
+:host ::ng-deep {
   .mdc-button__label {
     font-family: 'Roboto', sans-serif;
     padding: 0 3.3rem;
