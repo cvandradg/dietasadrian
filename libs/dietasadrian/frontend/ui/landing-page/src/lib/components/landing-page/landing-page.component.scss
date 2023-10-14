@@ -141,7 +141,7 @@ mat-sidenav-container {
 mat-sidenav {
   width: 200px;
   background-color: transparent;
-
+  height: fit-content;
   padding: 0.5rem;
 
   .options-container {
@@ -170,4 +170,7 @@ mat-sidenav-content {
 
 ::ng-deep .mat-drawer-inner-container {
   overflow: hidden !important;
+}
+::ng-deep .mat-drawer-backdrop.mat-drawer-shown {
+  background-color: transparent !important;
 }
