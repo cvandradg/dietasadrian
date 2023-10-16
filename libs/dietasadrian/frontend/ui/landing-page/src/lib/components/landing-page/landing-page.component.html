@@ -54,7 +54,13 @@
 </mat-sidenav-container> -->
 
 <mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="example-sidenav" mode="side">
+  <mat-drawer
+    #drawer
+    class="example-sidenav"
+    mode="push"
+    [disableClose]="true"
+    [opened]="facade.showSidenavbar$ | ngrxPush"
+  >
     <div class="options-container">
       <dietas-adrian-nx-workspace-secondary-animated-button
         [small]="true"
@@ -103,9 +109,5 @@
     </button>
   </mat-drawer>
 
-  <div class="example-sidenav-content">
-    <button type="button" mat-button (click)="drawer.toggle()">
-      Toggle sidenav
-    </button>
-  </div>
+  <div class="example-sidenav-content">content</div>
 </mat-drawer-container>
