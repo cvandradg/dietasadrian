@@ -132,37 +132,6 @@ i {
   }
 }
 
-mat-sidenav-container {
-  height: calc(205vh - 115vh);
-  background-color: transparent;
-}
-
-mat-drawer {
-  width: 250px;
-  background-color: transparent;
-  height: 100%;
-  padding: 0.5rem;
-
-  .options-container {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-}
-
-.mat-drawer-container {
-  background-color: red;
-}
-
-.test {
-  color: white;
-  background: transparent;
-  height: 100%;
-}
-
-mat-sidenav-content {
-  background-color: transparent;
-}
 
 ::ng-deep .mat-drawer-inner-container {
   overflow: hidden !important;
@@ -170,6 +139,40 @@ mat-sidenav-content {
 ::ng-deep .mat-drawer-backdrop.mat-drawer-shown {
   background-color: transparent !important;
 }
+
+
+// mat-sidenav-content {
+//   background-color: transparent;
+// }
+
+
+mat-sidenav-container {
+  height: calc(205vh - 115vh);
+  background-color: transparent;
+}
+
+// mat-drawer {
+//   width: 250px;
+//   background-color: transparent;
+//   height: 100%;
+//   padding: 0.5rem;
+
+//   .options-container {
+//     display: flex;
+//     flex-direction: column;
+//     gap: 0.5rem;
+//   }
+// }
+
+// .mat-drawer-container {
+//   background-color: transparent;
+// }
+
+// .test {
+//   color: white;
+//   background: transparent;
+//   height: 100%;
+// }
 
 .drawer-container {
   width: 100%;
@@ -179,14 +182,21 @@ mat-sidenav-content {
   background-color: transparent;
 }
 
-.drawer-sidenav-content {
-  display: flex;
-  height: 100%;
-  align-items: center;
-  background-color: transparent;
-  justify-content: center;
-}
+// .drawer-sidenav-content {
+//   display: flex;
+//   height: 100%;
+//   align-items: center;
+//   background-color: transparent;
+//   justify-content: center;
+// }
 
-.drawer-sidenav {
-  padding: 20px;
+// .drawer-sidenav {
+//   padding: 20px;
+// }
+
+.example-events {
+  width: 300px;
+  height: 100%;
+  overflow: auto;
+  border: 1px solid #555;
 }
