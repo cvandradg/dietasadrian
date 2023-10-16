@@ -14,4 +14,5 @@ import { SharedModuleModule } from '@shared-modules';
   imports: [CommonModule, RouterModule, SharedModuleModule],
 })
 export class LandingPageComponent extends firebaseAuthHelper {
+  showFiller = false;
 }
