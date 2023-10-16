@@ -1,62 +1,7 @@
-<!-- <mat-sidenav-container>
-  <mat-sidenav
-    [opened]="facade.showSidenavbar$ | ngrxPush"
-    [disableClose]="true"
-    mode="push"
-  >
-    <div class="test">hola</div>
-    <div class="options-container">
-      <dietas-adrian-nx-workspace-secondary-animated-button
-        [small]="true"
-        buttonText="Perfil"
-      />
-      <dietas-adrian-nx-workspace-secondary-animated-button
-        [small]="true"
-        buttonText="Dietas"
-        [fontawesomeIcon]="['fas', 'salad']"
-      />
-      <dietas-adrian-nx-workspace-secondary-animated-button
-        [small]="true"
-        buttonText="Rutinas"
-        [fontawesomeIcon]="['fas', 'dumbbell']"
-      />
-      <dietas-adrian-nx-workspace-secondary-animated-button
-        [small]="true"
-        buttonText="Utilidades"
-        [fontawesomeIcon]="['fas', 'telescope']"
-      />
-      <dietas-adrian-nx-workspace-secondary-animated-button
-        [small]="true"
-        buttonText="Suplementos"
-        [fontawesomeIcon]="['fad', 'jar']"
-      />
-      <dietas-adrian-nx-workspace-secondary-animated-button
-        [small]="true"
-        buttonText="Vestimenta"
-        [fontawesomeIcon]="['fas', 'shirt']"
-      />
-      <dietas-adrian-nx-workspace-secondary-animated-button
-        [small]="true"
-        buttonText="Comida"
-        [fontawesomeIcon]="['fas', 'pot-food']"
-      />
-      <dietas-adrian-nx-workspace-secondary-animated-button
-        [small]="true"
-        buttonText="Contáctanos"
-        [fontawesomeIcon]="['fas', 'comments-question-check']"
-      />
-    </div>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <div class="test">hola</div>
-    <router-outlet></router-outlet>
-  </mat-sidenav-content>
-</mat-sidenav-container> -->
-
-<mat-drawer-container class="example-container" autosize>
+<mat-drawer-container class="drawer-container" autosize>
   <mat-drawer
     #drawer
-    class="example-sidenav"
+    class="drawer-sidenav"
     mode="push"
     [disableClose]="true"
     [opened]="facade.showSidenavbar$ | ngrxPush"
@@ -102,12 +47,8 @@
         [fontawesomeIcon]="['fas', 'comments-question-check']"
       />
     </div>
-    <p>Auto-resizing sidenav</p>
-    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
-    <button (click)="showFiller = !showFiller" mat-raised-button>
-      Toggle extra text
-    </button>
   </mat-drawer>
 
-  <div class="example-sidenav-content">content</div>
+  <div class="drawer-sidenav-content test">content</div>
+  <router-outlet></router-outlet>
 </mat-drawer-container>
