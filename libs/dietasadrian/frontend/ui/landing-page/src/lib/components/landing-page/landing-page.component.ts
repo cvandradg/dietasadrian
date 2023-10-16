@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
 
 import { RouterModule } from '@angular/router';
 import { firebaseAuthHelper } from '@classes/firebaseAuthHelper';
@@ -14,5 +15,8 @@ import { SharedModuleModule } from '@shared-modules';
   imports: [CommonModule, RouterModule, SharedModuleModule],
 })
 export class LandingPageComponent extends firebaseAuthHelper {
-  showFiller = false;
+  events: string[] = [];
+  opened: boolean | undefined;
+
+  shouldRun = /(^|.)(stackblitz|webcontainer).(io|com)$/.test(window.location.host);
 }
