@@ -58,7 +58,7 @@ button {
       hsla(226, 78%, 67%, 0.397),
       rgb(163, 31, 31)
     );
-    filter: blur(1rem);
+    // filter: blur(1rem);
     @media (pointer: coarse) {
       filter: blur(0);
     }
@@ -71,7 +71,7 @@ button {
       rgb(163, 31, 31)
     );
 
-    filter: blur(1rem);
+    // filter: blur(1rem);
     @media (pointer: coarse) {
       filter: blur(0);
     }
