@@ -132,6 +132,7 @@ i {
   gap: 0.5rem;
   margin-top: 1rem;
   margin-left: 1rem;
+  margin-right: 0.3rem;
 }
 
 mat-sidenav,
@@ -146,7 +147,7 @@ mat-sidenav-container {
 }
 
 ::ng-deep .mat-drawer-inner-container {
-  overflow: hidden !important;
+  overflow-x: hidden !important;
 }
 ::ng-deep .mat-drawer-backdrop.mat-drawer-shown {
   background-color: transparent !important;
