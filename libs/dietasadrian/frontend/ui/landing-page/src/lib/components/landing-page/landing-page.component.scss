@@ -131,6 +131,7 @@ i {
   flex-direction: column;
   gap: 0.5rem;
   margin-top: 1rem;
+  margin-left: 1rem;
 }
 
 mat-sidenav,
@@ -142,7 +143,6 @@ mat-sidenav-content,
 mat-sidenav-container {
   height: calc(205vh - 115vh);
   background-color: transparent;
-  padding: 1rem;
 }
 
 ::ng-deep .mat-drawer-inner-container {
