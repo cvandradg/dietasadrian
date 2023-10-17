@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
-import { MatSidenav } from '@angular/material/sidenav';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { RouterModule } from '@angular/router';
 import { firebaseAuthHelper } from '@classes/firebaseAuthHelper';
@@ -14,9 +13,4 @@ import { SharedModuleModule } from '@shared-modules';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, RouterModule, SharedModuleModule],
 })
-export class LandingPageComponent extends firebaseAuthHelper {
-  events: string[] = [];
-  opened: boolean | undefined;
-
-  shouldRun = /(^|.)(stackblitz|webcontainer).(io|com)$/.test(window.location.host);
-}
+export class LandingPageComponent extends firebaseAuthHelper {}
