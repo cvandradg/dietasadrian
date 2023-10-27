@@ -213,16 +213,8 @@
         "hash": "6115860746437640984"
       },
       {
-        "file": ".nx/cache/d/daemon.log",
-        "hash": "6205636731133799588"
-      },
-      {
         "file": ".nx/cache/d/server-process.json",
         "hash": "11689872371395413774"
-      },
-      {
-        "file": ".nx/cache/file-map.json",
-        "hash": "7971485240304599578"
       },
       {
         "file": ".nx/cache/project-graph.json",
@@ -7267,6 +7259,14 @@
       {
         "file": ".nx/cache/terminalOutputs/10597735543060475823",
         "hash": "13745815668766683181"
+      },
+      {
+        "file": ".nx/cache/d/daemon.log",
+        "hash": "2640207898596935632"
+      },
+      {
+        "file": ".nx/cache/file-map.json",
+        "hash": "6546830501884955768"
       }
     ],
     "projectFileMap": {
