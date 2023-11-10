@@ -42,3 +42,6 @@ Thumbs.db
 
 # Nx
 .nx/
+
+# Yarn
+.yarn/
