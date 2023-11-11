@@ -8,9 +8,9 @@ export const routes: Routes = [
     component: LandingPageComponent,
     children: [
       {
-        path: 'dietas',
+        path: '',
         pathMatch: 'prefix',
-        loadChildren: () => import('@libs/dietas/dietas.routes').then(r => r.dietasRoutes)
+        loadChildren: () => import('@libs/client/lib.routes').then(r => r.clientRoutes)
       }
     ]
   },

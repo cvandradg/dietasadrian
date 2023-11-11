@@ -54,6 +54,7 @@
       "@interfaces/*": [
         "libs/dietasadrian/frontend/shared/shared-module/src/lib/interfaces/*"
       ],
+      "@libs/client/*": ["libs/dietasadrian/frontend/ui/client/src/lib/*"],
       "@libs/dietas/*": ["libs/dietasadrian/frontend/ui/dietas/src/lib/*"],
       "@libs/landing-page": [
         "libs/dietasadrian/frontend/ui/landing-page/src/lib/routes.ts"
@@ -72,6 +73,7 @@
       "@shared-modules/*": [
         "libs/dietasadrian/frontend/shared/shared-module/src/lib/*"
       ],
+      "client": ["libs/dietasadrian/frontend/ui/client/src/index.ts"],
       "types": [
         "libs/dietasadrian/frontend/shared/shared-module/src/lib/types/types.ts"
       ]
