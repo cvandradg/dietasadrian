@@ -20,7 +20,7 @@ export class LoginStore extends ComponentStoreMixinHelper<object> {
               const userInfo = deepCopy(response);
 
               this.facade.storeUserInfo(userInfo);
-              userInfo.emailVerified && this.router.navigate(['/landing']);
+              userInfo.emailVerified && this.router.navigate(['/dashboard']);
               
             }, this.handleError)
           )
@@ -41,7 +41,7 @@ export class LoginStore extends ComponentStoreMixinHelper<object> {
                 this.facade.storeUserInfo(userInfo);
 
                 if(userInfo.emailVerified){
-                  this.router.navigate(['/landing']);
+                  this.router.navigate(['/dashboard']);
                   return
                 }
 
