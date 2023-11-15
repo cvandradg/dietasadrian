@@ -14,7 +14,7 @@ export const routes: Routes = [
     {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'landing',
+        redirectTo: 'dashboard',
     },
     {
         path: 'login',
@@ -23,10 +23,10 @@ export const routes: Routes = [
         ...canActivate(redirectLoggedIn),
     },
     {
-        path: 'landing',
+        path: 'dashboard',
         pathMatch: 'prefix',
         ...canActivate(redirectUnauthorized),
-        loadChildren: () => import('@libs/landing-page').then((r) => r.routes),
+        loadChildren: () => import('@libs/dashboard').then((r) => r.routes),
     },
     {
         path: 'register',

@@ -10,7 +10,7 @@ export const routes: Routes = [
       {
         path: '',
         pathMatch: 'prefix',
-        loadChildren: () => import('@libs/client/lib.routes').then(r => r.clientRoutes)
+        // loadChildren: () => import('pagina base').then(r => pagina base)
       }
     ]
   },
