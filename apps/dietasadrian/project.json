@@ -93,7 +93,7 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["coverage/apps/dietasadrian"],
+      "outputs": ["{workspaceRoot}/coverage/apps/dietasadrian"],
       "options": {
         "jestConfig": "apps/dietasadrian/jest.config.ts"
       }

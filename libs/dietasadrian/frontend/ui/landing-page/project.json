@@ -7,7 +7,9 @@
   "targets": {
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["coverage/libs/dietasadrian/frontend/ui/landing-page"],
+      "outputs": [
+        "{workspaceRoot}/coverage/libs/dietasadrian/frontend/ui/landing-page"
+      ],
       "options": {
         "tsConfig": "libs/dietasadrian/frontend/ui/landing-page/tsconfig.lib.json",
         "jestConfig": "libs/dietasadrian/frontend/ui/landing-page/jest.config.ts"
