@@ -75,6 +75,9 @@
       ],
       "client": ["libs/dietasadrian/frontend/ui/client/src/index.ts"],
       "dashboard": ["libs/dietasadrian/frontend/ui/dashboard/src/index.ts"],
+      "landing-page": [
+        "libs/dietasadrian/frontend/ui/landing-page/src/index.ts"
+      ],
       "types": [
         "libs/dietasadrian/frontend/shared/shared-module/src/lib/types/types.ts"
       ]
