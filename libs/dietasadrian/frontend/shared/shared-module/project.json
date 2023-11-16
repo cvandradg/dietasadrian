@@ -10,8 +10,7 @@
       "outputs": ["coverage/libs/dietasadrian/frontend/shared/shared-module"],
       "options": {
         "tsConfig": "libs/dietasadrian/frontend/shared/shared-module/tsconfig.lib.json",
-        "jestConfig": "libs/dietasadrian/frontend/shared/shared-module/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "libs/dietasadrian/frontend/shared/shared-module/jest.config.ts"
       }
     },
     "lint": {
