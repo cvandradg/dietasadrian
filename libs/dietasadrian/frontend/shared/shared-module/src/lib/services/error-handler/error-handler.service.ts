@@ -12,7 +12,7 @@ function errorIsAngularFireError(err: AngularFireError): boolean {
 
 @Injectable()
 export class ErrorHandlerService implements ErrorHandler {
-  constructor(private injector: Injector) { }
+  constructor(private injector: Injector) {}
 
   handleError(error: AngularFireError): void {
     const facade: SharedStoreFacade = this.injector?.get(SharedStoreFacade);
@@ -133,10 +133,10 @@ export class ErrorHandlerService implements ErrorHandler {
       default:
         throw new Error(
           'Error code not handled. \n' +
-          ' Error code. \n ' +
-          error.code +
-          '\n Error trace. ' +
-          error
+            ' Error code. \n ' +
+            error.code +
+            '\n Error trace. ' +
+            error
         );
     }
   }
