@@ -1,9 +1,9 @@
 {
-  "name": "dietasadrian-frontend-ui-landing-page",
+  "name": "dietasadrian-frontend-landing-page",
   "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "libs/dietasadrian/frontend/ui/landing-page/src",
-  "prefix": "dietas-adrian-nx-workspace",
+  "prefix": "dietas-adrian",
   "targets": {
     "test": {
       "executor": "@nx/jest:jest",

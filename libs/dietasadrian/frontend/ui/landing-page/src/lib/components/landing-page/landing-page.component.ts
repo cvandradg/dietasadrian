@@ -7,7 +7,7 @@ import { SharedModuleModule } from '@shared-modules';
 
 @Component({
   standalone: true,
-  selector: 'dietas-adrian-nx-workspace-landing-page',
+  selector: 'dietas-adrian-landing-page',
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

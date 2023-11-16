@@ -1,6 +1,6 @@
 /* eslint-disable */
 export default {
-  displayName: 'dietasadrian-frontend-ui-landing-page',
+  displayName: 'dietasadrian-frontend-landing-page',
   preset: '../../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {},
