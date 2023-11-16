@@ -14,9 +14,9 @@ import { IconProp } from '@fortawesome/fontawesome-svg-core';
 export class TertiaryAnimatedButtonComponent {
   @Output() submitEvent = new EventEmitter<never>();
 
-  @Input() small = false;
-  @Input() buttonText = 'Some Small Text';
-  @Input() fontawesomeIcon: IconProp = ['fas', 'user'];
+  @Input() small: boolean = false;
+  @Input() icon: IconProp = ['fas', 'user'];
+  @Input() buttonText: string = 'Some Small Text';
 
   onSubmit() {
     this.submitEvent.emit();

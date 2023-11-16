@@ -7,6 +7,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { FoodComponent } from './components/food/food.component';
 import { SuplementsComponent } from './components/suplements/suplements.component';
 import { ContactUsComponent } from './components/contact-us/contactUs.component';
+import { UtilitiesComponent } from './components/utilities/utilities.component';
 
 export const routes: Route[] = [
     {
@@ -19,8 +20,9 @@ export const routes: Route[] = [
             { path: 'perfil', component: ProfileComponent },
             { path: 'rutinas', component: RutinesComponent },
             { path: 'vestimenta', component: ClothesComponent },
-            { path: 'suplementos', component: SuplementsComponent },
+            { path: 'utilidades', component: UtilitiesComponent },
             { path: 'contactenos', component: ContactUsComponent },
+            { path: 'suplementos', component: SuplementsComponent },
             { path: '', redirectTo: 'perfil', pathMatch: 'prefix' },
         ]
     }
