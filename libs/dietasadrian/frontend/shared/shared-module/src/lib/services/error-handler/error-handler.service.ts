@@ -1,4 +1,4 @@
-import { Injectable, ErrorHandler, inject } from '@angular/core';
+import { Injectable, ErrorHandler, Injector } from '@angular/core';
 import { SharedStoreFacade } from '../../+state/shared-store.facade';
 import { FirebaseError } from 'firebase/app';
 
@@ -12,10 +12,11 @@ function errorIsAngularFireError(err: AngularFireError): boolean {
 
 @Injectable()
 export class ErrorHandlerService implements ErrorHandler {
-  facade = inject(SharedStoreFacade)
+  constructor(private injector: Injector) { }
 
   handleError(error: AngularFireError): void {
-    this.facade?.hideLoader();
+    const facade: SharedStoreFacade = this.injector?.get(SharedStoreFacade);
+    facade?.hideLoader();
 
     if (errorIsAngularFireError(error)) {
       return;
