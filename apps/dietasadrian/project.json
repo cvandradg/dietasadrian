@@ -68,10 +68,10 @@
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "browserTarget": "dietasadrian:build:production"
+          "buildTarget": "dietasadrian:build:production"
         },
         "development": {
-          "browserTarget": "dietasadrian:build:development"
+          "buildTarget": "dietasadrian:build:development"
         }
       },
       "defaultConfiguration": "development"
@@ -79,7 +79,7 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "browserTarget": "dietasadrian:build"
+        "buildTarget": "dietasadrian:build"
       }
     },
     "lint": {
@@ -93,10 +93,9 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["coverage/apps/dietasadrian"],
+      "outputs": ["{workspaceRoot}/coverage/apps/dietasadrian"],
       "options": {
-        "jestConfig": "apps/dietasadrian/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "apps/dietasadrian/jest.config.ts"
       }
     }
   },

@@ -33,9 +33,6 @@
       "@dietas-adrian-nx-workspace/dietasadrian/frontend/ui/dietas": [
         "libs/dietasadrian/frontend/ui/dietas/src/index.ts"
       ],
-      "@dietas-adrian-nx-workspace/dietasadrian/frontend/ui/landing-page": [
-        "libs/dietasadrian/frontend/ui/landing-page/src/index.ts"
-      ],
       "@dietas-adrian-nx-workspace/dietasadrian/frontend/ui/login": [
         "libs/dietasadrian/frontend/ui/login/src/index.ts"
       ],
@@ -62,9 +59,6 @@
         "libs/dietasadrian/frontend/ui/dietas/src/lib/lib.routes.ts"
       ],
       "@libs/dietas/*": ["libs/dietasadrian/frontend/ui/dietas/src/lib/*"],
-      "@libs/landing-page": [
-        "libs/dietasadrian/frontend/ui/landing-page/src/lib/routes.ts"
-      ],
       "@libs/landing-page/*": ["libs/dietasadrian/frontend/ui/login/src/lib/*"],
       "@libs/login": ["libs/dietasadrian/frontend/ui/login/src/lib/routes.ts"],
       "@materialFunctions": [
@@ -81,6 +75,9 @@
       ],
       "client": ["libs/dietasadrian/frontend/ui/client/src/index.ts"],
       "dashboard": ["libs/dietasadrian/frontend/ui/dashboard/src/index.ts"],
+      "landing-page": [
+        "libs/dietasadrian/frontend/ui/landing-page/src/index.ts"
+      ],
       "types": [
         "libs/dietasadrian/frontend/shared/shared-module/src/lib/types/types.ts"
       ]

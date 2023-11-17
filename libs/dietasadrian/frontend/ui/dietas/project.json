@@ -7,11 +7,12 @@
   "targets": {
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["coverage/libs/dietasadrian/frontend/ui/dietas"],
+      "outputs": [
+        "{workspaceRoot}/coverage/libs/dietasadrian/frontend/ui/dietas"
+      ],
       "options": {
         "tsConfig": "libs/dietasadrian/frontend/ui/dietas/tsconfig.lib.json",
-        "jestConfig": "libs/dietasadrian/frontend/ui/dietas/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "libs/dietasadrian/frontend/ui/dietas/jest.config.ts"
       }
     },
     "lint": {

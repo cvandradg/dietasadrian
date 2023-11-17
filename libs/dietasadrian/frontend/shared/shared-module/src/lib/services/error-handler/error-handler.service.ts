@@ -6,7 +6,7 @@ interface AngularFireError extends Error {
   rejection: FirebaseError;
 }
 
-function errorIsAngularFireError(err: any): err is AngularFireError {
+function errorIsAngularFireError(err: AngularFireError): boolean {
   return err.rejection && err.rejection.name === 'FirebaseError';
 }
 
@@ -14,10 +14,9 @@ function errorIsAngularFireError(err: any): err is AngularFireError {
 export class ErrorHandlerService implements ErrorHandler {
   constructor(private injector: Injector) {}
 
-  private facade: SharedStoreFacade = this.injector?.get(SharedStoreFacade);
-
-  handleError(error: any): void {
-    this.facade?.hideLoader();
+  handleError(error: AngularFireError): void {
+    const facade: SharedStoreFacade = this.injector?.get(SharedStoreFacade);
+    facade?.hideLoader();
 
     if (errorIsAngularFireError(error)) {
       return;
@@ -142,7 +141,7 @@ export class ErrorHandlerService implements ErrorHandler {
     }
   }
 
-  errorObject(status: boolean, message: string, error: any) {
+  errorObject(status: boolean, message: string, error: Error) {
     return { status, message, error };
   }
 }

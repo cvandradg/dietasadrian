@@ -1,16 +1,12 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-
-import { RouterModule } from '@angular/router';
-import { firebaseAuthHelper } from '@classes/firebaseAuthHelper';
-import { SharedModuleModule } from '@shared-modules';
+import { CommonModule } from '@angular/common';
 
 @Component({
+  selector: 'adrian-badilla-landing-page',
   standalone: true,
-  selector: 'dietas-adrian-nx-workspace-landing-page',
+  imports: [CommonModule],
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, RouterModule, SharedModuleModule],
 })
-export class LandingPageComponent extends firebaseAuthHelper {}
+export class LandingPageComponent {}
